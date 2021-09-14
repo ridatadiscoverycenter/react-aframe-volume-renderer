@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import '../../App.css'
+import "../../../styles/App.css"
 import ReactModal from 'react-modal';
 import {connect} from 'react-redux';
-import {myChangeColorMapAction, mySaveColorMappingState} from '../../redux/AppActions'
+import {myChangeColorMapAction, mySaveColorMappingState} from '../../../redux/AppActions'
 import {DataTable} from 'primereact/datatable'
 import {Column} from 'primereact/column';
 import 'primereact/resources/themes/nova/theme.css';

@@ -8,7 +8,7 @@ import './components/Aframe/my-loader.js'
 import './components/Aframe/my-buttons-check.js'
 import './components/Aframe/render-2d-clipplane'
 import './components/Aframe/cursor-listener'
-import './App.css'
+import './styles/App.css'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

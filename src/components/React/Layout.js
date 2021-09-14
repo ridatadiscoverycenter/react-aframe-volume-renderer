@@ -5,11 +5,11 @@ import { Element } from 'react-scroll'
 import { Modal, Navbar, Nav, ModalBody } from 'react-bootstrap';
 
 import '../../styles/scroll_nav.scss';
-import '../../App.css';
+import '../../styles/App.css';
 
-import VolumeRenderer from './VolumeRenderer';
-import ControlsPanel from './ControlsPanel';
-import Howto from './Howto'
+import VolumeRenderer from "./volume-renderer/VolumeRenderer";
+import ControlsPanel from "./controls/ControlsPanel";
+import Howto from "./howto/Howto"
 
 import { ReactComponent as CCVLogo } from '../../assets/logos/ccv/black-ccv-logo.svg';
 import { ReactComponent as BrownLogo } from '../../assets/logos/brown/brown-logo.svg';

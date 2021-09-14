@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import myStore from './redux/AppStore.js';
 
-import './index.css';
+import './styles/index.css';
 import './styles/custom.scss';
 
 ReactDOM.render(

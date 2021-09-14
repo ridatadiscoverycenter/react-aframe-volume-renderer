@@ -5,8 +5,8 @@ import {Sidebar} from 'primereact/sidebar';
 import {Button} from 'primereact/button';
 import {SelectButton} from 'primereact/selectbutton';
 
-import {myChangeVolumeAction} from '../../redux/AppActions'
-import Controls from './Controls';
+import {myChangeVolumeAction} from "../../../redux/AppActions"
+import Controls from "./Controls";
 
 const options = [
   {value: './assets/models/48hr_20x_23_0.597976_ 0.597976_5.png:false', label: 'Spheroid old' },

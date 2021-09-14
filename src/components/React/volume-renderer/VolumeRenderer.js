@@ -3,8 +3,8 @@ import {Entity, Scene} from 'aframe-react';
 import React, {Component} from 'react'
 import { connect } from "react-redux";
 import Spinner from './Spinner'
-import '../../App.css'
-import '../Aframe/arcball-camera'
+import '../../../styles/App.css'
+import '../../Aframe/arcball-camera'
 
 const mapStateToProps = state => {
   return { 
