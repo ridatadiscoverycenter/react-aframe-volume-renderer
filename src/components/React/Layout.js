@@ -11,13 +11,13 @@ import VolumeRenderer from './VolumeRenderer';
 import ControlsPanel from './ControlsPanel';
 import Howto from './Howto'
 
-import { ReactComponent as CCVLogo } from '../../assets/black-ccv-logo.svg';
-import { ReactComponent as BrownLogo } from '../../assets/brown-logo.svg';
-import { ReactComponent as Github} from '../../assets/github-brands.svg';
-import Kalvin from './kalkal.jpg';
-import Camilo from './camilo.jpg';
-import Ben from './ben.jpg';
-import NSFEPSCoR from './nsfepscor.jpg'
+import { ReactComponent as CCVLogo } from '../../assets/logos/ccv/black-ccv-logo.svg';
+import { ReactComponent as BrownLogo } from '../../assets/logos/brown/brown-logo.svg';
+import { ReactComponent as Github} from '../../assets/logos/github-brands.svg';
+import Kalvin from "../../assets/people/kalkal.jpg"
+import Camilo from '../../assets/people/camilo.jpg';
+import Ben from '../../assets/people/ben.jpg';
+import NSFEPSCoR from "../../assets/logos/nsfepscor.jpg"
 
 export default class Layout extends Component {
   constructor(props) {
