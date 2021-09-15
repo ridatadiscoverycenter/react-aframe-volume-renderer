@@ -1,6 +1,6 @@
 Aframe Volume Rendering
 
-This project is an effor to integrate data visualization on VR and web browser technologies.
+This project is an effort to integrate data visualization on VR and web browser technologies.
 This project was developed using react-js and Aframe (webvr - threejs -webgl2)
 
 ##### Table of Contents  
@@ -16,7 +16,7 @@ For local deployment, clone - download the repository and in the project directo
 
 #### `npm install`
 
-The package manager will install all the depencies. When it is done run:
+The package manager will install all the dependencies. When it is done run:
 
 ##### `npm start`
 
@@ -62,7 +62,7 @@ Following A-Frame’s philosophy, the application has a custom component that re
 
     <Entity id="volumeCube" class="clickableMesh"   myloader={{'path_to_data'}}   position="0 0 0"/>
 
-Althoug it can be attached to a generic aframe entity:
+Although it can be attached to a generic aframe entity:
 
     <a-entity id="volumeCube"  myloader="path_to_data" position="0 0 0"> 
 
@@ -75,7 +75,7 @@ Althoug it can be attached to a generic aframe entity:
 |  Name         | Type          | Description  |
 | ------------- | ------------- | ------------- |
 | colorMap  | string  | path to the color map 1d texture   |
-| position | vector3  | position of the volume in worl space |
+| position | vector3  | position of the volume in world space |
 | alphaXDataArray   | array  | Opacity values in the X coordinate. This represents the color the opacity is going to modify |
 | alphaYDataArray   | array  | Opacity values in the Y coordinate. This represents the alpha value of the X color  |
 | channel | number  | If the volume support different RBGA channels: 1 Red, 2 Green, 3 Blue, 4 alpha |
@@ -145,6 +145,6 @@ At this moment, VR on web browsers is only supported on Mozilla Firefox. In orde
 
 ![Mozilla2](./imgs/mozilla2.png)
 
-3. In the 'Select a program' drop list select the Mozilla Firefox (If you dont find it, you will have to click on the 'add' button, look for firefox.exe). In the 'Select the preferred graphics processor for this program' drop list select 'High-Perfomance NVIDIA processor'
+3. In the 'Select a program' drop list select the Mozilla Firefox (If you don't find it, you will have to click on the 'add' button, look for firefox.exe). In the 'Select the preferred graphics processor for this program' drop list select 'High-Performance NVIDIA processor'
 
 ![Mozilla2](./imgs/mozilla3.png)
