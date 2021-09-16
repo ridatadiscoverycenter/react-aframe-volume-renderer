@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {myReducer} from '../redux/AppReducers'
+import {myReducer} from './AppReducers'
 
 
 export default createStore(myReducer);

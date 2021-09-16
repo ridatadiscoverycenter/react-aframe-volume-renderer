@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import myStore from './redux/AppStore.js';
+import myStore from './redux/store';
 
 import './styles/index.css';
 import './styles/custom.scss';
