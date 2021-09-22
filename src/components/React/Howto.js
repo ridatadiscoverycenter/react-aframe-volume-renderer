@@ -38,7 +38,7 @@ export default function Howto(props) {
               potential its potential for future research.
             </p>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/guide12.png"
+              src="./assets/images/howto/guide12.png"
               alt="Example screenshot"
               width="100%"
             />
@@ -51,7 +51,7 @@ export default function Howto(props) {
               between datasets by clicking the respective button.
             </p>
             <img
-                src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/datasetbuttons.gif"
+                src="./assets/images/howto/datasetbuttons.gif"
                 alt="Instructional gif on displaying data"
                 width="100%"
             />
@@ -64,7 +64,7 @@ export default function Howto(props) {
               rotate the data on three different axes.
             </p>
             <img
-                src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/zoomInOut-Rotate.gif"
+                src="./assets/images/howto/zoomInOut-Rotate.gif"
                 alt="Instructional gif on zooming in and out"
                 width="100%"
             />
@@ -77,7 +77,7 @@ export default function Howto(props) {
               channel.
             </p>
             <img
-                src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/channels.gif"
+                src="./assets/images/howto/channels.gif"
                 alt="Instructional gif on selecting RGBA channels"
                 width="100%"
             />
@@ -94,7 +94,7 @@ export default function Howto(props) {
               new control point. Right click on an existing point to delete it.
             </p>
             <img
-                src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/colorMappingTransfer.gif"
+                src="./assets/images/howto/colorMappingTransfer.gif"
                 alt="Instructional gif on applying a color texture"
                 width="100%">
             </img>
@@ -106,7 +106,7 @@ export default function Howto(props) {
               different axes.
             </p>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/slice.gif"
+              src="./assets/images/howto/slice.gif"
               alt="Instructional gif on cutting through the dataset on an axis"
               width="100%"
             />
@@ -136,7 +136,7 @@ export default function Howto(props) {
               </li>
             </ol>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/webvrNvidia2.gif"
+              src="./assets/images/howto/webvrNvidia2.gif"
               alt="Instructional gif on enabling graphics accelerator on Mozilla Firefox"
               width="100%"
             />

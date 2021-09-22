@@ -37,7 +37,7 @@ A web based volume visualizer application to support scientific 3D data built on
 
 It was implemented using A-frame, a javascript framework easy to learn, use and deploy. It sits on top of Three.js, which is the most used library to support 3D rendering on the web, and html which is the common tool to write static web pages. A-frame follows a composed based pattern, common on game and graphics engines. Additionally, it uses node js to easy deploy the modules the application is based on.
 
-![Application_Arch](./imgs/archit.png)
+![Application_Arch](./public/assets/images/howto/archit.png)
 
 <a name="Demo"/>
 
@@ -46,13 +46,13 @@ It was implemented using A-frame, a javascript framework easy to learn, use and 
 [Click here for live demo](https://datasci.brown.edu/volume-vr/)
 
 Select the data to visualize.
-![](./imgs/View1.png)
+![](./public/assets/images/howto/View1.png)
 
 You can modify the channel-layer you want to visualize (if the data supports RBGA textures)
-![](./imgs/View2.png)
+![](./public/assets/images/howto/View2.png)
 
 Open the color mapping - opacity transfer function option.
-![](./imgs/View3.png)
+![](./public/assets/images/howto/View3.png)
 
 Double click on the canvas to create a new point. Left click on one of the points to remove it.
 
@@ -105,15 +105,15 @@ Every component on A-Frame has a series of methods to be extended to determine i
 
 The key folders of the project are ‘public’ and ‘src’
 
-![file_system1](./imgs/filesystem.png)
+![file_system1](./public/assets/images/howto/filesystem.png)
 
 The ‘public’ folder contains the index.html file which is initially loaded when we the user enters to the web application.
 
-![file_system1](./imgs/filesystem2.png)
+![file_system1](./public/assets/images/howto/filesystem2.png)
 
 The A-Frame components are located in the ‘src’ folder:
 
-![file_system1](./imgs/filesystem3.png)
+![file_system1](./public/assets/images/howto/filesystem3.png)
 
 #### How to access it from the ccv server
 
@@ -127,7 +127,7 @@ Once you open the application in a web browser, you can interact with the data i
 * 2D mode: Left click and drag your mouse from left to right or vice versa to rotate the data.
 * 3D mode (use VR device): Two buttons are used to interact with the data
 
-![file_system1](./imgs/controller.png)
+![file_system1](./public/assets/images/howto/controller.png)
 
 Trigger Button: Press it to drag and drop the data from one point to another. Use it to modify its position and rotation.
 Grip Button: It clips the data. Press it and move the controller on any direction to see internal parts of the data from different points of view.
@@ -139,12 +139,12 @@ At this moment, VR on web browsers is only supported on Mozilla Firefox. In orde
 
 1. Right Click onn your Desktop
 
-![Mozilla1](./imgs/mozilla1.png)
+![Mozilla1](./public/assets/images/howto/mozilla1.png)
 
 2. In the NVIDIA panel window, select the "Program Settings" Tab
 
-![Mozilla2](./imgs/mozilla2.png)
+![Mozilla2](./public/assets/images/howto/mozilla2.png)
 
 3. In the 'Select a program' drop list select the Mozilla Firefox (If you dont find it, you will have to click on the 'add' button, look for firefox.exe). In the 'Select the preferred graphics processor for this program' drop list select 'High-Perfomance NVIDIA processor'
 
-![Mozilla2](./imgs/mozilla3.png)
+![Mozilla2](./public/assets/images/howto/mozilla3.png)
