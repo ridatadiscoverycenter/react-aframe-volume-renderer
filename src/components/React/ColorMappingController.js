@@ -29,19 +29,19 @@ const customStyles = {
 const data = [
     {
       name: 'viridis',
-      image: <img height="15x" width="100px"  src='./colormaps/viridis.png' alt=""/>
+      image: <img height="15x" width="100px"  src='./assets/images/colormaps/virdis.png' alt=""/>
     },
     {
       name: 'natural',
-      image: <img height="15x" width="100px"  src='./colormaps/natural.png' alt=""/>
+      image: <img height="15x" width="100px"  src='./assets/images/colormaps/natural.png' alt=""/>
     },
     {
       name: 'colors',
-      image: <img height="15x" width="100px"  src='./colormaps/colors.png' alt=""/>
+      image: <img height="15x" width="100px"  src='./assets/images/colormaps/colors.png' alt=""/>
     },
     {
       name: 'white black',
-      image: <img height="15x" width="100px"  src='./colormaps/whiteblack.png' alt=""/>
+      image: <img height="15x" width="100px"  src='./assets/images/colormaps/whiteblack.png' alt=""/>
     },
 
   ];
