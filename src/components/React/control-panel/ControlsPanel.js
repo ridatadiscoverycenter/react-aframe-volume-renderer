@@ -3,7 +3,7 @@ import {Sidebar} from 'primereact/sidebar';
 import {Col, Row, Button, Container, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 
 import Controls from './Controls';
-import { useVolumeContext } from '../../context/volume-context';
+import { useVolumeContext } from '../../../context/volume-context';
 
 export default function ControlPanel(props) {
   const [sidebarVisible, setSidebarVisible] = useState(false);

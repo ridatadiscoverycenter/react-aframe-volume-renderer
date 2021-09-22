@@ -6,7 +6,7 @@ import 'rc-slider/assets/index.css';
 
 import {connect} from 'react-redux';
 import {myCheckButtonAction,myXSlideAction, myYSlideAction,
-  myZSlideAction,myChangeVolumeAction,myChannelChanged,myCameraReset} from '../../redux/AppActions'
+  myZSlideAction,myChangeVolumeAction,myChannelChanged,myCameraReset} from '../../../redux/AppActions'
 
 import OpacityControl from './OpacityControl'
 import ColorMapControl from './ColorMappingController'
