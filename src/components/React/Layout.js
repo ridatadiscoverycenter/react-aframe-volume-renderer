@@ -15,7 +15,7 @@ export default function Layout(props) {
     <div id="visualizer">
       <Navbar sticky="top" bg="light" expand="lg">
         <Navbar.Brand href="https://ridatadiscovery.org"><img
-          src="/assets/images/ricaim-logo.svg"
+          src="/assets/images/logos/ricaim-logo.svg"
           width="30"
           height="30"
           className="d-inline-block align-top"
