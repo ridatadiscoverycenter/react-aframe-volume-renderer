@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 
-import VolumeRenderer from './VolumeRenderer';
+import VolumeRenderer from './volume-renderer/VolumeRenderer';
 import ControlsPanel from './control-panel/ControlsPanel';
 import Howto from './Howto'
 import Footer from './Footer'

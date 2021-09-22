@@ -1,10 +1,10 @@
 
-import {Entity, Scene} from 'aframe-react';
 import React, {Component} from 'react'
 import { connect } from "react-redux";
+import {Entity, Scene} from 'aframe-react';
 import Spinner from './Spinner'
-import '../Aframe/arcball-camera'
-import { VolumeConsumer } from '../../context/volume-context';
+import '../../Aframe/arcball-camera'
+import { VolumeConsumer } from '../../../context/volume-context';
 
 const mapStateToProps = state => {
   return {
