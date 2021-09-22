@@ -47,19 +47,6 @@ const data = [
   ];
 
 
-// const columnsData = [
-//     {
-//       name: 'Color Map',
-//       selector: 'colormap',
-//       cell: d => <img height="15x" width="100px"  src={d.image} alt=""/>,
-//     },
-//     {
-//       name: 'Name',
-//       selector: 'name',
-//     },
-//   ];
-
-
 export default connect(mapStateToProps,
     {myChangeColorMapAction,mySaveColorMappingState}
 )

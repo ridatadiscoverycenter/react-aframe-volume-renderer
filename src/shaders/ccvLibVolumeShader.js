@@ -117,13 +117,6 @@ THREE.ShaderLib[ 'ccvLibVolumeRenderShader' ] = {
 		'uniform bool grabMesh;',
 		'void main()',
 		'{',
-			//get the clipspace position 
-			//'gl_Position = MVP*vec4(vVertex, 1);'
-			//'gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4( position, 1.0 );',
-			//get the 3D texture coordinates by adding (0.5,0.5,0.5) to the object space 
-			//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
-			//adding (0.5,0.5,0.5) to the unit cube object space position gives us values from (0,0,0) to 
-			//(1,1,1)
 			
 			'mat4 MV_tmp = scale(modelViewMatrix,vec3(1,1,zScale));',
 			'mat4 MVP = projectionMatrix * MV_tmp;',
@@ -138,16 +131,6 @@ THREE.ShaderLib[ 'ccvLibVolumeRenderShader' ] = {
   ].join( '\n' ),
   
   fragmentShader: [
-        /*'#version 330 core\n',
-		'mat4 scaleMatrix(ma4 m, vec3 v){',
-		  'mat4 Result;',
-		  'Result[0] = m[0] * v[0];',
-		  'Result[1] = m[1] * v[1];',
-		  'Result[2] = m[2] * v[2];',
-		  'Result[3] = m[3];',
-		  'return Result;  ',
-        '}',*/
-		
 		'mat4 translate(mat4 m, vec3 v){',
          'mat4 Result;',
          'Result[3] = m[0] * v[0] + m[1] * v[1] + m[2] * v[2] + m[3];',

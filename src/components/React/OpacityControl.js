@@ -30,8 +30,6 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
     this.hoverRadius = 15;
     this.width = 0
 
-    //this.nodesY =[];
-
     this.lowNodeX = ~~(this.width*this.lowNode)+this.padding;
 		this.highNodeX = ~~(this.width*this.highNode)+this.padding;
 		this.minLevelY = ~~(this.height-(this.minLevel*this.height))+this.padding;
@@ -113,7 +111,6 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
     }
 
     if(this.nodesCanvasSpace.length > 1 ) {
-      // console.log("this.nodesCanvasSpace.length: " + this.nodesCanvasSpace.length);
       this.opContext.beginPath();
       this.opContext.moveTo(this.padding, this.minLevelY);
       this.opContext.lineTo(this.nodesCanvasSpace[0].x, this.nodesCanvasSpace[0].y);
@@ -193,10 +190,6 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
 
     if(indexToBeInserted === -1) this.nodes.push(newPoint);
     else this.nodes.splice(indexToBeInserted, 0, newPoint);
-
-    //  for(let i = 0; i< this.nodes.length; i++) {
-    //   console.log(this.nodes[i].x + " " + this.nodes[i].y)
-    //  }
 
     this.updateCanvas();
   }

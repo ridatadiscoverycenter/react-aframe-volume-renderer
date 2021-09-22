@@ -3,11 +3,6 @@ import '../../shaders/ccvLibVolumeShader.js'
 
 var bind = AFRAME.utils.bind;
 
-// var KEYS = [
-// 	'KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyP',
-// 	'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown'
-// ];
-
 AFRAME.registerComponent('collider-check', {
 	dependencies: ['raycaster', 'my-buttons-check'],
 
@@ -24,9 +19,7 @@ AFRAME.registerComponent('collider-check', {
 
 	onCollide: function (event) {
 		this.data.intersecting = true;
-		//console.log("ENTITY COLLIDED");
 	},
-
 });
 
 AFRAME.registerComponent('entity-collider-check', {
@@ -130,7 +123,6 @@ AFRAME.registerComponent('myloader', {
 		this.el.sceneEl.addEventListener('enter-vr', this.onEnterVR); 
 		this.el.sceneEl.addEventListener('exit-vr', this.onExitVR);
 		
-		//this.opacityControlPoints = [0, 0.1, 0.3, 0.5, 0.75, 0.8, 0.6, 0.5, 0.0];
 		this.opacityControlPoints = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
 		var jet_values = [[0, 0, 0.5],
@@ -217,11 +209,6 @@ AFRAME.registerComponent('myloader', {
 	},
 
 	debugScene:function(evt) {
-		// var els = sceneEl.querySelectorAll('*');
-		// console.log("Elements");
-    	// for (var i = 0; i < els.length; i++) {
-    	// 	console.log(els[i]);
-	    // }
 	},
 
 	updateTransfertexture: function () {
@@ -258,28 +245,8 @@ AFRAME.registerComponent('myloader', {
 		this.onExitVR = bind(this.onExitVR, this);
 	},
 	
-	onEnterVR: function() 
-    {
-		/*var scope = this;
-		if (this.el.getObject3D("mesh") !== undefined) {
-			console.log("my-loader onEnterVR 1 : ");
-			console.log(this.el.getObject3D("mesh").position);
-			
-			console.log("my-loader onEnterVR this.vrPosition : ");
-			console.log(this.data.myMeshPosition);
-			this.el.getObject3D("mesh").position.copy(
-				          this.data.myMeshPosition
-			) ;
-			console.log("my-loader onEnterVR 2	 : ");
-			console.log(this.el.getObject3D("mesh").position);
-		//	this.el.getObject3D("mesh").rotation.set( this.vrRotation);
-			this.el.sceneEl.object3D.add(this.el.getObject3D("mesh"));
-		}*/
-	},
-
 	onExitVR: function() 
     {
-		// var scope = this;
 		if (this.el.getObject3D("mesh") !== undefined) {
 			console.log("my-loader onExitVR 1: ");
 			console.log(this.el.getObject3D("mesh").position);
@@ -370,7 +337,6 @@ AFRAME.registerComponent('myloader', {
 				var shader = THREE.ShaderLib['ccvLibVolumeRenderShader'];
 				var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 				uniforms["u_data"].value = texture;
-				// uniforms["useLut"].value = true;
 				uniforms["u_lut"].value = colorMap;
 				uniforms["clipPlane"].value = new THREE.Matrix4();
 				uniforms["clipping"].value = false;
@@ -409,12 +375,10 @@ AFRAME.registerComponent('myloader', {
 				// Mesh
 
 				var geometry = new THREE.BoxGeometry(1, 1, 1);
-				//geometry.translate( -0.5, - 0.5, - 0.5 );
 
 				el.setObject3D('mesh', new THREE.Mesh(geometry, material));
 				data.modelLoaded = true;
 
-				// material.uniforms.diffuse.value.setHex ( 0xFF0000 );
 				material.needsUpdate = true;
 
 				hiddenLabel.style.display = 'none';
@@ -457,9 +421,7 @@ AFRAME.registerComponent('myloader', {
 		var imgWidth = imgColorImage.width;
 		var imgHeight = imgColorImage.height;
 		var colorCanvas = document.createElement("canvas");
-		// var el = this.el;
 
-		// var alpha = this.alphaData;
 		var colorTransfer = this.colorTransfer;
 		var iam = this;
 		this.colorMap.img.onload = function (data) {
@@ -564,9 +526,7 @@ AFRAME.registerComponent('myloader', {
 					
 
 					var colorCanvas = document.createElement("canvas");
-					// var el = this.el;
-		
-					// var alpha = this.alphaData;
+
 					var colorTransfer = this.colorTransfer;
 					var iam = this;
 					this.colorMap.img.onload = function (data) {
@@ -669,8 +629,6 @@ AFRAME.registerComponent('myloader', {
 
 
 				//Input - Controllermatrix
-				// var controllerMatrix = this.controllerHandler.matrixWorld;
-			
 				if (!this.controllerHandler.el.getAttribute('my-buttons-check').grabObject &&
 					this.grabbed) {
 
