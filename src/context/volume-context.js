@@ -36,8 +36,6 @@ function volumeReducer(state, action) {
   function getPath() {
     const {season, tide, measurement} = state.options;
     const model = `${season}_${tide}_${measurement}.png`
-    
-    console.log("Loading Model:", model)
     return pathPrefix + model;
   }
 

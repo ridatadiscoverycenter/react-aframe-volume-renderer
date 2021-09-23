@@ -381,7 +381,7 @@ AFRAME.registerComponent('myloader', {
 				material.needsUpdate = true;
 
 				hiddenLabel.style.display = 'none';
-				console.log("MODEL LOADED");
+				console.log("MODEL LOADED:", data.volumeData);
 				if( enabledColorMapping )
 				{
 					iam.updateColorMapping();
