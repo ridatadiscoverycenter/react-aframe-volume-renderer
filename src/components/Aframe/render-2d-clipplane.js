@@ -1,6 +1,6 @@
 /* globals AFRAME  */
 
-var KEYS = [
+const KEYS = [
     'KeyW', 'KeyA', 'KeyS', 'KeyD','KeyQ','KeyP',
     'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown'
   ];
@@ -87,7 +87,7 @@ AFRAME.registerComponent('render-2d-clipplane', {
    },
    
   onKeyDown: function (event) {
-   var code = event.code;
+   const code = event.code;
    if (this.isVrModeOn) 
    { 
      return; 
@@ -102,7 +102,7 @@ AFRAME.registerComponent('render-2d-clipplane', {
 
  onKeyUp: function (event) {
    
-   var code = event.code;
+   const code = event.code;
    delete this.keys[code];
  },
 

@@ -88,7 +88,7 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
     this.opCanvas = this.refs.canvas;
     this.opContext = this.refs.canvas.getContext('2d');
 
-    var controlsContainer = document.getElementById("controls");
+    const controlsContainer = document.getElementById("controls");
 
     this.opCanvas.width = controlsContainer.clientWidth - 2*this.padding -2;
     this.opCanvas.height = this.height+this.padding*2;
@@ -174,13 +174,13 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
     addPoint(evt) {
 
     // insert points in canvas space
-    var newPoint = {
+    const newPoint = {
       x: evt.offsetX - this.padding,
       y: (this.height - evt.offsetY) + this.padding
     }
     //console.log("newPoint: " +newPoint.x + " "+newPoint.y)
 
-    var indexToBeInserted = - 1;
+    let indexToBeInserted = - 1;
     for(let i = 0; i< this.nodes.length; i++) {
       if(this.nodes[i].x > newPoint.x) {
         indexToBeInserted = i;
@@ -195,9 +195,9 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
   }
 
   changePointer(e) {
-    var hitPoint = false;
+    let hitPoint = false;
     for(let i = 0; i< this.nodes.length; i++) {
-      var normalizedCoordinates = {
+      const normalizedCoordinates = {
         x:  this.nodes[i].x + this.padding,
         y: (this.height- this.nodes[i].y) + this.padding
       };
@@ -224,8 +224,8 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
   draggPointer(e) {
     if(this.dragging) {
       e.preventDefault();
-      var diffX = this.dragStart[0]- e.screenX;
-      var diffY = this.dragStart[1]- e.screenY;
+      const diffX = this.dragStart[0]- e.screenX;
+      const diffY = this.dragStart[1]- e.screenY;
 
       if(this.nodeDragged === 0 || this.nodeDragged === this.nodes.length - 1)  {
           this.nodes[this.nodeDragged].y = Math.max(this.minLevel, Math.min(this.height, this.startPos[1] +diffY));

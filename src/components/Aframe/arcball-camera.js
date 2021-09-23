@@ -2,7 +2,7 @@
 /* globals AFRAME  THREE*/
 import './arcball-controller.js'
 
-var bind = AFRAME.utils.bind;
+const bind = AFRAME.utils.bind;
 
 AFRAME.registerComponent('arcball-camera', {
     dependencies: ['camera'],
@@ -12,7 +12,7 @@ AFRAME.registerComponent('arcball-camera', {
     },
 
     init: function () {
-      var el = this.el;
+      const el = this.el;
       this.vrcam = document.querySelector("#myCamera");
       this.controls = new THREE.TrackballControls(
         el.getObject3D('camera'), el.sceneEl.renderer.domElement
@@ -58,7 +58,7 @@ AFRAME.registerComponent('arcball-camera', {
     },
 
     onEnterVR: function() {
-      var el = this.el;
+      const el = this.el;
       this.debugPosition = true;
       if (!AFRAME.utils.device.checkHeadsetConnected() &&
           !AFRAME.utils.device.isMobile()
@@ -73,7 +73,7 @@ AFRAME.registerComponent('arcball-camera', {
     },
 
     update: function (oldData) {
-      var controls = this.controls;
+      const controls = this.controls;
       controls.rotateSpeed = 1.0;
       controls.zoomSpeed = 1.2;
       controls.panSpeed = 0.8;
@@ -81,7 +81,7 @@ AFRAME.registerComponent('arcball-camera', {
 
     onExitVR: function() {
       console.log("exit VR")
-      var el = this.el;
+      const el = this.el;
       this.debugPosition = false;
       if (!AFRAME.utils.device.checkHeadsetConnected() &&
           !AFRAME.utils.device.isMobile()
@@ -89,7 +89,7 @@ AFRAME.registerComponent('arcball-camera', {
       this.controls.enabled = true;
       el.getObject3D('camera').position.set(0,0,2);
       console.log("this.meshObjectHandler.el.getAttribute('myloader').myMeshPosition");
-      var mesh = this.meshObjectHandler.el.getAttribute('myloader').myMeshPosition;
+      const mesh = this.meshObjectHandler.el.getAttribute('myloader').myMeshPosition;
       console.log(mesh);
 
       if (el.hasAttribute('look-controls')) {

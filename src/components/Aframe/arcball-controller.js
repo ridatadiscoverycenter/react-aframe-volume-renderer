@@ -12,8 +12,8 @@ THREE.TrackballControls = function ( object, domElement ) {
 	if ( domElement === undefined ) console.warn( 'THREE.TrackballControls: The second parameter "domElement" is now mandatory.' );
 	if ( domElement === document ) console.error( 'THREE.TrackballControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.' );
 
-	var _this = this;
-	var STATE = { NONE: - 1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM_PAN: 4 };
+	const _this = this;
+	const STATE = { NONE: - 1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM_PAN: 4 };
 
 	this.object = object;
 	this.domElement = domElement;
@@ -46,12 +46,12 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	this.target = new THREE.Vector3();
 
-	var EPS = 0.000001;
+	const EPS = 0.000001;
 
-	var lastPosition = new THREE.Vector3();
-	var lastZoom = 1;
+	const lastPosition = new THREE.Vector3();
+	let lastZoom = 1;
 
-	var _state = STATE.NONE,
+	let _state = STATE.NONE,
 		_keyState = STATE.NONE,
 
 		_eye = new THREE.Vector3(),
@@ -80,18 +80,18 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	// events
 
-	var changeEvent = { type: 'change' };
-	var startEvent = { type: 'start' };
-	var endEvent = { type: 'end' };
+	const changeEvent = { type: 'change' };
+	const startEvent = { type: 'start' };
+	const endEvent = { type: 'end' };
 
 
 	// methods
 
 	this.handleResize = function () {
 
-		var box = this.domElement.getBoundingClientRect();
+		const box = this.domElement.getBoundingClientRect();
 		// adjustments come from similar code in the jquery offset() function
-		var d = this.domElement.ownerDocument.documentElement;
+		const d = this.domElement.ownerDocument.documentElement;
 		this.screen.left = box.left + window.pageXOffset - d.clientLeft;
 		this.screen.top = box.top + window.pageYOffset - d.clientTop;
 		this.screen.width = box.width;
@@ -99,9 +99,9 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	};
 
-	var getMouseOnScreen = ( function () {
+	const getMouseOnScreen = ( function () {
 
-		var vector = new THREE.Vector2();
+		const vector = new THREE.Vector2();
 
 		return function getMouseOnScreen( pageX, pageY ) {
 
@@ -116,9 +116,9 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	}() );
 
-	var getMouseOnCircle = ( function () {
+	const getMouseOnCircle = ( function () {
 
-		var vector = new THREE.Vector2();
+		const vector = new THREE.Vector2();
 
 		return function getMouseOnCircle( pageX, pageY ) {
 
@@ -135,13 +135,14 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	this.rotateCamera = ( function () {
 
-		var axis = new THREE.Vector3(),
+		const axis = new THREE.Vector3(),
 			quaternion = new THREE.Quaternion(),
 			eyeDirection = new THREE.Vector3(),
 			objectUpDirection = new THREE.Vector3(),
 			objectSidewaysDirection = new THREE.Vector3(),
-			moveDirection = new THREE.Vector3(),
-			angle;
+			moveDirection = new THREE.Vector3();
+		
+		let	angle;
 
 		return function rotateCamera() {
 
@@ -191,7 +192,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	this.zoomCamera = function () {
 
-		var factor;
+		let factor;
 
 		if ( _state === STATE.TOUCH_ZOOM_PAN ) {
 
@@ -252,7 +253,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	this.panCamera = ( function () {
 
-		var mouseChange = new THREE.Vector2(),
+		const mouseChange = new THREE.Vector2(),
 			objectUp = new THREE.Vector3(),
 			pan = new THREE.Vector3();
 
@@ -264,8 +265,8 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 				if ( _this.object.isOrthographicCamera ) {
 
-					var scale_x = ( _this.object.right - _this.object.left ) / _this.object.zoom / _this.domElement.clientWidth;
-					var scale_y = ( _this.object.top - _this.object.bottom ) / _this.object.zoom / _this.domElement.clientWidth;
+					const scale_x = ( _this.object.right - _this.object.left ) / _this.object.zoom / _this.domElement.clientWidth;
+					const scale_y = ( _this.object.top - _this.object.bottom ) / _this.object.zoom / _this.domElement.clientWidth;
 
 					mouseChange.x *= scale_x;
 					mouseChange.y *= scale_y;
@@ -468,7 +469,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 		}
 
-		var state = ( _keyState !== STATE.NONE ) ? _keyState : _state;
+		const state = ( _keyState !== STATE.NONE ) ? _keyState : _state;
 
 		if ( state === STATE.ROTATE && ! _this.noRotate ) {
 
@@ -501,7 +502,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 		event.preventDefault();
 		event.stopPropagation();
 
-		var state = ( _keyState !== STATE.NONE ) ? _keyState : _state;
+		const state = ( _keyState !== STATE.NONE ) ? _keyState : _state;
 
 		if ( state === STATE.ROTATE && ! _this.noRotate ) {
 
@@ -584,12 +585,12 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 			default: // 2 or more
 				_state = STATE.TOUCH_ZOOM_PAN;
-				var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-				var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+				const dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+				const dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
 				_touchZoomDistanceEnd = _touchZoomDistanceStart = Math.sqrt( dx * dx + dy * dy );
 
-				var x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
-				var y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
+				const x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
+				const y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
 				_panStart.copy( getMouseOnScreen( x, y ) );
 				_panEnd.copy( _panStart );
 				break;
@@ -615,12 +616,12 @@ THREE.TrackballControls = function ( object, domElement ) {
 				break;
 
 			default: // 2 or more
-				var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-				var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+				const dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+				const dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
 				_touchZoomDistanceEnd = Math.sqrt( dx * dx + dy * dy );
 
-				var x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
-				var y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
+				const x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
+				const y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
 				_panEnd.copy( getMouseOnScreen( x, y ) );
 				break;
 

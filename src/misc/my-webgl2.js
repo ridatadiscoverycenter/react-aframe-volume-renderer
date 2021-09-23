@@ -1,10 +1,10 @@
-var WEBGL = {
+const WEBGL = {
 
 	isWebGLAvailable: function () {
 
 		try {
 
-			var canvas = document.createElement( 'canvas' );
+			const canvas = document.createElement( 'canvas' );
 			return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
 
 		} catch ( e ) {
@@ -19,7 +19,7 @@ var WEBGL = {
 
 		try {
 
-			var canvas = document.createElement( 'canvas' );
+			const canvas = document.createElement( 'canvas' );
 			return !! ( window.WebGL2RenderingContext && canvas.getContext( 'webgl2' ) );
 
 		} catch ( e ) {
@@ -44,19 +44,19 @@ var WEBGL = {
 
 	getErrorMessage: function ( version ) {
 
-		var names = {
+		const names = {
 			1: 'WebGL',
 			2: 'WebGL 2'
 		};
 
-		var contexts = {
+		const contexts = {
 			1: window.WebGLRenderingContext,
 			2: window.WebGL2RenderingContext
 		};
 
-		var message = 'Your $0 does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">$1</a>';
+		const message = 'Your $0 does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">$1</a>';
 
-		var element = document.createElement( 'div' );
+		const element = document.createElement( 'div' );
 		element.id = 'webglmessage';
 		element.style.fontFamily = 'monospace';
 		element.style.fontSize = '13px';

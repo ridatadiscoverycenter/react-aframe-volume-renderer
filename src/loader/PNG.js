@@ -1,6 +1,6 @@
 "use strict";
 
-var PNG = function(){
+const PNG = function(){
 
 	// initialize all members to keep the same hidden class
 	this.width = 0;
@@ -70,7 +70,7 @@ PNG.prototype.setColorType = function(colorType){
 	//   6       8,16        Each pixel is an R,G,B triple,
 	//                       followed by an alpha sample.
 
-	var colors = 0, alpha = false;
+	let colors = 0, alpha = false;
 
 	switch (colorType){
 		case 0: colors = 1; break;
@@ -146,14 +146,14 @@ PNG.prototype.getPixel = function(x, y){
 	if (x >= this.width || y >= this.height){
 		throw new Error("x,y position out of bound");
 	}
-	var i = this.colors * this.bitDepth / 8 * (y * this.width + x);
-	var pixels = this.pixels;
+	const i = this.colors * this.bitDepth / 8 * (y * this.width + x);
+	const pixels = this.pixels;
 
 	switch (this.colorType){
 		case 0: return [pixels[i], pixels[i], pixels[i], 255];
 		case 2: return [pixels[i], pixels[i + 1], pixels[i + 2], 255];
 		case 3:
-			var alpha = 255;
+			const alpha = 255;
 			if (this.trns != null && this.trns[pixels[i]] != null) {
 				alpha = this.trns[pixels[i]];
 			}
@@ -172,10 +172,10 @@ PNG.prototype.getPixel = function(x, y){
  * Matches the api of canvas.getImageData
  */
 PNG.prototype.getRGBA8Array = function(){
-	var data = new Array(this.width * this.height * 4);
-	for (var y = 0; y < this.height; y++) {
-		for (var x = 0; x < this.width; x++) {
-			var pixelData = this.getPixel(x, y);
+	const data = new Array(this.width * this.height * 4);
+	for (let y = 0; y < this.height; y++) {
+		const (let x = 0; x < this.width; x++) {
+			const pixelData = this.getPixel(x, y);
 
 			data[(y * this.width + x) * 4 + 0] = pixelData[0];
 			data[(y * this.width + x) * 4 + 1] = pixelData[1];
