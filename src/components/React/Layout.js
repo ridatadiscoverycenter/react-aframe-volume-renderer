@@ -16,7 +16,7 @@ export default function Layout(props) {
     <div id="visualizer">
       <Header />
 
-      <Container fluid id="visualizer" className="mb-3">
+      <Container fluid className="mb-3">
         <VolumeProvider>
           <ControlsPanel />
           <VolumeRenderer />
