@@ -174,7 +174,7 @@ PNG.prototype.getPixel = function(x, y){
 PNG.prototype.getRGBA8Array = function(){
 	const data = new Array(this.width * this.height * 4);
 	for (let y = 0; y < this.height; y++) {
-		const (let x = 0; x < this.width; x++) {
+		for (let x = 0; x < this.width; x++) {
 			const pixelData = this.getPixel(x, y);
 
 			data[(y * this.width + x) * 4 + 0] = pixelData[0];
