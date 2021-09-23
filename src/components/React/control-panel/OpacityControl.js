@@ -105,8 +105,8 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
     this.nodesCanvasSpace = [];
 
     for(let i = 0; i< this.nodes.length; i++) {
-      let xPosInvertedCanvas = ~~(this.nodes[i].x)+ this.padding;
-      let yPosInvertedCanvas = ~~(this.height- this.nodes[i].y)+this.padding;
+      const xPosInvertedCanvas = ~~(this.nodes[i].x)+ this.padding;
+      const yPosInvertedCanvas = ~~(this.height- this.nodes[i].y)+this.padding;
       this.nodesCanvasSpace.push({x:xPosInvertedCanvas,y:yPosInvertedCanvas});
     }
 
@@ -230,8 +230,8 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
       if(this.nodeDragged === 0 || this.nodeDragged === this.nodes.length - 1)  {
           this.nodes[this.nodeDragged].y = Math.max(this.minLevel, Math.min(this.height, this.startPos[1] +diffY));
       } else if(this.nodeDragged !== -1) {
-        let leftPoint = this.nodes[this.nodeDragged -1].x;
-        let rightPoint = this.nodes[this.nodeDragged +1].x;
+        const leftPoint = this.nodes[this.nodeDragged -1].x;
+        const rightPoint = this.nodes[this.nodeDragged +1].x;
         this.nodes[this.nodeDragged].x = Math.max(leftPoint, Math.min(rightPoint, this.startPos[0]-diffX));
         this.nodes[this.nodeDragged].y = Math.max(this.minLevel, Math.min(this.height, this.startPos[1] +diffY));
       }
@@ -251,7 +251,7 @@ export default connect(mapStateToProps,{mySendAlphaPoints})
   onMouseDown(e) {
 
     for(let i = 0; i< this.nodes.length; i++) {
-      let normalizedCoordinates = {x:  this.nodes[i].x + this.padding, y: (this.height- this.nodes[i].y)+this.padding };
+      const normalizedCoordinates = {x:  this.nodes[i].x + this.padding, y: (this.height- this.nodes[i].y)+this.padding };
       if(Math.sqrt(Math.pow(e.offsetX-normalizedCoordinates.x, 2)+Math.pow(e.offsetY-normalizedCoordinates.y, 2)) <= this.hoverRadius) {
         this.dragging = true;
         this.nodeDragged = i;

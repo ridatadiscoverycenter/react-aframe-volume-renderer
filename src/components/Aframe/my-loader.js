@@ -145,9 +145,9 @@ AFRAME.registerComponent('myloader', {
 		this.colorMapEnabled = this.data.colorMapping;
 
 		//setting up control points
-		for (var i = 0; i < 9; i++) {
+		for (let i = 0; i < 9; i++) {
 
-			var index = i * 28;
+			const index = i * 28;
 			while (pData.length < index) {
 				pData.push(zeroArray);
 			}
@@ -162,11 +162,11 @@ AFRAME.registerComponent('myloader', {
 
 		//interpolation between opacity control points
 		for (let j = 0; j < 9 - 1; j++) {
-			let dDataA = (pData[indices[j + 1]][3] - pData[indices[j]][3]);
-			let dIndex = indices[j + 1] - indices[j];
-			let dDataIncA = dDataA / dIndex;
+			const dDataA = (pData[indices[j + 1]][3] - pData[indices[j]][3]);
+			const dIndex = indices[j + 1] - indices[j];
+			const dDataIncA = dDataA / dIndex;
 			for (let idx = indices[j] + 1; idx < indices[j + 1]; idx++) {
-				var myAlpha = pData[idx - 1][3] + dDataIncA;
+				const myAlpha = pData[idx - 1][3] + dDataIncA;
 				this.alphaData[idx] = myAlpha;
 			}
 		}
@@ -175,22 +175,22 @@ AFRAME.registerComponent('myloader', {
 		// interpolation between colors control points
 		for (let j = 0; j < 9 - 1; j++) {
 
-			let dDataR = (pData[indices[j + 1]][0] - pData[indices[j]][0]);
-			let dDataG = (pData[indices[j + 1]][1] - pData[indices[j]][1]);
-			let dDataB = (pData[indices[j + 1]][2] - pData[indices[j]][2]);
-			let dDataA = (pData[indices[j + 1]][3] - pData[indices[j]][3]);
-			let dIndex = indices[j + 1] - indices[j];
+			const dDataR = (pData[indices[j + 1]][0] - pData[indices[j]][0]);
+			const dDataG = (pData[indices[j + 1]][1] - pData[indices[j]][1]);
+			const dDataB = (pData[indices[j + 1]][2] - pData[indices[j]][2]);
+			const dDataA = (pData[indices[j + 1]][3] - pData[indices[j]][3]);
+			const dIndex = indices[j + 1] - indices[j];
 
-			let dDataIncR = dDataR / dIndex;
-			let dDataIncG = dDataG / dIndex;
-			let dDataIncB = dDataB / dIndex;
-			let dDataIncA = dDataA / dIndex;
+			const dDataIncR = dDataR / dIndex;
+			const dDataIncG = dDataG / dIndex;
+			const dDataIncB = dDataB / dIndex;
+			const dDataIncA = dDataA / dIndex;
 
 			for (let idx = indices[j] + 1; idx < indices[j + 1]; idx++) {
-				let myAlpha = pData[idx - 1][3] + dDataIncA;
-				let myvector = [pData[idx - 1][0] + dDataIncR, pData[idx - 1][1] + dDataIncG, pData[idx - 1][2] + dDataIncB, myAlpha];
+				const myAlpha = pData[idx - 1][3] + dDataIncA;
+				const myVector = [pData[idx - 1][0] + dDataIncR, pData[idx - 1][1] + dDataIncG, pData[idx - 1][2] + dDataIncB, myAlpha];
 				this.alphaData[idx] = myAlpha;
-				pData[idx] = myvector;
+				pData[idx] = myVector;
 			}
 
 		}
@@ -456,7 +456,7 @@ AFRAME.registerComponent('myloader', {
 
 		if (oldData.channel !== undefined && oldData.channel !== this.data.channel) {
 			if (this.el.getObject3D("mesh") !== undefined) {
-				let material = this.el.getObject3D("mesh").material;
+				const material = this.el.getObject3D("mesh").material;
 				material.uniforms.u_lut.value = null;
 				material.uniforms.useLut.value = false;
 				material.uniforms.channel.value = this.data.channel;
@@ -470,7 +470,7 @@ AFRAME.registerComponent('myloader', {
 			this.colorMapEnabled = this.data.colorMapping;
 			if (!this.colorMapEnabled) {
 				if (this.el.getObject3D("mesh") !== undefined) {
-					let material = this.el.getObject3D("mesh").material;
+					const material = this.el.getObject3D("mesh").material;
 					material.uniforms.u_lut.value = null;
 					material.uniforms.useLut.value = false;
 					material.uniforms.channel.value = this.data.channel;
@@ -597,7 +597,7 @@ AFRAME.registerComponent('myloader', {
 
 					if(this.el.getObject3D("mesh") !== undefined)
 					{
-						let material = this.el.getObject3D("mesh").material;
+						const material = this.el.getObject3D("mesh").material;
 						material.uniforms.box_min.value = new THREE.Vector3(0, 0, 0);
 						material.uniforms.box_max.value = new THREE.Vector3(1, 1, 1);
 					}
@@ -608,7 +608,7 @@ AFRAME.registerComponent('myloader', {
 
 					if(this.el.getObject3D("mesh") !== undefined)
 					{
-						let material = this.el.getObject3D("mesh").material;
+						const material = this.el.getObject3D("mesh").material;
 
 						if(material !== undefined)
 						{

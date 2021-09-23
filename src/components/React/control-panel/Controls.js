@@ -91,7 +91,7 @@ export default connect(
      currentVolume: selected.value,
      currentData:selected
     });
-    let volumeProperties = selected.value.split(":");
+    const volumeProperties = selected.value.split(":");
     this.props.myChangeVolumeAction(volumeProperties[0], volumeProperties[1]);
   };
 
