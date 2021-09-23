@@ -11,7 +11,7 @@ import './components/Aframe/cursor-listener'
 import './styles/main.scss'
 
 import Header from './components/React/Header';
-import Visualizer from './components/React/Visualizer';
+import Visualizer from './components/React/visualizer/Visualizer';
 import Footer from './components/React/Footer'
 import Information from "./components/React/Information";
 
