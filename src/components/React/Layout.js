@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 
-import VolumeRenderer from './volume-renderer/VolumeRenderer';
-import ControlsPanel from './control-panel/ControlsPanel';
+import Header from './Header';
+import Visualizer from './Visualizer';
 import Howto from './Howto'
 import Footer from './Footer'
-
-import { VolumeProvider } from '../../context/volume-context';
-import Header from './Header';
 
 export default function Layout(props) {
   const [showHowto, setShowHowto] = useState(false);
@@ -16,12 +13,8 @@ export default function Layout(props) {
     <div id="visualizer">
       <Header />
 
-      <Container fluid className="mb-3">
-        <VolumeProvider>
-          <ControlsPanel />
-          <VolumeRenderer />
-        </VolumeProvider>
-      </Container>
+      <Visualizer />
+      
 
       <Container fluid id="information" className="bg-secondary text-light">
         <Row className="justify-content-md-center py-5">
