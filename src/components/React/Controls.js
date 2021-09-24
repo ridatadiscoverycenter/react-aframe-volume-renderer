@@ -31,7 +31,6 @@ const Range = Slider.Range;
 const mapStateToProps = (state) => {
   return {
     currentColorMap: state.currentColorMap,
-    volumeData: state.volumeData,
   };
 };
 
@@ -65,37 +64,29 @@ export default connect(mapStateToProps, {
       this.zSlideHandleChange = this.zSlideHandleChange.bind(this);
       this.volumeSelectChanged = this.volumeSelectChanged.bind(this);
       this.channelSelectChanged = this.channelSelectChanged.bind(this);
-      this.volumeChangedEvent = this.volumeChangedEvent.bind(this);
       this.resetCamera = this.resetCamera.bind(this);
     }
 
     handleCheckBoxInputChange(event) {
       const target = event.target;
       const value = target.type === "checkbox" ? target.checked : target.value;
-      this.props.myCheckButtonAction(value, this.props.volumeData);
+      this.props.myCheckButtonAction(value);
       this.setState({ activateColorMapping: value });
     }
 
     xSlideHandleChange = (value) => {
       this.setState({ xslideValue: value });
-      this.props.myXSlideAction(value[0], value[1], this.props.volumeData);
+      this.props.myXSlideAction(value[0], value[1]);
     };
 
     ySlideHandleChange = (value) => {
       this.setState({ yslideValue: value });
-      this.props.myYSlideAction(value[0], value[1], this.props.volumeData);
+      this.props.myYSlideAction(value[0], value[1]);
     };
 
     zSlideHandleChange = (value) => {
       this.setState({ zslideValue: value });
-      this.props.myZSlideAction(value[0], value[1], this.props.volumeData);
-    };
-
-    volumeChangedEvent = () => {
-      console.log("volumeChangedEvent");
-      return this.props.volumeData === "" || this.props.volumeData === undefined
-        ? true
-        : false;
+      this.props.myZSlideAction(value[0], value[1]);
     };
 
     volumeSelectChanged = (selected) => {
@@ -112,7 +103,7 @@ export default connect(mapStateToProps, {
         currentChannel: selected.value,
         dataCurrentChannel: selected,
       });
-      this.props.myChannelChanged(selected.value, this.props.volumeData);
+      this.props.myChannelChanged(selected.value);
     };
 
     resetCamera() {
@@ -124,9 +115,7 @@ export default connect(mapStateToProps, {
         <div id="controls">
           <div>
             <br />
-            <div
-              style={this.props.volumeData !== "" ? {} : { display: "none" }}
-            >
+            <div>
               <label>Channel</label>
               <br />
               <Dropdown
@@ -145,24 +134,12 @@ export default connect(mapStateToProps, {
               <Checkbox
                 id="colorMapCheckBox"
                 tooltip="Enabled when a Volume is loaded"
-                disabled={
-                  this.props.volumeData === "" ||
-                  this.props.volumeData === undefined
-                    ? true
-                    : false
-                }
                 onChange={this.handleCheckBoxInputChange}
                 checked={this.state.activateColorMapping}
               ></Checkbox>
             </label>
 
-            <div
-              style={
-                this.state.activateColorMapping && this.props.volumeData !== ""
-                  ? {}
-                  : { display: "none" }
-              }
-            >
+            <div>
               <ColorMapControl width="250" />
               <OpacityControl width="250" />
             </div>
@@ -173,12 +150,12 @@ export default connect(mapStateToProps, {
               X Slide <br />
             </label>
             <Range
-              disabled={
-                this.props.volumeData === "" ||
-                this.props.volumeData === undefined
-                  ? true
-                  : false
-              }
+              // disabled={
+                // this.props.volumeData === "" ||
+                // this.props.volumeData === undefined
+                  // ? true
+                  // : false
+              // }
               allowCross={false}
               step={0.0009}
               defaultValue={[0, 1]}
@@ -193,12 +170,12 @@ export default connect(mapStateToProps, {
               Y Slide <br />
             </label>
             <Range
-              disabled={
-                this.props.volumeData === "" ||
-                this.props.volumeData === undefined
-                  ? true
-                  : false
-              }
+              // disabled={
+                // this.props.volumeData === "" ||
+                // this.props.volumeData === undefined
+                  // ? true
+                  // : false
+              // }
               allowCross={false}
               step={0.0009}
               defaultValue={[0, 1]}
@@ -213,12 +190,12 @@ export default connect(mapStateToProps, {
               Z Slide <br />{" "}
             </label>
             <Range
-              disabled={
-                this.props.volumeData === "" ||
-                this.props.volumeData === undefined
-                  ? true
-                  : false
-              }
+              // disabled={
+                // this.props.volumeData === "" ||
+                // this.props.volumeData === undefined
+                  // ? true
+                  // : false
+              // }
               allowCross={false}
               step={0.0009}
               defaultValue={[0, 1]}

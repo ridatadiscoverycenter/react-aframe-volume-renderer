@@ -6,7 +6,6 @@ const initialState = {
   ySlideValueMax: 0,
   zSlideValueMin: 0,
   zSlideValueMax: 0,
-  volumeData: "",
   transferFunction: false,
   colorMap: "",
   opacity1: 0,
@@ -27,34 +26,28 @@ export const myReducer = function readCheckBox(
     case "CHECKBOX_CHANGED": {
       return {
         checkBoxValue: action.payload,
-        volumeData: action.payload2,
       };
     }
     case "XSLIDE_CHANGED": {
       return {
         xSlideValueMin: action.payload,
         xSlideValueMax: action.payload2,
-        volumeData: action.payload3,
       };
     }
     case "YSLIDE_CHANGED": {
       return {
         ySlideValueMin: action.payload,
         ySlideValueMax: action.payload2,
-        volumeData: action.payload3,
       };
     }
     case "ZSLIDE_CHANGED": {
       return {
         zSlideValueMin: action.payload,
         zSlideValueMax: action.payload2,
-        volumeData: action.payload3,
       };
     }
     case "VOLUME_CHANGED": {
       return {
-        volumeData: action.payload,
-        volumeData2: action.payload,
         transferFunction: action.payload2,
       };
     }
@@ -62,7 +55,6 @@ export const myReducer = function readCheckBox(
       return {
         colorMap: action.payload,
         transferFunction: action.payload !== "" ? true : false,
-        volumeData: action.payload2,
       };
     }
     case "OPACITY1_CHANGED": {
@@ -89,7 +81,6 @@ export const myReducer = function readCheckBox(
       return {
         alphaXDataArray: action.payload,
         alphaYDataArray: action.payload2,
-        volumeData: action.payload3,
       };
     }
     case "SAVE_COLOR_DATA": {
@@ -100,14 +91,12 @@ export const myReducer = function readCheckBox(
     case "CHANNEL_CHANGED": {
       return {
         channel: action.payload,
-        volumeData: action.payload2,
       };
     }
     default: {
       return {
         checkBoxValue: false,
         transferFunction: false,
-        volumeData: "",
         currentColorMap: "",
       };
     }

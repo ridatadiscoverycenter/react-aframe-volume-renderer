@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
 
-const mapStateToProps = (state) => {
-  return { volumeData: state.volumeData };
-};
-
-export default connect(mapStateToProps, { mySendAlphaPoints })(
+export default connect({ mySendAlphaPoints })(
   class OpacityControl extends Component {
     constructor(props) {
       super(props);
@@ -176,7 +172,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.props.mySendAlphaPoints(
         this.normalizedXCanvasSpace,
         this.normalizedYCanvasSpace,
-        this.props.volumeData
       );
     }
 
