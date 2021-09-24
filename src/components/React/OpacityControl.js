@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
 
-export default connect({ mySendAlphaPoints })(
+export default connect(null, { mySendAlphaPoints })(
   class OpacityControl extends Component {
     constructor(props) {
       super(props);

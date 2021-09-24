@@ -116,30 +116,6 @@ export default connect(mapStateToProps, {
           <div>
             <br />
             <div>
-              <label>Channel</label>
-              <br />
-              <Dropdown
-                disabled={this.state.activateColorMapping}
-                value={this.state.dataCurrentChannel}
-                options={channelOptions}
-                onChange={this.channelSelectChanged}
-                placeholder="Select Channel"
-              />
-              <br />
-            </div>
-
-            <label>
-              <br />
-              Enable Color Map &nbsp;
-              <Checkbox
-                id="colorMapCheckBox"
-                tooltip="Enabled when a Volume is loaded"
-                onChange={this.handleCheckBoxInputChange}
-                checked={this.state.activateColorMapping}
-              ></Checkbox>
-            </label>
-
-            <div>
               <ColorMapControl width="250" />
               <OpacityControl width="250" />
             </div>
