@@ -16,6 +16,8 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 
 const path = "assets/images/colormaps"
 const colorMaps = [
+  { name: "Haline", src: `${path}/haline.png` },
+  { name: "Thermal", src: `${path}/thermal.png` },
   { name: "Grayscale", src: `${path}/grayscale.png` },
   { name: "Natural", src: `${path}/natural.png` },
   { name: "Plasma", src: `${path}/plasma.png` },
