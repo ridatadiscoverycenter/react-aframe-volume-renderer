@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+// import { DataTable } from "primereact/datatable";
+// import { Column } from "primereact/column";
 import "primereact/resources/themes/nova/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -11,52 +11,16 @@ import {
   myChangeColorMapAction,
   mySaveColorMappingState,
 } from "../../redux/AppActions";
-import { Button, Modal } from "react-bootstrap";
+// import { Button, Dropdown, Modal, SplitButton } from "react-bootstrap";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
-const data = [
-  {
-    name: "Viridis",
-    image: (
-      <img 
-        height="15x" 
-        width="100%"
-        src="./colormaps/viridis.png" 
-        alt="virdis color map" />
-    ),
-  },
-  {
-    name: "Natural",
-    image: (
-      <img 
-        height="15x" 
-        width="100%" 
-        src="./colormaps/natural.png" 
-        alt="natual color map" 
-      />
-    ),
-  },
-  {
-    name: "RGB",
-    image: (
-      <img 
-        height="15x" 
-        width="100%" 
-        src="./colormaps/colors.png" 
-        alt="RGB color map" 
-      />
-    ),
-  },
-  {
-    name: "Grayscale",
-    image: (
-      <img 
-        height="15x" 
-        width="100%" 
-        src="./colormaps/whiteblack.png" 
-        alt="Grayscale color map" 
-      />
-    ),
-  },
+const path = "assets/images/colormaps"
+const colorMaps = [
+  { name: "Grayscale", src: `${path}/grayscale.png` },
+  { name: "Natural", src: `${path}/natural.png` },
+  { name: "Plasma", src: `${path}/plasma.png` },
+  { name: "RGB", src: `${path}/rgb.png` },
+  { name: "Viridis", src: `${path}/viridis.png` },
 ];
 
 export default connect(null, {
@@ -68,21 +32,19 @@ export default connect(null, {
       super(props);
 
       this.state = {
-        colorMapSelected: "",
+        colorMap: colorMaps[0],
         colorMapModal: false,
-        currentMapColor: "./colormaps/viridis.png",
       };
 
       this.showModal = this.showModal.bind(this);
-      this.datatable = this.datatable.bind(this);
-      this.handleDataTableSelected = this.handleDataTableSelected.bind(this);
       this.handleCloseModal = this.handleCloseModal.bind(this);
+      this.handleClick = this.handleClick.bind(this)
 
       ReactModal.setAppElement("body");
     }
 
     componentWillUnmount() {
-      this.props.mySaveColorMappingState(this.state.currentMapColor);
+      this.props.mySaveColorMappingState(this.state.colorMap.src);
     }
 
     showModal = () => {
@@ -91,46 +53,70 @@ export default connect(null, {
 
     handleCloseModal() {
       this.props.myChangeColorMapAction(
-        this.state.currentMapColor,
+        this.state.colorMap.src,
       );
       this.setState({ colorMapModal: false });
     }
 
-    datatable() {
-      return (
-        <DataTable
-          style={{ width: "100%" }}
-          value={data}
-          selection={this.state.colorMapSelected}
-          onSelectionChange={this.handleDataTableSelected}
-        >
-          <Column selectionMode="single" />
-          <Column field="image" header="Color" />
-          <Column field="name" header="Name" />
-        </DataTable>
-      );
+    handleClick(color) {
+      this.setState({
+        colorMap: color
+      });
     }
 
-    handleDataTableSelected = (state) => {
-      this.setState({
-        colorMapSelected: state.value,
-        currentMapColor: state.value.image.props.src,
-      });
-    };
+    // DONT DELETE - MAY KEEP
+    // datatable() {
+    //   return (
+    //     <DataTable
+    //       style={{ width: "350px" }}
+    //       value={data}
+    //       selection={this.state.colorMapSelected}
+    //       onSelectionChange={this.handleDataTableSelected}
+    //     >
+    //       <Column selectionMode="single" />
+    //       <Column field="image" header="Color" />
+    //       <Column field="name" header="Name" />
+    //     </DataTable>
+    //   );
+    // }
 
     render() {
       return (
         <div>
-          <Button onClick={this.showModal}>Color Map</Button>
+          {/* DONT DELETE - MAY KEEP */}
+          {/* <Button onClick={this.showModal}>Color Map</Button> */}
+          <DropdownButton title="Color Map">
+            {colorMaps.map((color, i) => {
+              return (
+                <Dropdown.Item 
+                  key={color.name}
+                  as="button"
+                  onClick={() => this.handleClick(color)}
+                >
+                  <div d-flex flex-row>
+                    <div> {color.name} </div>
+                    <img
+                      className="colorMapImg"
+                      src={color.src}
+                      alt="selected color map"
+                      height="15"
+                      width="100%"
+                    />
+                  </div>
+                </Dropdown.Item>
+              )
+            })}
+          </DropdownButton>
           <img
             className="colorMapImg"
-            src={this.state.currentMapColor}
+            src={this.state.colorMap.src}
             alt="color map"
             height="15"
             width="100%"
           />
-
-          <Modal 
+          
+          {/* DON'T DELETE - MAY KEEP */}
+          {/* <Modal 
             centered
             show={this.state.colorMapModal} 
             onHide={this.handleCloseModal}
@@ -141,7 +127,7 @@ export default connect(null, {
             <Modal.Body>
               {(this.BasicSelectable = this.datatable())}
             </Modal.Body>
-          </Modal>
+          </Modal> */}
         </div>
       );
     }
