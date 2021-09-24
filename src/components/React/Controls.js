@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
+import { Checkbox } from "primereact/checkbox";
+import { Dropdown } from "primereact/dropdown";
 import Slider from "rc-slider";
-
 import "rc-slider/assets/index.css";
 
 import { connect } from "react-redux";
@@ -17,16 +17,6 @@ import {
 
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMappingController";
-import { Checkbox } from "primereact/checkbox";
-import { Dropdown } from "primereact/dropdown";
-
-// const options = [
-//   { value: './assets/models/48hr_20x_23_0.597976_ 0.597976_5.png:false', label: 'Spheroid old' },
-//   { value: './assets/models/r06c03f04_49_1.29_1.29_5.00000.png:false', label: 'Spheroid 1 cropped slices' },
-//   { value: './assets/models/r06c03f04_90_1.935_1.935_5.00000.png:false', label: 'Spheroid 1 90 slices' },
-//   { value: './assets/models/r06c03f03_49_1.29_1.29_5.00000.png:false', label: 'Spheroid 2 cropped slices' },
-//   { value: './assets/models/r06c03f03_90_1.935_1.935_5.00000.png:false', label: 'Spheroid 2 90 slices' },
-// ];
 
 const channelOptions = [
   { value: 6, label: "Default" },
