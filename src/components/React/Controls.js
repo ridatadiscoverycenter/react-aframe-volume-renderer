@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Checkbox } from "primereact/checkbox";
-import { Dropdown } from "primereact/dropdown";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -17,14 +15,7 @@ import {
 
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMappingController";
-
-const channelOptions = [
-  { value: 6, label: "Default" },
-  { value: 1, label: "Red" },
-  { value: 2, label: "Green" },
-  { value: 3, label: "Blue" },
-  { value: 4, label: "Alpha" },
-];
+import { Container, Form, Row } from "react-bootstrap";
 
 const Range = Slider.Range;
 
@@ -112,20 +103,18 @@ export default connect(mapStateToProps, {
 
     render() {
       return (
-        <div id="controls">
-          <div>
-            <br />
-            <div>
-              <ColorMapControl width="250" />
-              <OpacityControl width="250" />
-            </div>
-          </div>
+        <Container fluid id="controls" className="">
+          <Row className="my-2">
+            <ColorMapControl width="250" />
+          </Row>
+          <Row className="my-2">
+            <OpacityControl width="250" />
+          </Row>
 
-          <div>
-            <label>
-              X Slide <br />
-            </label>
-            <Range
+          <Form className="mt-5">
+            <Form.Group as={Row}>
+              <Form.Label>X Slider</Form.Label>
+              <Range
               // disabled={
                 // this.props.volumeData === "" ||
                 // this.props.volumeData === undefined
@@ -139,48 +128,43 @@ export default connect(mapStateToProps, {
               max={1}
               onChange={this.xSlideHandleChange}
             />
-            <br />
-
-            <label>
-              {" "}
-              Y Slide <br />
-            </label>
-            <Range
-              // disabled={
-                // this.props.volumeData === "" ||
-                // this.props.volumeData === undefined
-                  // ? true
-                  // : false
-              // }
-              allowCross={false}
-              step={0.0009}
-              defaultValue={[0, 1]}
-              min={0}
-              max={1}
-              onChange={this.ySlideHandleChange}
-            />
-            <br />
-
-            <label>
-              {" "}
-              Z Slide <br />{" "}
-            </label>
-            <Range
-              // disabled={
-                // this.props.volumeData === "" ||
-                // this.props.volumeData === undefined
-                  // ? true
-                  // : false
-              // }
-              allowCross={false}
-              step={0.0009}
-              defaultValue={[0, 1]}
-              min={0}
-              max={1}
-              onChange={this.zSlideHandleChange}
-            />
-          </div>
-        </div>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label> Y Slider </Form.Label>
+              <Range
+                // disabled={
+                  // this.props.volumeData === "" ||
+                  // this.props.volumeData === undefined
+                    // ? true
+                    // : false
+                // }
+                allowCross={false}
+                step={0.0009}
+                defaultValue={[0, 1]}
+                min={0}
+                max={1}
+                onChange={this.ySlideHandleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label> Z Slider </Form.Label>
+              <Range
+                // disabled={
+                  // this.props.volumeData === "" ||
+                  // this.props.volumeData === undefined
+                    // ? true
+                    // : false
+                // }
+                allowCross={false}
+                step={0.0009}
+                defaultValue={[0, 1]}
+                min={0}
+                max={1}
+                onChange={this.zSlideHandleChange}
+              />
+            </Form.Group>
+          </Form>
+        </Container>
       );
     }
   }
