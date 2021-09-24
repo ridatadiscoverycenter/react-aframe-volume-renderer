@@ -1,13 +1,8 @@
-import React, {useState} from 'react';
-import {Sidebar} from 'primereact/sidebar';
 import {Col, Row, Button, Container, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 
-import Controls from './Controls';
 import { useVolumeContext } from '../../../../context/volume-context';
 
 export default function ControlPanel(props) {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
-
   const {
     state: {options},
     dispatch
@@ -17,7 +12,7 @@ export default function ControlPanel(props) {
     <Container fluid className="my-3">
       <Row>
         <Col className="text-center">
-          <Button onClick={(e) => setSidebarVisible(!sidebarVisible)}>
+          <Button onClick={(e) => props.setSidebarVisible(true)}>
             Options
           </Button>
         </Col>
@@ -67,16 +62,6 @@ export default function ControlPanel(props) {
           </ToggleButtonGroup>
         </Col>
       </Row>
-
-      <Sidebar
-        modal={false}
-        position="bottom"
-        visible={sidebarVisible}
-        onHide={(e) => setSidebarVisible(false)}
-        style={{width:'20em', height:'45em'}}
-      >
-        <Controls/>
-      </Sidebar>
     </Container>
   );
 }
