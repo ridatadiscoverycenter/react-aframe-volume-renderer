@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
 
@@ -112,7 +113,6 @@ export default connect(null, { mySendAlphaPoints })(
       }
 
       if (this.nodesCanvasSpace.length > 1) {
-        // console.log("this.nodesCanvasSpace.length: " + this.nodesCanvasSpace.length);
         this.opContext.beginPath();
         this.opContext.moveTo(this.padding, this.minLevelY);
         this.opContext.lineTo(
@@ -203,7 +203,6 @@ export default connect(null, { mySendAlphaPoints })(
         x: evt.offsetX - this.padding,
         y: this.height - evt.offsetY + this.padding,
       };
-      //console.log("newPoint: " +newPoint.x + " "+newPoint.y)
 
       var indexToBeInserted = -1;
       for (let i = 0; i < this.nodes.length; i++) {
@@ -215,10 +214,6 @@ export default connect(null, { mySendAlphaPoints })(
 
       if (indexToBeInserted === -1) this.nodes.push(newPoint);
       else this.nodes.splice(indexToBeInserted, 0, newPoint);
-
-      //  for(let i = 0; i< this.nodes.length; i++) {
-      //   console.log(this.nodes[i].x + " " + this.nodes[i].y)
-      //  }
 
       this.updateCanvas();
     }
@@ -321,10 +316,9 @@ export default connect(null, { mySendAlphaPoints })(
 
     render() {
       return (
-        <div style={{width: "100%"}}>
+        <div>
           <canvas ref="canvas" id="opacityControls" />
-          <br />
-          <button onClick={this.resetOpacityPoints}>Reset</button>
+          <Button onClick={this.resetOpacityPoints}> Reset </Button>
         </div>
       );
     }
