@@ -96,7 +96,6 @@ export default connect(null, {
                   <div d-flex flex-row>
                     <div> {color.name} </div>
                     <img
-                      className="colorMapImg"
                       src={color.src}
                       alt="selected color map"
                       height="15"
@@ -108,7 +107,6 @@ export default connect(null, {
             })}
           </DropdownButton>
           <img
-            className="colorMapImg"
             src={this.state.colorMap.src}
             alt="color map"
             height="15"
