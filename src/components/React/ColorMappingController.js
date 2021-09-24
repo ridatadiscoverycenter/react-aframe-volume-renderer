@@ -13,47 +13,48 @@ import {
 } from "../../redux/AppActions";
 import { Button, Modal } from "react-bootstrap";
 
-const customStyles = {
-  // content: {
-  //   top: "50%",
-  //   left: "50%",
-  //   right: "auto",
-  //   bottom: "auto",
-  //   marginRight: "-50%",
-  //   transform: "translate(-50%, -50%)",
-  // },
-
-  // top: "50%",
-  // left: "50%",
-  // right: "auto",
-  // bottom: "auto",
-  // marginRight: "-50%",
-  // transform: "translate(-50%, -50%)",
-};
-
 const data = [
   {
     name: "Viridis",
     image: (
-      <img height="15x" width="100px" src="./colormaps/viridis.png" alt="" />
+      <img 
+        height="15x" 
+        width="100%"
+        src="./colormaps/viridis.png" 
+        alt="virdis color map" />
     ),
   },
   {
     name: "Natural",
     image: (
-      <img height="15x" width="100px" src="./colormaps/natural.png" alt="" />
+      <img 
+        height="15x" 
+        width="100%" 
+        src="./colormaps/natural.png" 
+        alt="natual color map" 
+      />
     ),
   },
   {
     name: "RGB",
     image: (
-      <img height="15x" width="100px" src="./colormaps/colors.png" alt="" />
+      <img 
+        height="15x" 
+        width="100%" 
+        src="./colormaps/colors.png" 
+        alt="RGB color map" 
+      />
     ),
   },
   {
     name: "Grayscale",
     image: (
-      <img height="15x" width="100px" src="./colormaps/whiteblack.png" alt="" />
+      <img 
+        height="15x" 
+        width="100%" 
+        src="./colormaps/whiteblack.png" 
+        alt="Grayscale color map" 
+      />
     ),
   },
 ];
@@ -132,7 +133,6 @@ export default connect(null, {
           <Modal 
             centered
             show={this.state.colorMapModal} 
-            style={customStyles} 
             onHide={this.handleCloseModal}
           >
             <Modal.Header closeButton className="pl-2"> 
