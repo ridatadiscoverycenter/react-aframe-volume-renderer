@@ -103,7 +103,7 @@ export default connect(mapStateToProps, {
 
     render() {
       return (
-        <Container fluid id="controls" className="">
+        <Container fluid id="controls">
           <Row className="my-2">
             <ColorMapControl width="250" />
           </Row>

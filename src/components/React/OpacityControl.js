@@ -321,7 +321,7 @@ export default connect(null, { mySendAlphaPoints })(
 
     render() {
       return (
-        <div>
+        <div style={{width: "100%"}}>
           <canvas ref="canvas" id="opacityControls" />
           <br />
           <button onClick={this.resetOpacityPoints}>Reset</button>

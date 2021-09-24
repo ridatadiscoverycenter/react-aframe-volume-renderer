@@ -1,73 +1,64 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
-import { connect } from "react-redux";
-import {
-  myChangeColorMapAction,
-  mySaveColorMappingState,
-} from "../../redux/AppActions";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primereact/resources/themes/nova/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-const mapStateToProps = (state) => {
-  return {
-    volumeData: state.volumeData,
-  };
-};
+import { connect } from "react-redux";
+import {
+  myChangeColorMapAction,
+  mySaveColorMappingState,
+} from "../../redux/AppActions";
+import { Button, Modal } from "react-bootstrap";
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
+  // content: {
+  //   top: "50%",
+  //   left: "50%",
+  //   right: "auto",
+  //   bottom: "auto",
+  //   marginRight: "-50%",
+  //   transform: "translate(-50%, -50%)",
+  // },
+
+  // top: "50%",
+  // left: "50%",
+  // right: "auto",
+  // bottom: "auto",
+  // marginRight: "-50%",
+  // transform: "translate(-50%, -50%)",
 };
 
 const data = [
   {
-    name: "viridis",
+    name: "Viridis",
     image: (
       <img height="15x" width="100px" src="./colormaps/viridis.png" alt="" />
     ),
   },
   {
-    name: "natural",
+    name: "Natural",
     image: (
       <img height="15x" width="100px" src="./colormaps/natural.png" alt="" />
     ),
   },
   {
-    name: "colors",
+    name: "RGB",
     image: (
       <img height="15x" width="100px" src="./colormaps/colors.png" alt="" />
     ),
   },
   {
-    name: "white black",
+    name: "Grayscale",
     image: (
       <img height="15x" width="100px" src="./colormaps/whiteblack.png" alt="" />
     ),
   },
 ];
 
-// const columnsData = [
-//     {
-//       name: 'Color Map',
-//       selector: 'colormap',
-//       cell: d => <img height="15x" width="100px"  src={d.image} alt=""/>,
-//     },
-//     {
-//       name: 'Name',
-//       selector: 'name',
-//     },
-//   ];
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   myChangeColorMapAction,
   mySaveColorMappingState,
 })(
@@ -90,8 +81,6 @@ export default connect(mapStateToProps, {
     }
 
     componentWillUnmount() {
-      //-- save state
-      // console.log("componentWillUnmount: " +this.state.currentMapColor);
       this.props.mySaveColorMappingState(this.state.currentMapColor);
     }
 
@@ -102,7 +91,6 @@ export default connect(mapStateToProps, {
     handleCloseModal() {
       this.props.myChangeColorMapAction(
         this.state.currentMapColor,
-        this.props.volumeData
       );
       this.setState({ colorMapModal: false });
     }
@@ -110,7 +98,7 @@ export default connect(mapStateToProps, {
     datatable() {
       return (
         <DataTable
-          style={{ width: "350px" }}
+          style={{ width: "100%" }}
           value={data}
           selection={this.state.colorMapSelected}
           onSelectionChange={this.handleDataTableSelected}
@@ -130,37 +118,30 @@ export default connect(mapStateToProps, {
     };
 
     render() {
-      let colorMapSelection;
-      if (this.state.currentMapColor !== "") {
-        colorMapSelection = (
+      return (
+        <div>
+          <Button onClick={this.showModal}>Color Map</Button>
           <img
             className="colorMapImg"
             src={this.state.currentMapColor}
             alt="color map"
             height="15"
-            width={this.props.width}
-          ></img>
-        );
-      } else {
-        colorMapSelection = "";
-      }
+            width="100%"
+          />
 
-      return (
-        <div>
-          <button type="button" onClick={this.showModal}>
-            color map
-          </button>
-          <br />
-          {colorMapSelection}
-          <ReactModal
-            isOpen={this.state.colorMapModal}
-            style={customStyles}
-            contentLabel="Minimal Modal Example"
+          <Modal 
+            centered
+            show={this.state.colorMapModal} 
+            style={customStyles} 
+            onHide={this.handleCloseModal}
           >
-            {(this.BasicSelectable = this.datatable())}
-            <br />
-            <button onClick={this.handleCloseModal}>Apply</button>
-          </ReactModal>
+            <Modal.Header closeButton className="pl-2"> 
+              <Modal.Title> Color Map </Modal.Title> 
+            </Modal.Header>
+            <Modal.Body>
+              {(this.BasicSelectable = this.datatable())}
+            </Modal.Body>
+          </Modal>
         </div>
       );
     }
