@@ -326,12 +326,12 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
           <canvas ref="canvas" id="opacityControls" />
           <img
             src={this.props.colorMap.src}
-            alt="color map"
+            alt="Selected color map"
             height="15"
             width="250px"
-            className="border border-dark mb-1 mt-3"
+            className="border border-dark"
           />
-          <p className="mb-0">
+          <p>
             Double-click to add a point to the transfer function. Drag points to
             change the function.
           </p>

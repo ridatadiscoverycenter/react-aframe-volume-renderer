@@ -45,7 +45,7 @@ export default connect(mapStateToProps, { changeColorMap })(
             <Dropdown.Toggle variant="outline-primary" className="fullWidth">
               <img
                 src={this.props.colorMap.src}
-                alt="selected color map"
+                alt="Selected color map"
                 height="15"
                 width="65%"
                 className="mr-2"
@@ -62,9 +62,9 @@ export default connect(mapStateToProps, { changeColorMap })(
                   >
                     <img
                       src={color.src}
-                      alt="selected color map"
+                      alt={color.name}
                       height="15"
-                      width="50%"
+                      width="65%"
                       className="mr-2"
                     />
                     {color.name}
@@ -73,13 +73,6 @@ export default connect(mapStateToProps, { changeColorMap })(
               })}
             </Dropdown.Menu>
           </Dropdown>
-          <img
-            src={this.props.colorMap.src}
-            alt="color map"
-            height="15"
-            width="250px"
-            className="border border-dark mb-1 mt-3"
-          />
         </div>
       );
     }

@@ -98,10 +98,10 @@ export default connect(null, {
     render() {
       return (
         <Container fluid id="controls">
-          <Row className="mt-3">
+          <Row className="my-3">
             <ColorMapControl width="250" />
           </Row>
-          <Row className="mb-3">
+          <Row className="my-3">
             <OpacityControl width="250" />
           </Row>
 
