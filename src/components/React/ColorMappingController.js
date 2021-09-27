@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
-// import { DataTable } from "primereact/datatable";
-// import { Column } from "primereact/column";
+
 import "primereact/resources/themes/nova/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -11,8 +10,14 @@ import {
   myChangeColorMapAction,
   mySaveColorMappingState,
 } from "../../redux/AppActions";
-// import { Button, Dropdown, Modal, SplitButton } from "react-bootstrap";
-import { Dropdown, DropdownButton, ButtonGroup, Container, Row } from "react-bootstrap";
+
+import {
+  Dropdown,
+  DropdownButton,
+  ButtonGroup,
+  Container,
+  Row,
+} from "react-bootstrap";
 
 const path = "assets/images/colormaps";
 const colorMaps = [
@@ -64,27 +69,9 @@ export default connect(null, {
       });
     }
 
-    // DONT DELETE - MAY KEEP
-    // datatable() {
-    //   return (
-    //     <DataTable
-    //       style={{ width: "350px" }}
-    //       value={data}
-    //       selection={this.state.colorMapSelected}
-    //       onSelectionChange={this.handleDataTableSelected}
-    //     >
-    //       <Column selectionMode="single" />
-    //       <Column field="image" header="Color" />
-    //       <Column field="name" header="Name" />
-    //     </DataTable>
-    //   );
-    // }
-
     render() {
       return (
         <Container>
-          {/* DONT DELETE - MAY KEEP */}
-          {/* <Button onClick={this.showModal}>Color Map</Button> */}
           <Row>
             <DropdownButton title="Color Map" as={ButtonGroup}>
               {colorMaps.map((color, i) => {
@@ -105,31 +92,18 @@ export default connect(null, {
                 );
               })}
             </DropdownButton>
-            <h4 className="ml-4"> {this.state.colorMap.name} </h4>
+            <h4 className="ml-2"> {this.state.colorMap.name} </h4>
           </Row>
 
-          <img
-            src={this.state.colorMap.src}
-            alt="color map"
-            height="15"
-            width="100%"
-            className="border border-dark"
-          />
-
-
-          {/* DON'T DELETE - MAY KEEP */}
-          {/* <Modal 
-            centered
-            show={this.state.colorMapModal} 
-            onHide={this.handleCloseModal}
-          >
-            <Modal.Header closeButton className="pl-2"> 
-              <Modal.Title> Color Map </Modal.Title> 
-            </Modal.Header>
-            <Modal.Body>
-              {(this.BasicSelectable = this.datatable())}
-            </Modal.Body>
-          </Modal> */}
+          <Row className="mt-1">
+            <img
+              src={this.state.colorMap.src}
+              alt="color map"
+              height="15"
+              width="100%"
+              className="border border-dark"
+            />
+          </Row>
         </Container>
       );
     }
