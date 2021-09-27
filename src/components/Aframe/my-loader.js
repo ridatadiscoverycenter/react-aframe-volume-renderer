@@ -2,11 +2,6 @@
 import "../../shaders/ccvLibVolumeShader.js";
 var bind = AFRAME.utils.bind;
 
-// var KEYS = [
-// 	'KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyP',
-// 	'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown'
-// ];
-
 AFRAME.registerComponent("collider-check", {
   dependencies: ["raycaster", "my-buttons-check"],
 
@@ -57,6 +52,12 @@ AFRAME.registerComponent("myloader", {
     channel: { type: "number", default: 6 },
     cameraState: { type: "string", default: "" },
     myMeshPosition: { type: "vec3", default: "" },
+    path: { type: "string", default: "" },
+    slices: { type: "number", default: 55 },
+    extension: { type: "string", default: "png" },
+    x_spacing: { type: "number", default: 2.0 },
+    y_spacing: { type: "number", default: 2.0 },
+    z_spacing: { type: "number", default: 1.0 },
   },
 
   init: function () {
@@ -72,7 +73,6 @@ AFRAME.registerComponent("myloader", {
     this.updateColorMapping = this.updateColorMapping.bind(this);
     this.debugScene = this.debugScene.bind(this);
 
-    //window.addEventListener('keydown', this.debugScene);
     this.el.addEventListener("raycaster-intersected", this.onCollide);
     this.el.addEventListener(
       "raycaster-intersected-cleared",
@@ -81,7 +81,6 @@ AFRAME.registerComponent("myloader", {
     this.colorTransfer = new Uint8Array(3 * 256);
 
     this.group = new THREE.Group();
-    //this.el.sceneEl.object3D.add(group);
     this.colorMap = {
       img: null,
       data: null,
@@ -96,9 +95,7 @@ AFRAME.registerComponent("myloader", {
     this.sceneHandler = this.el.sceneEl;
     this.group = new THREE.Group();
 
-    //this.sceneHandler.add( group );
-
-    this.controllerHandler = document.getElementById("rhand").object3D; //.getAttribute('my-buttons-check');
+    this.controllerHandler = document.getElementById("rhand").object3D;
     this.controllerHandler.el.addEventListener(
       "selectstart",
       this.onSelectStart
@@ -106,10 +103,10 @@ AFRAME.registerComponent("myloader", {
 
     this.clipPlaneListenerHandler = document.getElementById(
       "my2DclipplaneListener"
-    ).object3D; //.getAttribute('my-buttons-check');
+    ).object3D;
     this.clip2DPlaneRendered = false;
 
-    this.clipPlaneHandler = document.getElementById("my2Dclipplane").object3D; //.getAttribute('my-buttons-check');
+    this.clipPlaneHandler = document.getElementById("my2Dclipplane").object3D;
 
     this.controllerHandler.matrixAutoUpdate = false;
     this.grabState =
@@ -128,7 +125,6 @@ AFRAME.registerComponent("myloader", {
     this.el.sceneEl.addEventListener("enter-vr", this.onEnterVR);
     this.el.sceneEl.addEventListener("exit-vr", this.onExitVR);
 
-    //this.opacityControlPoints = [0, 0.1, 0.3, 0.5, 0.75, 0.8, 0.6, 0.5, 0.0];
     this.opacityControlPoints = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
     var jet_values = [
