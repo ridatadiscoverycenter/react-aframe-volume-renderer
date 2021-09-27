@@ -32,8 +32,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.hoverRadius = 15;
       this.width = 0;
 
-      //this.nodesY =[];
-
       this.lowNodeX = ~~(this.width * this.lowNode) + this.padding;
       this.highNodeX = ~~(this.width * this.highNode) + this.padding;
       this.minLevelY =
@@ -320,10 +318,22 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.nodeDragged = -1;
     }
 
+    temp() {
+      console.log("Color Map", this.props.colorMap)
+      return this.props.colorMap
+    }
+
     render() {
       return (
         <div>
           <canvas ref="canvas" id="opacityControls" />
+          <img
+            src={this.temp()}
+            alt="color map"
+            height="15"
+            width="250px"
+            className="border border-dark mb-1 mt-3"
+          />
           <p className="mb-0">
             Double-click to add a point to the transfer function. Drag points to
             change the function.

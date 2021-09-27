@@ -7,14 +7,13 @@ const initialState = {
   zSlideValueMin: 0,
   zSlideValueMax: 0,
   transferFunction: false,
-  colorMap: "",
+  colorMap: "assets/images/colormaps/haline.png",
   opacity1: 0,
   opacity2: 1,
   lowNode: 0,
   highNode: 1,
   alphaXDataArray: null,
   alphaYDataArray: null,
-  currentColorMap: "",
   channel: 6,
 };
 
@@ -52,6 +51,7 @@ export const myReducer = function readCheckBox(
       };
     }
     case "COLOR_MAP_CHANGED": {
+      console.log("COLOR_MAP_CHANGED", action.payload)
       return {
         colorMap: action.payload,
         transferFunction: action.payload !== "" ? true : false,

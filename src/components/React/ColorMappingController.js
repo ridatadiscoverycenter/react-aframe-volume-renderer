@@ -34,27 +34,20 @@ export default connect(null, {
 
       this.state = {
         colorMap: colorMaps[0],
-        colorMapModal: false,
       };
 
-      this.showModal = this.showModal.bind(this);
-      this.handleCloseModal = this.handleCloseModal.bind(this);
       this.handleClick = this.handleClick.bind(this);
 
       ReactModal.setAppElement("body");
     }
 
-    componentWillUnmount() {
-      this.props.saveColorMapState(this.state.colorMap.src);
+    componentDidMount() {
+      // this.props.saveColorMapState(this.state.colorMap.src);
+      // this.props.changeColorMap("assets/images/colormaps/thermal.png")
     }
 
-    showModal = () => {
-      this.setState({ colorMapModal: true });
-    };
-
-    handleCloseModal() {
-      this.props.changeColorMap(this.state.colorMap.src);
-      this.setState({ colorMapModal: false });
+    componentWillUnmount() {
+      this.props.saveColorMapState(this.state.colorMap.src);
     }
 
     handleClick(color) {
@@ -62,14 +55,6 @@ export default connect(null, {
         colorMap: color,
       });
       this.props.changeColorMap(this.state.colorMap.src);
-    }
-
-    getMapWidth() {
-      const controlsContainer = document.getElementById("controls");
-      console.log(controlsContainer);
-
-      this.opCanvas.width =
-        controlsContainer.clientWidth - 2 * this.padding - 2;
     }
 
     render() {
