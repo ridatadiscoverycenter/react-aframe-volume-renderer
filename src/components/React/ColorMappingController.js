@@ -9,42 +9,31 @@ import "primeicons/primeicons.css";
 import { connect } from "react-redux";
 import {
   myChangeColorMapAction as changeColorMap,
-  mySaveColorMappingState as saveColorMapState,
 } from "../../redux/AppActions";
 
 import { colorMaps } from "../../assets/config.json"
 
-export default connect(null, {
-  changeColorMap,
-  saveColorMapState,
-})(
+const mapStateToProps = (state) => {
+  console.log("ColorMappingController", state)
+  const colorMap = state.colorMap;
+  return {
+    ...state,
+    colorMap
+  };
+};
+
+export default connect(mapStateToProps, { changeColorMap })(
   class ControlMappingController extends Component {
     constructor(props) {
       super(props);
-
-      this.state = {
-        colorMap: colorMaps[0],
-      };
 
       this.handleClick = this.handleClick.bind(this);
 
       ReactModal.setAppElement("body");
     }
 
-    componentWillMount() {
-      console.log("Mounting")
-      this.props.changeColorMap(colorMaps[0].src)
-    }
-
-    componentWillUnmount() {
-      this.props.saveColorMapState(this.state.colorMap.src);
-    }
-
     handleClick(color) {
-      this.setState({
-        colorMap: color,
-      });
-      this.props.changeColorMap(color.src);
+      this.props.changeColorMap(color);
     }
 
     render() {
@@ -55,20 +44,20 @@ export default connect(null, {
           <Dropdown>
             <Dropdown.Toggle variant="outline-primary" className="fullWidth">
               <img
-                src={this.state.colorMap.src}
+                src={this.props.colorMap.src}
                 alt="selected color map"
                 height="15"
                 width="65%"
                 className="mr-2"
               />
-              {this.state.colorMap.name}
+              {this.props.colorMap.name}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {colorMaps.map((color, i) => {
                 return (
                   <Dropdown.Item
                     key={color.name}
-                    active={this.state.colorMap === color}
+                    active={this.props.colorMap === color}
                     onClick={() => this.handleClick(color)}
                   >
                     <img
@@ -85,7 +74,7 @@ export default connect(null, {
             </Dropdown.Menu>
           </Dropdown>
           <img
-            src={this.state.colorMap.src}
+            src={this.props.colorMap.src}
             alt="color map"
             height="15"
             width="250px"

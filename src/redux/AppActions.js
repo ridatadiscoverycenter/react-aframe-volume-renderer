@@ -84,15 +84,6 @@ export const mySendAlphaPoints = function mySendAlphaPoints(
   };
 };
 
-export const mySaveColorMappingState = function mySaveColorMappingState(
-  colorMap
-) {
-  return {
-    type: "SAVE_COLOR_DATA",
-    payload: colorMap,
-  };
-};
-
 export const myChannelChanged = function myChannelChanged(channel) {
   return {
     type: "CHANNEL_CHANGED",
