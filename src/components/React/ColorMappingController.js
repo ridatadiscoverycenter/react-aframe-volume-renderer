@@ -12,7 +12,7 @@ import {
   mySaveColorMappingState,
 } from "../../redux/AppActions";
 // import { Button, Dropdown, Modal, SplitButton } from "react-bootstrap";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown, DropdownButton, ButtonGroup, Container, Row } from "react-bootstrap";
 
 const path = "assets/images/colormaps";
 const colorMaps = [
@@ -82,18 +82,18 @@ export default connect(null, {
 
     render() {
       return (
-        <div>
+        <Container>
           {/* DONT DELETE - MAY KEEP */}
           {/* <Button onClick={this.showModal}>Color Map</Button> */}
-          <DropdownButton title="Color Map">
-            {colorMaps.map((color, i) => {
-              return (
-                <Dropdown.Item
-                  key={color.name}
-                  as="button"
-                  onClick={() => this.handleClick(color)}
-                >
-                  <div d-flex flex-row>
+          <Row>
+            <DropdownButton title="Color Map" as={ButtonGroup}>
+              {colorMaps.map((color, i) => {
+                return (
+                  <Dropdown.Item
+                    key={color.name}
+                    active={this.state.colorMap === color}
+                    onClick={() => this.handleClick(color)}
+                  >
                     <div> {color.name} </div>
                     <img
                       src={color.src}
@@ -101,17 +101,21 @@ export default connect(null, {
                       height="15"
                       width="100%"
                     />
-                  </div>
-                </Dropdown.Item>
-              );
-            })}
-          </DropdownButton>
+                  </Dropdown.Item>
+                );
+              })}
+            </DropdownButton>
+            <h4 className="ml-4"> {this.state.colorMap.name} </h4>
+          </Row>
+
           <img
             src={this.state.colorMap.src}
             alt="color map"
             height="15"
             width="100%"
+            className="border border-dark"
           />
+
 
           {/* DON'T DELETE - MAY KEEP */}
           {/* <Modal 
@@ -126,7 +130,7 @@ export default connect(null, {
               {(this.BasicSelectable = this.datatable())}
             </Modal.Body>
           </Modal> */}
-        </div>
+        </Container>
       );
     }
   }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, Form, Row } from "react-bootstrap";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -15,7 +16,6 @@ import {
 
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMappingController";
-import { Container, Form, Row } from "react-bootstrap";
 
 const Range = Slider.Range;
 
