@@ -3,7 +3,13 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
 
-export default connect(null, { mySendAlphaPoints })(
+const mapStateToProps = (state) => {
+  return {
+    currentColorMap: state.currentColorMap,
+  };
+};
+
+export default connect(mapStateToProps, { mySendAlphaPoints })(
   class OpacityControl extends Component {
     constructor(props) {
       super(props);

@@ -61,6 +61,7 @@ export default connect(null, {
       this.setState({
         colorMap: color,
       });
+      this.props.changeColorMap(this.state.colorMap.src);
     }
 
     getMapWidth() {

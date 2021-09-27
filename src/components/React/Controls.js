@@ -19,13 +19,7 @@ import ColorMapControl from "./ColorMappingController";
 
 const Range = Slider.Range;
 
-const mapStateToProps = (state) => {
-  return {
-    currentColorMap: state.currentColorMap,
-  };
-};
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   myCheckButtonAction,
   myXSlideAction,
   myYSlideAction,
