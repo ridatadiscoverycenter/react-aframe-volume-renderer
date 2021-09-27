@@ -7,7 +7,7 @@ const initialState = {
   zSlideValueMin: 0,
   zSlideValueMax: 0,
   transferFunction: false,
-  colorMap: "assets/images/colormaps/haline.png",
+  colorMap: "",
   opacity1: 0,
   opacity2: 1,
   lowNode: 0,

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
 
 const mapStateToProps = (state) => {
+  console.log("Opacity - Map State:", state.colorMap)
   return {
     colorMap: state.colorMap,
   };
@@ -318,17 +319,12 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.nodeDragged = -1;
     }
 
-    temp() {
-      console.log("Color Map", this.props.colorMap)
-      return this.props.colorMap
-    }
-
     render() {
       return (
         <div>
           <canvas ref="canvas" id="opacityControls" />
           <img
-            src={this.temp()}
+            src={this.props.colorMap}
             alt="color map"
             height="15"
             width="250px"

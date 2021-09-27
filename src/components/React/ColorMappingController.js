@@ -43,7 +43,7 @@ export default connect(null, {
 
     componentDidMount() {
       // this.props.saveColorMapState(this.state.colorMap.src);
-      // this.props.changeColorMap("assets/images/colormaps/thermal.png")
+      this.props.changeColorMap(colorMaps[0].src)
     }
 
     componentWillUnmount() {
@@ -54,7 +54,7 @@ export default connect(null, {
       this.setState({
         colorMap: color,
       });
-      this.props.changeColorMap(this.state.colorMap.src);
+      this.props.changeColorMap(color.src);
     }
 
     render() {
