@@ -77,7 +77,7 @@ export default connect(null, {
           <h3>Color Map</h3>
 
           <Dropdown>
-            <Dropdown.Toggle variant="outline-primary">
+            <Dropdown.Toggle variant="outline-primary" style={{width: "100%"}}>
               <img
                 src={this.state.colorMap.src}
                 alt="selected color map"
