@@ -73,7 +73,7 @@ export default connect(null, {
 
     render() {
       return (
-        <div>
+        <div style={{width: "100%"}}>
           <Dropdown>
             <Dropdown.Toggle variant="outline-primary">
               <img
