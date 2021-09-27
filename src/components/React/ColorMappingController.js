@@ -75,7 +75,7 @@ export default connect(null, {
     render() {
       return (
         <div className="fullWidth">
-          <h3>Color Map</h3>
+          <h4>Color Map</h4>
 
           <Dropdown>
             <Dropdown.Toggle variant="outline-primary" className="fullWidth">
@@ -113,8 +113,8 @@ export default connect(null, {
             src={this.state.colorMap.src}
             alt="color map"
             height="15"
-            width="100%"
-            className="border border-dark"
+            width="250px"
+            className="border border-dark mb-1 mt-3"
           />
         </div>
       );
