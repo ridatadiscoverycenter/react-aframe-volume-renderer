@@ -74,6 +74,7 @@ export default connect(null, {
     render() {
       return (
         <div style={{width: "100%"}}>
+          <h3>Color Map</h3>
           <Dropdown>
             <Dropdown.Toggle variant="outline-primary">
               <img
