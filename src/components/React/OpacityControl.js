@@ -318,6 +318,10 @@ export default connect(null, { mySendAlphaPoints })(
       return (
         <div>
           <canvas ref="canvas" id="opacityControls" />
+          <p className="mb-0">
+            Double-click to add a point to the transfer function.
+            Drag points to change the function.
+          </p>
           <Button onClick={this.resetOpacityPoints}> Reset </Button>
         </div>
       );

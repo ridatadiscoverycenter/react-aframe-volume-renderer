@@ -16,7 +16,7 @@ import {
   DropdownButton,
   ButtonGroup,
   Container,
-  Row,
+  Row, Col
 } from "react-bootstrap";
 
 const path = "assets/images/colormaps";
@@ -69,11 +69,50 @@ export default connect(null, {
       });
     }
 
+    getMapWidth() {
+      const controlsContainer = document.getElementById("controls");
+      console.log(controlsContainer)
+
+      this.opCanvas.width = controlsContainer.clientWidth - 2 * this.padding - 2;
+    }
+
     render() {
       return (
         <Container>
-          <Row>
-            <DropdownButton title="Color Map" as={ButtonGroup}>
+          <Row noGutters>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-primary">
+                <img
+                  src={this.state.colorMap.src}
+                  alt="selected color map"
+                  height="15"
+                  width="50%"
+                  className="mr-2"
+                />
+                {this.state.colorMap.name}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {colorMaps.map((color, i) => {
+                  return (
+                    <Dropdown.Item
+                      key={color.name}
+                      active={this.state.colorMap === color}
+                      onClick={() => this.handleClick(color)}
+                    >
+                      <div> {color.name} </div>
+                      <img
+                        src={color.src}
+                        alt="selected color map"
+                        height="15"
+                        width="100%"
+                      />
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+            
+            {/* <DropdownButton title="Color map" as={ButtonGroup} variant="outlined primary">
               {colorMaps.map((color, i) => {
                 return (
                   <Dropdown.Item
@@ -91,8 +130,7 @@ export default connect(null, {
                   </Dropdown.Item>
                 );
               })}
-            </DropdownButton>
-            <h4 className="ml-2"> {this.state.colorMap.name} </h4>
+            </DropdownButton> */}
           </Row>
 
           <Row className="mt-1">
@@ -100,6 +138,7 @@ export default connect(null, {
               src={this.state.colorMap.src}
               alt="color map"
               height="15"
+              // width={this.getMapWidth()}
               width="100%"
               className="border border-dark"
             />
