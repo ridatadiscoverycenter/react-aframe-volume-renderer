@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
     volumeData: state.volumeData,
     transferFunction: state.transferFunction,
     colorMap: state.colorMap,
+    currentColorMap: state.colorMap,
     opacity1: state.opacity1,
     opacity2: state.opacity2,
     lowNode: state.lowNode,
@@ -25,7 +26,6 @@ const mapStateToProps = (state) => {
     alphaYDataArray: state.alphaYDataArray,
     channel: state.channel,
     cameraState: state.cameraState,
-    currentColorMap: state.colorMap,
   };
 };
 
@@ -79,10 +79,10 @@ export default connect(mapStateToProps)(
                   class="clickableMesh"
                   myloader={{
                     volumeData: state.path,
-                    colorMap: this.props.currentColorMap,
                     rayCollided: false,
                     transferFunction: this.props.transferFunction,
                     colorMap: this.props.colorMap,
+                    currentColorMap: this.props.colorMap,
                     opacity1: this.props.opacity1,
                     opacity2: this.props.opacity2,
                     lowNode: this.props.lowNode,

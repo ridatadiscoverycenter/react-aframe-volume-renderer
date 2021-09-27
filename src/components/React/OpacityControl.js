@@ -5,7 +5,7 @@ import { mySendAlphaPoints } from "../../redux/AppActions";
 
 const mapStateToProps = (state) => {
   return {
-    currentColorMap: state.currentColorMap,
+    colorMap: state.colorMap,
   };
 };
 
