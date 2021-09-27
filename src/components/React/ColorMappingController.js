@@ -41,8 +41,8 @@ export default connect(null, {
       ReactModal.setAppElement("body");
     }
 
-    componentDidMount() {
-      // this.props.saveColorMapState(this.state.colorMap.src);
+    componentWillMount() {
+      console.log("Mounting")
       this.props.changeColorMap(colorMaps[0].src)
     }
 
