@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
+import { Dropdown } from "react-bootstrap";
 
 import "primereact/resources/themes/nova/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -11,18 +12,7 @@ import {
   mySaveColorMappingState as saveColorMapState,
 } from "../../redux/AppActions";
 
-import { Dropdown } from "react-bootstrap";
-
-const path = "assets/images/colormaps";
-const colorMaps = [
-  { name: "Haline", src: `${path}/haline.png` },
-  { name: "Thermal", src: `${path}/thermal.png` },
-  { name: "Grayscale", src: `${path}/grayscale.png` },
-  { name: "Natural", src: `${path}/natural.png` },
-  { name: "Plasma", src: `${path}/plasma.png` },
-  { name: "RGB", src: `${path}/rgb.png` },
-  { name: "Viridis", src: `${path}/viridis.png` },
-];
+import { colorMaps } from "../../assets/config.json"
 
 export default connect(null, {
   changeColorMap,
