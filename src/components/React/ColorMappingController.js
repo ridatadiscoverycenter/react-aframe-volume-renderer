@@ -53,7 +53,7 @@ export default connect(mapStateToProps, { changeColorMap })(
               {this.props.colorMap.name}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {colorMaps.map((color, i) => {
+              {colorMaps.map(color => {
                 return (
                   <Dropdown.Item
                     key={color.name}
