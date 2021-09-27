@@ -23,7 +23,6 @@ export const myReducer = function readCheckBox(
   state = initialState,
   action
 ) {
-  console.log("Initial State", state)
   switch (action.type) {
     case "CHECKBOX_CHANGED": {
       return {
@@ -59,7 +58,6 @@ export const myReducer = function readCheckBox(
       };
     }
     case "COLOR_MAP_CHANGED": {
-      // console.log("COLOR_MAP_CHANGED", action.payload)
       return {
         ...state,
         colorMap: action.payload,

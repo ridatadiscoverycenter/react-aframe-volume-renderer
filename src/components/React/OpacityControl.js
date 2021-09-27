@@ -4,11 +4,7 @@ import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
 
 const mapStateToProps = (state) => {
-  console.log("OpacityController:", state)
-  return {
-    ...state,
-    colorMap: state.colorMap,
-  };
+  return { colorMap: state.colorMap };
 };
 
 export default connect(mapStateToProps, { mySendAlphaPoints })(

@@ -14,12 +14,7 @@ import {
 import { colorMaps } from "../../assets/config.json"
 
 const mapStateToProps = (state) => {
-  console.log("ColorMappingController", state)
-  const colorMap = state.colorMap;
-  return {
-    ...state,
-    colorMap
-  };
+  return { colorMap: state.colorMap };
 };
 
 export default connect(mapStateToProps, { changeColorMap })(
