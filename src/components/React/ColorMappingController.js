@@ -73,11 +73,11 @@ export default connect(null, {
 
     render() {
       return (
-        <div style={{width: "100%"}}>
+        <div className="fullWidth">
           <h3>Color Map</h3>
 
           <Dropdown>
-            <Dropdown.Toggle variant="outline-primary" style={{width: "100%"}}>
+            <Dropdown.Toggle variant="outline-primary" className="fullWidth">
               <img
                 src={this.state.colorMap.src}
                 alt="selected color map"
