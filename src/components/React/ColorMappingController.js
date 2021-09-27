@@ -7,8 +7,8 @@ import "primeicons/primeicons.css";
 
 import { connect } from "react-redux";
 import {
-  myChangeColorMapAction,
-  mySaveColorMappingState,
+  myChangeColorMapAction as changeColorMap,
+  mySaveColorMappingState as saveColorMapState,
 } from "../../redux/AppActions";
 
 import {
@@ -31,8 +31,8 @@ const colorMaps = [
 ];
 
 export default connect(null, {
-  myChangeColorMapAction,
-  mySaveColorMappingState,
+  changeColorMap,
+  saveColorMapState,
 })(
   class ControlMappingController extends Component {
     constructor(props) {
@@ -51,7 +51,7 @@ export default connect(null, {
     }
 
     componentWillUnmount() {
-      this.props.mySaveColorMappingState(this.state.colorMap.src);
+      this.props.saveColorMapState(this.state.colorMap.src);
     }
 
     showModal = () => {
@@ -59,7 +59,7 @@ export default connect(null, {
     };
 
     handleCloseModal() {
-      this.props.myChangeColorMapAction(this.state.colorMap.src);
+      this.props.changeColorMap(this.state.colorMap.src);
       this.setState({ colorMapModal: false });
     }
 
