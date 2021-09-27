@@ -171,7 +171,7 @@ export default connect(null, { mySendAlphaPoints })(
 
       this.props.mySendAlphaPoints(
         this.normalizedXCanvasSpace,
-        this.normalizedYCanvasSpace,
+        this.normalizedYCanvasSpace
       );
     }
 

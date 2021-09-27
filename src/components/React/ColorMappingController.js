@@ -14,7 +14,7 @@ import {
 // import { Button, Dropdown, Modal, SplitButton } from "react-bootstrap";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
-const path = "assets/images/colormaps"
+const path = "assets/images/colormaps";
 const colorMaps = [
   { name: "Haline", src: `${path}/haline.png` },
   { name: "Thermal", src: `${path}/thermal.png` },
@@ -40,7 +40,7 @@ export default connect(null, {
 
       this.showModal = this.showModal.bind(this);
       this.handleCloseModal = this.handleCloseModal.bind(this);
-      this.handleClick = this.handleClick.bind(this)
+      this.handleClick = this.handleClick.bind(this);
 
       ReactModal.setAppElement("body");
     }
@@ -54,15 +54,13 @@ export default connect(null, {
     };
 
     handleCloseModal() {
-      this.props.myChangeColorMapAction(
-        this.state.colorMap.src,
-      );
+      this.props.myChangeColorMapAction(this.state.colorMap.src);
       this.setState({ colorMapModal: false });
     }
 
     handleClick(color) {
       this.setState({
-        colorMap: color
+        colorMap: color,
       });
     }
 
@@ -90,7 +88,7 @@ export default connect(null, {
           <DropdownButton title="Color Map">
             {colorMaps.map((color, i) => {
               return (
-                <Dropdown.Item 
+                <Dropdown.Item
                   key={color.name}
                   as="button"
                   onClick={() => this.handleClick(color)}
@@ -105,7 +103,7 @@ export default connect(null, {
                     />
                   </div>
                 </Dropdown.Item>
-              )
+              );
             })}
           </DropdownButton>
           <img
@@ -114,7 +112,7 @@ export default connect(null, {
             height="15"
             width="100%"
           />
-          
+
           {/* DON'T DELETE - MAY KEEP */}
           {/* <Modal 
             centered

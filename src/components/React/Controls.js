@@ -115,28 +115,28 @@ export default connect(mapStateToProps, {
             <Form.Group as={Row}>
               <Form.Label>X Slider</Form.Label>
               <Range
-              // disabled={
+                // disabled={
                 // this.props.volumeData === "" ||
                 // this.props.volumeData === undefined
-                  // ? true
-                  // : false
-              // }
-              allowCross={false}
-              step={0.0009}
-              defaultValue={[0, 1]}
-              min={0}
-              max={1}
-              onChange={this.xSlideHandleChange}
-            />
+                // ? true
+                // : false
+                // }
+                allowCross={false}
+                step={0.0009}
+                defaultValue={[0, 1]}
+                min={0}
+                max={1}
+                onChange={this.xSlideHandleChange}
+              />
             </Form.Group>
             <Form.Group as={Row}>
               <Form.Label> Y Slider </Form.Label>
               <Range
                 // disabled={
-                  // this.props.volumeData === "" ||
-                  // this.props.volumeData === undefined
-                    // ? true
-                    // : false
+                // this.props.volumeData === "" ||
+                // this.props.volumeData === undefined
+                // ? true
+                // : false
                 // }
                 allowCross={false}
                 step={0.0009}
@@ -150,10 +150,10 @@ export default connect(mapStateToProps, {
               <Form.Label> Z Slider </Form.Label>
               <Range
                 // disabled={
-                  // this.props.volumeData === "" ||
-                  // this.props.volumeData === undefined
-                    // ? true
-                    // : false
+                // this.props.volumeData === "" ||
+                // this.props.volumeData === undefined
+                // ? true
+                // : false
                 // }
                 allowCross={false}
                 step={0.0009}

@@ -46,27 +46,27 @@ function volumeReducer(state, action) {
       return {
         options: {
           ...state.options,
-          measurement: action.payload
+          measurement: action.payload,
         },
-        path: getPath()
+        path: getPath(),
       };
     }
     case "TOGGLE_SEASON": {
       return {
         options: {
           ...state.options,
-          season: action.payload
+          season: action.payload,
         },
-        path: getPath()
+        path: getPath(),
       };
     }
     case "TOGGLE_TIDE": {
       return {
         options: {
           ...state.options,
-          tide: action.payload
+          tide: action.payload,
         },
-        path: getPath()
+        path: getPath(),
       };
     }
     default: {
