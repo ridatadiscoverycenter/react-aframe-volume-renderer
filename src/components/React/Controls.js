@@ -105,7 +105,49 @@ export default connect(null, {
             <OpacityControl width="250" />
           </Row>
 
-          <Form className="mt-5">
+          <Row className="mt-5">
+            <h4>Clip</h4>
+          </Row>
+          <Row>
+            <Form className="fullWidth">
+              <Form.Group>
+                <Form.Label> X </Form.Label>
+                <Range
+                  allowCross={false}
+                  step={0.0009}
+                  defaultValue={[0, 1]}
+                  min={0}
+                  max={1}
+                  onChange={this.xSlideHandleChange}
+                  
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Y </Form.Label>
+                <Range
+                  allowCross={false}
+                  step={0.0009}
+                  defaultValue={[0, 1]}
+                  min={0}
+                  max={1}
+                  onChange={this.ySlideHandleChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Z </Form.Label>
+                <Range
+                  allowCross={false}
+                  step={0.0009}
+                  defaultValue={[0, 1]}
+                  min={0}
+                  max={1}
+                  onChange={this.zSlideHandleChange}
+                />
+              </Form.Group>
+            </Form>
+          </Row>
+
+          {/* <Form className="mt-5">
             <Form.Group as={Row}>
               <Form.Label>X Slider</Form.Label>
               <Range
@@ -139,7 +181,7 @@ export default connect(null, {
                 onChange={this.zSlideHandleChange}
               />
             </Form.Group>
-          </Form>
+          </Form> */}
         </Container>
       );
     }
