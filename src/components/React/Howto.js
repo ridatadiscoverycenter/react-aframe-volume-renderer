@@ -32,8 +32,8 @@ export default function Howto(props) {
           <Row class>
             <div className="text-center">
               <p>
-                Welcome to the Web-VR Volume viewer. This short guide is meant
-                to help new users on to navigate and analyze the 3D volume data.
+                Welcome to the Narragansett Bay Volume viewer. This short guide is meant
+                to help new users on how to navigate and analyze the 3D volume data.
               </p>
               <img
                 src="assets/images/howto/ridc-intro-guide.png"
@@ -62,9 +62,8 @@ export default function Howto(props) {
           <Row>
             <div className="text-center">
               <p>
-                Use the mouse wheel to zoom in (scroll up) and zoom out (scroll
-                down). Keep pressed the mouse left button and drag the mouse to
-                rotate the data on three different axes.
+                Scrolling controls zoom. Scroll up to zoom in and scroll down to zoom out. 
+                Click and drag to rotate the data on three different axes.
               </p>
               <img
                 src="assets/images/howto/ridc-camera-guide.gif"
@@ -78,9 +77,9 @@ export default function Howto(props) {
             <div className="text-center">
               <p>
                 Click on the "Options" button to enable the color map editor.
-                Swtich beween the different selection of color maps to observe
+                Swtich beween the different color maps to observe
                 different properties of the data. Some regions will highlight
-                more than others according to specific colors. Use the Transfer
+                more than others according to specific colors. Use the transfer
                 function graph to modify the transparency of pixels according to
                 their mapped color. To add point double click on the place you
                 want to put a new control point. Right click on an existing
@@ -113,8 +112,8 @@ export default function Howto(props) {
           <Row>
             <div className="text-center">
               <p>
-                Lastly, use the ranged slices to cut through the dataset on
-                three different axes.
+                Lastly, to clip the data, use the ranged slices to cut through 
+                the dataset on three different axes.
               </p>
               <img
                 src="assets/images/howto/ridc-slices-guide.gif"
