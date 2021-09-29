@@ -25,21 +25,24 @@ export default function Howto(props) {
           </Navbar>
         </ModalHeader>
 
-        <ModalBody>
+        <ModalBody className="mb-4">
           <h2 id="user-guide" className="mb-4">
             User Guide
           </h2>
           <Row class>
-            <div className="text-center">
+            <div className="text-center mb-4">
               <p>
                 Welcome to the Web-VR Volume viewer. This short guide is meant
                 to help new users on to navigate and analyze the 3D volume data.
               </p>
+              <div className="text-center">
               <img
                 src="assets/images/howto/ridc-intro-guide.png"
                 alt="Example screenshot"
                 width="80%"
               />
+              </div>
+              
             </div>
 
             <hr className="my-4" />
@@ -60,12 +63,13 @@ export default function Howto(props) {
             <hr className="my-4" />
           </Row>
           <Row>
-            <div className="text-center">
-              <p>
+            <p>
                 Use the mouse wheel to zoom in (scroll up) and zoom out (scroll
                 down). Keep pressed the mouse left button and drag the mouse to
                 rotate the data on three different axes.
-              </p>
+            </p>
+            <div className="text-center">
+              
               <img
                 src="assets/images/howto/ridc-camera-guide.gif"
                 alt="Instructional gif on zooming in and out"
@@ -74,18 +78,14 @@ export default function Howto(props) {
             </div>
             <hr className="my-4" />
           </Row>
-          <Row>
-            <div className="text-center">
-              <p>
+          <Row >
+            <p className="my-4">
                 Click on the "Options" button to enable the color map editor.
                 Swtich beween the different selection of color maps to observe
                 different properties of the data. Some regions will highlight
-                more than others according to specific colors. Use the Transfer
-                function graph to modify the transparency of pixels according to
-                their mapped color. To add point double click on the place you
-                want to put a new control point. Right click on an existing
-                point to delete it.
-              </p>
+                more than others according to specific colors.
+            </p>
+            <div className="text-center">  
               <img
                 src="assets/images/howto/ridc-color-map-guide.gif"
                 alt="Instructional gif on applying a color texture"
@@ -95,13 +95,14 @@ export default function Howto(props) {
             <hr className="my-4" />
           </Row>
           <Row>
-            <div className="text-center">
-              <p>
+            <p>
                 Use the Transfer function graph to modify the transparency of
                 pixels according to their mapped color. To add point double
                 click on the place you want to put a new control point. Right
                 click on an existing point to delete it.
-              </p>
+            </p>
+            <div className="text-center">
+              
               <img
                 src="assets/images/howto/ridc-opacity-map-guidie.gif"
                 alt="Instructional gif on applying a color texture"
@@ -111,11 +112,12 @@ export default function Howto(props) {
             <hr className="my-4" />
           </Row>
           <Row>
-            <div className="text-center">
-              <p>
+            <p>
                 Lastly, use the ranged slices to cut through the dataset on
                 three different axes.
-              </p>
+            </p>
+            <div className="text-center">
+              
               <img
                 src="assets/images/howto/ridc-slices-guide.gif"
                 alt="Instructional gif on cutting through the dataset on an axis"
@@ -129,12 +131,22 @@ export default function Howto(props) {
             Enable VR on Web Browser
           </h2>
           <Row>
-            <div className="text-center">
+          <p>To enable this feature you require: </p>
+             
+              <ul>
+                <li>Winodws O.S</li>
+                <li>Firefox definitely supported (others may or may not work, not tested))</li>
+                <li>VR Headset (Oculus, Vive)</li>
+                <li><a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">Graphics Card compatible with VR </a></li>
+                <li>Steam VR</li>
+              </ul>
+              
               <p>
                 At this moment, VR on web browsers is only supported on Mozilla
                 Firefox. In order to enable this option in your computer, please
                 follow these steps:
               </p>
+            <div >
               <ol>
                 <li className="mx-3">
                   Right Click onn your Desktop and select Nvidia Control Panel
