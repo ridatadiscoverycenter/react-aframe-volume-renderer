@@ -32,8 +32,8 @@ export default function Howto(props) {
           <Row class>
             <div className="text-center mb-4">
               <p>
-                Welcome to the Web-VR Volume viewer. This short guide is meant
-                to help new users on to navigate and analyze the 3D volume data.
+                Welcome to the Narragansett Bay Volume viewer. This short guide is meant
+                to help new users on how to navigate and analyze the 3D volume data.
               </p>
               <div className="text-center">
               <img
@@ -63,13 +63,11 @@ export default function Howto(props) {
             <hr className="my-4" />
           </Row>
           <Row>
-            <p>
-                Use the mouse wheel to zoom in (scroll up) and zoom out (scroll
-                down). Keep pressed the mouse left button and drag the mouse to
-                rotate the data on three different axes.
-            </p>
             <div className="text-center">
-              
+              <p>
+                Scrolling controls zoom. Scroll up to zoom in and scroll down to zoom out. 
+                Click and drag to rotate the data on three different axes.
+              </p>
               <img
                 src="assets/images/howto/ridc-camera-guide.gif"
                 alt="Instructional gif on zooming in and out"
@@ -81,7 +79,7 @@ export default function Howto(props) {
           <Row >
             <p className="my-4">
                 Click on the "Options" button to enable the color map editor.
-                Swtich beween the different selection of color maps to observe
+                Swtich beween the different color maps to observe
                 different properties of the data. Some regions will highlight
                 more than others according to specific colors.
             </p>
@@ -112,12 +110,11 @@ export default function Howto(props) {
             <hr className="my-4" />
           </Row>
           <Row>
-            <p>
-                Lastly, use the ranged slices to cut through the dataset on
-                three different axes.
-            </p>
             <div className="text-center">
-              
+              <p>
+                Lastly, to clip the data, use the ranged slices to cut through 
+                the dataset on three different axes.
+              </p>
               <img
                 src="assets/images/howto/ridc-slices-guide.gif"
                 alt="Instructional gif on cutting through the dataset on an axis"
