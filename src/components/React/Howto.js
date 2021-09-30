@@ -89,7 +89,7 @@ export default function Howto(props) {
                 click on an existing point to delete it.
               </p>
               <img
-                src="assets/images/howto/riddc-opacity-map-guidie.gif"
+                src="assets/images/howto/riddc-opacity-map-guide.gif"
                 alt="Instructional gif on applying a color texture"
                 width="100%"
               />
