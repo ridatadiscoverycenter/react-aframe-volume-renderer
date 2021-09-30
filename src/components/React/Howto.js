@@ -25,12 +25,11 @@ export default function Howto(props) {
           </Navbar>
         </ModalHeader>
 
-        <ModalBody>
+        <ModalBody className="px-4">
           <h2 id="user-guide" className="mb-4">
             User Guide
           </h2>
-          <Row class>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 Welcome to the Narragansett Bay Volume viewer. This short guide is meant
                 to help new users on how to navigate and analyze the 3D volume data.
@@ -38,14 +37,11 @@ export default function Howto(props) {
               <img
                 src="assets/images/howto/ridc-intro-guide.png"
                 alt="Example screenshot"
-                width="80%"
+                width="100%"
+                className="text-center"
               />
-            </div>
-
-            <hr className="my-4" />
           </Row>
-          <Row>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 Multiple measurements of the data are available to analyze and
                 have fun with. Toggle the buttons to switch between the
@@ -54,13 +50,10 @@ export default function Howto(props) {
               <img
                 src="assets/images/howto/ridc-volume-selection-guide.gif"
                 alt="Instructional gif on displaying data"
-                width="80%"
+                width="100%"
               />
-            </div>
-            <hr className="my-4" />
           </Row>
-          <Row>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 Scrolling controls zoom. Scroll up to zoom in and scroll down to zoom out. 
                 Click and drag to rotate the data on three different axes.
@@ -68,13 +61,10 @@ export default function Howto(props) {
               <img
                 src="assets/images/howto/ridc-camera-guide.gif"
                 alt="Instructional gif on zooming in and out"
-                width="80%"
+                width="100%"
               />
-            </div>
-            <hr className="my-4" />
           </Row>
-          <Row>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 Click on the "Options" button to enable the color map editor.
                 Swtich beween the different color maps to observe
@@ -88,13 +78,10 @@ export default function Howto(props) {
               <img
                 src="assets/images/howto/ridc-color-map-guide.gif"
                 alt="Instructional gif on applying a color texture"
-                width="80%"
-              ></img>
-            </div>
-            <hr className="my-4" />
+                width="100%"
+              />
           </Row>
-          <Row>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 Use the Transfer function graph to modify the transparency of
                 pixels according to their mapped color. To add point double
@@ -104,13 +91,10 @@ export default function Howto(props) {
               <img
                 src="assets/images/howto/ridc-opacity-map-guidie.gif"
                 alt="Instructional gif on applying a color texture"
-                width="80%"
-              ></img>
-            </div>
-            <hr className="my-4" />
+                width="100%"
+              />
           </Row>
-          <Row>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 Lastly, to clip the data, use the ranged slices to cut through 
                 the dataset on three different axes.
@@ -118,17 +102,16 @@ export default function Howto(props) {
               <img
                 src="assets/images/howto/ridc-slices-guide.gif"
                 alt="Instructional gif on cutting through the dataset on an axis"
-                width="80%"
+                width="100%"
               />
-            </div>
-            <hr className="my-4" />
           </Row>
 
-          <h2 id="enabling-vr" className="mb-4">
+          <hr className="my-4" />
+
+          <h2 id="enabling-vr">
             Enable VR on Web Browser
           </h2>
-          <Row>
-            <div className="text-center">
+          <Row className="my-4">
               <p>
                 At this moment, VR on web browsers is only supported on Mozilla
                 Firefox. In order to enable this option in your computer, please
@@ -154,7 +137,6 @@ export default function Howto(props) {
                 alt="Instructional gif on enabling graphics accelerator on Mozilla Firefox"
                 width="100%"
               />
-            </div>
           </Row>
         </ModalBody>
 
