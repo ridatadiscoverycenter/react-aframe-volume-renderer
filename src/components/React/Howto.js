@@ -31,7 +31,7 @@ export default function Howto(props) {
           </h2>
           <Row className="my-4">
             <p>
-              Welcome to the Narragansett Bay Volume viewer. This short guide is
+              Welcome to the Narragansett Bay Volume Viewer. This short guide is
               meant to help new users on how to navigate and analyze the 3D
               volume data.
             </p>
@@ -83,7 +83,7 @@ export default function Howto(props) {
             <p>
               Use the Transfer function graph to modify the transparency of
               pixels according to their mapped color. This allows you to
-              highlight/obscure specific ranges of data. To add point double
+              highlight/obscure specific ranges of data. To add a point double
               click on the place you want to put a new control point. Right
               click on an existing point to delete it.
             </p>
