@@ -13,7 +13,7 @@ import "./styles/main.scss";
 import { SelectorProvider } from "./context/selector-context.js";
 
 import Header from "./components/React/Header";
-import ControlPanel from "./components/React/ModelSelector.js";
+import ModelSelector from "./components/React/ModelSelector.js";
 import VolumeViewer from "./components/React/volume-viewer/VolumeViewer";
 import Instructions from "./components/React/instructions/Instructions";
 import Footer from "./components/React/Footer";
@@ -26,7 +26,7 @@ export default function App() {
       <Header />
 
       <SelectorProvider>
-        <ControlPanel
+        <ModelSelector
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
