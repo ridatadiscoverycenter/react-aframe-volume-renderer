@@ -69,13 +69,9 @@ export default function Howto(props) {
           <Row className="my-4">
             <p>
               Click on the "Options" button to enable the color map editor.
-              Swtich beween the different color maps to observe different
+              Switch between the different color maps to observe different
               properties of the data. Some regions will highlight more than
-              others according to specific colors. Use the transfer function
-              graph to modify the transparency of pixels according to their
-              mapped color. To add point double click on the place you want to
-              put a new control point. Right click on an existing point to
-              delete it.
+              others according to specific colors.
             </p>
             <img
               src="assets/images/howto/riddc-color-map-guide.gif"
@@ -86,9 +82,10 @@ export default function Howto(props) {
           <Row className="my-4">
             <p>
               Use the Transfer function graph to modify the transparency of
-              pixels according to their mapped color. To add point double click
-              on the place you want to put a new control point. Right click on
-              an existing point to delete it.
+              pixels according to their mapped color. This allows you to
+              highlight/obscure specific ranges of data. To add point double
+              click on the place you want to put a new control point. Right
+              click on an existing point to delete it.
             </p>
             <img
               src="assets/images/howto/riddc-opacity-map-guide.gif"
@@ -109,7 +106,7 @@ export default function Howto(props) {
           </Row>
           <hr className="my-4" />
 
-          <h2 id="enabling-vr">Enable VR on Web Browser</h2>
+          <h2 id="enabling-vr">Enable VR Headset on Web Browser</h2>
           <Row className="my-4">
             <p>
               At this moment, VR on web browsers is only supported on Mozilla
