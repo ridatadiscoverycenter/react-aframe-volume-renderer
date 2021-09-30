@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Entity, Scene } from "aframe-react";
 import { connect } from "react-redux";
 
-import "../Aframe/arcball-camera";
+import "../../Aframe/arcball-camera";
 
 import { SelectorConsumer } from "../../context/selector-context";
 import Spinner from "./Spinner";

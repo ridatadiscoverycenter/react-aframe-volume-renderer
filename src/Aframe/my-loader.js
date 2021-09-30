@@ -1,5 +1,5 @@
 /* globals AFRAME THREE */
-import "../../shaders/ccvLibVolumeShader.js";
+import "../shaders/ccvLibVolumeShader.js";
 var bind = AFRAME.utils.bind;
 
 AFRAME.registerComponent("collider-check", {
