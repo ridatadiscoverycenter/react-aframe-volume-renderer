@@ -9,7 +9,7 @@ import "./components/Aframe/render-2d-clipplane";
 import "./components/Aframe/cursor-listener";
 
 import Header from "./components/React/Header";
-import VolumeViewer from "./components/React/VolumeViewer";
+import VolumeViewer from "./components/React/volume-viewer/VolumeViewer";
 import Instructions from "./components/React/Instructions";
 import Footer from "./components/React/Footer";
 

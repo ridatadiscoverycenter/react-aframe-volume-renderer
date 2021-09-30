@@ -1,9 +1,9 @@
 import { Container } from "react-bootstrap";
 
 import VolumeRenderer from "./VolumeRenderer";
-import ControlsPanel from "./ControlsPanel";
+import ControlsPanel from "../ControlsPanel";
 
-import { VolumeProvider } from "../../context/volume-context";
+import { VolumeProvider } from "../../../context/volume-context";
 
 export default function VolumeViewer(props) {
   return (
