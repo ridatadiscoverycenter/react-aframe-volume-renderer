@@ -10,7 +10,7 @@ import "./components/Aframe/cursor-listener";
 
 import Header from "./components/React/Header";
 import VolumeViewer from "./components/React/volume-viewer/VolumeViewer";
-import Instructions from "./components/React/Instructions";
+import Instructions from "./components/React/instructions/Instructions";
 import Footer from "./components/React/Footer";
 
 import "./styles/main.scss";
