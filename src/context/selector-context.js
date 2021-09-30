@@ -1,10 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
 import config from "../assets/config.json";
 
-const VolumeContext = createContext();
+const SelectorContext = createContext();
 
-// Custom component to provide the Volume context
-function VolumeProvider(props) {
+// Custom component to provide the Selector context
+function SelectorProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
     selection: {
       season: config.season[0],
@@ -19,22 +19,22 @@ function VolumeProvider(props) {
 
   const value = { state, dispatch };
   return (
-    <VolumeContext.Provider value={value}>
+    <SelectorContext.Provider value={value}>
       {props.children}
-    </VolumeContext.Provider>
+    </SelectorContext.Provider>
   );
 }
 
-// Custom hook to get the current VolumeContext
-function useVolumeContext() {
-  const context = useContext(VolumeContext);
+// Custom hook to get the current SelectorContext
+function useSelectorContext() {
+  const context = useContext(SelectorContext);
   if (context === undefined) {
-    throw new Error("useVolume must be used within a VolumeProvider");
+    throw new Error("useSelector must be used within a SelectorProvider");
   }
   return context;
 }
 
-// Custom reducer to update the VolumeContext
+// Custom reducer to update the SelectorContext
 function volumeReducer(state, action) {
   switch (action.type) {
     case "TOGGLE_MEASUREMENT": {
@@ -67,20 +67,20 @@ function volumeReducer(state, action) {
   }
 }
 
-// Custom component to get the current VolumeContext (class based components)
-function VolumeConsumer(props) {
+// Custom component to get the current SelectorContext (class based components)
+function SelectorConsumer(props) {
   return (
-    <VolumeContext.Consumer>
+    <SelectorContext.Consumer>
       {(context) => {
         if (context === undefined) {
           throw new Error(
-            "VolumeConsumer must be used within a VolumeProvider"
+            "SelectorConsumer must be used within a SelectorProvider"
           );
         }
         return props.children(context);
       }}
-    </VolumeContext.Consumer>
+    </SelectorContext.Consumer>
   );
 }
 
-export { useVolumeContext, VolumeProvider, VolumeConsumer };
+export { useSelectorContext, SelectorProvider, SelectorConsumer };

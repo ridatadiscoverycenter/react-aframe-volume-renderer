@@ -8,8 +8,8 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-import { useVolumeContext } from "../../context/volume-context";
-import { myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
+import { useSelectorContext } from "../../context/selector-context";
+import {myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
 import { colorMaps } from "../../assets/config.json";
 
 export default function ControlPanel(props) {
@@ -18,7 +18,7 @@ export default function ControlPanel(props) {
   const {
     state: { selection },
     dispatch,
-  } = useVolumeContext();
+  } = useSelectorContext();
 
   return (
     <Container fluid className="my-3">

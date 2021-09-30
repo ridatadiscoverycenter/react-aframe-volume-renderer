@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import "../../Aframe/arcball-camera";
 
-import { VolumeConsumer } from "../../../context/volume-context";
+import { SelectorConsumer } from "../../../context/selector-context";
 import Spinner from "./Spinner";
 import {
   volumePosition,
@@ -76,7 +76,7 @@ export default connect(mapStateToProps)(
               cursor-listener
             />
 
-            <VolumeConsumer>
+            <SelectorConsumer>
               {({ state }) => (
                 <Entity
                   id="volumeCube"
@@ -105,7 +105,7 @@ export default connect(mapStateToProps)(
                   scale={volumeScale}
                 />
               )}
-            </VolumeConsumer>
+            </SelectorConsumer>
 
             <a-entity
               cursor="rayOrigin:mouse"

@@ -10,7 +10,7 @@ import "./components/Aframe/cursor-listener";
 
 import "./styles/main.scss";
 
-import { VolumeProvider } from "./context/volume-context.js";
+import { SelectorProvider } from "./context/selector-context.js";
 
 import Header from "./components/React/Header";
 import ControlPanel from "./components/React/ControlsPanel.js";
@@ -25,7 +25,7 @@ export default function App() {
     <div id="visualizer">
       <Header />
 
-      <VolumeProvider>
+      <SelectorProvider>
         <ControlPanel
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
@@ -34,7 +34,7 @@ export default function App() {
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
-      </VolumeProvider>
+      </SelectorProvider>
 
       <Instructions />
       <Footer />
