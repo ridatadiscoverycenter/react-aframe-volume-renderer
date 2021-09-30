@@ -133,7 +133,7 @@ export default function Howto(props) {
                 </li>
               </ol>
               <img
-                src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/webvrNvidia2.gif"
+                src="assets/images/howto/webvrNvidia2.gif"
                 alt="Instructional gif on enabling graphics accelerator on Mozilla Firefox"
                 width="100%"
               />
