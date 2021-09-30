@@ -35,7 +35,7 @@ export default function Howto(props) {
                 to help new users on how to navigate and analyze the 3D volume data.
               </p>
               <img
-                src="assets/images/howto/ridc-intro-guide.png"
+                src="assets/images/howto/riddc-intro-guide.png"
                 alt="Example screenshot"
                 width="100%"
                 className="text-center"
@@ -48,7 +48,7 @@ export default function Howto(props) {
                 different measurements.
               </p>
               <img
-                src="assets/images/howto/ridc-volume-selection-guide.gif"
+                src="assets/images/howto/riddc-volume-selection-guide.gif"
                 alt="Instructional gif on displaying data"
                 width="100%"
               />
@@ -59,7 +59,7 @@ export default function Howto(props) {
                 Click and drag to rotate the data on three different axes.
               </p>
               <img
-                src="assets/images/howto/ridc-camera-guide.gif"
+                src="assets/images/howto/riddc-camera-guide.gif"
                 alt="Instructional gif on zooming in and out"
                 width="100%"
               />
@@ -76,7 +76,7 @@ export default function Howto(props) {
                 point to delete it.
               </p>
               <img
-                src="assets/images/howto/ridc-color-map-guide.gif"
+                src="assets/images/howto/riddc-color-map-guide.gif"
                 alt="Instructional gif on applying a color texture"
                 width="100%"
               />
@@ -89,7 +89,7 @@ export default function Howto(props) {
                 click on an existing point to delete it.
               </p>
               <img
-                src="assets/images/howto/ridc-opacity-map-guidie.gif"
+                src="assets/images/howto/riddc-opacity-map-guidie.gif"
                 alt="Instructional gif on applying a color texture"
                 width="100%"
               />
@@ -100,7 +100,7 @@ export default function Howto(props) {
                 the dataset on three different axes.
               </p>
               <img
-                src="assets/images/howto/ridc-slices-guide.gif"
+                src="assets/images/howto/riddc-slices-guide.gif"
                 alt="Instructional gif on cutting through the dataset on an axis"
                 width="100%"
               />
