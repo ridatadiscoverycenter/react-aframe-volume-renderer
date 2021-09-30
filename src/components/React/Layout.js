@@ -1,16 +1,10 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav} from "react-bootstrap";
 
-import VolumeRenderer from "./VolumeRenderer";
-import ControlsPanel from "./ControlsPanel";
-import Footer from "./Footer";
+import VolumeViewer from "./VolumeViewer";
 import Instructions from "./Instructions";
-
-import { VolumeProvider } from "../../context/volume-context";
-
+import Footer from "./Footer";
 
 export default function Layout(props) {
-  
-
   return (
     <div id="visualizer">
       <Navbar sticky="top" bg="light" expand="lg">
@@ -23,20 +17,13 @@ export default function Layout(props) {
             alt="Rhode Island Data Discovery Center"
           />
         </Navbar.Brand>
-
         <Nav>
           <Nav.Link href="#visualizer">Visualizer</Nav.Link>
           <Nav.Link href="#information">Info</Nav.Link>
         </Nav>
       </Navbar>
 
-      <Container fluid id="visualizer" className="mb-3">
-        <VolumeProvider>
-          <ControlsPanel />
-          <VolumeRenderer />
-        </VolumeProvider>
-      </Container>
-
+      <VolumeViewer />
       <Instructions />
       <Footer />
     </div>
