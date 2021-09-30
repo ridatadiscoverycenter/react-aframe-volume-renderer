@@ -10,7 +10,6 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-import Controls from "./Controls";
 import { useVolumeContext } from "../../context/volume-context";
 import { myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
 import { colorMaps } from "../../assets/config.json";
@@ -88,15 +87,6 @@ export default function ControlPanel(props) {
           </ToggleButtonGroup>
         </Col>
       </Row>
-
-      <Sidebar
-        modal={false}
-        position="left"
-        visible={sidebarVisible}
-        onHide={(e) => setSidebarVisible(false)}
-      >
-        <Controls />
-      </Sidebar>
     </Container>
   );
 }
