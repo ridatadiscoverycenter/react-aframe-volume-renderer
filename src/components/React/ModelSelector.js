@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 
 import { useSelectorContext } from "../../context/selector-context";
-import {myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
+import { myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
 import { colorMaps } from "../../assets/config.json";
 
 export default function ModelSelector(props) {
