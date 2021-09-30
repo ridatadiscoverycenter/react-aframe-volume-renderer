@@ -12,11 +12,11 @@ import "./styles/main.scss";
 
 import { SelectorProvider } from "./context/selector-context.js";
 
-import Header from "./components/React/Header";
-import ModelSelector from "./components/React/ModelSelector.js";
-import VolumeViewer from "./components/React/volume-viewer/VolumeViewer";
-import Instructions from "./components/React/instructions/Instructions";
-import Footer from "./components/React/Footer";
+import Header from "./components/Header";
+import ModelSelector from "./components/ModelSelector.js";
+import VolumeViewer from "./components/volume-viewer/VolumeViewer";
+import Instructions from "./components/instructions/Instructions";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);

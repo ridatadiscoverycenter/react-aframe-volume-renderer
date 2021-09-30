@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { mySendAlphaPoints } from "../../../redux/AppActions";
+import { mySendAlphaPoints } from "../../redux/AppActions";
 
 const mapStateToProps = (state) => {
   return { colorMap: state.colorMap };
