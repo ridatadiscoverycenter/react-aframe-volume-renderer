@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 
-import Howto from "./Howto";
+import Howto from "./HowTo";
 
 export default function Instructions(props) {
   const [showHowto, setShowHowto] = useState(false);

@@ -3,7 +3,7 @@ import { Modal, ModalBody, Navbar, Nav, Row } from "react-bootstrap";
 import { Button } from "primereact/button";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
-export default function Howto(props) {
+export default function HowTo(props) {
   return (
     <div>
       <Modal size="xl" backdrop="static" scrollable={true} show={props.show}>
