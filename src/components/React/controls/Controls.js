@@ -12,11 +12,11 @@ import {
   myChangeVolumeAction,
   myChannelChanged,
   myCameraReset,
-} from "../../redux/AppActions";
+} from "../../../redux/AppActions";
 
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMapControl";
-import { range } from "../../assets/config.json";
+import { range } from "../../../assets/config.json";
 
 const Range = Slider.Range;
 
