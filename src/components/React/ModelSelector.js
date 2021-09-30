@@ -12,7 +12,7 @@ import { useSelectorContext } from "../../context/selector-context";
 import {myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
 import { colorMaps } from "../../assets/config.json";
 
-export default function ControlPanel(props) {
+export default function ModelSelector(props) {
   const { sidebarVisible, setSidebarVisible } = props;
   const reduxDispatch = useDispatch(changeColorMap);
   const {
