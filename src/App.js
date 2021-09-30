@@ -9,17 +9,24 @@ import "./components/Aframe/render-2d-clipplane";
 import "./components/Aframe/cursor-listener";
 
 import Header from "./components/React/Header";
+import ControlPanel from "./components/React/ControlsPanel.js";
 import VolumeViewer from "./components/React/volume-viewer/VolumeViewer";
 import Instructions from "./components/React/instructions/Instructions";
 import Footer from "./components/React/Footer";
 
 import "./styles/main.scss";
+import { VolumeProvider } from "./context/volume-context.js";
 
 export default function App() {
   return (
     <div id="visualizer">
       <Header />
-      <VolumeViewer />
+
+      <VolumeProvider>
+        <ControlPanel />
+        <VolumeViewer />
+      </VolumeProvider>
+      
       <Instructions />
       <Footer />
     </div>
