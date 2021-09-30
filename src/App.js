@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "aframe";
 import "aframe-event-set-component";
 import "aframe-orbit-controls";
@@ -18,13 +18,21 @@ import "./styles/main.scss";
 import { VolumeProvider } from "./context/volume-context.js";
 
 export default function App() {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
   return (
     <div id="visualizer">
       <Header />
 
       <VolumeProvider>
-        <ControlPanel />
-        <VolumeViewer />
+        <ControlPanel 
+          sidebarVisible={sidebarVisible}
+          setSidebarVisible={setSidebarVisible}
+        />
+        <VolumeViewer 
+          sidebarVisible={sidebarVisible}
+          setSidebarVisible={setSidebarVisible}
+        />
       </VolumeProvider>
       
       <Instructions />
