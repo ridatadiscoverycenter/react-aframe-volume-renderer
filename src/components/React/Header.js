@@ -1,4 +1,4 @@
-import { Navbar, Nav} from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 export default function Header(props) {
   return (
@@ -17,5 +17,5 @@ export default function Header(props) {
         <Nav.Link href="#information">Info</Nav.Link>
       </Nav>
     </Navbar>
-  )
+  );
 }

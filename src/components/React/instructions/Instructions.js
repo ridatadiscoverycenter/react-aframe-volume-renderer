@@ -7,7 +7,7 @@ export default function Instructions(props) {
   const [showHowto, setShowHowto] = useState(false);
 
   return (
-      <Container fluid id="information" className="bg-secondary text-light">
+    <Container fluid id="information" className="bg-secondary text-light">
       <Row className="justify-content-md-center py-5">
         <Col xs={8}>
           <div className="d-flex flex-column">
@@ -35,5 +35,5 @@ export default function Instructions(props) {
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

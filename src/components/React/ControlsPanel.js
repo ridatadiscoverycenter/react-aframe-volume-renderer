@@ -1,4 +1,3 @@
-
 import { useDispatch } from "react-redux";
 import {
   Col,
@@ -14,7 +13,7 @@ import { myChangeColorMapAction as changeColorMap } from "../../redux/AppActions
 import { colorMaps } from "../../assets/config.json";
 
 export default function ControlPanel(props) {
-  const {sidebarVisible, setSidebarVisible } = props
+  const { sidebarVisible, setSidebarVisible } = props;
   const reduxDispatch = useDispatch(changeColorMap);
   const {
     state: { selection },
