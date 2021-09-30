@@ -15,7 +15,7 @@ export default function Instructions(props) {
             <p className="my-4">
               The main goal of the project is to provide an easily accessible
               and interactive environment to explore and showcase volumetric
-              Naragansett Bay data with the added benefits of Virtual Reality
+              Narragansett Bay data with the added benefits of Virtual Reality
               If VR-capable hardware is available.
               <br />
             </p>
