@@ -10,7 +10,7 @@ import {
 
 import { useSelectorContext } from "../context/selector-context";
 import { myChangeColorMapAction as changeColorMap } from "../redux/AppActions";
-import { colorMaps } from "../assets/config.json";
+import { colorMaps, measurement, season, tide } from "../assets/config.json";
 
 export default function ModelSelector(props) {
   const { sidebarVisible, setSidebarVisible } = props;
@@ -19,6 +19,7 @@ export default function ModelSelector(props) {
     state: { selection },
     dispatch,
   } = useSelectorContext();
+  console.log(selection)
 
   return (
     <Container fluid className="my-3">
@@ -32,7 +33,7 @@ export default function ModelSelector(props) {
           <ToggleButtonGroup
             type="radio"
             name="measurement"
-            value={selection.measurement}
+            value={selection.measurement.value}
             onChange={(val) => {
               // Change model
               dispatch({
@@ -41,12 +42,17 @@ export default function ModelSelector(props) {
               });
               // Change color map
               reduxDispatch(
-                changeColorMap(val === "salt" ? colorMaps[0] : colorMaps[1])
+                changeColorMap(
+                  val.value === "salt"
+                    ? colorMaps.find((m) => m.name === "Haline")
+                    : colorMaps.find((m) => m.name === "Thermal")
+                )
               );
             }}
           >
-            <ToggleButton value="salt">Salinity</ToggleButton>
-            <ToggleButton value="temp">Temperature</ToggleButton>
+            {measurement.map((m) => {
+              return <ToggleButton value={m}>{m.name}</ToggleButton>;
+            })}
           </ToggleButtonGroup>
         </Col>
 
@@ -54,7 +60,7 @@ export default function ModelSelector(props) {
           <ToggleButtonGroup
             type="radio"
             name="season"
-            value={selection.season}
+            value={selection.season.value}
             onChange={(val) =>
               dispatch({
                 type: "TOGGLE_SEASON",
@@ -62,8 +68,9 @@ export default function ModelSelector(props) {
               })
             }
           >
-            <ToggleButton value="summer">Summer</ToggleButton>
-            <ToggleButton value="winter">Winter</ToggleButton>
+            {season.map((m) => {
+              return <ToggleButton value={m}>{m.name}</ToggleButton>;
+            })}
           </ToggleButtonGroup>
         </Col>
 
@@ -71,7 +78,7 @@ export default function ModelSelector(props) {
           <ToggleButtonGroup
             type="radio"
             name="tide"
-            value={selection.tide}
+            value={selection.tide.value}
             onChange={(val) =>
               dispatch({
                 type: "TOGGLE_TIDE",
@@ -79,8 +86,9 @@ export default function ModelSelector(props) {
               })
             }
           >
-            <ToggleButton value="low">Low Tide</ToggleButton>
-            <ToggleButton value="high">High Tide</ToggleButton>
+            {tide.map((m) => {
+              return <ToggleButton value={m}>{m.name}</ToggleButton>;
+            })}
           </ToggleButtonGroup>
         </Col>
       </Row>
