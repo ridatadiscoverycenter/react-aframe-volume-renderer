@@ -115,7 +115,7 @@ export default function Howto(props) {
              <ol>
                <li className="mx-3">Windows operating system</li>
                <li className="mx-3">Firefox browser (others browsers may work, but have not tested)</li>
-               <li className="mx-3">VR Headset (Oculus, Vive)</li>
+               <li className="mx-3">VR Headset (e.g. Oculus, Vive)</li>
                <li className="mx-3"><a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">Graphics Card compatible with VR </a></li>
                <li className="mx-3">Steam VR</li>
              </ol>
