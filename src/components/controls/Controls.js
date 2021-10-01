@@ -4,30 +4,18 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 import { connect } from "react-redux";
-import {
-  myCheckButtonAction,
-  myXSlideAction,
-  myYSlideAction,
-  myZSlideAction,
-  myChangeVolumeAction,
-  myChannelChanged,
-  myCameraReset,
-} from "../../redux/AppActions";
+import { myXSlideAction, myYSlideAction, myZSlideAction } from "../../redux/AppActions";
 
+import { range } from "../../assets/config.json";
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMapControl";
-import { range } from "../../assets/config.json";
 
 const Range = Slider.Range;
 
 export default connect(null, {
-  myCheckButtonAction,
   myXSlideAction,
   myYSlideAction,
   myZSlideAction,
-  myChangeVolumeAction,
-  myChannelChanged,
-  myCameraReset,
 })(
   class Controls extends Component {
     constructor(props) {
