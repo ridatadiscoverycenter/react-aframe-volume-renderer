@@ -13,8 +13,8 @@ import "./styles/main.scss";
 import { SelectorProvider } from "./context/selector-context.js";
 
 import Header from "./components/Header";
-import InfoText from "./components/InfoText.js";
-import ModelSelector from "./components/ModelSelector.js";
+import InfoText from "./components/InfoText";
+import ModelSelector from "./components/ModelSelector";
 import VolumeViewer from "./components/volume-viewer/VolumeViewer";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
