@@ -13,5 +13,5 @@ export default function MySidebar(props) {
     >
       <Controls />
     </Sidebar>
-  )
+  );
 }

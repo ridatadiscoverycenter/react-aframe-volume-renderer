@@ -19,7 +19,7 @@ export default function ModelSelector(props) {
     state: { selection },
     dispatch,
   } = useSelectorContext();
-  console.log(selection)
+  console.log(selection);
 
   return (
     <Container fluid className="my-3">

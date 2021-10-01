@@ -33,7 +33,7 @@ export default function App() {
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
-        <Sidebar 
+        <Sidebar
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
