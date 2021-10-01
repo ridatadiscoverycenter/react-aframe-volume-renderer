@@ -20,11 +20,6 @@ export default connect(null, {
   class Controls extends Component {
     constructor(props) {
       super(props);
-      this.state = {
-        xValue: 0,
-        yValue: 0,
-        zValue: 0,
-      };
 
       this.xSlideHandleChange = this.xSlideHandleChange.bind(this);
       this.ySlideHandleChange = this.ySlideHandleChange.bind(this);
@@ -32,17 +27,14 @@ export default connect(null, {
     }
 
     xSlideHandleChange = (value) => {
-      this.setState({ xValue: value });
       this.props.myXSlideAction(value[0], value[1]);
     };
 
     ySlideHandleChange = (value) => {
-      this.setState({ yValue: value });
       this.props.myYSlideAction(value[0], value[1]);
     };
 
     zSlideHandleChange = (value) => {
-      this.setState({ zValue: value });
       this.props.myZSlideAction(value[0], value[1]);
     };
 
