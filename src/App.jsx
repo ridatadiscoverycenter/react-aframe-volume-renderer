@@ -15,7 +15,7 @@ import { SelectorProvider } from "./context/selector-context.js";
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/sidebar/Sidebar";
 import VolumeViewer from "./components/volume-viewer/VolumeViewer";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
