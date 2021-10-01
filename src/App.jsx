@@ -15,12 +15,10 @@ import { SelectorProvider } from "./context/selector-context.js";
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
+import Sidebar from "./components/Sidebar";
 import VolumeViewer from "./components/volume-viewer/VolumeViewer";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
-
-import { Sidebar } from "primereact/sidebar";
-import Controls from "./components/controls/Controls";
 
 export default function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -35,19 +33,11 @@ export default function App() {
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
-
-        <Sidebar
-          modal={false}
-          position="left"
-          visible={sidebarVisible}
-          onHide={(e) => setSidebarVisible(false)}
-        >
-          <Controls />
-        </Sidebar>
-        <VolumeViewer
+        <Sidebar 
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
+        <VolumeViewer/>
       </SelectorProvider>
 
       <Instructions />
