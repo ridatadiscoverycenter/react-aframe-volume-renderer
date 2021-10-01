@@ -33,7 +33,7 @@ export default function ModelSelector(props) {
           <ToggleButtonGroup
             type="radio"
             name="measurement"
-            value={selection.measurement.value}
+            value={selection.measurement}
             onChange={(val) => {
               // Change model
               dispatch({
@@ -60,7 +60,7 @@ export default function ModelSelector(props) {
           <ToggleButtonGroup
             type="radio"
             name="season"
-            value={selection.season.value}
+            value={selection.season}
             onChange={(val) =>
               dispatch({
                 type: "TOGGLE_SEASON",
@@ -78,7 +78,7 @@ export default function ModelSelector(props) {
           <ToggleButtonGroup
             type="radio"
             name="tide"
-            value={selection.tide.value}
+            value={selection.tide}
             onChange={(val) =>
               dispatch({
                 type: "TOGGLE_TIDE",

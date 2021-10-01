@@ -13,6 +13,7 @@ import "./styles/main.scss";
 import { SelectorProvider } from "./context/selector-context.js";
 
 import Header from "./components/Header";
+import InfoText from "./components/InfoText.js";
 import ModelSelector from "./components/ModelSelector.js";
 import VolumeViewer from "./components/volume-viewer/VolumeViewer";
 import Instructions from "./components/instructions/Instructions";
@@ -26,6 +27,7 @@ export default function App() {
       <Header />
 
       <SelectorProvider>
+        <InfoText />
         <ModelSelector
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
