@@ -107,20 +107,21 @@ export default function Howto(props) {
           <hr className="my-4" />
 
           <h2 id="enabling-vr">Enable VR Headset on Web Browser</h2>
-          <Row className="my-4">
+          <Row>
              <p>To enable this feature you require:   
              </p>
+          </Row>
+          <Row>   
+             <ol>
+               <li className="mx-3">Windows O.S</li>
+               <li className="mx-3">Firefox definitely supported (others may or may not work, not tested))</li>
+               <li className="mx-3">VR Headset (Oculus, Vive)</li>
+               <li className="mx-3"><a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">Graphics Card compatible with VR </a></li>
+               <li className="mx-3">Steam VR</li>
+             </ol>
              
-
-             <ul>
-               <li>Winodws O.S</li>
-               <li>Firefox definitely supported (others may or may not work, not tested))</li>
-               <li>VR Headset (Oculus, Vive)</li>
-               <li><a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">Graphics Card compatible with VR </a></li>
-               <li>Steam VR</li>
-             </ul>
-             
-             
+           </Row>
+           <Row>
             <p>
               In order to enable this option in your computer, please
               follow these steps:
