@@ -35,12 +35,7 @@ export default function Howto(props) {
               meant to help new users on how to navigate and analyze the 3D
               volume data.
             </p>
-            <img
-              src="assets/images/howto/riddc-intro-guide.png"
-              alt="Example screenshot"
-              width="100%"
-              className="text-center"
-            />
+        
           </Row>
           <Row className="my-4">
             <p>
