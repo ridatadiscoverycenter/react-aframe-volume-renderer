@@ -16,11 +16,9 @@ import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
 import Sidebar from "./components/Sidebar";
-// import VolumeViewer from "./components/volume-viewer/VolumeViewer";
+import VolumeViewer from "./components/volume-viewer/VolumeViewer";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
-
-import VolumeRenderer from "./components/volume-viewer/VolumeRenderer";
 
 export default function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -39,8 +37,7 @@ export default function App() {
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
-        {/* <VolumeViewer/> */}
-        <VolumeRenderer />
+        <VolumeViewer />
       </SelectorProvider>
 
       <Instructions />
