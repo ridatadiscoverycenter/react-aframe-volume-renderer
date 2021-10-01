@@ -11,6 +11,7 @@ import {
   volumeRotation,
   volumeScale,
 } from "../../assets/config.json";
+import { Container } from "react-bootstrap";
 
 const mapStateToProps = (state) => {
   return {
@@ -35,10 +36,10 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(
-  class VolumeRenderer extends Component {
+  class VolumeViewer extends Component {
     render() {
       return (
-        <div className="aframe-container">
+        <Container fluid className="aframe-container mb-3" id="visualizer">
           <div id="modelLoaded" style={{ display: "none" }}>
             <Spinner />
           </div>
@@ -118,7 +119,7 @@ export default connect(mapStateToProps)(
               arcball-camera="initialPosition:0 0 1"
             />
           </Scene>
-        </div>
+        </Container>
       );
     }
   }
