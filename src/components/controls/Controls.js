@@ -4,7 +4,11 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 import { connect } from "react-redux";
-import { myXSlideAction, myYSlideAction, myZSlideAction } from "../../redux/AppActions";
+import {
+  myXSlideAction,
+  myYSlideAction,
+  myZSlideAction,
+} from "../../redux/AppActions";
 
 import { range } from "../../assets/config.json";
 import OpacityControl from "./OpacityControl";
