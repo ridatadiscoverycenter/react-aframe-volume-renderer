@@ -2,8 +2,7 @@ import { Sidebar } from "primereact/sidebar";
 
 import Controls from "./Controls";
 
-export default function MySidebar(props) {
-  const { sidebarVisible, setSidebarVisible } = props;
+export default function MySidebar({ sidebarVisible, setSidebarVisible }) {
   return (
     <Sidebar
       modal={false}

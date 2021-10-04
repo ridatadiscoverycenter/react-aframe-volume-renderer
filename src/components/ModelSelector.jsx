@@ -12,14 +12,12 @@ import { useSelectorContext } from "../context/selector-context";
 import { myChangeColorMapAction as changeColorMap } from "../redux/AppActions";
 import { colorMaps, measurement, season, tide } from "../assets/config.json";
 
-export default function ModelSelector(props) {
-  const { sidebarVisible, setSidebarVisible } = props;
+export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
   const reduxDispatch = useDispatch(changeColorMap);
   const {
     state: { selection },
     dispatch,
   } = useSelectorContext();
-  console.log(selection);
 
   return (
     <Container fluid className="my-3">
