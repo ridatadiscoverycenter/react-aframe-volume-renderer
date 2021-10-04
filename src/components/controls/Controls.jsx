@@ -4,8 +4,9 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 import { useControlsContext } from "../../context/controls-context";
-import OpacityControl from "./OpacityControl";
-import ColorMapControl from "./ColorMapControl";
+import OldOpacityControls from "./OpacityControl.js";
+import OpacityControls from "./OpacityControls.jsx"
+import ColorMapControls from "./ColorMapControls";
 
 export default function Controls({ sidebarVisible, setSidebarVisible }) {
   const { 
@@ -23,10 +24,11 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
     >
       <Container fluid id="controls">
         <Row className="my-3">
-          <ColorMapControl width="250" />
+          <ColorMapControls />
         </Row>
         <Row className="my-3">
-          <OpacityControl width="250" />
+          {/* <OldOpacityControls /> */}
+          <OpacityControls />
         </Row>
   
         <Row className="mt-5">
