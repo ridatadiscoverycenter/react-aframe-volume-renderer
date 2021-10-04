@@ -5,13 +5,11 @@ const ControlsContext = createContext();
 
 // Custom component to provide the Controls context
 function ControlsProvider(props) {
-  console.log("Initializing context", colorMaps[0])
   const [state, dispatch] = useReducer(volumeReducer, {
     colorMap: colorMaps[0],
   });
 
   const value = { state, dispatch };
-  console.log("Value", value)
   return (
     <ControlsContext.Provider value={value}>
       {props.children}
