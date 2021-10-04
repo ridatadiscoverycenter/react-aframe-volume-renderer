@@ -22,7 +22,7 @@ export default function Instructions(props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                Ocean State Oceanographic Model
+                Ocean State Ocean Model
               </a>{" "}
               with the added benefits of Virtual Reality, if VR-capable hardware
               is available.
