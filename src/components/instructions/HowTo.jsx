@@ -25,99 +25,100 @@ export default function HowTo(props) {
           </Navbar>
         </ModalHeader>
 
-        <ModalBody>
+        <ModalBody className="px-4">
           <h2 id="user-guide" className="mb-4">
             User Guide
           </h2>
-          <Row>
+          <Row className="my-4">
             <p>
-              Welcome to the Web-VR Volume viewer. This short guide is meant to
-              help new users on to use the application and and showcase the
-              potential its potential for future research.
+              Welcome to the Narragansett Bay Volume Viewer. This short guide is
+              meant to help new users on how to navigate and analyze the 3D
+              volume data.
             </p>
-            <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/guide12.png"
-              alt="Example screenshot"
-              width="100%"
-            />
-            <hr className="my-4" />
+        
           </Row>
-          <Row>
+          <Row className="my-4">
             <p>
-              Click on the buttons to display data on the visualizer. Click on
-              the same button to remove the data from the scene. You can switch
-              between datasets by clicking the respective button.
+              Multiple measurements of the data are available to analyze and
+              have fun with. Toggle the buttons to switch between the different
+              measurements.
             </p>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/datasetbuttons.gif"
+              src="assets/images/howto/riddc-volume-selection-guide.gif"
               alt="Instructional gif on displaying data"
               width="100%"
             />
-            <hr className="my-4" />
           </Row>
-          <Row>
+          <Row className="my-4">
             <p>
-              Use the mouse wheel to zoom in (scroll up) and zoom out (scroll
-              down). Keep pressed the mouse left button and drag the mouse to
-              rotate the data on three different axes.
+              Scrolling controls zoom. Scroll up to zoom in and scroll down to
+              zoom out. Click and drag to rotate the data on three different
+              axes.
             </p>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/zoomInOut-Rotate.gif"
+              src="assets/images/howto/riddc-camera-guide.gif"
               alt="Instructional gif on zooming in and out"
               width="100%"
             />
-            <hr className="my-4" />
           </Row>
-          <Row>
+          <Row className="my-4">
             <p>
-              You can visualize the dataset RGBA channels independently. After
-              selecting a set, in the controller’s panel, select the desired
-              channel.
+              Click on the "Options" button to enable the color map editor.
+              Switch between the different color maps to observe different
+              properties of the data. Some regions will highlight more than
+              others according to specific colors.
             </p>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/channels.gif"
-              alt="Instructional gif on selecting RGBA channels"
-              width="100%"
-            />
-            <hr className="my-4" />
-          </Row>
-
-          <Row>
-            <p>
-              Check the “Enable color mapping” box to apply a 1d color texture
-              to the dataset. Some regions will highlight more than others
-              according to specific colors. Use the Transfer function graph to
-              modify the transparency of pixels according to their mapped color.
-              To add point double click on the place you want to put a new
-              control point. Right click on an existing point to delete it.
-            </p>
-            <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/colorMappingTransfer.gif"
+              src="assets/images/howto/riddc-color-map-guide.gif"
               alt="Instructional gif on applying a color texture"
               width="100%"
-            ></img>
-            <hr className="my-4" />
+            />
           </Row>
-          <Row>
+          <Row className="my-4">
             <p>
-              Lastly, use the ranged slices to cut through the dataset on three
-              different axes.
+              Use the Transfer function graph to modify the transparency of
+              pixels according to their mapped color. This allows you to
+              highlight/obscure specific ranges of data. To add a point double
+              click on the place you want to put a new control point. Right
+              click on an existing point to delete it.
             </p>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/slice.gif"
+              src="assets/images/howto/riddc-opacity-map-guide.gif"
+              alt="Instructional gif on applying a color texture"
+              width="100%"
+            />
+          </Row>
+          <Row className="my-4">
+            <p>
+              Lastly, to clip the data, use the ranged slices to cut through the
+              dataset on three different axes.
+            </p>
+            <img
+              src="assets/images/howto/riddc-slices-guide.gif"
               alt="Instructional gif on cutting through the dataset on an axis"
               width="100%"
             />
-            <hr className="my-4" />
           </Row>
+          <hr className="my-4" />
 
-          <h2 id="enabling-vr" className="mb-4">
-            Enable VR on Web Browser
-          </h2>
+          <h2 id="enabling-vr">Enable VR Headset on Web Browser</h2>
           <Row>
+             <p>Prerequisites:   
+             </p>
+          </Row>
+          <Row>   
+             <ol>
+               <li className="mx-3">Windows operating system</li>
+               <li className="mx-3">Firefox browser (others browsers may work, but have not tested)</li>
+               <li className="mx-3">VR Headset (e.g. Oculus, Vive)</li>
+               <li className="mx-3"><a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">Graphics Card compatible with VR </a></li>
+               <li className="mx-3">Steam VR</li>
+             </ol>
+             
+           </Row>
+           <Row>
             <p>
-              At this moment, VR on web browsers is only supported on Mozilla
-              Firefox. In order to enable this option in your computer, please
+              In order to enable this option in your computer, please
               follow these steps:
             </p>
             <ol>
@@ -136,7 +137,7 @@ export default function HowTo(props) {
               </li>
             </ol>
             <img
-              src="https://raw.githubusercontent.com/brown-ccv/react-aframe-volume-renderer/master/imgs/webvrNvidia2.gif"
+              src="assets/images/howto/webvrNvidia2.gif"
               alt="Instructional gif on enabling graphics accelerator on Mozilla Firefox"
               width="100%"
             />
