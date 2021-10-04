@@ -22,12 +22,6 @@ const initialState = {
 
 export const myReducer = function readCheckBox(state = initialState, action) {
   switch (action.type) {
-    case "CHECKBOX_CHANGED": {
-      return {
-        ...state,
-        checkBoxValue: action.payload,
-      };
-    }
     case "XSLIDE_CHANGED": {
       return {
         ...state,
@@ -49,12 +43,6 @@ export const myReducer = function readCheckBox(state = initialState, action) {
         zSlideValueMax: action.payload2,
       };
     }
-    case "VOLUME_CHANGED": {
-      return {
-        ...state,
-        transferFunction: action.payload2,
-      };
-    }
     case "COLOR_MAP_CHANGED": {
       return {
         ...state,
@@ -62,30 +50,30 @@ export const myReducer = function readCheckBox(state = initialState, action) {
         transferFunction: action.payload !== "" ? true : false,
       };
     }
-    case "OPACITY1_CHANGED": {
-      return {
-        ...state,
-        opacity1: action.payload,
-      };
-    }
-    case "OPACITY2_CHANGED": {
-      return {
-        ...state,
-        opacity2: action.payload,
-      };
-    }
-    case "LOW_NODE_CHANGED": {
-      return {
-        ...state,
-        lowNode: action.payload,
-      };
-    }
-    case "HIGH_NODE_CHANGED": {
-      return {
-        ...state,
-        highNode: action.payload,
-      };
-    }
+    // case "OPACITY1_CHANGED": {
+    //   return {
+    //     ...state,
+    //     opacity1: action.payload,
+    //   };
+    // }
+    // case "OPACITY2_CHANGED": {
+    //   return {
+    //     ...state,
+    //     opacity2: action.payload,
+    //   };
+    // }
+    // case "LOW_NODE_CHANGED": {
+    //   return {
+    //     ...state,
+    //     lowNode: action.payload,
+    //   };
+    // }
+    // case "HIGH_NODE_CHANGED": {
+    //   return {
+    //     ...state,
+    //     highNode: action.payload,
+    //   };
+    // }
     case "UPDATED_APLHA_DATA": {
       return {
         ...state,
@@ -93,12 +81,12 @@ export const myReducer = function readCheckBox(state = initialState, action) {
         alphaYDataArray: action.payload2,
       };
     }
-    case "CHANNEL_CHANGED": {
-      return {
-        ...state,
-        channel: action.payload,
-      };
-    }
+    // case "CHANNEL_CHANGED": {
+    //   return {
+    //     ...state,
+    //     channel: action.payload,
+    //   };
+    // }
     default: {
       return { ...state };
     }
