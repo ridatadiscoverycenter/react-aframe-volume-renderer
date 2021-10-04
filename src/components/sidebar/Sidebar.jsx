@@ -1,6 +1,6 @@
 import { Sidebar } from "primereact/sidebar";
 
-import Controls from "./Controls";
+import Controls from "./Controls.jsx";
 
 export default function MySidebar({ sidebarVisible, setSidebarVisible }) {
   return (

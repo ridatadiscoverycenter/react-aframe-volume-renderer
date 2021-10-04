@@ -3,18 +3,33 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 import { range } from "../../assets/config.json";
+import { useControlsContext } from "../../context/controls-context";
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMapControl";
 
 export default function Controls(props) {
+  const { state, dispatch } = useControlsContext();
+
   function handleXSliderChange(val) {
-    return null
+    dispatch({
+      type: "CHANGE_X_SLIDER",
+      payload1: val[0],
+      payload2: val[1]
+    })
   }
   function handleYSliderChange(val) {
-    return null
+        dispatch({
+      type: "CHANGE_Y_SLIDER",
+      payload1: val[0],
+      payload2: val[1]
+    })
   }
   function handleZSliderChange(val) {
-    return null
+    dispatch({
+      type: "CHANGE_X_SLIDER",
+      payload1: val[0],
+      payload2: val[1]
+    })
   }
 
   return (
@@ -37,7 +52,7 @@ export default function Controls(props) {
               defaultValue={[range.min, range.max]}
               min={range.min}
               max={range.max}
-              onChange={this.xSlideHandleChange}
+              onChange={handleXSliderChange}
             />
           </Form.Group>
           <Form.Group>
@@ -48,7 +63,7 @@ export default function Controls(props) {
               defaultValue={[range.min, range.max]}
               min={range.min}
               max={range.max}
-              onChange={this.ySlideHandleChange}
+              onChange={handleYSliderChange}
             />
           </Form.Group>
           <Form.Group>
@@ -59,7 +74,7 @@ export default function Controls(props) {
               defaultValue={[range.min, range.max]}
               min={range.min}
               max={range.max}
-              onChange={this.zSlideHandleChange}
+              onChange={handleZSliderChange}
             />
           </Form.Group>
         </Form>

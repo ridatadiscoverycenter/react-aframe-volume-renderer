@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { colorMaps } from "../assets/config.json";
+import { colorMaps, range } from "../assets/config.json";
 
 const ControlsContext = createContext();
 
@@ -7,6 +7,12 @@ const ControlsContext = createContext();
 function ControlsProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
     colorMap: colorMaps[0],
+    xLowerBound: range.min,
+    xUpperBound: range.max,
+    yLowerBound: range.min,
+    yUpperBound: range.max,
+    zLowerBound: range.min,
+    zUpperBound: range.max,
   });
 
   const value = { state, dispatch };
@@ -30,10 +36,33 @@ function useControlsContext() {
 function volumeReducer(state, action) {
   switch (action.type) {
     case "CHANGE_COLOR_MAP": {
-      console.log("CHANGE_COLOR_MAP", state, action.payload)
       return {
         ...state,
         colorMap: action.payload,
+      }
+    }
+    case "CHANGE_X_SLIDER": {
+      console.log("CHANGE_X_SLider", action)
+      return {
+        ...state,
+        xLowerBound: action.payload,
+        xUpperBound: action.payload2,
+      }
+    }
+    case "CHANGE_Y_SLIDER": {
+      console.log("CHANGE_Y_SLider", action)
+      return {
+        ...state,
+        yLowerBound: action.payload,
+        yUpperBound: action.payload2,
+      }
+    }
+    case "CHANGE_Z_SLIDER": {
+      console.log("CHANGE_Z_SLider", action)
+      return {
+        ...state,
+        zLowerBound: action.payload,
+        zUpperBound: action.payload2,
       }
     }
     default: {
