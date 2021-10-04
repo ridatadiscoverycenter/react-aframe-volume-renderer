@@ -4,7 +4,7 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import HowTo from "./HowTo";
 
 export default function Instructions(props) {
-  const [showHowTo, setShowHowTo] = useState(false);
+  const [howToVisible, setHowToVisible] = useState(false);
 
   return (
     <Container fluid id="information" className="bg-secondary text-light">
@@ -25,12 +25,12 @@ export default function Instructions(props) {
             </h2>
             <Button
               variant="primary"
-              onClick={() => setShowHowTo(true)}
+              onClick={() => setHowToVisible(true)}
               className="mb-4"
             >
               Launch Instructions
             </Button>
-            <HowTo show={showHowTo} close={() => setShowHowTo(false)} />
+            <HowTo show={howToVisible} close={() => setHowToVisible(false)} />
           </div>
         </Col>
       </Row>
