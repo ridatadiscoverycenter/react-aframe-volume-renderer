@@ -8,29 +8,7 @@ import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMapControl";
 
 export default function Controls(props) {
-  const { state, dispatch } = useControlsContext();
-
-  function handleXSliderChange(val) {
-    dispatch({
-      type: "CHANGE_X_SLIDER",
-      payload1: val[0],
-      payload2: val[1]
-    })
-  }
-  function handleYSliderChange(val) {
-        dispatch({
-      type: "CHANGE_Y_SLIDER",
-      payload1: val[0],
-      payload2: val[1]
-    })
-  }
-  function handleZSliderChange(val) {
-    dispatch({
-      type: "CHANGE_X_SLIDER",
-      payload1: val[0],
-      payload2: val[1]
-    })
-  }
+  const { dispatch } = useControlsContext();
 
   return (
     <Container fluid id="controls">
@@ -52,7 +30,13 @@ export default function Controls(props) {
               defaultValue={[range.min, range.max]}
               min={range.min}
               max={range.max}
-              onChange={handleXSliderChange}
+              onChange={(val) => 
+                dispatch({
+                  type: "CHANGE_X_SLIDER",
+                  payload1: val[0],
+                  payload2: val[1]
+                })
+              }
             />
           </Form.Group>
           <Form.Group>
@@ -63,7 +47,13 @@ export default function Controls(props) {
               defaultValue={[range.min, range.max]}
               min={range.min}
               max={range.max}
-              onChange={handleYSliderChange}
+              onChange={(val) => {
+                dispatch({
+                  type: "CHANGE_Y_SLIDER",
+                  payload1: val[0],
+                  payload2: val[1]
+                })
+              }}
             />
           </Form.Group>
           <Form.Group>
@@ -74,7 +64,13 @@ export default function Controls(props) {
               defaultValue={[range.min, range.max]}
               min={range.min}
               max={range.max}
-              onChange={handleZSliderChange}
+              onChange={(val) => {
+                dispatch({
+                  type: "CHANGE_Z_SLIDER",
+                  payload1: val[0],
+                  payload2: val[1]
+                })
+              }}
             />
           </Form.Group>
         </Form>
