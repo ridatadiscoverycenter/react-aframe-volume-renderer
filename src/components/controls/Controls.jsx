@@ -3,13 +3,15 @@ import { Sidebar } from "primereact/sidebar";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-import { range } from "../../assets/config.json";
 import { useControlsContext } from "../../context/controls-context";
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMapControl";
 
 export default function Controls({ sidebarVisible, setSidebarVisible }) {
-  const { dispatch } = useControlsContext();
+  const { 
+    state: { sliderRange },
+    dispatch 
+  } = useControlsContext();
 
   return (
     <Sidebar
@@ -35,9 +37,9 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
               <Slider.Range
                 allowCross={false}
                 step={0.0009}
-                defaultValue={[range.min, range.max]}
-                min={range.min}
-                max={range.max}
+                defaultValue={[sliderRange.min, sliderRange.max]}
+                min={sliderRange.min}
+                max={sliderRange.max}
                 onChange={(val) => 
                   dispatch({
                     type: "CHANGE_X_SLIDER",
@@ -52,9 +54,9 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
               <Slider.Range
                 allowCross={false}
                 step={0.0009}
-                defaultValue={[range.min, range.max]}
-                min={range.min}
-                max={range.max}
+                defaultValue={[sliderRange.min, sliderRange.max]}
+                min={sliderRange.min}
+                max={sliderRange.max}
                 onChange={(val) => {
                   dispatch({
                     type: "CHANGE_Y_SLIDER",
@@ -69,9 +71,9 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
               <Slider.Range
                 allowCross={false}
                 step={0.0009}
-                defaultValue={[range.min, range.max]}
-                min={range.min}
-                max={range.max}
+                defaultValue={[sliderRange.min, sliderRange.max]}
+                min={sliderRange.min}
+                max={sliderRange.max}
                 onChange={(val) => {
                   dispatch({
                     type: "CHANGE_Z_SLIDER",

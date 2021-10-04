@@ -4,12 +4,11 @@ import "primereact/resources/themes/nova/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-import { colorMaps } from "../../assets/config.json";
 import { useControlsContext } from "../../context/controls-context";
 
 export default function ColorMapControl(props) {
   const {
-    state: { colorMap },
+    state: { allColorMaps, colorMap },
     dispatch,
   } = useControlsContext();
 
@@ -28,7 +27,7 @@ export default function ColorMapControl(props) {
           {colorMap.name}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {colorMaps.map((color) => {
+          {allColorMaps.map((color) => {
             return (
               <Dropdown.Item
                 key={color.name}

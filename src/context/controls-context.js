@@ -6,6 +6,8 @@ const ControlsContext = createContext();
 // Custom component to provide the Controls context
 function ControlsProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
+    allColorMaps: colorMaps,
+    sliderRange: range,
     colorMap: colorMaps[0],
     xLowerBound: range.min,
     xUpperBound: range.max,
