@@ -1,4 +1,5 @@
 import { Container, Form, Row } from "react-bootstrap";
+import { Sidebar } from "primereact/sidebar";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -7,10 +8,16 @@ import { useControlsContext } from "../../context/controls-context";
 import OpacityControl from "./OpacityControl";
 import ColorMapControl from "./ColorMapControl";
 
-export default function Controls(props) {
+export default function Controls({ sidebarVisible, setSidebarVisible }) {
   const { dispatch } = useControlsContext();
 
   return (
+    <Sidebar
+    modal={false}
+    position="left"
+    visible={sidebarVisible}
+    onHide={(e) => setSidebarVisible(false)}
+  >
     <Container fluid id="controls">
       <Row className="my-3">
         <ColorMapControl width="250" />
@@ -76,5 +83,6 @@ export default function Controls(props) {
         </Form>
       </Row>
     </Container>
+    </Sidebar>
   );
 }

@@ -42,7 +42,6 @@ function volumeReducer(state, action) {
       }
     }
     case "CHANGE_X_SLIDER": {
-      console.log("CHANGE_X_SLider", action)
       return {
         ...state,
         xLowerBound: action.payload,
@@ -50,7 +49,6 @@ function volumeReducer(state, action) {
       }
     }
     case "CHANGE_Y_SLIDER": {
-      console.log("CHANGE_Y_SLider", action)
       return {
         ...state,
         yLowerBound: action.payload,
@@ -58,7 +56,6 @@ function volumeReducer(state, action) {
       }
     }
     case "CHANGE_Z_SLIDER": {
-      console.log("CHANGE_Z_SLider", action)
       return {
         ...state,
         zLowerBound: action.payload,

@@ -16,7 +16,7 @@ import { ControlsProvider } from "./context/controls-context.js";
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
-import Sidebar from "./components/sidebar/Sidebar";
+import Controls from "./components/sidebar/Controls";
 import VolumeViewer from "./components/volume-viewer/VolumeViewer.js";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
@@ -36,7 +36,11 @@ export default function App() {
         />
 
         <ControlsProvider>
-          <Sidebar
+          {/* <Sidebar
+            sidebarVisible={sidebarVisible}
+            setSidebarVisible={setSidebarVisible}
+          /> */}
+          <Controls 
             sidebarVisible={sidebarVisible}
             setSidebarVisible={setSidebarVisible}
           />
