@@ -11,6 +11,7 @@ import "./Aframe/cursor-listener";
 import "./styles/main.scss";
 
 import { SelectorProvider } from "./context/selector-context.js";
+import { ControlsProvider } from "./context/controls-context.js";
 
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
@@ -33,11 +34,14 @@ export default function App() {
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
-        <Sidebar
-          sidebarVisible={sidebarVisible}
-          setSidebarVisible={setSidebarVisible}
-        />
-        <VolumeViewer />
+
+        <ControlsProvider>
+          <Sidebar
+            sidebarVisible={sidebarVisible}
+            setSidebarVisible={setSidebarVisible}
+          />
+          <VolumeViewer />
+        </ControlsProvider>
       </SelectorProvider>
 
       <Instructions />
