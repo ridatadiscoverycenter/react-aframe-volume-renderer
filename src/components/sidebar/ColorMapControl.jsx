@@ -33,7 +33,6 @@ export default function ColorMapControl(props) {
               <Dropdown.Item
                 key={color.name}
                 active={colorMap === color}
-                // onClick={() => changeColorMap(color)}
                 onClick={() => dispatch({
                   type: "CHANGE_COLOR_MAP",
                   payload: color,
