@@ -35,7 +35,6 @@ export default function HowTo(props) {
               meant to help new users on how to navigate and analyze the 3D
               volume data.
             </p>
-        
           </Row>
           <Row className="my-4">
             <p>
@@ -103,23 +102,27 @@ export default function HowTo(props) {
 
           <h2 id="enabling-vr">Enable VR Headset on Web Browser</h2>
           <Row>
-             <p>Prerequisites:   
-             </p>
+            <p>Prerequisites:</p>
           </Row>
-          <Row>   
-             <ol>
-               <li className="mx-3">Windows operating system</li>
-               <li className="mx-3">Firefox browser (others browsers may work, but have not tested)</li>
-               <li className="mx-3">VR Headset (e.g. Oculus, Vive)</li>
-               <li className="mx-3"><a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">Graphics Card compatible with VR </a></li>
-               <li className="mx-3">Steam VR</li>
-             </ol>
-             
-           </Row>
-           <Row>
+          <Row>
+            <ol>
+              <li className="mx-3">Windows operating system</li>
+              <li className="mx-3">
+                Firefox browser (others browsers may work, but have not tested)
+              </li>
+              <li className="mx-3">VR Headset (e.g. Oculus, Vive)</li>
+              <li className="mx-3">
+                <a href="https://support.oculus.com/articles/headsets-and-accessories/oculus-rift-s/recommended-gpu/">
+                  Graphics Card compatible with VR{" "}
+                </a>
+              </li>
+              <li className="mx-3">Steam VR</li>
+            </ol>
+          </Row>
+          <Row>
             <p>
-              In order to enable this option in your computer, please
-              follow these steps:
+              In order to enable this option in your computer, please follow
+              these steps:
             </p>
             <ol>
               <li className="mx-3">
