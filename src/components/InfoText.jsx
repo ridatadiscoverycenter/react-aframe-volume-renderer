@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Alert, Button } from "react-bootstrap";
 
-import { useVolumeContext } from "../../context/volume-context";
+import { useSelectorContext } from "../context/selector-context";
 
 export default function InfoText(props) {
   const {
     state: { selection },
-  } = useVolumeContext();
+  } = useSelectorContext();
 
   return (
     <Container className="my-2">

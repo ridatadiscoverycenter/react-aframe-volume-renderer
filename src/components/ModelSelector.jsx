@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Sidebar } from "primereact/sidebar";
 import {
   Col,
   Row,
@@ -10,19 +8,16 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-import Controls from "./Controls";
-import { useVolumeContext } from "../../context/volume-context";
-import { myChangeColorMapAction as changeColorMap } from "../../redux/AppActions";
-import { colorMaps, season, tide, measurement } from "../../assets/config.json";
+import { useSelectorContext } from "../context/selector-context";
+import { myChangeColorMapAction as changeColorMap } from "../redux/AppActions";
+import { colorMaps, measurement, season, tide } from "../assets/config.json";
 
-export default function ControlPanel(props) {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
+export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
   const reduxDispatch = useDispatch(changeColorMap);
-
   const {
     state: { selection },
     dispatch,
-  } = useVolumeContext();
+  } = useSelectorContext();
 
   return (
     <Container fluid className="my-3">
@@ -95,15 +90,6 @@ export default function ControlPanel(props) {
           </ToggleButtonGroup>
         </Col>
       </Row>
-
-      <Sidebar
-        modal={false}
-        position="left"
-        visible={sidebarVisible}
-        onHide={(e) => setSidebarVisible(false)}
-      >
-        <Controls />
-      </Sidebar>
     </Container>
   );
 }

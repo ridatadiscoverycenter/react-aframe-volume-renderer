@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { Entity, Scene } from "aframe-react";
 import { connect } from "react-redux";
 
-import "../Aframe/arcball-camera";
-import { VolumeConsumer } from "../../context/volume-context";
+import "../../Aframe/arcball-camera";
+
+import { SelectorConsumer } from "../../context/selector-context";
 import Spinner from "./Spinner";
 import {
   volumePosition,
   volumeRotation,
   volumeScale,
 } from "../../assets/config.json";
+import { Container } from "react-bootstrap";
 
 const mapStateToProps = (state) => {
   return {
@@ -34,10 +36,10 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(
-  class VolumeRenderer extends Component {
+  class VolumeViewer extends Component {
     render() {
       return (
-        <div className="aframe-container">
+        <Container fluid className="aframe-container mb-3" id="visualizer">
           <div id="modelLoaded" style={{ display: "none" }}>
             <Spinner />
           </div>
@@ -75,7 +77,7 @@ export default connect(mapStateToProps)(
               cursor-listener
             />
 
-            <VolumeConsumer>
+            <SelectorConsumer>
               {({ state }) => (
                 <Entity
                   id="volumeCube"
@@ -104,7 +106,7 @@ export default connect(mapStateToProps)(
                   scale={volumeScale}
                 />
               )}
-            </VolumeConsumer>
+            </SelectorConsumer>
 
             <a-entity
               cursor="rayOrigin:mouse"
@@ -117,7 +119,7 @@ export default connect(mapStateToProps)(
               arcball-camera="initialPosition:0 0 1"
             />
           </Scene>
-        </div>
+        </Container>
       );
     }
   }
