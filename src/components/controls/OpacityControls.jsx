@@ -1,48 +1,65 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 import { useControlsContext } from "../../context/controls-context";
 
-// GLOBALS
-const canvasHeight = 70
-const canvasWidth = 250
-let startingNodes = [];
+// Globals
+let canvas, ctx, nodes;
 
 export default function OpacityControls(props) {
   const {
     state: {colorMap},
-    dispatch,
+    // dispatch,
   } = useControlsContext();
-  console.log(startingNodes)
 
-  // Get the canvas
   const canvasRef = useRef(null)
-  // React Hooks
-  const [nodes, setNodes] = useState(startingNodes)
 
-  function updateCanvas() {
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
+  function drawCanvas() {
+    if(nodes.length !== 0) {
+      ctx.beginPath();
+
+      // Draw lines
+      ctx.strokeStyle = "rgba(128, 128, 128, 0.8)";
+      ctx.lineWidth = 2;
+      for(let i = 0; i < nodes.length - 1; i++) {
+        const {x, y} = nodes[i]
+        const {x: nextX, y: nextY} = nodes[i+1]
+
+        ctx.moveTo(x, y)
+        ctx.lineTo(nextX, nextY)
+      }
+      ctx.stroke()
+
+      // Draw dots
+      ctx.fillStyle = "#FFAA00";
+      nodes.forEach(node => {
+        const {x, y} = node;
+        ctx.moveTo(x, y)
+        ctx.arc(x, y, 5, 0, 2 * Math.PI);
+      })
+      ctx.fill()
+    }  
   }
 
   function resetCanvas() {
-    setNodes(startingNodes)
-    updateCanvas();
+    nodes = [
+      { x: 0, y: canvas.height },
+      { x: canvas.width * 0.11, y: canvas.height * 0.5 },
+      { x: canvas.width * 0.32, y: canvas.height * 0.2 },
+      { x: canvas.width * 0.92, y: 0 },
+    ]
+    drawCanvas();
   }
 
   useEffect(() => {
-    // Initialize nodes
-    const canvas = canvasRef.current;
-    startingNodes = [
-      { x: 0, y: 0 },
-      { x: canvas.width * 0.11, y: canvas.height / 4 },
-      { x: canvas.width * 0.32, y: canvas.height / 2 },
-      { x: canvas.width * 0.92, y: canvas.height },
-    ]
+    canvas = canvasRef.current
+    ctx = canvas.getContext('2d')
 
-    // Add event listeners
+    // Draw canvas border
+    canvas.style.border = "1px solid";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    updateCanvas();
+    resetCanvas();
 
     // Called on component unmount
     return () => {
@@ -62,7 +79,7 @@ export default function OpacityControls(props) {
         src={colorMap.src}
         alt="Selected color map"
         height="15"
-        width="250px"
+        width="100%"
         className="border border-dark"
       />
       <p>
