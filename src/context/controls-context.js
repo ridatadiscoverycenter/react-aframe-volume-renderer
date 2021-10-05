@@ -8,7 +8,9 @@ function ControlsProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
     allColorMaps: colorMaps,
     sliderRange: range,
+    
     colorMap: colorMaps[0],
+    transferFunctionNodes: [],
     xLowerBound: range.min,
     xUpperBound: range.max,
     yLowerBound: range.min,
@@ -41,6 +43,12 @@ function volumeReducer(state, action) {
       return {
         ...state,
         colorMap: action.payload,
+      }
+    }
+    case "CHANGE_TRANSFER_FUNCTION": {
+      return {
+        ...state,
+        transferFunctionNodes: action.payload
       }
     }
     case "CHANGE_X_SLIDER": {
