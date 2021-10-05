@@ -65,10 +65,11 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
 
     componentDidMount() {
       this.updateCanvas();
-      this.opCanvas.addEventListener("mousemove", this.changePointer);
       document.addEventListener("mousemove", this.draggPointer);
-      this.opCanvas.addEventListener("mousedown", this.onMouseDown);
       document.addEventListener("mouseup", this.onMouseUp);
+      
+      this.opCanvas.addEventListener("mousemove", this.changePointer);
+      this.opCanvas.addEventListener("mousedown", this.onMouseDown);
       this.opCanvas.addEventListener("dblclick", this.addPoint);
       this.opCanvas.addEventListener("contextmenu", this.removePoint);
     }
@@ -83,6 +84,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       //-- Save state
     }
 
+    // DONE
     updateCanvas() {
       this.opCanvas = this.refs.canvas;
       this.opContext = this.refs.canvas.getContext("2d");
@@ -160,6 +162,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.sendAlphaData();
     }
 
+    // TODO - CHANGE IN VOLUME VIEWER
     sendAlphaData() {
       this.normalizedXCanvasSpace = [];
       this.normalizedYCanvasSpace = [];
@@ -182,6 +185,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       );
     }
 
+    // DONE
     resetOpacityPoints() {
       this.nodes = [
         { x: this.initPoint1X, y: 0 },
