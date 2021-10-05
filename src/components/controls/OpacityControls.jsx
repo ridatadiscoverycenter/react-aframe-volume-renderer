@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { Button } from "react-bootstrap";
 
 import { useControlsContext } from "../../context/controls-context";
@@ -24,7 +24,6 @@ export default function OpacityControls(props) {
       for(let i = 0; i < nodes.length - 1; i++) {
         const {x, y} = nodes[i]
         const {x: nextX, y: nextY} = nodes[i+1]
-
         ctx.moveTo(x, y)
         ctx.lineTo(nextX, nextY)
       }
@@ -41,7 +40,7 @@ export default function OpacityControls(props) {
     }  
   }
 
-  function resetCanvas() {
+  const resetCanvas = useCallback(() => {
     nodes = [
       { x: 0, y: canvas.height },
       { x: canvas.width * 0.11, y: canvas.height * 0.5 },
@@ -49,22 +48,22 @@ export default function OpacityControls(props) {
       { x: canvas.width * 0.92, y: 0 },
     ]
     drawCanvas();
-  }
+  }, [])
 
   useEffect(() => {
+    // Add Event listeners
+
+    // Initialize canvas
     canvas = canvasRef.current
     ctx = canvas.getContext('2d')
-
-    // Draw canvas border
     canvas.style.border = "1px solid";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     resetCanvas();
 
-    // Called on component unmount
     return () => {
+      // Called on component unmount
     }
-  }, [])
+  }, [resetCanvas])
 
   return (
     <div>
