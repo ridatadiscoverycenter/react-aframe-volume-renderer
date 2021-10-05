@@ -49,7 +49,7 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
             }}
           >
             {measurement.map((m) => {
-              return <ToggleButton value={m}>{m.name}</ToggleButton>;
+              return <ToggleButton key={m.name} value={m}>{m.name}</ToggleButton>;
             })}
           </ToggleButtonGroup>
         </Col>
@@ -67,7 +67,7 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
             }
           >
             {season.map((m) => {
-              return <ToggleButton value={m}>{m.name}</ToggleButton>;
+              return <ToggleButton key={m.name} value={m}>{m.name}</ToggleButton>;
             })}
           </ToggleButtonGroup>
         </Col>
@@ -85,7 +85,7 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
             }
           >
             {tide.map((m) => {
-              return <ToggleButton value={m}>{m.name}</ToggleButton>;
+              return <ToggleButton key={m.name} value={m}>{m.name}</ToggleButton>;
             })}
           </ToggleButtonGroup>
         </Col>
