@@ -141,6 +141,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.opContext.strokeStyle = "#AAAAAA";
       this.opContext.lineWidth = 2;
 
+      // draw control points
       for (let i = 0; i < this.nodesCanvasSpace.length; i++) {
         if (this.nodeHovered === i) this.opContext.fillStyle = "#FFFF55";
         else this.opContext.fillStyle = "#FFAA00";
@@ -222,6 +223,8 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
 
     changePointer(e) {
       var hitPoint = false;
+      var graph = document.getElementById("opacityControls");
+      graph.title = "";
       for (let i = 0; i < this.nodes.length; i++) {
         var normalizedCoordinates = {
           x: this.nodes[i].x + this.padding,
@@ -234,6 +237,9 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
           ) <= this.hoverRadius
         ) {
           this.opCanvas.className = "pointer";
+          var pointTo256 ={ x: this.nodes[i].x + (256-this.width)* (this.nodes[i].x/ this.width),
+                            y: (this.nodes[i].y / 70).toFixed(2)};
+          graph.title = ""+Math.floor(pointTo256.x)+","+pointTo256.y;
           this.nodeHovered = i;
           hitPoint = true;
           this.hovering = true;
@@ -320,6 +326,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       return (
         <div>
           <canvas ref="canvas" id="opacityControls" />
+          
           <img
             src={this.props.colorMap.src}
             alt="Selected color map"
