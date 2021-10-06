@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container } from "react-bootstrap";
 import { Entity, Scene } from "aframe-react";
 import { connect } from "react-redux";
 
@@ -11,7 +12,6 @@ import {
   volumeRotation,
   volumeScale,
 } from "../../assets/config.json";
-import { Container } from "react-bootstrap";
 
 const mapStateToProps = (state) => {
   return {
