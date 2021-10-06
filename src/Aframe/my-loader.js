@@ -44,15 +44,8 @@ AFRAME.registerComponent("myloader", {
       type: "string",
       default: "./assets/images/colormaps/haline.png",
     },
-    opacity1: { type: "number", default: 0 },
-    opacity2: { type: "number", default: 0 },
-    lowNode: { type: "number", default: 0 },
-    highNode: { type: "number", default: 0 },
     alphaXDataArray: { type: "array" },
     alphaYDataArray: { type: "array" },
-    colorMapping: { type: "boolean", default: false },
-    channel: { type: "number", default: 6 },
-    cameraState: { type: "string", default: "" },
     myMeshPosition: { type: "vec3", default: "" },
     path: { type: "string", default: "" },
     slices: { type: "number", default: 55 },
@@ -143,7 +136,6 @@ AFRAME.registerComponent("myloader", {
     this.newAlphaData = [];
     var indices = [];
     var zeroArray = [0, 0, 0, 0];
-    this.colorMapEnabled = this.data.colorMapping;
 
     //setting up control points
     for (var i = 0; i < 9; i++) {

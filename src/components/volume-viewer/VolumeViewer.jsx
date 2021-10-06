@@ -16,7 +16,6 @@ import { useControlsContext } from "../../context/controls-context";
 export default function VolumeViewer(props) {
   const { volume } = props;
   const { state: controlsState } = useControlsContext();
-  console.log(controlsState.colorMap);
 
   const reduxState = useSelector((state) => state);
 
@@ -67,15 +66,9 @@ export default function VolumeViewer(props) {
             rayCollided: false,
             transferFunction: reduxState.transferFunction,
             colorMap: controlsState.colorMap.src,
-            opacity1: reduxState.opacity1,
-            opacity2: reduxState.opacity2,
-            lowNode: reduxState.lowNode,
-            highNode: reduxState.highNode,
             alphaXDataArray: reduxState.alphaXDataArray,
             alphaYDataArray: reduxState.alphaYDataArray,
-            colorMapping: reduxState.colorMapping,
             channel: reduxState.channel,
-            cameraState: reduxState.cameraState,
             path: `./assets/models/${volume.selection.season.value}-${volume.selection.tide.value}-${volume.selection.measurement.value}.png`,
             slices: volume.slices,
             x_spacing: volume.x_spacing,

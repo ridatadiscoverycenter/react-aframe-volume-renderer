@@ -10,14 +10,8 @@ const initialState = {
   zSlideValueMax: range.max,
   transferFunction: false,
   colorMap: colorMaps[0],
-  opacity1: 0,
-  opacity2: 1,
-  lowNode: 0,
-  highNode: 1,
   alphaXDataArray: [0, 0.11739130434782609, 0.34782608695652173, 1],
   alphaYDataArray: [0, 0.11739130434782609, 0.34782608695652173, 1],
-  currentColorMap: "",
-  channel: 6,
 };
 
 export const myReducer = function readCheckBox(state = initialState, action) {
@@ -50,30 +44,6 @@ export const myReducer = function readCheckBox(state = initialState, action) {
         transferFunction: action.payload !== "" ? true : false,
       };
     }
-    // case "OPACITY1_CHANGED": {
-    //   return {
-    //     ...state,
-    //     opacity1: action.payload,
-    //   };
-    // }
-    // case "OPACITY2_CHANGED": {
-    //   return {
-    //     ...state,
-    //     opacity2: action.payload,
-    //   };
-    // }
-    // case "LOW_NODE_CHANGED": {
-    //   return {
-    //     ...state,
-    //     lowNode: action.payload,
-    //   };
-    // }
-    // case "HIGH_NODE_CHANGED": {
-    //   return {
-    //     ...state,
-    //     highNode: action.payload,
-    //   };
-    // }
     case "UPDATED_APLHA_DATA": {
       return {
         ...state,
@@ -81,12 +51,6 @@ export const myReducer = function readCheckBox(state = initialState, action) {
         alphaYDataArray: action.payload2,
       };
     }
-    // case "CHANNEL_CHANGED": {
-    //   return {
-    //     ...state,
-    //     channel: action.payload,
-    //   };
-    // }
     default: {
       return { ...state };
     }
