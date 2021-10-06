@@ -35,6 +35,10 @@
   "x_spacing": 2,
   "y_spacing": 2,
   "z_spacing": 1,
+
+  "volumePosition": "0 0 0",
+  "volumeRotation": "-55 0 0",
+  "volumeScale": "1 -1 1",
   "colorMaps": [
     {
       "name": "Haline",
@@ -57,9 +61,6 @@
       "src": "assets/images/colormaps/rgb.png"
     }
   ],
-  "volumePosition": "0 0 0",
-  "volumeRotation": "-55 0 0",
-  "volumeScale": "1 -1 1",
   "range": {
     "min": 0,
     "max": 1
