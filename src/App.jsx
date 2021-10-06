@@ -11,15 +11,13 @@ import "./Aframe/cursor-listener";
 import "./styles/main.scss";
 
 import { SelectorProvider } from "./context/selector-context.js";
-import { ControlsProvider } from "./context/controls-context.js";
 
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
-import Controls from "./components/controls/Controls";
-import VolumeViewer from "./components/volume-viewer/VolumeViewer.js";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
+import VVWrapper from "./components/volume-viewer/VVWrapper.jsx";
 
 export default function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -34,14 +32,10 @@ export default function App() {
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
         />
-
-        <ControlsProvider>
-          <Controls
-            sidebarVisible={sidebarVisible}
-            setSidebarVisible={setSidebarVisible}
-          />
-          <VolumeViewer />
-        </ControlsProvider>
+        <VVWrapper
+          sidebarVisible={sidebarVisible}
+          setSidebarVisible={setSidebarVisible}
+        />
       </SelectorProvider>
 
       <Instructions />
