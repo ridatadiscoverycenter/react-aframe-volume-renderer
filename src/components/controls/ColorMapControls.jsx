@@ -32,10 +32,12 @@ export default function ColorMapControl(props) {
               <Dropdown.Item
                 key={color.name}
                 active={colorMap === color}
-                onClick={() => dispatch({
-                  type: "CHANGE_COLOR_MAP",
-                  payload: color,
-                })}
+                onClick={() =>
+                  dispatch({
+                    type: "CHANGE_COLOR_MAP",
+                    payload: color,
+                  })
+                }
               >
                 <img
                   src={color.src}

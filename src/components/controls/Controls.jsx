@@ -5,13 +5,13 @@ import "rc-slider/assets/index.css";
 
 import { useControlsContext } from "../../context/controls-context";
 import OldOpacityControls from "./OpacityControl.js";
-import OpacityControls from "./OpacityControls.jsx"
+import OpacityControls from "./OpacityControls.jsx";
 import ColorMapControls from "./ColorMapControls";
 
 export default function Controls({ sidebarVisible, setSidebarVisible }) {
-  const { 
+  const {
     state: { sliderRange },
-    dispatch 
+    dispatch,
   } = useControlsContext();
 
   return (
@@ -30,7 +30,7 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
           {/* <OldOpacityControls /> */}
           <OpacityControls />
         </Row>
-  
+
         <Row className="mt-5">
           <h4>Clip</h4>
           <Form className="fullWidth">
@@ -42,11 +42,11 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
                 defaultValue={[sliderRange.min, sliderRange.max]}
                 min={sliderRange.min}
                 max={sliderRange.max}
-                onChange={(val) => 
+                onChange={(val) =>
                   dispatch({
                     type: "CHANGE_X_SLIDER",
                     payload1: val[0],
-                    payload2: val[1]
+                    payload2: val[1],
                   })
                 }
               />
@@ -63,8 +63,8 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
                   dispatch({
                     type: "CHANGE_Y_SLIDER",
                     payload1: val[0],
-                    payload2: val[1]
-                  })
+                    payload2: val[1],
+                  });
                 }}
               />
             </Form.Group>
@@ -80,8 +80,8 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
                   dispatch({
                     type: "CHANGE_Z_SLIDER",
                     payload1: val[0],
-                    payload2: val[1]
-                  })
+                    payload2: val[1],
+                  });
                 }}
               />
             </Form.Group>

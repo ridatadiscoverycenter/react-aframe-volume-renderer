@@ -10,14 +10,13 @@ const initialDraggingState = {
   selectedNodeIdx: null,
   selectedNode: null,
   startPos: null,
-}
+};
 
 function overPoint(nodePos, mousePos) {
   const buffer = 15;
   const distance = Math.sqrt(
-    Math.pow(mousePos.x - nodePos.x, 2) + 
-    Math.pow(mousePos.y - nodePos.y, 2)
-  )
+    Math.pow(mousePos.x - nodePos.x, 2) + Math.pow(mousePos.y - nodePos.y, 2)
+  );
   return distance <= buffer;
 }
 
@@ -27,8 +26,8 @@ export default function OpacityControls(props) {
     dispatch,
   } = useControlsContext();
 
-  const canvasRef = useRef(null)
-  const [draggingState, setDraggingState] = useState(initialDraggingState)
+  const canvasRef = useRef(null);
+  const [draggingState, setDraggingState] = useState(initialDraggingState);
 
   const resetCanvas = useCallback(() => {
     dispatch({
@@ -38,52 +37,52 @@ export default function OpacityControls(props) {
         { x: canvas.width * 0.11, y: canvas.height * 0.5 },
         { x: canvas.width * 0.32, y: canvas.height * 0.2 },
         { x: canvas.width * 0.92, y: 0 },
-      ]
-    })
-  }, [dispatch])
+      ],
+    });
+  }, [dispatch]);
 
   // Reset local state
   function handleMouseUp(e) {
-    console.log("MOUSE UP", e.screenX, e.screenY) // TEMP
-    setDraggingState(initialDraggingState)
+    console.log("MOUSE UP", e.screenX, e.screenY); // TEMP
+    setDraggingState(initialDraggingState);
   }
 
   // Select node, if over one
   function handleMouseDown(e) {
-    console.log("MOUSE DOWN", e.screenX, e.screenY) // TEMP
-    
-    const mousePos = {x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY}
+    console.log("MOUSE DOWN", e.screenX, e.screenY); // TEMP
+
+    const mousePos = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
     transferFunctionNodes.forEach((node, i) => {
-      if(overPoint(node, mousePos)) {
+      if (overPoint(node, mousePos)) {
         setDraggingState({
           dragging: true,
           selectedNodeIdx: i,
           selectedNode: node,
-          startPos: {x: e.screenX, y: e.screenY}
-        })
+          startPos: { x: e.screenX, y: e.screenY },
+        });
       }
-    })
+    });
   }
 
   // Add a node to the transfer function. Sort nodes by x coordinate
   function handleDoubleClick(e) {
-    const newNode = {x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY}
-    const arr = transferFunctionNodes.concat(newNode)
+    const newNode = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
+    const arr = transferFunctionNodes.concat(newNode);
     dispatch({
       type: "CHANGE_TRANSFER_FUNCTION",
-      payload: arr.sort((a, b) => a.x - b.x)
-    })
+      payload: arr.sort((a, b) => a.x - b.x),
+    });
   }
 
   // Called on component mount
   useEffect(() => {
     // Initialize canvas
-    canvas = canvasRef.current
-    ctx = canvas.getContext('2d')
+    canvas = canvasRef.current;
+    ctx = canvas.getContext("2d");
 
     // Add Event Listeners
-    document.addEventListener("mouseup", handleMouseUp)
-    document.addEventListener("mousemove", null)
+    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mousemove", null);
 
     // canvas.addEventListener("mousemove", null);
     // canvas.addEventListener("mousedown", handleMouseDown); // onMouseDown
@@ -94,14 +93,14 @@ export default function OpacityControls(props) {
 
     return () => {
       // Remove event listeners
-      document.removeEventListener("mouseup", handleMouseUp)
-      document.removeEventListener("mousemove", null)
-    }
-  }, [resetCanvas])
+      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousemove", null);
+    };
+  }, [resetCanvas]);
 
   // Draw canvas - called whenever transferFunctionNodes changes
   useEffect(() => {
-    if(transferFunctionNodes.length !== 0) {
+    if (transferFunctionNodes.length !== 0) {
       canvas.style.border = "1px solid";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
@@ -109,28 +108,28 @@ export default function OpacityControls(props) {
       // Draw lines
       ctx.strokeStyle = "rgba(128, 128, 128, 0.8)";
       ctx.lineWidth = 2;
-      for(let i = 0; i < transferFunctionNodes.length - 1; i++) {
-        const {x, y} = transferFunctionNodes[i]
-        const {x: nextX, y: nextY} = transferFunctionNodes[i+1]
-        ctx.moveTo(x, y)
-        ctx.lineTo(nextX, nextY)
+      for (let i = 0; i < transferFunctionNodes.length - 1; i++) {
+        const { x, y } = transferFunctionNodes[i];
+        const { x: nextX, y: nextY } = transferFunctionNodes[i + 1];
+        ctx.moveTo(x, y);
+        ctx.lineTo(nextX, nextY);
       }
-      ctx.stroke()
+      ctx.stroke();
 
       // Draw dots
       ctx.fillStyle = "#FFAA00";
-      transferFunctionNodes.forEach(node => {
-        const {x, y} = node;
-        ctx.moveTo(x, y)
+      transferFunctionNodes.forEach((node) => {
+        const { x, y } = node;
+        ctx.moveTo(x, y);
         ctx.arc(x, y, 5, 0, 2 * Math.PI);
-      })
-      ctx.fill()
-    } 
-  }, [transferFunctionNodes])
+      });
+      ctx.fill();
+    }
+  }, [transferFunctionNodes]);
 
   return (
     <div>
-      <canvas 
+      <canvas
         ref={canvasRef}
         id="opacityControls"
         className="fullWidth"
@@ -151,5 +150,5 @@ export default function OpacityControls(props) {
       </p>
       <Button onClick={resetCanvas}> Reset </Button>
     </div>
-  )
+  );
 }

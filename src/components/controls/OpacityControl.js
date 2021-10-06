@@ -47,7 +47,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
         { x: this.initPoint3X, y: 35 },
         { x: this.initPoint4X, y: 70 },
       ];
-      console.log(this.nodes)
+      console.log(this.nodes);
 
       this.nodesCanvasSpace = [];
       // this.normalizedXCanvasSpace = [];
@@ -67,7 +67,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.updateCanvas();
       document.addEventListener("mousemove", this.draggPointer);
       document.addEventListener("mouseup", this.onMouseUp);
-      
+
       this.opCanvas.addEventListener("mousemove", this.changePointer);
       this.opCanvas.addEventListener("mousedown", this.onMouseDown);
       this.opCanvas.addEventListener("dblclick", this.addPoint);
@@ -175,9 +175,9 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
         );
       }
 
-      console.log(this.nodesCanvasSpace)
-      console.log("X", this.normalizedXCanvasSpace)
-      console.log("Y", this.normalizedYCanvasSpace)
+      console.log(this.nodesCanvasSpace);
+      console.log("X", this.normalizedXCanvasSpace);
+      console.log("Y", this.normalizedYCanvasSpace);
 
       this.props.mySendAlphaPoints(
         this.normalizedXCanvasSpace,

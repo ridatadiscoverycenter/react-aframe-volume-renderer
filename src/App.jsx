@@ -36,7 +36,7 @@ export default function App() {
         />
 
         <ControlsProvider>
-          <Controls 
+          <Controls
             sidebarVisible={sidebarVisible}
             setSidebarVisible={setSidebarVisible}
           />

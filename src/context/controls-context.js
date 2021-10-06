@@ -8,7 +8,7 @@ function ControlsProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
     allColorMaps: colorMaps,
     sliderRange: range,
-    
+
     colorMap: colorMaps[0],
     transferFunctionNodes: [],
     xLowerBound: range.min,
@@ -35,7 +35,7 @@ function useControlsContext() {
   }
   return context;
 }
-  
+
 // Custom reducer to update the ControlsContext
 function volumeReducer(state, action) {
   switch (action.type) {
@@ -43,34 +43,34 @@ function volumeReducer(state, action) {
       return {
         ...state,
         colorMap: action.payload,
-      }
+      };
     }
     case "CHANGE_TRANSFER_FUNCTION": {
       return {
         ...state,
-        transferFunctionNodes: action.payload
-      }
+        transferFunctionNodes: action.payload,
+      };
     }
     case "CHANGE_X_SLIDER": {
       return {
         ...state,
         xLowerBound: action.payload,
         xUpperBound: action.payload2,
-      }
+      };
     }
     case "CHANGE_Y_SLIDER": {
       return {
         ...state,
         yLowerBound: action.payload,
         yUpperBound: action.payload2,
-      }
+      };
     }
     case "CHANGE_Z_SLIDER": {
       return {
         ...state,
         zLowerBound: action.payload,
         zUpperBound: action.payload2,
-      }
+      };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
