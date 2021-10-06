@@ -31,7 +31,6 @@ export default function OpacityControls(props) {
   const [draggingState, setDraggingState] = useState(initialDraggingState)
 
   const resetCanvas = useCallback(() => {
-    console.log("RESETTING CANVAS")
     dispatch({
       type: "CHANGE_TRANSFER_FUNCTION",
       payload: [
@@ -43,14 +42,16 @@ export default function OpacityControls(props) {
     })
   }, [dispatch])
 
-  // Release node and reset
+  // Reset local state
   function handleMouseUp(e) {
-    // setDraggingState(initialDraggingState)
+    console.log("MOUSE UP", e.screenX, e.screenY) // TEMP
+    setDraggingState(initialDraggingState)
   }
 
   // Select node, if over one
   function handleMouseDown(e) {
-    console.log("MOUSE DOWN", e.screenX, e.screenY)
+    console.log("MOUSE DOWN", e.screenX, e.screenY) // TEMP
+    
     const mousePos = {x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY}
     transferFunctionNodes.forEach((node, i) => {
       if(overPoint(node, mousePos)) {
@@ -85,7 +86,7 @@ export default function OpacityControls(props) {
     document.addEventListener("mousemove", null)
 
     // canvas.addEventListener("mousemove", null);
-    // canvas.addEventListener("mousedown", handleMouseDown);
+    // canvas.addEventListener("mousedown", handleMouseDown); // onMouseDown
     // canvas.addEventListener("dblclick", null);
     // canvas.addEventListener("contextmenu", null);
 
@@ -98,9 +99,8 @@ export default function OpacityControls(props) {
     }
   }, [resetCanvas])
 
-  // Called when transferFunctionNodes changes
+  // Draw canvas - called whenever transferFunctionNodes changes
   useEffect(() => {
-    // DRAW CANVAS
     if(transferFunctionNodes.length !== 0) {
       canvas.style.border = "1px solid";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
