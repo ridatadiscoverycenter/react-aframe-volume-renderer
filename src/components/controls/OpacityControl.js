@@ -11,8 +11,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
   class OpacityControl extends Component {
     constructor(props) {
       super(props);
-      // this.lowNode = 0.2;
-      // this.highNode = 1;
       this.minLevel = 0;
       this.maxLevel = 1;
       this.opCanvas = null;
@@ -29,13 +27,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       // distance where clicks and hovering near control nodes are registered
       this.hoverRadius = 15;
       this.width = 0;
-
-      // this.lowNodeX = ~~(this.width * this.lowNode) + this.padding;
-      // this.highNodeX = ~~(this.width * this.highNode) + this.padding;
-      // this.minLevelY =
-      //   ~~(this.height - this.minLevel * this.height) + this.padding;
-      // this.maxLevelY =
-      //   ~~(this.height - this.maxLevel * this.height) + this.padding;
 
       this.initPoint1X = 0;
       this.initPoint2X = 250 * 0.11;
