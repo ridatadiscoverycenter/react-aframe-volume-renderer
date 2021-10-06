@@ -1,19 +1,27 @@
 import { Entity, Scene } from "aframe-react";
-import { Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 import {
   volumePosition,
   volumeRotation,
   volumeScale,
 } from "../../assets/config.json";
-import { useSelectorContext } from "../../context/selector-context";
+import Spinner from "./Spinner";
+
+import { useControlsContext } from "../../context/controls-context";
 
 export default function VolumeViewer(props) {
-  const { state } = useSelectorContext();
+  const { volume } = props
+  const { controlsState } = useControlsContext();
+
+  const reduxState = useSelector(state => state)
   
   return (
     <Container fluid className="aframe-container mb-3" id="visualizer">
-      <Spinner id="modelLoaded"/>
+      <div id="modelLoaded" style={{ display: "none" }}>
+        <Spinner />
+      </div>
 
       <Scene id="myScene" background="color: black" embedded>
         <Entity
@@ -28,12 +36,12 @@ export default function VolumeViewer(props) {
           id="my2DclipplaneListener"
           render-2d-clipplane={{
             activateClipPlane: true,
-            xCLipPlaneMin: this.props.xSlideValueMin,
-            xCLipPlaneMax: this.props.xSlideValueMax,
-            yCLipPlaneMin: this.props.ySlideValueMin,
-            yCLipPlaneMax: this.props.ySlideValueMax,
-            zCLipPlaneMin: this.props.zSlideValueMin,
-            zCLipPlaneMax: this.props.zSlideValueMax,
+            xCLipPlaneMin: reduxState.xSlideValueMin,
+            xCLipPlaneMax: reduxState.xSlideValueMax,
+            yCLipPlaneMin: reduxState.ySlideValueMin,
+            yCLipPlaneMax: reduxState.ySlideValueMax,
+            zCLipPlaneMin: reduxState.zSlideValueMin,
+            zCLipPlaneMax: reduxState.zSlideValueMax,
             currenAxisAngle: "0 0 0",
             rotateAngle: "0 0 0",
             clipX: "0 0",
@@ -54,22 +62,22 @@ export default function VolumeViewer(props) {
           class="clickableMesh"
           myloader={{
             rayCollided: false,
-            transferFunction: this.props.transferFunction,
-            colorMap: this.props.colorMap.src,
-            opacity1: this.props.opacity1,
-            opacity2: this.props.opacity2,
-            lowNode: this.props.lowNode,
-            highNode: this.props.highNode,
-            alphaXDataArray: this.props.alphaXDataArray,
-            alphaYDataArray: this.props.alphaYDataArray,
-            colorMapping: this.props.colorMapping,
-            channel: this.props.channel,
-            cameraState: this.props.cameraState,
-            path: `./assets/models/${state.selection.season.value}-${state.selection.tide.value}-${state.selection.measurement.value}.png`,
-            slices: state.slices,
-            x_spacing: state.x_spacing,
-            y_spacing: state.y_spacing,
-            z_spacing: state.z_spacing,
+            transferFunction: reduxState.transferFunction,
+            colorMap: reduxState.colorMap.src,
+            opacity1: reduxState.opacity1,
+            opacity2: reduxState.opacity2,
+            lowNode: reduxState.lowNode,
+            highNode: reduxState.highNode,
+            alphaXDataArray: reduxState.alphaXDataArray,
+            alphaYDataArray: reduxState.alphaYDataArray,
+            colorMapping: reduxState.colorMapping,
+            channel: reduxState.channel,
+            cameraState: reduxState.cameraState,
+            path: `./assets/models/${volume.selection.season.value}-${volume.selection.tide.value}-${volume.selection.measurement.value}.png`,
+            slices: volume.slices,
+            x_spacing: volume.x_spacing,
+            y_spacing: volume.y_spacing,
+            z_spacing: volume.z_spacing,
           }}
           position={volumePosition}
           rotation={volumeRotation}
