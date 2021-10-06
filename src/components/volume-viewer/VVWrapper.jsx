@@ -15,7 +15,7 @@ export default function VVWrapper(props) {
           setSidebarVisible={props.setSidebarVisible}
         />
 
-        <VolumeViewer />
+        {/* <VolumeViewer /> */}
 
         {/* New - function based */}
         <NewVolumeViewer 

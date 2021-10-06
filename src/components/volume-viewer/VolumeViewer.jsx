@@ -13,7 +13,7 @@ import { useControlsContext } from "../../context/controls-context";
 
 export default function VolumeViewer(props) {
   const { volume } = props
-  const { controlsState } = useControlsContext();
+  const {state: controlsState} = useControlsContext();
 
   const reduxState = useSelector(state => state)
   
@@ -36,12 +36,12 @@ export default function VolumeViewer(props) {
           id="my2DclipplaneListener"
           render-2d-clipplane={{
             activateClipPlane: true,
-            xCLipPlaneMin: reduxState.xSlideValueMin,
-            xCLipPlaneMax: reduxState.xSlideValueMax,
-            yCLipPlaneMin: reduxState.ySlideValueMin,
-            yCLipPlaneMax: reduxState.ySlideValueMax,
-            zCLipPlaneMin: reduxState.zSlideValueMin,
-            zCLipPlaneMax: reduxState.zSlideValueMax,
+            xCLipPlaneMin: controlsState.xLowerBound,
+            xCLipPlaneMax: controlsState.xUpperBound,
+            yCLipPlaneMin: controlsState.yLowerBound,
+            yCLipPlaneMax: controlsState.yUpperBound,
+            zCLipPlaneMin: controlsState.zLowerBound,
+            zCLipPlaneMax: controlsState.zUpperBound,
             currenAxisAngle: "0 0 0",
             rotateAngle: "0 0 0",
             clipX: "0 0",
@@ -63,7 +63,7 @@ export default function VolumeViewer(props) {
           myloader={{
             rayCollided: false,
             transferFunction: reduxState.transferFunction,
-            colorMap: reduxState.colorMap.src,
+            colorMap: controlsState.colorMap.src,
             opacity1: reduxState.opacity1,
             opacity2: reduxState.opacity2,
             lowNode: reduxState.lowNode,

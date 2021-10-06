@@ -159,10 +159,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
         );
       }
 
-      console.log(this.nodesCanvasSpace);
-      console.log("X", this.normalizedXCanvasSpace);
-      console.log("Y", this.normalizedYCanvasSpace);
-
       this.props.mySendAlphaPoints(
         this.normalizedXCanvasSpace,
         this.normalizedYCanvasSpace

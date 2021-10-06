@@ -11,6 +11,8 @@ function ControlsProvider(props) {
 
     colorMap: colorMaps[0],
     transferFunctionNodes: [],
+
+    // Sliders
     xLowerBound: range.min,
     xUpperBound: range.max,
     yLowerBound: range.min,
