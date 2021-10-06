@@ -2,6 +2,8 @@ import { Entity, Scene } from "aframe-react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
+import "../../Aframe/arcball-camera";
+
 import {
   volumePosition,
   volumeRotation,
@@ -14,6 +16,7 @@ import { useControlsContext } from "../../context/controls-context";
 export default function VolumeViewer(props) {
   const { volume } = props;
   const { state: controlsState } = useControlsContext();
+  console.log(controlsState.colorMap)
 
   const reduxState = useSelector((state) => state);
 

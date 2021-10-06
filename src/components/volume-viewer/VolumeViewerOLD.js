@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(
-  class VolumeViewer extends Component {
+  class VolumeViewerOLD extends Component {
     render() {
       return (
         <Container fluid className="aframe-container mb-3" id="visualizer">

@@ -1,6 +1,5 @@
 import Controls from "../controls/Controls";
-import VolumeViewer from "./VolumeViewer.js";
-import NewVolumeViewer from "./VolumeViewer.jsx";
+import VolumeViewer from "./VolumeViewer";
 
 import { ControlsProvider } from "../../context/controls-context.js";
 import { useSelectorContext } from "../../context/selector-context";
@@ -15,10 +14,10 @@ export default function VVWrapper(props) {
           setSidebarVisible={props.setSidebarVisible}
         />
 
-        {/* <VolumeViewer /> */}
+        {/* <VolumeViewerOLD /> */}
 
         {/* New - function based */}
-        <NewVolumeViewer volume={state} />
+        <VolumeViewer volume={state} />
       </ControlsProvider>
     </div>
   );
