@@ -28,21 +28,14 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.hoverRadius = 15;
       this.width = 0;
 
-      this.initPoint1X = 0;
-      this.initPoint2X = 250 * 0.11;
-      this.initPoint3X = 250 * 0.32;
-      this.initPoint4X = 250 * 0.92;
       this.nodes = [
-        { x: this.initPoint1X, y: 0 },
-        { x: this.initPoint2X, y: 15 },
-        { x: this.initPoint3X, y: 35 },
-        { x: this.initPoint4X, y: 70 },
+        { x: 0, y: 0 },
+        { x: 250 * 0.11, y: 15 },
+        { x: 250 * 0.32, y: 35 },
+        { x: 250 * 0.92, y: 70 },
       ];
-      console.log(this.nodes);
 
       this.nodesCanvasSpace = [];
-      // this.normalizedXCanvasSpace = [];
-      // this.normalizedYCanvasSpace = [];
 
       this.changePointer = this.changePointer.bind(this);
       this.onMouseDown = this.onMouseDown.bind(this);
