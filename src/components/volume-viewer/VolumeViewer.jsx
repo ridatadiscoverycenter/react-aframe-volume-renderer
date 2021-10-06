@@ -16,7 +16,7 @@ import { useControlsContext } from "../../context/controls-context";
 export default function VolumeViewer(props) {
   const { volume } = props;
   const { state: controlsState } = useControlsContext();
-  console.log(controlsState.colorMap)
+  console.log(controlsState.colorMap);
 
   const reduxState = useSelector((state) => state);
 

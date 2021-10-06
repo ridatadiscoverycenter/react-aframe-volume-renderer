@@ -13,10 +13,6 @@ export default function VVWrapper(props) {
           sidebarVisible={props.sidebarVisible}
           setSidebarVisible={props.setSidebarVisible}
         />
-
-        {/* <VolumeViewerOLD /> */}
-
-        {/* New - function based */}
         <VolumeViewer volume={state} />
       </ControlsProvider>
     </div>
