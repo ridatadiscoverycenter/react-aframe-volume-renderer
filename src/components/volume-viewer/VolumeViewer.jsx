@@ -12,11 +12,11 @@ import Spinner from "./Spinner";
 import { useControlsContext } from "../../context/controls-context";
 
 export default function VolumeViewer(props) {
-  const { volume } = props
-  const {state: controlsState} = useControlsContext();
+  const { volume } = props;
+  const { state: controlsState } = useControlsContext();
 
-  const reduxState = useSelector(state => state)
-  
+  const reduxState = useSelector((state) => state);
+
   return (
     <Container fluid className="aframe-container mb-3" id="visualizer">
       <div id="modelLoaded" style={{ display: "none" }}>
@@ -56,7 +56,7 @@ export default function VolumeViewer(props) {
           material="color: red ; side:double; transparent:true;opacity:0.3"
           cursor-listener
         />
-        
+
         <Entity
           id="volumeCube"
           class="clickableMesh"
@@ -84,10 +84,7 @@ export default function VolumeViewer(props) {
           scale={volumeScale}
         />
 
-        <a-entity
-          cursor="rayOrigin:mouse"
-          raycaster="objects: .clickable"
-        />
+        <a-entity cursor="rayOrigin:mouse" raycaster="objects: .clickable" />
         <Entity
           id="myCamera"
           camera="active: true"
@@ -95,6 +92,6 @@ export default function VolumeViewer(props) {
           arcball-camera="initialPosition:0 0 1"
         />
       </Scene>
-    </Container> 
-  )
+    </Container>
+  );
 }

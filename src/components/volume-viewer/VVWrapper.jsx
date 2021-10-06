@@ -1,6 +1,6 @@
 import Controls from "../controls/Controls";
 import VolumeViewer from "./VolumeViewer.js";
-import NewVolumeViewer from "./VolumeViewer.jsx"
+import NewVolumeViewer from "./VolumeViewer.jsx";
 
 import { ControlsProvider } from "../../context/controls-context.js";
 import { useSelectorContext } from "../../context/selector-context";
@@ -18,9 +18,7 @@ export default function VVWrapper(props) {
         {/* <VolumeViewer /> */}
 
         {/* New - function based */}
-        <NewVolumeViewer 
-          volume={state}
-        />
+        <NewVolumeViewer volume={state} />
       </ControlsProvider>
     </div>
   );
