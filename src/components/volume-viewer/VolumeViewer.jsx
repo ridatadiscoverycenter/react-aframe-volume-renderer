@@ -1,4 +1,5 @@
 import { Entity, Scene } from "aframe-react";
+import { Spinner } from "react-bootstrap";
 
 import {
   volumePosition,
@@ -12,9 +13,8 @@ export default function VolumeViewer(props) {
   
   return (
     <Container fluid className="aframe-container mb-3" id="visualizer">
-      <div id="modelLoaded" style={{ display: "none" }}>
-        <Spinner />
-      </div>
+      <Spinner id="modelLoaded"/>
+
       <Scene id="myScene" background="color: black" embedded>
         <Entity
           id="rhand"
