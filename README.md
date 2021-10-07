@@ -123,12 +123,6 @@ The A-Frame components are located in the ‘src’ folder:
 
 ![file_system1](./imgs/filesystem3.png)
 
-#### How to access it from the ccv server
-
-Open your web browser and go to https://datasci.brown.edu/spheroid/ or https://datasci.brown.edu/simulation/.
-
-The VR mode is only supported by Mozilla FireFox. Please install this application if you want to use HMD device to visualize the data.
-
 #### How the application works
 
 Once you open the application in a web browser, you can interact with the data in two different modes:
