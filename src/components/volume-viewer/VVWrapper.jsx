@@ -7,11 +7,11 @@ export default function VVWrapper(props) {
   const { state } = useSelectorContext();
   return (
     <div>
-        <Controls
-          sidebarVisible={props.sidebarVisible}
-          setSidebarVisible={props.setSidebarVisible}
-        />
-        <VolumeViewer volume={state} />
+      <Controls
+        sidebarVisible={props.sidebarVisible}
+        setSidebarVisible={props.setSidebarVisible}
+      />
+      <VolumeViewer volume={state} />
     </div>
   );
 }
