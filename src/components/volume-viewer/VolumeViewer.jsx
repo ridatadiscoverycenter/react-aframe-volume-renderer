@@ -69,7 +69,7 @@ export default function VolumeViewer(props) {
           class="clickableMesh"
           myloader={{
             rayCollided: false,
-            transferFunction: reduxState.transferFunction,
+            useTransferFunction: reduxState.transferFunction,
             colorMap: controlsState.colorMap.src,
             alphaXDataArray: reduxState.alphaXDataArray,
             alphaYDataArray: reduxState.alphaYDataArray,

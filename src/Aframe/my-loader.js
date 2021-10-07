@@ -39,7 +39,7 @@ AFRAME.registerComponent("myloader", {
   schema: {
     rayCollided: { type: "boolean", default: false },
     modelLoaded: { type: "boolean", default: false },
-    transferFunction: { type: "string", default: "false" },
+    useTransferFunction: { type: "boolean", default: false },
     colorMap: {
       type: "string",
       default: "./assets/images/colormaps/haline.png",
@@ -281,8 +281,7 @@ AFRAME.registerComponent("myloader", {
       var canvasWidth = this.myCanvas.width;
       var canvasHeight = this.myCanvas.height;
 
-      const useTransferFunction =
-        this.data.transferFunction === "false" ? false : true;
+      const useTransferFunction = this.data.useTransferFunction
       var hiddenLabel = this.hiddenLabel;
 
       const updateColorMapping = this.updateColorMapping;
