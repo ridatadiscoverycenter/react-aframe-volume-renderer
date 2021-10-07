@@ -1,5 +1,9 @@
 import { createContext, useContext, useReducer } from "react";
-import { colorMaps, range, initialTransferFunction } from "../assets/config.json";
+import {
+  colorMaps,
+  range,
+  initialTransferFunction,
+} from "../assets/config.json";
 
 const ControlsContext = createContext();
 
@@ -52,7 +56,11 @@ function volumeReducer(state, action) {
       };
     }
     case "CHANGE_TRANSFER_FUNCTION": {
-      console.log("CHANGE_TRANSFER_FUNCTION", state.transferFunctionNodes, action.payload)
+      console.log(
+        "CHANGE_TRANSFER_FUNCTION",
+        state.transferFunctionNodes,
+        action.payload
+      );
       return {
         ...state,
         transferFunctionNodes: action.payload,

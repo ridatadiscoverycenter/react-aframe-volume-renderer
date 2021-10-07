@@ -281,7 +281,7 @@ AFRAME.registerComponent("myloader", {
       var canvasWidth = this.myCanvas.width;
       var canvasHeight = this.myCanvas.height;
 
-      const useTransferFunction = this.data.useTransferFunction
+      const useTransferFunction = this.data.useTransferFunction;
       var hiddenLabel = this.hiddenLabel;
 
       const updateColorMapping = this.updateColorMapping;
