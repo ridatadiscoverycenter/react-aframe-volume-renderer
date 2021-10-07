@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { mySendAlphaPoints } from "../../redux/AppActions";
-import { ControlsConsumer } from "../../context/controls-context";
+import { ControlsConsumer, useControlsContext } from "../../context/controls-context";
 
 const mapStateToProps = (state) => {
   return { colorMap: state.colorMap };
@@ -151,11 +151,24 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.sendAlphaData();
     }
 
-    // TODO - CHANGE IN VOLUME VIEWER
+    // Normalize canvas nodes and pass to context
     sendAlphaData() {
-      // HERE IS WHERE WE SEND THE DATA
-      // Need to build an array of objects
+      
+      this.transferFunctionNodes = [];
+      this.nodesCanvasSpace.forEach(node => {
+        this.transferFunctionNodes.push({
+          x: (node.x - this.padding) / this.width,
+          y: 1 - (node.y - this.padding) / this.height
+        })
+      })
+      console.log(this.nodesCanvasSpace, this.transferFunctionNodes)
+      // Dispatch to context
+      // dispatch({
+      //   type: "CHANGE_TRANSFER_FUNCTION",
+      //   payload: this.transferFunctionNodes,
+      // })
 
+      // Old
       this.normalizedXCanvasSpace = [];
       this.normalizedYCanvasSpace = [];
       for (let i = 0; i < this.nodesCanvasSpace.length; i++) {
@@ -166,9 +179,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
           1 - (this.nodesCanvasSpace[i].y - this.padding) / this.height
         );
       }
-
-      
-
       this.props.mySendAlphaPoints(
         this.normalizedXCanvasSpace,
         this.normalizedYCanvasSpace
