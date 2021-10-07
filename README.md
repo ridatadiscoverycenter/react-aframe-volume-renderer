@@ -7,7 +7,6 @@ This project was developed using react-js and Aframe (webvr - threejs -webgl2)
 * [Installation](#Installation)
 * [About this project](#About)
 * [Live demo](#Demo)
-* [UI Controls](#UIControls)
 * [Enable Mozilla Firefox VR](#FireFoxVR)
 
 <a name="Installation"/>
@@ -45,24 +44,7 @@ This specific release showcases data from the Narragansett Bay in Rhode Island o
 
 [Click here for live demo](https://bay-viewer.riddc.brown.edu/)
 
-<a name="UIControls"/>
 
-#### UI Controls
-
-1. Use the Toggle buttons to switch between the different data volumes. 
-
-![](./imgs/riddc-data-selector.png)
-
-
-2. Click the **Option** button to display the options side bar. You can modify the color transfer function and the volume's clip planes.
-
-![](./imgs/riddc-transfer-fnct-editor.png)
-
-Double click on the canvas to create a new point. Left click on one of the points to remove it.
-
-3. Use the **Clip Controls** to crop the volume on any of the three avaiable axis. 
-
-![](./imgs/riddc-riddc-clip-controls.png)
 
 #### A-Frame Implementation
 
@@ -108,45 +90,6 @@ Every component on A-Frame has a series of methods to be extended to determine i
 * Init: Sets the initial state of the entity. Also, It loads the shaders and transfer functions.
 * Tick: check for events in the vr controllers to produce real time interaction with the data.
 
-
-#### Structure of the project
-
-The key folders of the project are ‘public’ and ‘src’
-
-![file_system1](./imgs/filesystem.png)
-
-The ‘public’ folder contains the index.html file which is initially loaded when we the user enters to the web application.
-
-![file_system1](./imgs/filesystem2.png)
-
-The A-Frame components are located in the ‘src’ folder:
-
-![file_system1](./imgs/filesystem3.png)
-
 #### How the application works
 
-Once you open the application in a web browser, you can interact with the data in two different modes:
-* 2D mode: Left click and drag your mouse from left to right or vice versa to rotate the data.
-* 3D mode (use VR device): Two buttons are used to interact with the data
 
-![file_system1](./imgs/controller.png)
-
-Trigger Button: Press it to drag and drop the data from one point to another. Use it to modify its position and rotation.
-Grip Button: It clips the data. Press it and move the controller on any direction to see internal parts of the data from different points of view.
-
-<a name="FireFoxVR"/>
-#### Enable Mozilla Firefox VR
-
-At this moment, VR on web browsers is only supported on Mozilla Firefox. In order to enable this option in your computer,please follow these steps:
-
-1. Right Click onn your Desktop
-
-![Mozilla1](./imgs/mozilla1.png)
-
-2. In the NVIDIA panel window, select the "Program Settings" Tab
-
-![Mozilla2](./imgs/mozilla2.png)
-
-3. In the 'Select a program' drop list select the Mozilla Firefox (If you dont find it, you will have to click on the 'add' button, look for firefox.exe). In the 'Select the preferred graphics processor for this program' drop list select 'High-Perfomance NVIDIA processor'
-
-![Mozilla2](./imgs/mozilla3.png)
