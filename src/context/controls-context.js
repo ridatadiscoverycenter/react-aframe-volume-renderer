@@ -10,6 +10,7 @@ function ControlsProvider(props) {
     // TODO: MAKE_CAPITAL_CASE
     allColorMaps: colorMaps,
     sliderRange: range,
+    USE_TRANSFER_FUNCTION: true,
 
     // Color Map and Opacity
     colorMap: colorMaps[0],
