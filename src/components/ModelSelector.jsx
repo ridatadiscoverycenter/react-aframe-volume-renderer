@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import {
   Col,
   Row,
@@ -9,15 +8,16 @@ import {
 } from "react-bootstrap";
 
 import { useSelectorContext } from "../context/selector-context";
-import { myChangeColorMapAction as changeColorMap } from "../redux/AppActions";
 import { colorMaps, measurement, season, tide } from "../assets/config.json";
+import { useControlsContext } from "../context/controls-context";
 
 export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
-  const reduxDispatch = useDispatch(changeColorMap);
   const {
     state: { selection },
-    dispatch,
+    dispatch: selectorDispatch,
   } = useSelectorContext();
+
+  const { dispatch: controlsDispatch } = useControlsContext();
 
   return (
     <Container fluid className="my-3">
@@ -34,18 +34,18 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
             value={selection.measurement}
             onChange={(val) => {
               // Change model
-              dispatch({
+              selectorDispatch({
                 type: "TOGGLE_MEASUREMENT",
                 payload: val,
               });
               // Change color map
-              reduxDispatch(
-                changeColorMap(
+              controlsDispatch({
+                type: "CHANGE_COLOR_MAP",
+                payload:
                   val.value === "salt"
                     ? colorMaps.find((m) => m.name === "Haline")
-                    : colorMaps.find((m) => m.name === "Thermal")
-                )
-              );
+                    : colorMaps.find((m) => m.name === "Thermal"),
+              });
             }}
           >
             {measurement.map((m) => {
@@ -64,7 +64,7 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
             name="season"
             value={selection.season}
             onChange={(val) =>
-              dispatch({
+              selectorDispatch({
                 type: "TOGGLE_SEASON",
                 payload: val,
               })
@@ -86,7 +86,7 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
             name="tide"
             value={selection.tide}
             onChange={(val) =>
-              dispatch({
+              selectorDispatch({
                 type: "TOGGLE_TIDE",
                 payload: val,
               })

@@ -56,11 +56,6 @@ function volumeReducer(state, action) {
       };
     }
     case "CHANGE_TRANSFER_FUNCTION": {
-      console.log(
-        "CHANGE_TRANSFER_FUNCTION",
-        state.transferFunctionNodes,
-        action.payload
-      );
       return {
         ...state,
         transferFunctionNodes: action.payload,

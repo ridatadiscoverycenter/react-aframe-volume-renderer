@@ -18,6 +18,7 @@ import ModelSelector from "./components/ModelSelector";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
 import VVWrapper from "./components/volume-viewer/VVWrapper.jsx";
+import { ControlsProvider } from "./context/controls-context.js";
 
 export default function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -27,15 +28,17 @@ export default function App() {
       <Header />
 
       <SelectorProvider>
-        <InfoText />
-        <ModelSelector
-          sidebarVisible={sidebarVisible}
-          setSidebarVisible={setSidebarVisible}
-        />
-        <VVWrapper
-          sidebarVisible={sidebarVisible}
-          setSidebarVisible={setSidebarVisible}
-        />
+        <ControlsProvider>
+          <InfoText />
+          <ModelSelector
+            sidebarVisible={sidebarVisible}
+            setSidebarVisible={setSidebarVisible}
+          />
+          <VVWrapper
+            sidebarVisible={sidebarVisible}
+            setSidebarVisible={setSidebarVisible}
+          />
+        </ControlsProvider>
       </SelectorProvider>
 
       <Instructions />
