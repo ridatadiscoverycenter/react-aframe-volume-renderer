@@ -33,9 +33,8 @@ WebVR Volume Rendering.
 
 #### Introduction
 
-A web based volume visualizer application to support scientific 3D data built on top of webgl that will facilitate the access from any web browser, plus the benefits of VR.
-
-It was implemented using A-frame, a javascript framework easy to learn, use and deploy. It sits on top of Three.js, which is the most used library to support 3D rendering on the web, and html which is the common tool to write static web pages. A-frame follows a composed based pattern, common on game and graphics engines. Additionally, it uses node js to easy deploy the modules the application is based on.
+A web based 3D volume visualizer application to support scientific 3D data built on top of webgl that will facilitate the access from any web browser, plus the benefits of VR.
+This specific release showcases data from the Narragansett Bay in Rhode Island on different seasons and ocean conditions.
 
 ![Application_Arch](./imgs/archit.png)
 
@@ -43,18 +42,19 @@ It was implemented using A-frame, a javascript framework easy to learn, use and 
 
 #### Live Demo
 
-[Click here for live demo](https://datasci.brown.edu/volume-vr/)
+[Click here for live demo](https://bay-viewer.riddc.brown.edu/)
 
-Select the data to visualize.
-![](./imgs/View1.png)
+Use the Toggle buttons to select the data.
+![](./imgs/riddc-data-selector.png)
 
-You can modify the channel-layer you want to visualize (if the data supports RBGA textures)
-![](./imgs/View2.png)
 
-Open the color mapping - opacity transfer function option.
-![](./imgs/View3.png)
+Click the **Option** button to modify the color transfer function
+![](./imgs/riddc-transfer-fnct-editor.png)
 
 Double click on the canvas to create a new point. Left click on one of the points to remove it.
+
+Use the **Clip Controls** to crop the volume on any of the axis
+![](./imgs/riddc-riddc-clip-controls.png)
 
 #### A-Frame Implementation
 
