@@ -44,16 +44,19 @@ This specific release showcases data from the Narragansett Bay in Rhode Island o
 
 [Click here for live demo](https://bay-viewer.riddc.brown.edu/)
 
-Use the Toggle buttons to select the data.
+Use the Toggle buttons to switch between the different data volumes. 
+
 ![](./imgs/riddc-data-selector.png)
 
 
-Click the **Option** button to modify the color transfer function
+Click the **Option** button to display the options side bar. You can modify the color transfer function and the volume's clip planes.
+
 ![](./imgs/riddc-transfer-fnct-editor.png)
 
 Double click on the canvas to create a new point. Left click on one of the points to remove it.
 
-Use the **Clip Controls** to crop the volume on any of the axis
+Use the **Clip Controls** to crop the volume on any of the three avaiable axis. 
+
 ![](./imgs/riddc-riddc-clip-controls.png)
 
 #### A-Frame Implementation
