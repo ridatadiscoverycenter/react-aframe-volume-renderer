@@ -11,6 +11,7 @@
     "bootstrap": "4.6",
     "eslint-config-react-app": "^6.0.0",
     "firebase": "^9.0.2",
+    "node-sass": "^6.0.1",
     "primeicons": "^4.1.0",
     "primereact": "^6.5.1",
     "rc-slider": "^9.7.2",
