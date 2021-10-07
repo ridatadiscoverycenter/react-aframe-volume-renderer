@@ -3,7 +3,10 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { mySendAlphaPoints } from "../../redux/AppActions";
-import { ControlsConsumer, useControlsContext } from "../../context/controls-context";
+import {
+  ControlsConsumer,
+  ControlsContext,
+} from "../../context/controls-context";
 
 const mapStateToProps = (state) => {
   return { colorMap: state.colorMap };
@@ -14,6 +17,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { mySendAlphaPoints })(
   class OpacityControl extends Component {
+    static contextType = ControlsContext; // TEMP - only while component is class based
     constructor(props) {
       super(props);
       this.minLevel = 0;
@@ -45,7 +49,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.changePointer = this.changePointer.bind(this);
       this.onMouseDown = this.onMouseDown.bind(this);
       this.onMouseUp = this.onMouseUp.bind(this);
-      this.draggPointer = this.draggPointer.bind(this);
+      this.dragPointer = this.dragPointer.bind(this);
       this.addPoint = this.addPoint.bind(this);
       this.removePoint = this.removePoint.bind(this);
       this.sendAlphaData = this.sendAlphaData.bind(this);
@@ -54,7 +58,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
 
     componentDidMount() {
       this.updateCanvas();
-      document.addEventListener("mousemove", this.draggPointer);
+      document.addEventListener("mousemove", this.dragPointer);
       document.addEventListener("mouseup", this.onMouseUp);
 
       this.opCanvas.addEventListener("mousemove", this.changePointer);
@@ -65,7 +69,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
 
     componentWillUnmount() {
       this.opCanvas.removeEventListener("mousemove", this.changePointer);
-      document.removeEventListener("mousemove", this.draggPointer);
+      document.removeEventListener("mousemove", this.dragPointer);
       this.opCanvas.removeEventListener("mousedown", this.onMouseDown);
       document.removeEventListener("mouseup", this.onMouseUp);
       this.opCanvas.removeEventListener("dblclick", this.addPoint);
@@ -73,7 +77,6 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       //-- Save state
     }
 
-    // DONE
     updateCanvas() {
       this.opCanvas = this.refs.canvas;
       this.opContext = this.refs.canvas.getContext("2d");
@@ -153,39 +156,35 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
 
     // Normalize canvas nodes and pass to context
     sendAlphaData() {
-      
       this.transferFunctionNodes = [];
-      this.nodesCanvasSpace.forEach(node => {
+      this.nodesCanvasSpace.forEach((node) => {
         this.transferFunctionNodes.push({
           x: (node.x - this.padding) / this.width,
-          y: 1 - (node.y - this.padding) / this.height
-        })
-      })
-      console.log(this.nodesCanvasSpace, this.transferFunctionNodes)
-      // Dispatch to context
-      // dispatch({
-      //   type: "CHANGE_TRANSFER_FUNCTION",
-      //   payload: this.transferFunctionNodes,
-      // })
+          y: 1 - (node.y - this.padding) / this.height,
+        });
+      });
+      this.context.dispatch({
+        type: "CHANGE_TRANSFER_FUNCTION",
+        payload: this.transferFunctionNodes,
+      });
 
-      // Old
-      this.normalizedXCanvasSpace = [];
-      this.normalizedYCanvasSpace = [];
-      for (let i = 0; i < this.nodesCanvasSpace.length; i++) {
-        this.normalizedXCanvasSpace.push(
-          (this.nodesCanvasSpace[i].x - this.padding) / this.width
-        );
-        this.normalizedYCanvasSpace.push(
-          1 - (this.nodesCanvasSpace[i].y - this.padding) / this.height
-        );
-      }
-      this.props.mySendAlphaPoints(
-        this.normalizedXCanvasSpace,
-        this.normalizedYCanvasSpace
-      );
+      // REDUX VERSION
+      // this.normalizedXCanvasSpace = [];
+      // this.normalizedYCanvasSpace = [];
+      // for (let i = 0; i < this.nodesCanvasSpace.length; i++) {
+      //   this.normalizedXCanvasSpace.push(
+      //     (this.nodesCanvasSpace[i].x - this.padding) / this.width
+      //   );
+      //   this.normalizedYCanvasSpace.push(
+      //     1 - (this.nodesCanvasSpace[i].y - this.padding) / this.height
+      //   );
+      // }
+      // this.props.mySendAlphaPoints(
+      //   this.normalizedXCanvasSpace,
+      //   this.normalizedYCanvasSpace
+      // );
     }
 
-    // DONE
     resetOpacityPoints() {
       this.nodes = [
         { x: this.initPoint1X, y: 0 },
@@ -261,7 +260,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       }
     }
 
-    draggPointer(e) {
+    dragPointer(e) {
       if (this.dragging) {
         e.preventDefault();
         var diffX = this.dragStart[0] - e.screenX;
@@ -331,7 +330,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
           <canvas ref="canvas" id="opacityControls" />
 
           <ControlsConsumer>
-            {({ state }) => (
+            {({ state, dispatch }) => (
               <img
                 src={state.colorMap.src}
                 alt="Selected color map"

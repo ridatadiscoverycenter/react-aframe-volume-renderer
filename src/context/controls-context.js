@@ -110,3 +110,6 @@ function ControlsConsumer(props) {
 }
 
 export { useControlsContext, ControlsProvider, ControlsConsumer };
+
+// TEMP - only for OpacityControls while it's class based
+export { ControlsContext };
