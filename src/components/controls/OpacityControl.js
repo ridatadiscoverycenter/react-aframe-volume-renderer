@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
+
 import { mySendAlphaPoints } from "../../redux/AppActions";
+import { ControlsConsumer } from "../../context/controls-context";
 
 const mapStateToProps = (state) => {
   return { colorMap: state.colorMap };
 };
+
+// TODO: Need colorMap from controls context
+// TODO: Need CHANGE_TRANSFER_FUNCTION dispatch from controls context
 
 export default connect(mapStateToProps, { mySendAlphaPoints })(
   class OpacityControl extends Component {
@@ -148,6 +153,9 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
 
     // TODO - CHANGE IN VOLUME VIEWER
     sendAlphaData() {
+      // HERE IS WHERE WE SEND THE DATA
+      // Need to build an array of objects
+
       this.normalizedXCanvasSpace = [];
       this.normalizedYCanvasSpace = [];
       for (let i = 0; i < this.nodesCanvasSpace.length; i++) {
@@ -158,6 +166,8 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
           1 - (this.nodesCanvasSpace[i].y - this.padding) / this.height
         );
       }
+
+      
 
       this.props.mySendAlphaPoints(
         this.normalizedXCanvasSpace,
@@ -309,13 +319,18 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       return (
         <div>
           <canvas ref="canvas" id="opacityControls" />
-          <img
-            src={this.props.colorMap.src}
-            alt="Selected color map"
-            height="15"
-            width="250px"
-            className="border border-dark"
-          />
+
+          <ControlsConsumer>
+            {({ state }) => (
+              <img
+                src={state.colorMap.src}
+                alt="Selected color map"
+                height="15"
+                width="250px"
+                className="border border-dark"
+              />
+            )}
+          </ControlsConsumer>
           <p>
             Double-click to add a point to the transfer function. Drag points to
             change the function.
