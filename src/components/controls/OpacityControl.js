@@ -155,30 +155,14 @@ export default class OpacityControl extends Component {
       type: "CHANGE_TRANSFER_FUNCTION",
       payload: this.transferFunctionNodes,
     });
-
-    // REDUX VERSION
-    // this.normalizedXCanvasSpace = [];
-    // this.normalizedYCanvasSpace = [];
-    // for (let i = 0; i < this.nodesCanvasSpace.length; i++) {
-    //   this.normalizedXCanvasSpace.push(
-    //     (this.nodesCanvasSpace[i].x - this.padding) / this.width
-    //   );
-    //   this.normalizedYCanvasSpace.push(
-    //     1 - (this.nodesCanvasSpace[i].y - this.padding) / this.height
-    //   );
-    // }
-    // this.props.mySendAlphaPoints(
-    //   this.normalizedXCanvasSpace,
-    //   this.normalizedYCanvasSpace
-    // );
   }
 
   resetOpacityPoints() {
     this.nodes = [
-      { x: this.initPoint1X, y: 0 },
-      { x: this.initPoint2X, y: 15 },
-      { x: this.initPoint3X, y: 35 },
-      { x: this.initPoint4X, y: 70 },
+      { x: 0, y: 0 },
+      { x: 250 * 0.11, y: 15 },
+      { x: 250 * 0.32, y: 35 },
+      { x: 250 * 0.92, y: 70 },
     ];
     this.updateCanvas();
   }
