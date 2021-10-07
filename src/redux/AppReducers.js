@@ -1,7 +1,6 @@
 import { colorMaps, range } from "../assets/config.json";
 
 const initialState = {
-  checkBoxValue: false,
   xSlideValueMin: range.min,
   xSlideValueMax: range.max,
   ySlideValueMin: range.min,

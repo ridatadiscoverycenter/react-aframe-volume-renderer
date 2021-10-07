@@ -15,7 +15,6 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    colorMapping: state.checkBoxValue,
     xSlideValueMin: state.xSlideValueMin,
     xSlideValueMax: state.xSlideValueMax,
     ySlideValueMin: state.ySlideValueMin,
@@ -92,7 +91,6 @@ export default connect(mapStateToProps)(
                     highNode: this.props.highNode,
                     alphaXDataArray: this.props.alphaXDataArray,
                     alphaYDataArray: this.props.alphaYDataArray,
-                    colorMapping: this.props.colorMapping,
                     channel: this.props.channel,
                     cameraState: this.props.cameraState,
                     path: `./assets/models/${state.selection.season.value}-${state.selection.tide.value}-${state.selection.measurement.value}.png`,

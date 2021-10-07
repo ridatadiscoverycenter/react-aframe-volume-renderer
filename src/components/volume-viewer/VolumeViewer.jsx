@@ -19,6 +19,11 @@ export default function VolumeViewer(props) {
 
   const reduxState = useSelector((state) => state);
 
+  // REDUX STATE TODO
+  // Transfer function nodes (alpha x and y)
+  // Transfer function
+
+
   return (
     <Container fluid className="aframe-container mb-3" id="visualizer">
       <div id="modelLoaded" style={{ display: "none" }}>

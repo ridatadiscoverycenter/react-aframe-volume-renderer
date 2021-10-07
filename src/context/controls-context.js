@@ -1,16 +1,19 @@
 import { createContext, useContext, useReducer } from "react";
-import { colorMaps, range } from "../assets/config.json";
+import { colorMaps, range, initialTransferFunction } from "../assets/config.json";
 
 const ControlsContext = createContext();
 
 // Custom component to provide the Controls context
 function ControlsProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
+    // Constants
+    // TODO: MAKE_CAPITAL_CASE
     allColorMaps: colorMaps,
     sliderRange: range,
 
+    // Color Map and Opacity
     colorMap: colorMaps[0],
-    transferFunctionNodes: [],
+    transferFunctionNodes: initialTransferFunction,
 
     // Sliders
     xLowerBound: range.min,
@@ -48,6 +51,7 @@ function volumeReducer(state, action) {
       };
     }
     case "CHANGE_TRANSFER_FUNCTION": {
+      console.log("CHANGE_TRANSFER_FUNCTION", state.transferFunctionNodes, action.payload)
       return {
         ...state,
         transferFunctionNodes: action.payload,
