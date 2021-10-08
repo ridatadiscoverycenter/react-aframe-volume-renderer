@@ -7,9 +7,11 @@ This project was developed using react-js and Aframe (webvr - threejs -webgl2)
 * [Installation](#Installation)
 * [About this project](#About)
 * [Live demo](#Demo)
-* [Enable Mozilla Firefox VR](#FireFoxVR)
+* [A-Frame Implementation](#Implementation)
+* [How to use the application](#HowTo)
 
 <a name="Installation"/>
+
 ## Installation
 
 For local deployment, clone - download the repository and in the project directory run
@@ -26,6 +28,7 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 <a name="About"/>
+
 ## About this project
 
 
@@ -45,6 +48,8 @@ This specific release showcases data from the Narragansett Bay in Rhode Island o
 [Click here for live demo](https://bay-viewer.riddc.brown.edu/)
 
 
+
+<a name="Implementation"/>
 
 #### A-Frame Implementation
 
@@ -89,6 +94,8 @@ Every component on A-Frame has a series of methods to be extended to determine i
 * Init: Sets the initial state of the entity. Also, It loads the shaders and transfer functions.
 * Tick: check for events in the vr controllers to produce real time interaction with the data.
 
-#### How the application works
+<a name="HowTo"/>
+
+### How to use the application
 
 Please refer to the [instructions](https://bay-viewer.riddc.brown.edu/#information) section in the web-page.
