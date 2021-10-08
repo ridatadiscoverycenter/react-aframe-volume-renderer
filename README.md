@@ -68,7 +68,6 @@ Althoug it can be attached to a generic aframe entity:
 | position | vector3  | position of the volume in worl space |
 | alphaXDataArray   | array  | Opacity values in the X coordinate. This represents the color the opacity is going to modify |
 | alphaYDataArray   | array  | Opacity values in the Y coordinate. This represents the alpha value of the X color  |
-| channel | number  | If the volume support different RBGA channels: 1 Red, 2 Green, 3 Blue, 4 alpha |
 
 
 Additional third party components used on this project are:
@@ -92,4 +91,4 @@ Every component on A-Frame has a series of methods to be extended to determine i
 
 #### How the application works
 
-
+Please refer to the [https://bay-viewer.riddc.brown.edu/#information](instruction) section in the web-page.
