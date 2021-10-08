@@ -72,9 +72,9 @@ Althoug it can be attached to a generic aframe entity:
 
 Additional third party components used on this project are:
 
-React-js
-Aframe-React
-react-slider
+- React-js
+- Aframe-React
+- react-slider
 
 
 #### myLoader implementation
