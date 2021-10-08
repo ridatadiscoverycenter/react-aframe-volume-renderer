@@ -91,4 +91,4 @@ Every component on A-Frame has a series of methods to be extended to determine i
 
 #### How the application works
 
-Please refer to the [https://bay-viewer.riddc.brown.edu/#information](instruction) section in the web-page.
+Please refer to the [instructions](https://bay-viewer.riddc.brown.edu/#information) section in the web-page.
