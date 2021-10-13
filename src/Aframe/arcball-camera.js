@@ -95,10 +95,10 @@ AFRAME.registerComponent("arcball-camera", {
     el.getObject3D("camera").position.set(0, 0, 2);
     //console.log("this.meshObjectHandler.matrixWorld");
     console.log(
-      "this.meshObjectHandler.el.getAttribute('myloader').myMeshPosition"
+      "this.meshObjectHandler.el.getAttribute('loader').myMeshPosition"
     );
     var mesh =
-      this.meshObjectHandler.el.getAttribute("myloader").myMeshPosition;
+      this.meshObjectHandler.el.getAttribute("loader").myMeshPosition;
     console.log(mesh);
 
     if (el.hasAttribute("look-controls")) {

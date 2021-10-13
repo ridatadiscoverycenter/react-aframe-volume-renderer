@@ -35,7 +35,7 @@ AFRAME.registerComponent("entity-collider-check", {
   },
 });
 
-AFRAME.registerComponent("myloader", {
+AFRAME.registerComponent("loader", {
   schema: {
     rayCollided: { type: "boolean", default: false },
     modelLoaded: { type: "boolean", default: false },

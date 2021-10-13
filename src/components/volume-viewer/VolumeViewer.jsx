@@ -71,7 +71,7 @@ export default function VolumeViewer(props) {
         <Entity
           id="volumeCube"
           class="clickableMesh"
-          myloader={{
+          loader={{
             useTransferFunction: controlsState.USE_TRANSFER_FUNCTION,
             colorMap: controlsState.colorMap.src,
             alphaXDataArray: getCoordinates(

@@ -60,17 +60,17 @@ Double click on the canvas to create a new point. Left click on one of the point
 
 Following A-Frame’s philosophy, the application has a custom component that reads, loads and render 3D textures as volume data. To accomplish this, An 'aframe-react' entity is created and we attach our custom component:
 
-    <Entity id="volumeCube" class="clickableMesh"   myloader={{'path_to_data'}}   position="0 0 0"/>
+    <Entity id="volumeCube" class="clickableMesh"   loader={{'path_to_data'}}   position="0 0 0"/>
 
-Althoug it can be attached to a generic aframe entity:
+Although it can be attached to a generic aframe entity:
 
-    <a-entity id="volumeCube"  myloader="path_to_data" position="0 0 0">
+    <a-entity id="volumeCube"  loader="path_to_data" position="0 0 0">
 
 ‘Id’ and ‘class’ are identifiers of the html element during the application’s life cycle. Events and dynamic properties query for these names to change their internal properties such as position and color.
 
-‘myLoader’ is the name of the component responsible for the volume rendering. The attribute ‘volumeData’ is a string with the local file path of the data to be loaded. In the above case, it is loading from the path ./assets/models/nrrd/00.nrrd.
+‘loader’ is the name of the component responsible for the volume rendering. The attribute ‘volumeData’ is a string with the local file path of the data to be loaded. In the above case, it is loading from the path ./assets/models/nrrd/00.nrrd.
 
-#### myLoader attributes:
+#### loader attributes:
 
 |  Name         | Type          | Description  |
 | ------------- | ------------- | ------------- |
@@ -88,11 +88,11 @@ Aframe-React
 react-slider
 
 
-#### myLoader implementation
+#### loader implementation
 
 This code is located on the file src/components/loader.js. It registers the A-Frame component:
 
-    AFRAME.registerComponent('myloader', {
+    AFRAME.registerComponent('loader', {
 
 Every component on A-Frame has a series of methods to be extended to determine its behavior  in the application. In our case we implemented:
 
