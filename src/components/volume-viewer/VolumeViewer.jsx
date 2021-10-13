@@ -95,7 +95,7 @@ export default function VolumeViewer(props) {
 
         <a-entity cursor="rayOrigin:mouse" raycaster="objects: .clickable" />
         <Entity
-          id="myCamera"
+          id="camera"
           camera="active: true"
           look-controls
           arcball-camera="initialPosition:0 0 1"

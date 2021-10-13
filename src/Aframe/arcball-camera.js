@@ -12,7 +12,7 @@ AFRAME.registerComponent("arcball-camera", {
 
   init: function () {
     var el = this.el;
-    this.vrcam = document.querySelector("#myCamera");
+    this.vrcam = document.querySelector("#camera");
     this.controls = new THREE.TrackballControls(
       el.getObject3D("camera"),
       el.sceneEl.renderer.domElement
