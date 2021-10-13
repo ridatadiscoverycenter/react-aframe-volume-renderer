@@ -312,8 +312,8 @@ export default class OpacityControl extends Component {
           )}
         </ControlsConsumer>
         <p>
-          Double-click to add a point to the transfer function. Right-click to remove a point. Drag points to
-          change the function.
+          Double-click to add a point to the transfer function. Right-click to
+          remove a point. Drag points to change the function.
         </p>
         <Button onClick={this.resetOpacityPoints}> Reset </Button>
       </div>

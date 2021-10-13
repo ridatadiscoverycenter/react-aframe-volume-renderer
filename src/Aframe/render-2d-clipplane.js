@@ -16,9 +16,9 @@ let KEYS = [
 AFRAME.registerComponent("render-2d-clipplane", {
   schema: {
     activateClipPlane: { type: "boolean", default: false },
-    xBounds: {type: "array", default: [0, 1]},
-    yBounds: {type: "array", default: [0, 1]},
-    zBounds: {type: "array", default: [0, 1]},
+    xBounds: { type: "array", default: [0, 1] },
+    yBounds: { type: "array", default: [0, 1] },
+    zBounds: { type: "array", default: [0, 1] },
     currentAxisAngle: { type: "vec3" },
     rotateAngle: { type: "vec3" },
     clipX: { type: "vec2" },

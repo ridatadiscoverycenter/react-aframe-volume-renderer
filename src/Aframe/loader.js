@@ -535,8 +535,7 @@ AFRAME.registerComponent("loader", {
         }
       } else if (this.controllerHandler !== undefined && isVrModeActive) {
         if (
-          !this.controllerHandler.el.getAttribute("buttons-check")
-            .grabObject &&
+          !this.controllerHandler.el.getAttribute("buttons-check").grabObject &&
           this.grabbed
         ) {
           this.el
@@ -556,8 +555,7 @@ AFRAME.registerComponent("loader", {
 
         // grab mesh
         if (
-          this.controllerHandler.el.getAttribute("buttons-check")
-            .grabObject &&
+          this.controllerHandler.el.getAttribute("buttons-check").grabObject &&
           this.data.rayCollided &&
           !this.grabbed
         ) {

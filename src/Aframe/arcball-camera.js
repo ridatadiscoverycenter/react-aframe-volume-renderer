@@ -97,8 +97,7 @@ AFRAME.registerComponent("arcball-camera", {
     console.log(
       "this.meshObjectHandler.el.getAttribute('loader').meshPosition"
     );
-    let mesh =
-      this.meshObjectHandler.el.getAttribute("loader").meshPosition;
+    let mesh = this.meshObjectHandler.el.getAttribute("loader").meshPosition;
     console.log(mesh);
 
     if (el.hasAttribute("look-controls")) {

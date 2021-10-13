@@ -61,19 +61,19 @@ function volumeReducer(state, action) {
     case "CHANGE_X_SLIDER": {
       return {
         ...state,
-        xSliderBounds: action.bounds
+        xSliderBounds: action.bounds,
       };
     }
     case "CHANGE_Y_SLIDER": {
       return {
         ...state,
-        ySliderBounds: action.bounds
+        ySliderBounds: action.bounds,
       };
     }
     case "CHANGE_Z_SLIDER": {
       return {
         ...state,
-        zSliderBounds: action.bounds
+        zSliderBounds: action.bounds,
       };
     }
     default: {

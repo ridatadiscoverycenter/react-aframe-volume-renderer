@@ -23,9 +23,7 @@ export default function ModelSelector({ toggleSidebar }) {
     <Container fluid className="my-3">
       <Row>
         <Col className="text-center">
-          <Button onClick={toggleSidebar}>
-            Options
-          </Button>
+          <Button onClick={toggleSidebar}>Options</Button>
         </Col>
         <Col className="text-center">
           <ToggleButtonGroup
