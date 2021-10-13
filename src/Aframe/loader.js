@@ -31,7 +31,7 @@ AFRAME.registerComponent("entity-collider-check", {
 
   onCollide: function (event) {
     this.data.intersected = true;
-    console.log("entity-intesercted");
+    console.log("entity-intersected");
   },
 });
 
