@@ -32,57 +32,27 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
         <Row className="mt-5">
           <h4>Clip</h4>
           <Form className="fullWidth">
-            <Form.Group>
-              <Form.Label> X </Form.Label>
-              <Slider.Range
-                allowCross={false}
-                step={0.0009}
-                defaultValue={[sliderRange.min, sliderRange.max]}
-                min={sliderRange.min}
-                max={sliderRange.max}
-                onChange={(val) =>
-                  dispatch({
-                    type: "CHANGE_X_SLIDER",
-                    payload1: val[0],
-                    payload2: val[1],
-                  })
-                }
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label> Y </Form.Label>
-              <Slider.Range
-                allowCross={false}
-                step={0.0009}
-                defaultValue={[sliderRange.min, sliderRange.max]}
-                min={sliderRange.min}
-                max={sliderRange.max}
-                onChange={(val) => {
-                  dispatch({
-                    type: "CHANGE_Y_SLIDER",
-                    payload1: val[0],
-                    payload2: val[1],
-                  });
-                }}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label> Z </Form.Label>
-              <Slider.Range
-                allowCross={false}
-                step={0.0009}
-                defaultValue={[sliderRange.min, sliderRange.max]}
-                min={sliderRange.min}
-                max={sliderRange.max}
-                onChange={(val) => {
-                  dispatch({
-                    type: "CHANGE_Z_SLIDER",
-                    payload1: val[0],
-                    payload2: val[1],
-                  });
-                }}
-              />
-            </Form.Group>
+            {['X', 'Y', 'Z'].map(axis => {
+              return (
+                <Form.Group key={axis}>
+                  <Form.Label>{axis}</Form.Label>
+                    <Slider.Range
+                      allowCross={false}
+                      step={0.0009}
+                      defaultValue={[sliderRange.min, sliderRange.max]}
+                      min={sliderRange.min}
+                      max={sliderRange.max}
+                      onChange={(val) =>
+                        dispatch({
+                          type: `CHANGE_${axis}_SLIDER`,
+                          lower: val[0],
+                          upper: val[1],
+                        })
+                      }
+                    />
+                </Form.Group>
+              )
+            })}
           </Form>
         </Row>
       </Container>
