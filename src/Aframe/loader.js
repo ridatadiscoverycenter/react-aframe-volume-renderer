@@ -239,24 +239,24 @@ AFRAME.registerComponent("myloader", {
 
   onExitVR: function () {
     if (this.el.getObject3D("mesh") !== undefined) {
-      console.log("my-loader onExitVR 1: ");
+      console.log("loader onExitVR 1: ");
       console.log(this.el.getObject3D("mesh").position);
 
       this.data.myMeshPosition.x = this.el.getObject3D("mesh").position.x;
       this.data.myMeshPosition.y = this.el.getObject3D("mesh").position.y;
       this.data.myMeshPosition.z = this.el.getObject3D("mesh").position.z;
 
-      console.log("my-loader onExitVR this.data.myMeshPosition 1 : ");
+      console.log("loader onExitVR this.data.myMeshPosition 1 : ");
       console.log(this.data.myMeshPosition);
 
       this.vrRotation = this.el.getObject3D("mesh").rotation;
       this.el.getObject3D("mesh").position.copy(new THREE.Vector3());
-      console.log("my-loader onExitVR this.data.myMeshPosition 2 : ");
+      console.log("loader onExitVR this.data.myMeshPosition 2 : ");
       console.log(this.data.myMeshPosition);
 
       this.el.getObject3D("mesh").rotation.set(0, 0, 0);
 
-      console.log("my-loader onExitVR 2: ");
+      console.log("loader onExitVR 2: ");
       console.log(this.el.getObject3D("mesh").position);
       this.debugVRPos = true;
     }

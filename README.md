@@ -90,7 +90,7 @@ react-slider
 
 #### myLoader implementation
 
-This code is located on the file src/components/my-loader.js. It registers the A-Frame component:
+This code is located on the file src/components/loader.js. It registers the A-Frame component:
 
     AFRAME.registerComponent('myloader', {
 

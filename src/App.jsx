@@ -3,7 +3,7 @@ import "aframe";
 import "aframe-event-set-component";
 import "aframe-orbit-controls";
 
-import "./Aframe/my-loader.js";
+import "./Aframe/loader.js";
 import "./Aframe/my-buttons-check.js";
 import "./Aframe/render-2d-clipplane";
 import "./Aframe/cursor-listener";
