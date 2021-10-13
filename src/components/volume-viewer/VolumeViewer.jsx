@@ -39,7 +39,7 @@ export default function VolumeViewer(props) {
           id="rhand"
           laser-controls="hand: right"
           raycaster="objects: .clickableMesh"
-          my-buttons-check={{ clipPlane: false, grabObject: false }}
+          buttons-check={{ clipPlane: false, grabObject: false }}
           collider-check={{ intersecting: false }}
         />
 

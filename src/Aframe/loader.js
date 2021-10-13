@@ -3,7 +3,7 @@ import "../shaders/ccvLibVolumeShader.js";
 var bind = AFRAME.utils.bind;
 
 AFRAME.registerComponent("collider-check", {
-  dependencies: ["raycaster", "my-buttons-check"],
+  dependencies: ["raycaster", "buttons-check"],
 
   schema: {
     intersecting: { type: "boolean", default: false },
@@ -102,7 +102,7 @@ AFRAME.registerComponent("myloader", {
 
     this.controllerHandler.matrixAutoUpdate = false;
     this.grabState =
-      this.controllerHandler.el.getAttribute("my-buttons-check").grabObject;
+      this.controllerHandler.el.getAttribute("buttons-check").grabObject;
     var my2DclipPlane = document.getElementById("my2Dclipplane");
     if (my2DclipPlane !== undefined) {
       this.my2DclipPlaneHandler = my2DclipPlane.object3D;
@@ -536,7 +536,7 @@ AFRAME.registerComponent("myloader", {
         }
       } else if (this.controllerHandler !== undefined && isVrModeActive) {
         if (
-          !this.controllerHandler.el.getAttribute("my-buttons-check")
+          !this.controllerHandler.el.getAttribute("buttons-check")
             .grabObject &&
           this.grabbed
         ) {
@@ -557,7 +557,7 @@ AFRAME.registerComponent("myloader", {
 
         // grab mesh
         if (
-          this.controllerHandler.el.getAttribute("my-buttons-check")
+          this.controllerHandler.el.getAttribute("buttons-check")
             .grabObject &&
           this.data.rayCollided &&
           !this.grabbed
@@ -613,7 +613,7 @@ AFRAME.registerComponent("myloader", {
     var isVrModeActive = this.sceneHandler.is("vr-mode");
     var doClip =
       isVrModeActive &&
-      this.controllerHandler.el.getAttribute("my-buttons-check").clipPlane &&
+      this.controllerHandler.el.getAttribute("buttons-check").clipPlane &&
       !this.grabbed;
     material.uniforms.clipPlane.value = clipMatrix;
     material.uniforms.clipping.value = doClip;
