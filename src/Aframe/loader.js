@@ -46,7 +46,7 @@ AFRAME.registerComponent("loader", {
     },
     alphaXDataArray: { type: "array" },
     alphaYDataArray: { type: "array" },
-    myMeshPosition: { type: "vec3", default: "" },
+    meshPosition: { type: "vec3", default: "" },
     path: { type: "string", default: "" },
     slices: { type: "number", default: 55 },
     x_spacing: { type: "number", default: 2.0 },
@@ -242,17 +242,17 @@ AFRAME.registerComponent("loader", {
       console.log("loader onExitVR 1: ");
       console.log(this.el.getObject3D("mesh").position);
 
-      this.data.myMeshPosition.x = this.el.getObject3D("mesh").position.x;
-      this.data.myMeshPosition.y = this.el.getObject3D("mesh").position.y;
-      this.data.myMeshPosition.z = this.el.getObject3D("mesh").position.z;
+      this.data.meshPosition.x = this.el.getObject3D("mesh").position.x;
+      this.data.meshPosition.y = this.el.getObject3D("mesh").position.y;
+      this.data.meshPosition.z = this.el.getObject3D("mesh").position.z;
 
-      console.log("loader onExitVR this.data.myMeshPosition 1 : ");
-      console.log(this.data.myMeshPosition);
+      console.log("loader onExitVR this.data.meshPosition 1 : ");
+      console.log(this.data.meshPosition);
 
       this.vrRotation = this.el.getObject3D("mesh").rotation;
       this.el.getObject3D("mesh").position.copy(new THREE.Vector3());
-      console.log("loader onExitVR this.data.myMeshPosition 2 : ");
-      console.log(this.data.myMeshPosition);
+      console.log("loader onExitVR this.data.meshPosition 2 : ");
+      console.log(this.data.meshPosition);
 
       this.el.getObject3D("mesh").rotation.set(0, 0, 0);
 
@@ -582,7 +582,7 @@ AFRAME.registerComponent("loader", {
     }
 
     if (this.el.getObject3D("mesh") !== undefined) {
-      this.data.myMeshPosition = this.el.getObject3D("mesh").position;
+      this.data.meshPosition = this.el.getObject3D("mesh").position;
     }
   },
 
