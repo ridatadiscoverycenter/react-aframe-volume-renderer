@@ -3,7 +3,7 @@ import VolumeViewer from "./VolumeViewer";
 
 import { useSelectorContext } from "../../context/selector-context";
 
-export default function VVWrapper(props) {
+export default function VolumeViewerWrapper(props) {
   const { state } = useSelectorContext();
   return (
     <div>

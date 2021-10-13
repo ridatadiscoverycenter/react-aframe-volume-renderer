@@ -17,7 +17,7 @@ import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
-import VVWrapper from "./components/volume-viewer/VVWrapper.jsx";
+import VolumeViewerWrapper from "./components/volume-viewer/VolumeViewerWrapper.jsx";
 import { ControlsProvider } from "./context/controls-context.js";
 
 export default function App() {
@@ -34,7 +34,7 @@ export default function App() {
             sidebarVisible={sidebarVisible}
             setSidebarVisible={setSidebarVisible}
           />
-          <VVWrapper
+          <VolumeViewerWrapper
             sidebarVisible={sidebarVisible}
             setSidebarVisible={setSidebarVisible}
           />
