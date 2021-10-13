@@ -299,26 +299,26 @@ NRRDLoader.prototype = {
     volume.windowHigh = max;
 
     // get the image dimensions
-    var mySamplesPerAxis = 0;
+    var samplesPerAxis = 0;
 
     console.log("headerObject: ");
     console.log(headerObject.dim);
     if (headerObject.dim == 4) {
-      mySamplesPerAxis = headerObject.sizes[0];
+      samplesPerAxis = headerObject.sizes[0];
 
-      volume.dimensions = new Array(mySamplesPerAxis - 1);
-      for (var i = 1; i < mySamplesPerAxis; i++) {
+      volume.dimensions = new Array(samplesPerAxis - 1);
+      for (var i = 1; i < samplesPerAxis; i++) {
         volume.dimensions[i - 1] = headerObject.sizes[i];
       }
     } else {
-      mySamplesPerAxis = headerObject.dim;
-      volume.dimensions = new Array(mySamplesPerAxis - 1);
-      for (var i = 0; i < mySamplesPerAxis; i++) {
+      samplesPerAxis = headerObject.dim;
+      volume.dimensions = new Array(samplesPerAxis - 1);
+      for (var i = 0; i < samplesPerAxis; i++) {
         volume.dimensions[i] = headerObject.sizes[i];
       }
     }
 
-    //volume.dimensions = [ headerObject.sizes[ mySamplesPerAxis - 3 ], headerObject.sizes[ mySamplesPerAxis -2 ], headerObject.sizes[ mySamplesPerAxis -1] ];
+    //volume.dimensions = [ headerObject.sizes[ samplesPerAxis - 3 ], headerObject.sizes[ samplesPerAxis -2 ], headerObject.sizes[ samplesPerAxis -1] ];
 
     //only works for volume data
     volume.xLength = volume.dimensions[0];
