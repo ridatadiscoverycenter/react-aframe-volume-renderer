@@ -34,7 +34,7 @@ export default function VolumeViewer(props) {
         <Spinner />
       </div>
 
-      <Scene id="myScene" background="color: black" embedded>
+      <Scene id="volumeViewerScene" background="color: black" embedded>
         <Entity
           id="rhand"
           laser-controls="hand: right"
