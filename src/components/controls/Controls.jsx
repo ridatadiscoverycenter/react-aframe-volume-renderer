@@ -21,7 +21,7 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
     dispatch({
       type: `CHANGE_${axis}_SLIDER`,
       payload: val,
-    })
+    });
   }
 
   return (

@@ -12,7 +12,7 @@ export default function ColorMapControl(props) {
     dispatch({
       type: "CHANGE_COLOR_MAP",
       payload: color,
-    })
+    });
   }
 
   return (

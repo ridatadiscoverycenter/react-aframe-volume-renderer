@@ -322,7 +322,7 @@ NRRDLoader.prototype = {
     volume.xLength = volume.dimensions[0];
     volume.yLength = volume.dimensions[1];
     volume.zLength = volume.dimensions[2];
-    
+
     // spacing
     let spacingX = new Vector3(
       headerObject.vectors[0][0],
