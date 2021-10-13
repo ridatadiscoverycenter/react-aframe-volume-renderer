@@ -44,7 +44,7 @@ export default function VolumeViewer(props) {
         />
 
         <Entity
-          id="my2DclipplaneListener"
+          id="clipplane2DListener"
           render-2d-clipplane={{
             activateClipPlane: true,
             xCLipPlaneMin: controlsState.xLowerBound,
@@ -60,7 +60,7 @@ export default function VolumeViewer(props) {
         />
         <a-plane
           class="clickable"
-          id="my2Dclipplane"
+          id="clipplane2D"
           visible="false"
           height="1"
           width="1"

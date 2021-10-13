@@ -94,18 +94,18 @@ AFRAME.registerComponent("loader", {
     );
 
     this.clipPlaneListenerHandler = document.getElementById(
-      "my2DclipplaneListener"
+      "clipplane2DListener"
     ).object3D;
     this.clip2DPlaneRendered = false;
 
-    this.clipPlaneHandler = document.getElementById("my2Dclipplane").object3D;
+    this.clipPlaneHandler = document.getElementById("clipplane2D").object3D;
 
     this.controllerHandler.matrixAutoUpdate = false;
     this.grabState =
       this.controllerHandler.el.getAttribute("buttons-check").grabObject;
-    var my2DclipPlane = document.getElementById("my2Dclipplane");
-    if (my2DclipPlane !== undefined) {
-      this.my2DclipPlaneHandler = my2DclipPlane.object3D;
+    var clipplane2D = document.getElementById("clipplane2D");
+    if (clipplane2D !== undefined) {
+      this.clipplane2DHandler = clipplane2D.object3D;
     }
 
     // save mesh vr position and rotation on swich between desktop and vr
