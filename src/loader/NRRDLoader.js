@@ -318,13 +318,11 @@ NRRDLoader.prototype = {
       }
     }
 
-    //volume.dimensions = [ headerObject.sizes[ samplesPerAxis - 3 ], headerObject.sizes[ samplesPerAxis -2 ], headerObject.sizes[ samplesPerAxis -1] ];
-
     //only works for volume data
     volume.xLength = volume.dimensions[0];
     volume.yLength = volume.dimensions[1];
     volume.zLength = volume.dimensions[2];
-    // volume.arrayType = headerObject.type;
+    
     // spacing
     let spacingX = new Vector3(
       headerObject.vectors[0][0],

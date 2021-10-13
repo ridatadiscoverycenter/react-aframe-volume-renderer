@@ -303,9 +303,9 @@ Volume.prototype = {
     }
 
     firstDirection.applyMatrix4(volume.inverseMatrix).normalize();
-    firstDirection.arglet = "i";
+    firstDirection.argVar = "i";
     secondDirection.applyMatrix4(volume.inverseMatrix).normalize();
-    secondDirection.arglet = "j";
+    secondDirection.argVar = "j";
     axisInIJK.applyMatrix4(volume.inverseMatrix).normalize();
     iLength = Math.floor(Math.abs(firstDirection.dot(dimensions)));
     jLength = Math.floor(Math.abs(secondDirection.dot(dimensions)));
