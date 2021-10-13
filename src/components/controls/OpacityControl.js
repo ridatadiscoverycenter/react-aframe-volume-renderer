@@ -71,7 +71,7 @@ export default class OpacityControl extends Component {
     this.opCanvas = this.refs.canvas;
     this.opContext = this.refs.canvas.getContext("2d");
 
-    var controlsContainer = document.getElementById("controls");
+    let controlsContainer = document.getElementById("controls");
 
     this.opCanvas.width = controlsContainer.clientWidth - 2 * this.padding - 2;
     this.opCanvas.height = this.height + this.padding * 2;
@@ -181,12 +181,12 @@ export default class OpacityControl extends Component {
 
   addPoint(evt) {
     // insert points in canvas space
-    var newPoint = {
+    let newPoint = {
       x: evt.offsetX - this.padding,
       y: this.height - evt.offsetY + this.padding,
     };
 
-    var indexToBeInserted = -1;
+    let indexToBeInserted = -1;
     for (let i = 0; i < this.nodes.length; i++) {
       if (this.nodes[i].x > newPoint.x) {
         indexToBeInserted = i;
@@ -201,9 +201,9 @@ export default class OpacityControl extends Component {
   }
 
   changePointer(e) {
-    var hitPoint = false;
+    let hitPoint = false;
     for (let i = 0; i < this.nodes.length; i++) {
-      var normalizedCoordinates = {
+      let normalizedCoordinates = {
         x: this.nodes[i].x + this.padding,
         y: this.height - this.nodes[i].y + this.padding,
       };
@@ -235,8 +235,8 @@ export default class OpacityControl extends Component {
   dragPointer(e) {
     if (this.dragging) {
       e.preventDefault();
-      var diffX = this.dragStart[0] - e.screenX;
-      var diffY = this.dragStart[1] - e.screenY;
+      let diffX = this.dragStart[0] - e.screenX;
+      let diffY = this.dragStart[1] - e.screenY;
 
       if (
         this.nodeDragged === 0 ||

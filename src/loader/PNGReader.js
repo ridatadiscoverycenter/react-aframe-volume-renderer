@@ -1,19 +1,19 @@
 /*global Uint8Array:true ArrayBuffer:true */
 "use strict";
 
-var zlib = require("zlib");
-var PNG = require("./PNG");
+let zlib = require("zlib");
+let PNG = require("./PNG");
 
-var inflate = function (data, callback) {
+let inflate = function (data, callback) {
   return zlib.inflate(new Buffer(data), callback);
 };
 
-var slice = Array.prototype.slice;
-var toString = Object.prototype.toString;
+let slice = Array.prototype.slice;
+let toString = Object.prototype.toString;
 
 function equalBytes(a, b) {
   if (a.length != b.length) return false;
-  for (var l = a.length; l--; ) if (a[l] != b[l]) return false;
+  for (let l = a.length; l--; ) if (a[l] != b[l]) return false;
   return true;
 }
 
@@ -35,22 +35,22 @@ function readUInt8(buffer, offset) {
 }
 
 function bufferToString(buffer) {
-  var str = "";
-  for (var i = 0; i < buffer.length; i++) {
+  let str = "";
+  for (let i = 0; i < buffer.length; i++) {
     str += String.fromCharCode(buffer[i]);
   }
   return str;
 }
 
-var PNGReader = function (bytes) {
+let PNGReader = function (bytes) {
   if (typeof bytes == "string") {
-    var bts = bytes;
+    let bts = bytes;
     bytes = new Array(bts.length);
-    for (var i = 0, l = bts.length; i < l; i++) {
+    for (let i = 0, l = bts.length; i < l; i++) {
       bytes[i] = bts[i].charCodeAt(0);
     }
   } else {
-    var type = toString.call(bytes).slice(8, -1);
+    let type = toString.call(bytes).slice(8, -1);
     if (type == "ArrayBuffer") bytes = new Uint8Array(bytes);
   }
 
@@ -65,11 +65,11 @@ var PNGReader = function (bytes) {
 };
 
 PNGReader.prototype.readBytes = function (length) {
-  var end = this.i + length;
+  let end = this.i + length;
   if (end > this.bytes.length) {
     throw new Error("Unexpectedly reached end of file");
   }
-  var bytes = slice.call(this.bytes, this.i, end);
+  let bytes = slice.call(this.bytes, this.i, end);
   this.i = end;
   return bytes;
 };
@@ -82,7 +82,7 @@ PNGReader.prototype.decodeHeader = function () {
     throw new Error("file pointer should be at 0 to read the header");
   }
 
-  var header = this.readBytes(8);
+  let header = this.readBytes(8);
 
   if (!equalBytes(header, [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) {
     throw new Error("invalid PNGReader file (bad signature)");
@@ -100,15 +100,15 @@ PNGReader.prototype.decodeHeader = function () {
  * crc    =  4      bytes
  */
 PNGReader.prototype.decodeChunk = function () {
-  var length = readUInt32(this.readBytes(4), 0);
+  let length = readUInt32(this.readBytes(4), 0);
 
   if (length < 0) {
     throw new Error("Bad chunk length " + (0xffffffff & length));
   }
 
-  var type = bufferToString(this.readBytes(4));
-  var chunk = this.readBytes(length);
-  var crc = this.readBytes(4);
+  let type = bufferToString(this.readBytes(4));
+  let chunk = this.readBytes(length);
+  let crc = this.readBytes(4);
 
   switch (type) {
     case "IHDR":
@@ -144,7 +144,7 @@ PNGReader.prototype.decodeChunk = function () {
  * Interlace method    1 byte
  */
 PNGReader.prototype.decodeIHDR = function (chunk) {
-  var png = this.png;
+  let png = this.png;
 
   png.setWidth(readUInt32(chunk, 0));
   png.setHeight(readUInt32(chunk, 4));
@@ -187,14 +187,14 @@ PNGReader.prototype.decodeIEND = function () {};
  * Uncompress IDAT chunks
  */
 PNGReader.prototype.decodePixels = function (callback) {
-  var png = this.png;
-  var reader = this;
-  var length = 0;
-  var i, j, k, l;
+  let png = this.png;
+  let reader = this;
+  let length = 0;
+  let i, j, k, l;
   for (l = this.dataChunks.length; l--; ) length += this.dataChunks[l].length;
-  var data = new Buffer(length);
+  let data = new Buffer(length);
   for (i = 0, k = 0, l = this.dataChunks.length; i < l; i++) {
-    var chunk = this.dataChunks[i];
+    let chunk = this.dataChunks[i];
     for (j = 0; j < chunk.length; j++) data[k++] = chunk[j];
   }
   inflate(data, function (err, data) {
@@ -217,19 +217,19 @@ PNGReader.prototype.decodePixels = function (callback) {
 // Different interlace methods
 
 PNGReader.prototype.interlaceNone = function (data) {
-  var png = this.png;
+  let png = this.png;
 
   // bytes per pixel
-  var bpp = Math.max(1, (png.colors * png.bitDepth) / 8);
+  let bpp = Math.max(1, (png.colors * png.bitDepth) / 8);
 
   // color bytes per row
-  var cpr = bpp * png.width;
+  let cpr = bpp * png.width;
 
-  var pixels = new Buffer(bpp * png.width * png.height);
-  var scanline;
-  var offset = 0;
+  let pixels = new Buffer(bpp * png.width * png.height);
+  let scanline;
+  let offset = 0;
 
-  for (var i = 0; i < data.length; i += cpr + 1) {
+  for (let i = 0; i < data.length; i += cpr + 1) {
     scanline = slice.call(data, i + 1, i + cpr + 1);
 
     switch (readUInt8(data, i)) {
@@ -274,7 +274,7 @@ PNGReader.prototype.unFilterNone = function (
   of,
   length
 ) {
-  for (var i = 0, to = length; i < to; i++) {
+  for (let i = 0, to = length; i < to; i++) {
     pixels[of + i] = scanline[i];
   }
 };
@@ -285,7 +285,7 @@ PNGReader.prototype.unFilterNone = function (
  * Sub(x) = Raw(x) + Raw(x - bpp)
  */
 PNGReader.prototype.unFilterSub = function (scanline, pixels, bpp, of, length) {
-  var i = 0;
+  let i = 0;
   for (; i < bpp; i++) pixels[of + i] = scanline[i];
   for (; i < length; i++) {
     // Raw(x) + Raw(x - bpp)
@@ -300,7 +300,7 @@ PNGReader.prototype.unFilterSub = function (scanline, pixels, bpp, of, length) {
  * Up(x) = Raw(x) + Prior(x)
  */
 PNGReader.prototype.unFilterUp = function (scanline, pixels, bpp, of, length) {
-  var i = 0,
+  let i = 0,
     byte,
     prev;
   // Prior(x) is 0 for all x on the first scanline
@@ -330,7 +330,7 @@ PNGReader.prototype.unFilterAverage = function (
   of,
   length
 ) {
-  var i = 0,
+  let i = 0,
     byte,
     prev,
     prior;
@@ -386,7 +386,7 @@ PNGReader.prototype.unFilterPaeth = function (
   of,
   length
 ) {
-  var i = 0,
+  let i = 0,
     raw,
     a,
     b,
@@ -450,12 +450,12 @@ PNGReader.prototype.parse = function (options, callback) {
     this.decodeHeader();
 
     while (this.i < this.bytes.length) {
-      var type = this.decodeChunk();
+      let type = this.decodeChunk();
       // stop after IHDR chunk, or after IEND
       if ((type == "IHDR" && options.data === false) || type == "IEND") break;
     }
 
-    var png = this.png;
+    let png = this.png;
 
     this.decodePixels(function (err) {
       callback(err, png);

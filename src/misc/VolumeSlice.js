@@ -17,8 +17,8 @@ import {
   PlaneBufferGeometry,
   Texture,
 } from "../libs/three.module.js";
-var VolumeSlice = function (volume, index, axis) {
-  var slice = this;
+let VolumeSlice = function (volume, index, axis) {
+  let slice = this;
   /**
    * @member {Volume} volume The associated volume
    */
@@ -58,10 +58,10 @@ var VolumeSlice = function (volume, index, axis) {
   this.canvasBuffer = document.createElement("canvas");
   this.updateGeometry();
 
-  var canvasMap = new Texture(this.canvas);
+  let canvasMap = new Texture(this.canvas);
   canvasMap.minFilter = LinearFilter;
   canvasMap.wrapS = canvasMap.wrapT = ClampToEdgeWrapping;
-  var material = new MeshBasicMaterial({
+  let material = new MeshBasicMaterial({
     map: canvasMap,
     side: DoubleSide,
     transparent: true,
@@ -105,7 +105,7 @@ VolumeSlice.prototype = {
       this.updateGeometry();
     }
 
-    var iLength = this.iLength,
+    let iLength = this.iLength,
       jLength = this.jLength,
       sliceAccess = this.sliceAccess,
       volume = this.volume,
@@ -113,27 +113,27 @@ VolumeSlice.prototype = {
       ctx = this.ctxBuffer;
 
     // get the imageData and pixel array from the canvas
-    var imgData = ctx.getImageData(0, 0, iLength, jLength);
-    var data = imgData.data;
-    var volumeData = volume.data;
-    var upperThreshold = volume.upperThreshold;
-    var lowerThreshold = volume.lowerThreshold;
-    var windowLow = volume.windowLow;
-    var windowHigh = volume.windowHigh;
+    let imgData = ctx.getImageData(0, 0, iLength, jLength);
+    let data = imgData.data;
+    let volumeData = volume.data;
+    let upperThreshold = volume.upperThreshold;
+    let lowerThreshold = volume.lowerThreshold;
+    let windowLow = volume.windowLow;
+    let windowHigh = volume.windowHigh;
 
     // manipulate some pixel elements
-    var pixelCount = 0;
+    let pixelCount = 0;
 
     if (volume.dataType === "label") {
       //this part is currently useless but will be used when colortables will be handled
-      for (var j = 0; j < jLength; j++) {
-        for (var i = 0; i < iLength; i++) {
-          var label = volumeData[sliceAccess(i, j)];
+      for (let j = 0; j < jLength; j++) {
+        for (let i = 0; i < iLength; i++) {
+          let label = volumeData[sliceAccess(i, j)];
           label =
             label >= this.colorMap.length
               ? (label % this.colorMap.length) + 1
               : label;
-          var color = this.colorMap[label];
+          let color = this.colorMap[label];
           data[4 * pixelCount] = (color >> 24) & 0xff;
           data[4 * pixelCount + 1] = (color >> 16) & 0xff;
           data[4 * pixelCount + 2] = (color >> 8) & 0xff;
@@ -142,10 +142,10 @@ VolumeSlice.prototype = {
         }
       }
     } else {
-      for (var j = 0; j < jLength; j++) {
-        for (var i = 0; i < iLength; i++) {
-          var value = volumeData[sliceAccess(i, j)];
-          var alpha = 0xff;
+      for (let j = 0; j < jLength; j++) {
+        for (let i = 0; i < iLength; i++) {
+          let value = volumeData[sliceAccess(i, j)];
+          let alpha = 0xff;
           //apply threshold
           alpha =
             upperThreshold >= value ? (lowerThreshold <= value ? alpha : 0) : 0;
@@ -185,7 +185,7 @@ VolumeSlice.prototype = {
    * @memberof VolumeSlice
    */
   updateGeometry: function () {
-    var extracted = this.volume.extractPerpendicularPlane(
+    let extracted = this.volume.extractPerpendicularPlane(
       this.axis,
       this.index
     );

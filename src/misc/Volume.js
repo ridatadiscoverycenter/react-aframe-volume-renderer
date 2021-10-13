@@ -18,7 +18,7 @@
 
 import { Matrix3, Matrix4, Vector3 } from "../libs/three.module.js";
 import { VolumeSlice } from "../misc/VolumeSlice.js";
-var Volume = function (xLength, yLength, zLength, type, arrayBuffer) {
+let Volume = function (xLength, yLength, zLength, type, arrayBuffer) {
   if (arguments.length > 0) {
     /**
      * @member {number} xLength Width of the volume in the IJK coordinate system
@@ -135,7 +135,7 @@ var Volume = function (xLength, yLength, zLength, type, arrayBuffer) {
    * @member {number} lowerThreshold The voxels with values under this threshold won't appear in the slices.
    *                      If changed, geometryNeedsUpdate is automatically set to true on all the slices associated to this volume
    */
-  var lowerThreshold = -Infinity;
+  let lowerThreshold = -Infinity;
   Object.defineProperty(this, "lowerThreshold", {
     get: function () {
       return lowerThreshold;
@@ -151,7 +151,7 @@ var Volume = function (xLength, yLength, zLength, type, arrayBuffer) {
    * @member {number} upperThreshold The voxels with values over this threshold won't appear in the slices.
    *                      If changed, geometryNeedsUpdate is automatically set to true on all the slices associated to this volume
    */
-  var upperThreshold = Infinity;
+  let upperThreshold = Infinity;
   Object.defineProperty(this, "upperThreshold", {
     get: function () {
       return upperThreshold;
@@ -208,11 +208,11 @@ Volume.prototype = {
    * @returns {Array}  [x,y,z]
    */
   reverseAccess: function (index) {
-    var z = Math.floor(index / (this.yLength * this.xLength));
-    var y = Math.floor(
+    let z = Math.floor(index / (this.yLength * this.xLength));
+    let y = Math.floor(
       (index - z * this.yLength * this.xLength) / this.xLength
     );
-    var x = index - z * this.yLength * this.xLength - y * this.xLength;
+    let x = index - z * this.yLength * this.xLength - y * this.xLength;
     return [x, y, z];
   },
 
@@ -227,10 +227,10 @@ Volume.prototype = {
    * @returns {Volume}   this
    */
   map: function (functionToMap, context) {
-    var length = this.data.length;
+    let length = this.data.length;
     context = context || this;
 
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
       this.data[i] = functionToMap.call(context, this.data[i], i, this.data);
     }
 
@@ -245,7 +245,7 @@ Volume.prototype = {
    * @returns {Object} an object containing all the usefull information on the geometry of the slice
    */
   extractPerpendicularPlane: function (axis, RASIndex) {
-    var iLength,
+    let iLength,
       jLength,
       sliceAccess,
       planeMatrix = new Matrix4().identity(),
@@ -257,11 +257,11 @@ Volume.prototype = {
       positionOffset,
       IJKIndex;
 
-    var axisInIJK = new Vector3(),
+    let axisInIJK = new Vector3(),
       firstDirection = new Vector3(),
       secondDirection = new Vector3();
 
-    var dimensions = new Vector3(this.xLength, this.yLength, this.zLength);
+    let dimensions = new Vector3(this.xLength, this.yLength, this.zLength);
 
     switch (axis) {
       case "x":
@@ -303,9 +303,9 @@ Volume.prototype = {
     }
 
     firstDirection.applyMatrix4(volume.inverseMatrix).normalize();
-    firstDirection.argVar = "i";
+    firstDirection.arglet = "i";
     secondDirection.applyMatrix4(volume.inverseMatrix).normalize();
-    secondDirection.argVar = "j";
+    secondDirection.arglet = "j";
     axisInIJK.applyMatrix4(volume.inverseMatrix).normalize();
     iLength = Math.floor(Math.abs(firstDirection.dot(dimensions)));
     jLength = Math.floor(Math.abs(secondDirection.dot(dimensions)));
@@ -315,32 +315,32 @@ Volume.prototype = {
     IJKIndex = Math.abs(
       Math.round(IJKIndex.applyMatrix4(volume.inverseMatrix).dot(axisInIJK))
     );
-    var base = [
+    let base = [
       new Vector3(1, 0, 0),
       new Vector3(0, 1, 0),
       new Vector3(0, 0, 1),
     ];
-    var iDirection = [firstDirection, secondDirection, axisInIJK].find(
+    let iDirection = [firstDirection, secondDirection, axisInIJK].find(
       function (x) {
         return Math.abs(x.dot(base[0])) > 0.9;
       }
     );
-    var jDirection = [firstDirection, secondDirection, axisInIJK].find(
+    let jDirection = [firstDirection, secondDirection, axisInIJK].find(
       function (x) {
         return Math.abs(x.dot(base[1])) > 0.9;
       }
     );
-    var kDirection = [firstDirection, secondDirection, axisInIJK].find(
+    let kDirection = [firstDirection, secondDirection, axisInIJK].find(
       function (x) {
         return Math.abs(x.dot(base[2])) > 0.9;
       }
     );
-    var argumentsWithInversion = [
+    let argumentsWithInversion = [
       "volume.xLength-1-",
       "volume.yLength-1-",
       "volume.zLength-1-",
     ];
-    var argArray = [iDirection, jDirection, kDirection].map(function (
+    let argArray = [iDirection, jDirection, kDirection].map(function (
       direction,
       n
     ) {
@@ -349,7 +349,7 @@ Volume.prototype = {
         (direction === axisInIJK ? "IJKIndex" : direction.argVar)
       );
     });
-    var argString = argArray.join(",");
+    let argString = argArray.join(",");
     sliceAccess = eval(
       "(function sliceAccess (i,j) {return volume.access( " + argString + ");})"
     );
@@ -373,7 +373,7 @@ Volume.prototype = {
    * @returns {VolumeSlice} the extracted slice
    */
   extractSlice: function (axis, index) {
-    var slice = new VolumeSlice(this, index, axis);
+    let slice = new VolumeSlice(this, index, axis);
     this.sliceList.push(slice);
     return slice;
   },
@@ -398,16 +398,16 @@ Volume.prototype = {
    * @returns {Array} [min,max]
    */
   computeMinMax: function () {
-    var min = Infinity;
-    var max = -Infinity;
+    let min = Infinity;
+    let max = -Infinity;
 
     // buffer the length
-    var datasize = this.data.length;
+    let datasize = this.data.length;
 
-    var i = 0;
+    let i = 0;
     for (i = 0; i < datasize; i++) {
       if (!isNaN(this.data[i])) {
-        var value = this.data[i];
+        let value = this.data[i];
         min = Math.min(min, value);
         max = Math.max(max, value);
       }
