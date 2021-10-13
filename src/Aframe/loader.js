@@ -82,7 +82,6 @@ AFRAME.registerComponent("loader", {
     this.group = new THREE.Group();
 
     this.isVrModeOn = false;
-    this.mySpeed = 0.1;
 
     this.sceneHandler = this.el.sceneEl;
     this.group = new THREE.Group();
@@ -190,7 +189,7 @@ AFRAME.registerComponent("loader", {
       }
     }
 
-    this.myCanvas = this.el.sceneEl.canvas;
+    this.canvas = this.el.sceneEl.canvas;
 
     this.printedLog = false;
 
@@ -278,8 +277,8 @@ AFRAME.registerComponent("loader", {
       this.hiddenLabel.style.display = "";
       let el = this.el;
       let data = this.data;
-      let canvasWidth = this.myCanvas.width;
-      let canvasHeight = this.myCanvas.height;
+      let canvasWidth = this.canvas.width;
+      let canvasHeight = this.canvas.height;
 
       const useTransferFunction = this.data.useTransferFunction;
       let hiddenLabel = this.hiddenLabel;
