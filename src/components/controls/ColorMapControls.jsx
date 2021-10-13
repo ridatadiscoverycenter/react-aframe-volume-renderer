@@ -1,9 +1,5 @@
 import { Dropdown } from "react-bootstrap";
 
-import "primereact/resources/themes/nova/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
-
 import { useControlsContext } from "../../context/controls-context";
 
 export default function ColorMapControl(props) {

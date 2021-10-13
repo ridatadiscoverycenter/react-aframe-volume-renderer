@@ -3,6 +3,10 @@ import { Sidebar } from "primereact/sidebar";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
+import "primereact/resources/themes/nova/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 import { useControlsContext } from "../../context/controls-context";
 import OpacityControls from "./OpacityControl";
 import ColorMapControls from "./ColorMapControls";
