@@ -31,8 +31,7 @@ export default function App() {
         <ControlsProvider>
           <InfoText />
           <ModelSelector
-            sidebarVisible={sidebarVisible}
-            setSidebarVisible={setSidebarVisible}
+            toggleSidebar={() => setSidebarVisible(!sidebarVisible)}
           />
           <VolumeViewerWrapper
             sidebarVisible={sidebarVisible}

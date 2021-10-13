@@ -11,7 +11,7 @@ import { useSelectorContext } from "../context/selector-context";
 import { colorMaps, measurement, season, tide } from "../assets/config.json";
 import { useControlsContext } from "../context/controls-context";
 
-export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
+export default function ModelSelector({ toggleSidebar }) {
   const {
     state: { selection },
     dispatch: selectorDispatch,
@@ -23,7 +23,7 @@ export default function ModelSelector({ sidebarVisible, setSidebarVisible }) {
     <Container fluid className="my-3">
       <Row>
         <Col className="text-center">
-          <Button onClick={(e) => setSidebarVisible(!sidebarVisible)}>
+          <Button onClick={toggleSidebar}>
             Options
           </Button>
         </Col>
