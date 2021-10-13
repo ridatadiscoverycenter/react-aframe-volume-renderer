@@ -46,7 +46,7 @@ AFRAME.registerComponent("loader", {
     },
     alphaXDataArray: { type: "array" },
     alphaYDataArray: { type: "array" },
-    meshPosition: { type: "vec3", default: {x: 0, y: 0, z: 0} },
+    meshPosition: { type: "vec3", default: { x: 0, y: 0, z: 0 } },
     path: { type: "string", default: "" },
     slices: { type: "number", default: 55 },
     x_spacing: { type: "number", default: 2.0 },
