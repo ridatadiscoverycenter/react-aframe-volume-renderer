@@ -21,12 +21,9 @@ function ControlsProvider(props) {
     transferFunctionNodes: initialTransferFunction,
 
     // Sliders
-    xLowerBound: range.min,
-    xUpperBound: range.max,
-    yLowerBound: range.min,
-    yUpperBound: range.max,
-    zLowerBound: range.min,
-    zUpperBound: range.max,
+    xSliderBounds: [range.min, range.max],
+    ySliderBounds: [range.min, range.max],
+    zSliderBounds: [range.min, range.max],
   });
 
   const value = { state, dispatch };
@@ -64,22 +61,19 @@ function volumeReducer(state, action) {
     case "CHANGE_X_SLIDER": {
       return {
         ...state,
-        xLowerBound: action.lower,
-        xUpperBound: action.upper,
+        xSliderBounds: action.bounds
       };
     }
     case "CHANGE_Y_SLIDER": {
       return {
         ...state,
-        yLowerBound: action.upper,
-        yUpperBound: action.lower,
+        ySliderBounds: action.bounds
       };
     }
     case "CHANGE_Z_SLIDER": {
       return {
         ...state,
-        zLowerBound: action.upper,
-        zUpperBound: action.lower,
+        zSliderBounds: action.bounds
       };
     }
     default: {

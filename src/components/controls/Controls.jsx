@@ -45,8 +45,7 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
                       onChange={(val) =>
                         dispatch({
                           type: `CHANGE_${axis}_SLIDER`,
-                          lower: val[0],
-                          upper: val[1],
+                          bounds: val,
                         })
                       }
                     />
