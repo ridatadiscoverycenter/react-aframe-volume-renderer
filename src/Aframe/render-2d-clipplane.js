@@ -16,13 +16,10 @@ let KEYS = [
 AFRAME.registerComponent("render-2d-clipplane", {
   schema: {
     activateClipPlane: { type: "boolean", default: false },
-    xCLipPlaneMin: { type: "number", default: 0 },
-    xCLipPlaneMax: { type: "number", default: 1 },
-    yCLipPlaneMin: { type: "number", default: 0 },
-    yCLipPlaneMax: { type: "number", default: 1 },
-    zCLipPlaneMin: { type: "number", default: 0 },
-    zCLipPlaneMax: { type: "number", default: 1 },
-    currenAxisAngle: { type: "vec3" },
+    xBounds: {type: "array", default: [0, 1]},
+    yBounds: {type: "array", default: [0, 1]},
+    zBounds: {type: "array", default: [0, 1]},
+    currentAxisAngle: { type: "vec3" },
     rotateAngle: { type: "vec3" },
     clipX: { type: "vec2" },
     clipY: { type: "vec2" },
@@ -51,23 +48,23 @@ AFRAME.registerComponent("render-2d-clipplane", {
     this.tempVec.z = this.data.zCLipPlaneRotation;
 
     this.data.clipX = {
-      x: this.data.xCLipPlaneMin,
-      y: this.data.xCLipPlaneMax,
+      x: this.data.xBounds[0],
+      y: this.data.xBounds[1],
     };
     this.data.clipY = {
-      x: this.data.yCLipPlaneMin,
-      y: this.data.yCLipPlaneMax,
+      x: this.data.yBounds[0],
+      y: this.data.yBounds[1],
     };
     this.data.clipZ = {
-      x: this.data.zCLipPlaneMin,
-      y: this.data.zCLipPlaneMax,
+      x: this.data.zBounds[0],
+      y: this.data.zBounds[1],
     };
 
     // I dont know why I have to save the current angle axis using a temporal variable. Maybe Aframe updates
     // data on a asynchronous call
-    this.data.currenAxisAngle.x = this.tempVec.x;
-    this.data.currenAxisAngle.y = this.tempVec.y;
-    this.data.currenAxisAngle.z = this.tempVec.z;
+    this.data.currentAxisAngle.x = this.tempVec.x;
+    this.data.currentAxisAngle.y = this.tempVec.y;
+    this.data.currentAxisAngle.z = this.tempVec.z;
 
     if (this.keys.KeyQ && !this.active) {
       this.active = true;

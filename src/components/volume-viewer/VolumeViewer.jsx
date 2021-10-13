@@ -47,13 +47,10 @@ export default function VolumeViewer(props) {
           id="clipplane2DListener"
           render-2d-clipplane={{
             activateClipPlane: true,
-            xCLipPlaneMin: controlsState.xSliderBounds[0],
-            xCLipPlaneMax: controlsState.xSliderBounds[1],
-            yCLipPlaneMin: controlsState.ySliderBounds[0],
-            yCLipPlaneMax: controlsState.ySliderBounds[1],
-            zCLipPlaneMin: controlsState.zSliderBounds[0],
-            zCLipPlaneMax: controlsState.zSliderBounds[1],
-            currenAxisAngle: "0 0 0",
+            xBounds: controlsState.xSliderBounds,
+            yBounds: controlsState.ySliderBounds,
+            zBounds: controlsState.zSliderBounds,
+            currentAxisAngle: "0 0 0",
             rotateAngle: "0 0 0",
             clipX: "0 0",
           }}
