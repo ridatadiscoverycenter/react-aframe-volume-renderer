@@ -17,8 +17,8 @@ THREE.TrackballControls = function (object, domElement) {
       'THREE.TrackballControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.'
     );
 
-  let _this = this;
-  let STATE = {
+  const _this = this;
+  const STATE = {
     NONE: -1,
     ROTATE: 0,
     ZOOM: 1,
@@ -62,7 +62,7 @@ THREE.TrackballControls = function (object, domElement) {
 
   this.target = new THREE.Vector3();
 
-  let EPS = 0.000001;
+  const EPS = 0.000001;
 
   let lastPosition = new THREE.Vector3();
   let lastZoom = 1;
@@ -89,17 +89,16 @@ THREE.TrackballControls = function (object, domElement) {
   this.zoom0 = this.object.zoom;
 
   // events
-
-  let changeEvent = { type: "change" };
-  let startEvent = { type: "start" };
-  let endEvent = { type: "end" };
+  const changeEvent = { type: "change" };
+  const startEvent = { type: "start" };
+  const endEvent = { type: "end" };
 
   // methods
 
   this.handleResize = function () {
-    let box = this.domElement.getBoundingClientRect();
+    const box = this.domElement.getBoundingClientRect();
     // adjustments come from similar code in the jquery offset() function
-    let d = this.domElement.ownerDocument.documentElement;
+    const d = this.domElement.ownerDocument.documentElement;
     this.screen.left = box.left + window.pageXOffset - d.clientLeft;
     this.screen.top = box.top + window.pageYOffset - d.clientTop;
     this.screen.width = box.width;

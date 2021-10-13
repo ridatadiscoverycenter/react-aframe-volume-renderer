@@ -19,6 +19,22 @@ export default function ModelSelector({ toggleSidebar }) {
 
   const { dispatch: controlsDispatch } = useControlsContext();
 
+  function handleChange(val) {
+    // Change model
+    selectorDispatch({
+      type: "TOGGLE_MEASUREMENT",
+      payload: val,
+    });
+    // Change color map
+    controlsDispatch({
+      type: "CHANGE_COLOR_MAP",
+      payload:
+        val.value === "salt"
+          ? colorMaps.find((m) => m.name === "Haline")
+          : colorMaps.find((m) => m.name === "Thermal"),
+    });
+  }
+
   return (
     <Container fluid className="my-3">
       <Row>
@@ -30,21 +46,7 @@ export default function ModelSelector({ toggleSidebar }) {
             type="radio"
             name="measurement"
             value={selection.measurement}
-            onChange={(val) => {
-              // Change model
-              selectorDispatch({
-                type: "TOGGLE_MEASUREMENT",
-                payload: val,
-              });
-              // Change color map
-              controlsDispatch({
-                type: "CHANGE_COLOR_MAP",
-                payload:
-                  val.value === "salt"
-                    ? colorMaps.find((m) => m.name === "Haline")
-                    : colorMaps.find((m) => m.name === "Thermal"),
-              });
-            }}
+            onChange={(val) => handleChange(val)}
           >
             {measurement.map((m) => {
               return (

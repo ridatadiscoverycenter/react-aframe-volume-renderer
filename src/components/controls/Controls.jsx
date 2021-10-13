@@ -17,6 +17,13 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
     dispatch,
   } = useControlsContext();
 
+  function handleClick(axis, val) {
+    dispatch({
+      type: `CHANGE_${axis}_SLIDER`,
+      payload: val,
+    })
+  }
+
   return (
     <Sidebar
       id="controls"
@@ -46,12 +53,7 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
                     defaultValue={[sliderRange.min, sliderRange.max]}
                     min={sliderRange.min}
                     max={sliderRange.max}
-                    onChange={(val) =>
-                      dispatch({
-                        type: `CHANGE_${axis}_SLIDER`,
-                        bounds: val,
-                      })
-                    }
+                    onChange={(val) => handleClick(axis, val)}
                   />
                 </Form.Group>
               );

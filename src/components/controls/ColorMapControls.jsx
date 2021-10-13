@@ -8,6 +8,13 @@ export default function ColorMapControl(props) {
     dispatch,
   } = useControlsContext();
 
+  function handleClick(color) {
+    dispatch({
+      type: "CHANGE_COLOR_MAP",
+      payload: color,
+    })
+  }
+
   return (
     <div className="fullWidth">
       <h4>Color Map</h4>
@@ -28,12 +35,7 @@ export default function ColorMapControl(props) {
               <Dropdown.Item
                 key={color.name}
                 active={colorMap === color}
-                onClick={() =>
-                  dispatch({
-                    type: "CHANGE_COLOR_MAP",
-                    payload: color,
-                  })
-                }
+                onClick={() => handleClick(color)}
               >
                 <img
                   src={color.src}
