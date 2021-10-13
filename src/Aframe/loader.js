@@ -178,15 +178,15 @@ AFRAME.registerComponent("loader", {
       let dDataIncA = dDataA / dIndex;
 
       for (let idx = indices[j] + 1; idx < indices[j + 1]; idx++) {
-        let myAlpha = pData[idx - 1][3] + dDataIncA;
-        let myvector = [
+        let alpha = pData[idx - 1][3] + dDataIncA;
+        let vector = [
           pData[idx - 1][0] + dDataIncR,
           pData[idx - 1][1] + dDataIncG,
           pData[idx - 1][2] + dDataIncB,
-          myAlpha,
+          alpha,
         ];
-        this.alphaData[idx] = myAlpha;
-        pData[idx] = myvector;
+        this.alphaData[idx] = alpha;
+        pData[idx] = vector;
       }
     }
 
