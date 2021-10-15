@@ -82,7 +82,6 @@ THREE.TrackballControls = function (object, domElement) {
     _panEnd = new THREE.Vector2();
 
   // for reset
-
   this.target0 = this.target.clone();
   this.position0 = this.object.position.clone();
   this.up0 = this.object.up.clone();

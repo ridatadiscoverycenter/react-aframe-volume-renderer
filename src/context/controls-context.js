@@ -10,13 +10,12 @@ const ControlsContext = createContext();
 // Custom component to provide the Controls context
 function ControlsProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
-    // Constants
-    // TODO: MAKE_CAPITAL_CASE
+    // Constants from config
     allColorMaps: colorMaps,
     sliderRange: range,
-    USE_TRANSFER_FUNCTION: true,
+    useTransferFunction: true,
 
-    // Color Map and Opacity
+    // Color and Opacity
     colorMap: colorMaps[0],
     transferFunctionNodes: initialTransferFunction,
 
@@ -61,19 +60,19 @@ function volumeReducer(state, action) {
     case "CHANGE_X_SLIDER": {
       return {
         ...state,
-        xSliderBounds: action.bounds,
+        xSliderBounds: action.payload,
       };
     }
     case "CHANGE_Y_SLIDER": {
       return {
         ...state,
-        ySliderBounds: action.bounds,
+        ySliderBounds: action.payload,
       };
     }
     case "CHANGE_Z_SLIDER": {
       return {
         ...state,
-        zSliderBounds: action.bounds,
+        zSliderBounds: action.payload,
       };
     }
     default: {

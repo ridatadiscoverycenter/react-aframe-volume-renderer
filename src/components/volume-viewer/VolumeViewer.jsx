@@ -14,7 +14,6 @@ import { useControlsContext } from "../../context/controls-context";
 
 function getCoordinates(transferFunctionNodes, plane) {
   let coordinates = [];
-
   if (plane === "x" || plane === "y") {
     transferFunctionNodes.forEach((node) => {
       coordinates.push(node[plane]);
@@ -69,7 +68,7 @@ export default function VolumeViewer(props) {
           id="volumeCube"
           class="clickableMesh"
           loader={{
-            useTransferFunction: controlsState.USE_TRANSFER_FUNCTION,
+            useTransferFunction: controlsState.useTransferFunction,
             colorMap: controlsState.colorMap.src,
             alphaXDataArray: getCoordinates(
               controlsState.transferFunctionNodes,

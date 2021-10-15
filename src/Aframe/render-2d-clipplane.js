@@ -43,41 +43,27 @@ AFRAME.registerComponent("render-2d-clipplane", {
   update: function () {},
 
   tick: function (time, timeDelta) {
+    // I dont know why I have to save the current angle axis using a temporal variable. Maybe Aframe updates
+    // data on a asynchronous call
     this.tempVec.x = this.data.xCLipPlaneRotation;
     this.tempVec.y = this.data.yCLipPlaneRotation;
     this.tempVec.z = this.data.zCLipPlaneRotation;
 
-    this.data.clipX = {
-      x: this.data.xBounds[0],
-      y: this.data.xBounds[1],
-    };
-    this.data.clipY = {
-      x: this.data.yBounds[0],
-      y: this.data.yBounds[1],
-    };
-    this.data.clipZ = {
-      x: this.data.zBounds[0],
-      y: this.data.zBounds[1],
-    };
-
-    // I dont know why I have to save the current angle axis using a temporal variable. Maybe Aframe updates
-    // data on a asynchronous call
     this.data.currentAxisAngle.x = this.tempVec.x;
     this.data.currentAxisAngle.y = this.tempVec.y;
     this.data.currentAxisAngle.z = this.tempVec.z;
 
-    if (this.keys.KeyQ && !this.active) {
-      this.active = true;
-    }
-    if (this.keys.KeyS && this.active) {
-      this.active = false;
-    }
+    this.data.clipX = { x: this.data.xBounds[0], y: this.data.xBounds[1] };
+    this.data.clipY = { x: this.data.yBounds[0], y: this.data.yBounds[1] };
+    this.data.clipZ = { x: this.data.zBounds[0], y: this.data.zBounds[1] };
+
+    if (this.keys.KeyQ && !this.active) this.active = true;
+    if (this.keys.KeyS && this.active) this.active = false;
 
     if (this.active && !this.rendererPlane) {
       this.data.activateClipPlane = true;
       this.rendererPlane = true;
     }
-
     if (!this.active && this.rendererPlane) {
       this.data.activateClipPlane = false;
       this.rendererPlane = false;
@@ -89,17 +75,13 @@ AFRAME.registerComponent("render-2d-clipplane", {
   },
 
   onKeyDown: function (event) {
-    let code = event.code;
-    if (this.isVrModeOn) {
-      return;
-    }
-    if (KEYS.indexOf(code) !== -1) {
-      this.keys[code] = true;
-    }
+    const code = event.code;
+    if (this.isVrModeOn) return;
+    if (KEYS.indexOf(code) !== -1) this.keys[code] = true;
   },
 
   onKeyUp: function (event) {
-    let code = event.code;
+    const code = event.code;
     delete this.keys[code];
   },
 
