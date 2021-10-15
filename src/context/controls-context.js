@@ -57,23 +57,11 @@ function volumeReducer(state, action) {
         transferFunctionNodes: action.payload,
       };
     }
-    case "CHANGE_X_SLIDER": {
+    case "CHANGE_SLIDER": {
       return {
-        ...state,
-        xSliderBounds: action.payload,
-      };
-    }
-    case "CHANGE_Y_SLIDER": {
-      return {
-        ...state,
-        ySliderBounds: action.payload,
-      };
-    }
-    case "CHANGE_Z_SLIDER": {
-      return {
-        ...state,
-        zSliderBounds: action.payload,
-      };
+        ...state, 
+        ...action.payload
+      }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

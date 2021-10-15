@@ -19,8 +19,10 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
 
   function handleClick(axis, val) {
     dispatch({
-      type: `CHANGE_${axis}_SLIDER`,
-      payload: val,
+      type: `CHANGE_SLIDER`,
+      payload: {
+        [axis.concat("SliderBounds")]: val,
+      },
     });
   }
 
@@ -43,10 +45,10 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
         <Row className="mt-5">
           <h4>Clip</h4>
           <Form className="fullWidth">
-            {["X", "Y", "Z"].map((axis) => {
+            {["x", "y", "z"].map((axis) => {
               return (
                 <Form.Group key={axis}>
-                  <Form.Label>{axis}</Form.Label>
+                  <Form.Label>{axis.toUpperCase()}</Form.Label>
                   <Slider.Range
                     allowCross={false}
                     step={0.0009}
