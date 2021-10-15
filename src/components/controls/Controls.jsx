@@ -41,7 +41,6 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
         <Row className="my-3">
           <OpacityControls />
         </Row>
-
         <Row className="mt-5">
           <h4>Clip</h4>
           <Form className="fullWidth">

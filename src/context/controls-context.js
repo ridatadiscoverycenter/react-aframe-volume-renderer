@@ -59,9 +59,9 @@ function volumeReducer(state, action) {
     }
     case "CHANGE_SLIDER": {
       return {
-        ...state, 
-        ...action.payload
-      }
+        ...state,
+        ...action.payload,
+      };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
