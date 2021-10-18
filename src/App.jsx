@@ -3,8 +3,8 @@ import "aframe";
 import "aframe-event-set-component";
 import "aframe-orbit-controls";
 
-import "./Aframe/my-loader.js";
-import "./Aframe/my-buttons-check.js";
+import "./Aframe/loader.js";
+import "./Aframe/buttons-check.js";
 import "./Aframe/render-2d-clipplane";
 import "./Aframe/cursor-listener";
 
@@ -15,10 +15,10 @@ import { SelectorProvider } from "./context/selector-context.js";
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
-import Sidebar from "./components/sidebar/Sidebar";
-import VolumeViewer from "./components/volume-viewer/VolumeViewer.js";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
+import VolumeViewerWrapper from "./components/volume-viewer/VolumeViewerWrapper.jsx";
+import { ControlsProvider } from "./context/controls-context.js";
 
 export default function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -28,16 +28,16 @@ export default function App() {
       <Header />
 
       <SelectorProvider>
-        <InfoText />
-        <ModelSelector
-          sidebarVisible={sidebarVisible}
-          setSidebarVisible={setSidebarVisible}
-        />
-        <Sidebar
-          sidebarVisible={sidebarVisible}
-          setSidebarVisible={setSidebarVisible}
-        />
-        <VolumeViewer />
+        <ControlsProvider>
+          <InfoText />
+          <ModelSelector
+            toggleSidebar={() => setSidebarVisible(!sidebarVisible)}
+          />
+          <VolumeViewerWrapper
+            sidebarVisible={sidebarVisible}
+            setSidebarVisible={setSidebarVisible}
+          />
+        </ControlsProvider>
       </SelectorProvider>
 
       <Instructions />
