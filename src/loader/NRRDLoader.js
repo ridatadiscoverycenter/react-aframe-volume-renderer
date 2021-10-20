@@ -16,7 +16,7 @@ import {
 import { Zlib } from "../libs/gunzip.module.min.js";
 import { Volume } from "../misc/Volume.js";
 
-var NRRDLoader = function (manager) {
+let NRRDLoader = function (manager) {
   this.manager = manager !== undefined ? manager : DefaultLoadingManager;
 };
 
@@ -24,9 +24,9 @@ NRRDLoader.prototype = {
   constructor: NRRDLoader,
 
   load: function (url, onLoad, onProgress, onError) {
-    var scope = this;
+    let scope = this;
 
-    var loader = new FileLoader(scope.manager);
+    let loader = new FileLoader(scope.manager);
     loader.setPath(scope.path);
     loader.setResponseType("arraybuffer");
     loader.load(
@@ -47,23 +47,23 @@ NRRDLoader.prototype = {
   parse: function (data) {
     // this parser is largely inspired from the XTK NRRD parser : https://github.com/xtk/X
 
-    var _data = data;
+    let _data = data;
 
-    var _dataPointer = 0;
+    let _dataPointer = 0;
 
-    var _nativeLittleEndian = new Int8Array(new Int16Array([1]).buffer)[0] > 0;
+    let _nativeLittleEndian = new Int8Array(new Int16Array([1]).buffer)[0] > 0;
 
-    var _littleEndian = true;
+    let _littleEndian = true;
 
-    var headerObject = {};
+    let headerObject = {};
 
     function scan(type, chunks) {
       if (chunks === undefined || chunks === null) {
         chunks = 1;
       }
 
-      var _chunkSize = 1;
-      var _array_type = Uint8Array;
+      let _chunkSize = 1;
+      let _array_type = Uint8Array;
 
       switch (type) {
         // 1 byte data types
@@ -105,7 +105,7 @@ NRRDLoader.prototype = {
       }
 
       // increase the data pointer in-place
-      var _bytes = new _array_type(
+      let _bytes = new _array_type(
         _data.slice(_dataPointer, (_dataPointer += chunks * _chunkSize))
       );
 
@@ -127,10 +127,10 @@ NRRDLoader.prototype = {
     // Flips typed array endianness in-place. Based on https://github.com/kig/DataStream.js/blob/master/DataStream.js.
 
     function flipEndianness(array, chunkSize) {
-      var u8 = new Uint8Array(array.buffer, array.byteOffset, array.byteLength);
-      for (var i = 0; i < array.byteLength; i += chunkSize) {
-        for (var j = i + chunkSize - 1, k = i; j > k; j--, k++) {
-          var tmp = u8[k];
+      let u8 = new Uint8Array(array.buffer, array.byteOffset, array.byteLength);
+      for (let i = 0; i < array.byteLength; i += chunkSize) {
+        for (let j = i + chunkSize - 1, k = i; j > k; j--, k++) {
+          let tmp = u8[k];
           u8[k] = u8[j];
           u8[j] = tmp;
         }
@@ -141,7 +141,7 @@ NRRDLoader.prototype = {
 
     // parse the header
     function parseHeader(header) {
-      var data, field, fn, i, l, lines, m, _i, _len;
+      let data, field, fn, i, l, lines, m, _i, _len;
       lines = header.split(/\r?\n/);
       for (_i = 0, _len = lines.length; _i < _len; _i++) {
         l = lines[_i];
@@ -191,12 +191,12 @@ NRRDLoader.prototype = {
 
     // parse the data when registred as one of this type : 'text', 'ascii', 'txt'
     function parseDataAsText(data, start, end) {
-      var number = "";
+      let number = "";
       start = start || 0;
       end = end || data.length;
-      var value;
+      let value;
       // length of the result is the product of the sizes
-      var lengthOfTheResult = headerObject.sizes.reduce(function (
+      let lengthOfTheResult = headerObject.sizes.reduce(function (
         previous,
         current
       ) {
@@ -204,21 +204,21 @@ NRRDLoader.prototype = {
       },
       1);
 
-      var base = 10;
+      let base = 10;
       if (headerObject.encoding === "hex") {
         base = 16;
       }
 
-      var result = new headerObject.__array(lengthOfTheResult);
-      var resultIndex = 0;
-      var parsingFunction = parseInt;
+      let result = new headerObject.__array(lengthOfTheResult);
+      let resultIndex = 0;
+      let parsingFunction = parseInt;
       if (
         headerObject.__array === Float32Array ||
         headerObject.__array === Float64Array
       ) {
         parsingFunction = parseFloat;
       }
-      for (var i = start; i < end; i++) {
+      for (let i = start; i < end; i++) {
         value = data[i];
         // if value is not a space
         if ((value < 9 || value > 13) && value !== 32) {
@@ -238,11 +238,11 @@ NRRDLoader.prototype = {
       return result;
     }
 
-    var _bytes = scan("uchar", data.byteLength);
-    var _length = _bytes.length;
-    var _header = null;
-    var _data_start = 0;
-    var i;
+    let _bytes = scan("uchar", data.byteLength);
+    let _length = _bytes.length;
+    let _header = null;
+    let _data_start = 0;
+    let i;
     for (i = 1; i < _length; i++) {
       if (_bytes[i - 1] == 10 && _bytes[i] == 10) {
         // we found two line breaks in a row
@@ -258,11 +258,11 @@ NRRDLoader.prototype = {
     //console.log("_header");
     //console.log(_header);
 
-    var _data = _bytes.subarray(_data_start); // the data without header
+    let _data = _bytes.subarray(_data_start); // the data without header
     if (headerObject.encoding === "gzip" || headerObject.encoding === "gz") {
       // we need to decompress the datastream
       // here we start the unzipping and get a typed Uint8Array back
-      var inflate = new Zlib.Gunzip(new Uint8Array(_data)); // eslint-disable-line no-undef
+      let inflate = new Zlib.Gunzip(new Uint8Array(_data)); // eslint-disable-line no-undef
       _data = inflate.decompress();
     } else if (
       headerObject.encoding === "ascii" ||
@@ -273,9 +273,9 @@ NRRDLoader.prototype = {
       _data = parseDataAsText(_data);
     } else if (headerObject.encoding === "raw") {
       // we need to copy the array to create a new array buffer, else we retrieve the original arraybuffer with the header
-      var _copy = new Uint8Array(_data.length);
+      let _copy = new Uint8Array(_data.length);
 
-      for (var i = 0; i < _data.length; i++) {
+      for (let i = 0; i < _data.length; i++) {
         _copy[i] = _data[i];
       }
 
@@ -284,59 +284,57 @@ NRRDLoader.prototype = {
     // .. let's use the underlying array buffer
     _data = _data.buffer;
 
-    var volume = new Volume();
+    let volume = new Volume();
     volume.header = headerObject;
     //
     // parse the (unzipped) data to a datastream of the correct type
     //
     volume.data = new headerObject.__array(_data);
     // get the min and max intensities
-    var min_max = volume.computeMinMax();
-    var min = min_max[0];
-    var max = min_max[1];
+    let min_max = volume.computeMinMax();
+    let min = min_max[0];
+    let max = min_max[1];
     // attach the scalar range to the volume
     volume.windowLow = min;
     volume.windowHigh = max;
 
     // get the image dimensions
-    var mySamplesPerAxis = 0;
+    let samplesPerAxis = 0;
 
     console.log("headerObject: ");
     console.log(headerObject.dim);
     if (headerObject.dim == 4) {
-      mySamplesPerAxis = headerObject.sizes[0];
+      samplesPerAxis = headerObject.sizes[0];
 
-      volume.dimensions = new Array(mySamplesPerAxis - 1);
-      for (var i = 1; i < mySamplesPerAxis; i++) {
+      volume.dimensions = new Array(samplesPerAxis - 1);
+      for (let i = 1; i < samplesPerAxis; i++) {
         volume.dimensions[i - 1] = headerObject.sizes[i];
       }
     } else {
-      mySamplesPerAxis = headerObject.dim;
-      volume.dimensions = new Array(mySamplesPerAxis - 1);
-      for (var i = 0; i < mySamplesPerAxis; i++) {
+      samplesPerAxis = headerObject.dim;
+      volume.dimensions = new Array(samplesPerAxis - 1);
+      for (let i = 0; i < samplesPerAxis; i++) {
         volume.dimensions[i] = headerObject.sizes[i];
       }
     }
-
-    //volume.dimensions = [ headerObject.sizes[ mySamplesPerAxis - 3 ], headerObject.sizes[ mySamplesPerAxis -2 ], headerObject.sizes[ mySamplesPerAxis -1] ];
 
     //only works for volume data
     volume.xLength = volume.dimensions[0];
     volume.yLength = volume.dimensions[1];
     volume.zLength = volume.dimensions[2];
-    // volume.arrayType = headerObject.type;
+
     // spacing
-    var spacingX = new Vector3(
+    let spacingX = new Vector3(
       headerObject.vectors[0][0],
       headerObject.vectors[0][1],
       headerObject.vectors[0][2]
     ).length();
-    var spacingY = new Vector3(
+    let spacingY = new Vector3(
       headerObject.vectors[1][0],
       headerObject.vectors[1][1],
       headerObject.vectors[1][2]
     ).length();
-    var spacingZ = new Vector3(
+    let spacingZ = new Vector3(
       headerObject.vectors[2][0],
       headerObject.vectors[2][1],
       headerObject.vectors[2][2]
@@ -346,9 +344,9 @@ NRRDLoader.prototype = {
     // Create IJKtoRAS matrix
     volume.matrix = new Matrix4();
 
-    var _spaceX = 1;
-    var _spaceY = 1;
-    var _spaceZ = 1;
+    let _spaceX = 1;
+    let _spaceY = 1;
+    let _spaceZ = 1;
 
     if (headerObject.space == "left-posterior-superior") {
       _spaceX = -1;
@@ -377,7 +375,7 @@ NRRDLoader.prototype = {
         1
       );
     } else {
-      var v = headerObject.vectors;
+      let v = headerObject.vectors;
 
       volume.matrix.set(
         _spaceX * v[0][0],
@@ -432,9 +430,9 @@ NRRDLoader.prototype = {
       end = array.length;
     }
 
-    var output = "";
+    let output = "";
     // create and append the chars
-    var i = 0;
+    let i = 0;
     for (i = start; i < end; ++i) {
       output += String.fromCharCode(array[i]);
     }
@@ -509,9 +507,9 @@ NRRDLoader.prototype = {
     },
 
     sizes: function (data) {
-      var i;
+      let i;
       return (this.sizes = (function () {
-        var _i, _len, _ref, _results;
+        let _i, _len, _ref, _results;
         _ref = data.split(/\s+/);
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -531,16 +529,16 @@ NRRDLoader.prototype = {
     },
 
     "space directions": function (data) {
-      var f, parts, v;
+      let f, parts, v;
       parts = data.match(/\(.*?\)/g);
       return (this.vectors = (function () {
-        var _i, _len, _results;
+        let _i, _len, _results;
         _results = [];
         for (_i = 0, _len = parts.length; _i < _len; _i++) {
           v = parts[_i];
           _results.push(
             (function () {
-              var _j, _len2, _ref, _results2;
+              let _j, _len2, _ref, _results2;
               _ref = v.slice(1, -1).split(/,/);
               _results2 = [];
               for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
@@ -556,13 +554,13 @@ NRRDLoader.prototype = {
     },
 
     spacings: function (data) {
-      var f, parts;
+      let f, parts;
       parts = data.split(/\s+/);
       return (this.spacings = (function () {
-        var _len = 0;
-        var _results = [];
+        let _len = 0;
+        let _results = [];
 
-        for (var _i = 0, _len = parts.length; _i < _len; _i++) {
+        for (let _i = 0, _len = parts.length; _i < _len; _i++) {
           f = parts[_i];
           _results.push(parseFloat(f));
         }

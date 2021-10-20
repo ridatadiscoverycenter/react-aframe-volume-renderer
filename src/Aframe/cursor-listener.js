@@ -6,7 +6,7 @@ AFRAME.registerComponent("cursor-listener", {
     this.lastIndex = -1;
     this.COLORS = ["red", "green", "blue"];
     this.dragging = false;
-    this.cameraHandler = document.getElementById("myCamera").object3D;
+    this.cameraHandler = document.getElementById("camera").object3D;
     this.onMousedown = this.onMousedown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
