@@ -28,7 +28,7 @@ export default function VolumeViewer(props) {
   const { state: controlsState } = useControlsContext();
 
   return (
-    <Container fluid className="aframe-container mb-3" id="visualizer">
+    <Container fluid className="aframe-container p-0" id="visualizer">
       <div id="modelLoaded" style={{ display: "none" }}>
         <Spinner />
       </div>

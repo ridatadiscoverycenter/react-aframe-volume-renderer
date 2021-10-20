@@ -297,7 +297,7 @@ export default class OpacityControl extends Component {
 
   render() {
     return (
-      <div>
+      <div className="fullWidth">
         <canvas ref="canvas" id="opacityControls" />
 
         <ControlsConsumer>
@@ -306,7 +306,7 @@ export default class OpacityControl extends Component {
               src={state.colorMap.src}
               alt="Selected color map"
               height="15"
-              width="250px"
+              width="100%"
               className="border border-dark"
             />
           )}

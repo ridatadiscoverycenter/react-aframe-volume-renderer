@@ -27,41 +27,33 @@ export default function Controls({ sidebarVisible, setSidebarVisible }) {
   }
 
   return (
-    <Sidebar
-      id="controls"
-      modal={false}
-      position="left"
-      visible={sidebarVisible}
-      onHide={(e) => setSidebarVisible(false)}
-    >
-      <Container fluid id="controls">
-        <Row className="my-3">
-          <ColorMapControls />
-        </Row>
-        <Row className="my-3">
-          <OpacityControls />
-        </Row>
-        <Row className="mt-5">
-          <h4>Clip</h4>
-          <Form className="fullWidth">
-            {["x", "y", "z"].map((axis) => {
-              return (
-                <Form.Group key={axis}>
-                  <Form.Label>{axis.toUpperCase()}</Form.Label>
-                  <Slider.Range
-                    allowCross={false}
-                    step={0.0009}
-                    defaultValue={[sliderRange.min, sliderRange.max]}
-                    min={sliderRange.min}
-                    max={sliderRange.max}
-                    onChange={(val) => handleClick(axis, val)}
-                  />
-                </Form.Group>
-              );
-            })}
-          </Form>
-        </Row>
-      </Container>
-    </Sidebar>
+    <Container className="" id="controls">
+      <Row className="my-3">
+        <ColorMapControls />
+      </Row>
+      <Row className="my-3">
+        <OpacityControls />
+      </Row>
+      <Row className="mt-5">
+        <h4>Clip</h4>
+        <Form className="fullWidth">
+          {["x", "y", "z"].map((axis) => {
+            return (
+              <Form.Group key={axis}>
+                <Form.Label>{axis.toUpperCase()}</Form.Label>
+                <Slider.Range
+                  allowCross={false}
+                  step={0.0009}
+                  defaultValue={[sliderRange.min, sliderRange.max]}
+                  min={sliderRange.min}
+                  max={sliderRange.max}
+                  onChange={(val) => handleClick(axis, val)}
+                />
+              </Form.Group>
+            );
+          })}
+        </Form>
+      </Row>
+    </Container>
   );
 }
