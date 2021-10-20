@@ -1,6 +1,5 @@
 import React from "react";
-import { Modal, ModalBody, Navbar, Nav, Row } from "react-bootstrap";
-import { Button } from "primereact/button";
+import { Modal, ModalBody, Navbar, Nav, Button, Row } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 export default function HowTo(props) {
@@ -148,7 +147,7 @@ export default function HowTo(props) {
         </ModalBody>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={() => props.close()}>
+          <Button variant="secondary" onClick={() => props.close()}>
             Close
           </Button>
         </Modal.Footer>
