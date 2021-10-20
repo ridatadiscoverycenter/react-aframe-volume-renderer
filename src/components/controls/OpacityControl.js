@@ -233,8 +233,7 @@ export default class OpacityControl extends Component {
           y: (this.nodes[i].y / 70).toFixed(2)};
         
         let fromSpaceX = ((pointTo256.x - oldScaleMin)* newScaleRange/ oldScaleRange) + newScaleMin
-        let fromSpaceY = ((pointTo256.y - oldScaleMin)* newScaleRange/ oldScaleRange) + newScaleMin
-
+        
         graph.title = ""+Math.floor(fromSpaceX)+","+pointTo256.y;
 
         this.nodeHovered = i;
