@@ -206,6 +206,10 @@ AFRAME.registerComponent("myloader", {
     cameraEl.setAttribute("camera", "active", true);
 
     this.hiddenLabel = document.getElementById("modelLoaded");
+
+    this.volueDataMin = 0;
+    this.volueDataMax = 30;
+
   },
 
   debugScene: function (evt) {},

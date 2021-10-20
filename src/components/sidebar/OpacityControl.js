@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { mySendAlphaPoints } from "../../redux/AppActions";
+import "../../styles/main.scss"
 
 const mapStateToProps = (state) => {
   return { colorMap: state.colorMap };
@@ -61,6 +62,10 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
       this.removePoint = this.removePoint.bind(this);
       this.sendAlphaData = this.sendAlphaData.bind(this);
       this.resetOpacityPoints = this.resetOpacityPoints.bind(this);
+
+      this.minDataSpaceValue = 0;
+      this.maxDataSpaceValue = 33;
+      this.midDataSpaceValue = 0;
     }
 
     componentDidMount() {
@@ -156,7 +161,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
         );
         this.opContext.fill();
       }
-
+      
       this.sendAlphaData();
     }
 
@@ -237,9 +242,22 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
           ) <= this.hoverRadius
         ) {
           this.opCanvas.className = "pointer";
+          let oldScaleMin = 0.0 
+          let oldScaleMax = 256.0
+          let oldScaleRange= (oldScaleMax - oldScaleMin)
+
+          let newScaleMin = this.minDataSpaceValue
+          let newScaleMax = this.maxDataSpaceValue
+          let newScaleRange=  (newScaleMax - newScaleMin)
+
           var pointTo256 ={ x: this.nodes[i].x + (256-this.width)* (this.nodes[i].x/ this.width),
                             y: (this.nodes[i].y / 70).toFixed(2)};
-          graph.title = ""+Math.floor(pointTo256.x)+","+pointTo256.y;
+
+          let fromSpaceX = ((pointTo256.x - oldScaleMin)* newScaleRange/ oldScaleRange) + newScaleMin
+          let fromSpaceY = ((pointTo256.y - oldScaleMin)* newScaleRange/ oldScaleRange) + newScaleMin
+
+          graph.title = ""+Math.floor(fromSpaceX)+","+pointTo256.y;
+          
           this.nodeHovered = i;
           hitPoint = true;
           this.hovering = true;
@@ -323,10 +341,17 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
     }
 
     render() {
+      this.midDataSpaceValue = (this.minDataSpaceValue +  this.maxDataSpaceValue) / 2
       return (
         <div>
           <canvas ref="canvas" id="opacityControls" />
-          
+          <table width='250px' >
+            <tr>
+              <td width='33%'>{this.minDataSpaceValue}</td>
+              <td width='33%' class="text-align-center">{this.midDataSpaceValue}</td>
+              <td width='33%' class="text-align-right" >{this.maxDataSpaceValue}</td>
+            </tr>
+          </table>
           <img
             src={this.props.colorMap.src}
             alt="Selected color map"
@@ -334,6 +359,7 @@ export default connect(mapStateToProps, { mySendAlphaPoints })(
             width="250px"
             className="border border-dark"
           />
+          
           <p>
             Double-click to add a point to the transfer function. Drag points to
             change the function.

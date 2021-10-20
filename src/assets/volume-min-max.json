@@ -1,0 +1,50 @@
+{
+    "winter-low-temp": [
+        {
+          "min": "-3",
+          "max": "15"
+        }       
+      ],
+    "winter-low-salt": [
+        {
+          "min": "-17",
+          "max": "63"
+        }       
+      ],
+    "winter-high-temp": [
+        {
+          "min": "-3",
+          "max": "15"
+        }       
+      ],
+    "winter-high-salt": [
+        {
+          "min": "-17",
+          "max": "63"
+        }       
+      ],
+    "summer-low-temp": [
+        {
+          "min": "6",
+          "max": "31"
+        }       
+      ],
+    "summer-low-salt": [
+        {
+          "min": "0",
+          "max": "33"
+        }       
+      ],
+    "summer-high-temp": [
+        {
+          "min": "6",
+          "max": "31"
+        }       
+      ],
+    "summer-high-salt": [
+        {
+          "min": "0",
+          "max": "33"
+        }       
+    ]
+}
