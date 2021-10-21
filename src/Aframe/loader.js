@@ -130,15 +130,15 @@ AFRAME.registerComponent("loader", {
       [0.5, 0, 0],
     ];
 
-    let pData = [];
+    const pData = [];
     this.alphaData = [];
     this.newAlphaData = [];
-    let indices = [];
-    let zeroArray = [0, 0, 0, 0];
+    const indices = [];
+    const zeroArray = [0, 0, 0, 0];
 
     //setting up control points
     for (let i = 0; i < 9; i++) {
-      let index = i * 28;
+      const index = i * 28;
       while (pData.length < index) {
         pData.push(zeroArray);
       }
@@ -154,9 +154,9 @@ AFRAME.registerComponent("loader", {
 
     //interpolation between opacity control points
     for (let j = 0; j < 9 - 1; j++) {
-      let dDataA = pData[indices[j + 1]][3] - pData[indices[j]][3];
-      let dIndex = indices[j + 1] - indices[j];
-      let dDataIncA = dDataA / dIndex;
+      const dDataA = pData[indices[j + 1]][3] - pData[indices[j]][3];
+      const dIndex = indices[j + 1] - indices[j];
+      const dDataIncA = dDataA / dIndex;
       for (let idx = indices[j] + 1; idx < indices[j + 1]; idx++) {
         let alpha = pData[idx - 1][3] + dDataIncA;
         this.alphaData[idx] = alpha;
@@ -165,27 +165,26 @@ AFRAME.registerComponent("loader", {
 
     // interpolation between colors control points
     for (let j = 0; j < 9 - 1; j++) {
-      let dDataR = pData[indices[j + 1]][0] - pData[indices[j]][0];
-      let dDataG = pData[indices[j + 1]][1] - pData[indices[j]][1];
-      let dDataB = pData[indices[j + 1]][2] - pData[indices[j]][2];
-      let dDataA = pData[indices[j + 1]][3] - pData[indices[j]][3];
-      let dIndex = indices[j + 1] - indices[j];
+      const dDataR = pData[indices[j + 1]][0] - pData[indices[j]][0];
+      const dDataG = pData[indices[j + 1]][1] - pData[indices[j]][1];
+      const dDataB = pData[indices[j + 1]][2] - pData[indices[j]][2];
+      const dDataA = pData[indices[j + 1]][3] - pData[indices[j]][3];
+      const dIndex = indices[j + 1] - indices[j];
 
-      let dDataIncR = dDataR / dIndex;
-      let dDataIncG = dDataG / dIndex;
-      let dDataIncB = dDataB / dIndex;
-      let dDataIncA = dDataA / dIndex;
+      const dDataIncR = dDataR / dIndex;
+      const dDataIncG = dDataG / dIndex;
+      const dDataIncB = dDataB / dIndex;
+      const dDataIncA = dDataA / dIndex;
 
       for (let idx = indices[j] + 1; idx < indices[j + 1]; idx++) {
-        let alpha = pData[idx - 1][3] + dDataIncA;
-        let vector = [
+        const alpha = pData[idx - 1][3] + dDataIncA;
+        this.alphaData[idx] = alpha;
+        pData[idx] = [
           pData[idx - 1][0] + dDataIncR,
           pData[idx - 1][1] + dDataIncG,
           pData[idx - 1][2] + dDataIncB,
           alpha,
         ];
-        this.alphaData[idx] = alpha;
-        pData[idx] = vector;
       }
     }
 
@@ -203,8 +202,10 @@ AFRAME.registerComponent("loader", {
 
   updateTransferTexture: function () {
     if (this.colorTransferMap.has(this.currentColorMap)) {
-      let colorTransfer = this.colorTransferMap.get(this.currentColorMap).data;
-      let imageTransferData = new Uint8Array(4 * 256);
+      const colorTransfer = this.colorTransferMap.get(
+        this.currentColorMap
+      ).data;
+      const imageTransferData = new Uint8Array(4 * 256);
       for (let i = 0; i < 256; i++) {
         imageTransferData[i * 4 + 0] = colorTransfer[i * 3 + 0];
         imageTransferData[i * 4 + 1] = colorTransfer[i * 3 + 1];
@@ -212,7 +213,7 @@ AFRAME.registerComponent("loader", {
         imageTransferData[i * 4 + 3] = this.newAlphaData[i];
       }
 
-      let transferTexture = new THREE.DataTexture(
+      const transferTexture = new THREE.DataTexture(
         imageTransferData,
         256,
         1,
@@ -275,13 +276,13 @@ AFRAME.registerComponent("loader", {
 
     if (path !== "") {
       this.hiddenLabel.style.display = "";
-      let el = this.el;
-      let data = this.data;
-      let canvasWidth = this.canvas.width;
-      let canvasHeight = this.canvas.height;
+      const el = this.el;
+      const data = this.data;
+      const canvasWidth = this.canvas.width;
+      const canvasHeight = this.canvas.height;
 
       const useTransferFunction = this.data.useTransferFunction;
-      let hiddenLabel = this.hiddenLabel;
+      const hiddenLabel = this.hiddenLabel;
 
       const updateColorMapping = this.updateColorMapping;
 
@@ -289,24 +290,24 @@ AFRAME.registerComponent("loader", {
       new THREE.TextureLoader().load(
         path,
         function (texture) {
-          let dim = Math.ceil(Math.sqrt(slices));
-          let spacing = [x_spacing, y_spacing, z_spacing];
+          const dim = Math.ceil(Math.sqrt(slices));
+          const spacing = [x_spacing, y_spacing, z_spacing];
 
-          let volumeScale = [
+          const volumeScale = [
             1.0 / ((texture.image.width / dim) * spacing[0]),
             1.0 / ((texture.image.height / dim) * spacing[1]),
             1.0 / (slices * spacing[2]),
           ];
 
-          let zScale = volumeScale[0] / volumeScale[2];
+          const zScale = volumeScale[0] / volumeScale[2];
 
           texture.minFilter = texture.magFilter = THREE.LinearFilter;
           texture.unpackAlignment = 1;
           texture.needsUpdate = true;
 
           // Material
-          let shader = THREE.ShaderLib["ccvLibVolumeRenderShader"];
-          let uniforms = THREE.UniformsUtils.clone(shader.uniforms);
+          const shader = THREE.ShaderLib["ccvLibVolumeRenderShader"];
+          const uniforms = THREE.UniformsUtils.clone(shader.uniforms);
           uniforms["u_data"].value = texture;
           uniforms["u_lut"].value = null;
           uniforms["clipPlane"].value = new THREE.Matrix4();
@@ -342,7 +343,7 @@ AFRAME.registerComponent("loader", {
           uniforms["box_min"].value = new THREE.Vector3(0, 0, 0);
           uniforms["box_max"].value = new THREE.Vector3(1, 1, 1);
 
-          let material = new THREE.ShaderMaterial({
+          const material = new THREE.ShaderMaterial({
             uniforms: uniforms,
             transparent: true,
             vertexShader: shader.vertexShader,
@@ -351,7 +352,7 @@ AFRAME.registerComponent("loader", {
           });
 
           // Mesh
-          let geometry = new THREE.BoxGeometry(1, 1, 1);
+          const geometry = new THREE.BoxGeometry(1, 1, 1);
 
           el.setObject3D("mesh", new THREE.Mesh(geometry, material));
           data.modelLoaded = true;
@@ -387,7 +388,7 @@ AFRAME.registerComponent("loader", {
 
   updateColorMapping: function () {
     if (!this.colorTransferMap.has(this.currentColorMap)) {
-      let colorCanvas = document.createElement("canvas");
+      const colorCanvas = document.createElement("canvas");
 
       const imgWidth = 255;
       const imgHeight = 15;
@@ -407,10 +408,10 @@ AFRAME.registerComponent("loader", {
       newColorMap.img.onload = function (data) {
         colorCanvas.height = imgHeight;
         colorCanvas.width = imgWidth;
-        let colorContext = colorCanvas.getContext("2d");
+        const colorContext = colorCanvas.getContext("2d");
         colorContext.drawImage(newColorMap.img, 0, 0);
-        let colorData = colorContext.getImageData(0, 0, imgWidth, 1).data;
-        let colorTransfer = new Uint8Array(3 * 256);
+        const colorData = colorContext.getImageData(0, 0, imgWidth, 1).data;
+        const colorTransfer = new Uint8Array(3 * 256);
         for (let i = 0; i < 256; i++) {
           colorTransfer[i * 3] = colorData[i * 4];
           colorTransfer[i * 3 + 1] = colorData[i * 4 + 1];
@@ -457,13 +458,13 @@ AFRAME.registerComponent("loader", {
     this.newAlphaData = [];
 
     for (let i = 0; i <= arrayX.length - 2; i++) {
-      let scaledColorInit = arrayX[i] * 255;
-      let scaledColorEnd = arrayX[i + 1] * 255;
+      const scaledColorInit = arrayX[i] * 255;
+      const scaledColorEnd = arrayX[i + 1] * 255;
 
-      let scaledAplhaInit = arrayY[i] * 255;
-      let scaledAlphaEnd = arrayY[i + 1] * 255;
+      const scaledAplhaInit = arrayY[i] * 255;
+      const scaledAlphaEnd = arrayY[i + 1] * 255;
 
-      let deltaX = scaledColorEnd - scaledColorInit;
+      const deltaX = scaledColorEnd - scaledColorInit;
 
       for (let j = 1 / deltaX; j < 1; j += 1 / deltaX) {
         // linear interpolation
@@ -482,7 +483,7 @@ AFRAME.registerComponent("loader", {
       this.debugVRPos = false;
     }
 
-    let isVrModeActive = this.sceneHandler.is("vr-mode");
+    const isVrModeActive = this.sceneHandler.is("vr-mode");
     if (this.data.modelLoaded) {
       if (this.clipPlaneListenerHandler !== undefined && !isVrModeActive) {
         if (
@@ -499,7 +500,7 @@ AFRAME.registerComponent("loader", {
           this.clip2DPlaneRendered = false;
 
           if (this.el.getObject3D("mesh") !== undefined) {
-            let material = this.el.getObject3D("mesh").material;
+            const material = this.el.getObject3D("mesh").material;
             material.uniforms.box_min.value = new THREE.Vector3(0, 0, 0);
             material.uniforms.box_max.value = new THREE.Vector3(1, 1, 1);
           }
@@ -507,16 +508,16 @@ AFRAME.registerComponent("loader", {
 
         if (this.clip2DPlaneRendered) {
           if (this.el.getObject3D("mesh") !== undefined) {
-            let material = this.el.getObject3D("mesh").material;
+            const material = this.el.getObject3D("mesh").material;
 
             if (material !== undefined) {
-              let sliceX = this.clipPlaneListenerHandler.el.getAttribute(
+              const sliceX = this.clipPlaneListenerHandler.el.getAttribute(
                 "render-2d-clipplane"
               ).clipX;
-              let sliceY = this.clipPlaneListenerHandler.el.getAttribute(
+              const sliceY = this.clipPlaneListenerHandler.el.getAttribute(
                 "render-2d-clipplane"
               ).clipY;
-              let sliceZ = this.clipPlaneListenerHandler.el.getAttribute(
+              const sliceZ = this.clipPlaneListenerHandler.el.getAttribute(
                 "render-2d-clipplane"
               ).clipZ;
 
@@ -559,9 +560,9 @@ AFRAME.registerComponent("loader", {
           this.data.rayCollided &&
           !this.grabbed
         ) {
-          let inversControllerPos = new THREE.Matrix4();
-          inversControllerPos.getInverse(this.controllerHandler.matrixWorld);
-          this.el.getObject3D("mesh").matrix.premultiply(inversControllerPos);
+          const inverseControllerPos = new THREE.Matrix4();
+          inverseControllerPos.getInverse(this.controllerHandler.matrixWorld);
+          this.el.getObject3D("mesh").matrix.premultiply(inverseControllerPos);
           this.el
             .getObject3D("mesh")
             .matrix.decompose(
@@ -584,31 +585,31 @@ AFRAME.registerComponent("loader", {
   },
 
   updateMeshClipMatrix: function (currentSpaceClipMatrix) {
-    let volumeMatrix = this.el.getObject3D("mesh").matrixWorld;
+    const volumeMatrix = this.el.getObject3D("mesh").matrixWorld;
     //material for setting the clipPlane and clipping value
-    let material = this.el.getObject3D("mesh").material;
+    const material = this.el.getObject3D("mesh").material;
 
     //scalematrix for zscaling
-    let scaleMatrix = new THREE.Matrix4();
+    const scaleMatrix = new THREE.Matrix4();
     scaleMatrix.makeScale(1, 1, material.uniforms.zScale.value);
 
     //translationmatrix to cube-coordinates ranging from 0 -1
-    let translationMatrix = new THREE.Matrix4();
+    const translationMatrix = new THREE.Matrix4();
     translationMatrix.makeTranslation(-0.5, -0.5, -0.5);
 
     //inverse of the clipMatrix
-    let currentSpaceClipMatrix_inverse = new THREE.Matrix4();
+    const currentSpaceClipMatrix_inverse = new THREE.Matrix4();
     currentSpaceClipMatrix_inverse.getInverse(currentSpaceClipMatrix);
 
     //outputmatrix - controller_inverse * volume * scale * translation
-    let clipMatrix = new THREE.Matrix4();
+    const clipMatrix = new THREE.Matrix4();
     clipMatrix.multiplyMatrices(currentSpaceClipMatrix_inverse, volumeMatrix);
     clipMatrix.multiplyMatrices(clipMatrix, scaleMatrix);
     clipMatrix.multiplyMatrices(clipMatrix, translationMatrix);
 
     //set uniforms of shader
-    let isVrModeActive = this.sceneHandler.is("vr-mode");
-    let doClip =
+    const isVrModeActive = this.sceneHandler.is("vr-mode");
+    const doClip =
       isVrModeActive &&
       this.controllerHandler.el.getAttribute("buttons-check").clipPlane &&
       !this.grabbed;

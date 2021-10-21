@@ -17,15 +17,12 @@ export default function VolumeViewerWrapper(props) {
         )}
 
         <Col className="align-self-center text-center">
-          <div id="modelLoaded" style={{display: "block"}}>
+          <div id="modelLoaded" style={{ display: "block" }}>
             <Spinner animation="border" variant="primary">
               <span className="sr-only">Loading Volume</span>
             </Spinner>
           </div>
-          <VolumeViewer 
-            volume={state} 
-          />
-          
+          <VolumeViewer volume={state} />
         </Col>
       </Row>
     </Container>
