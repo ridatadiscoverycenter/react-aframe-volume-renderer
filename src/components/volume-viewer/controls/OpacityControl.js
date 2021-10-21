@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import {
   ControlsConsumer,
   ControlsContext,
-} from "../../context/controls-context";
+} from "../../../context/controls-context";
 
 export default class OpacityControl extends Component {
   static contextType = ControlsContext; // TEMP - only while component is class based
