@@ -8,7 +8,6 @@ import {
   volumeRotation,
   volumeScale,
 } from "../../assets/config.json";
-import Spinner from "./Spinner";
 
 import { useControlsContext } from "../../context/controls-context";
 
@@ -29,10 +28,6 @@ export default function VolumeViewer(props) {
 
   return (
     <Container fluid className="aframe-container p-0" id="visualizer">
-      <div id="modelLoaded" style={{ display: "none" }}>
-        <Spinner />
-      </div>
-
       <Scene id="volumeViewerScene" background="color: black" embedded>
         <Entity
           id="rhand"
