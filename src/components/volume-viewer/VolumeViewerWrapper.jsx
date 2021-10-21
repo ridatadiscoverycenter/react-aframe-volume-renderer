@@ -1,6 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
-
-import Spinner from "./Spinner";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 import { useSelectorContext } from "../../context/selector-context";
 import Controls from "../controls/Controls";
@@ -18,7 +16,9 @@ export default function VolumeViewerWrapper(props) {
         )}
         <Col className="text-center">
           <div id="modelLoaded" style={{ display: "none" }}>
-            <Spinner id="modelLoaded" style={{ display: "none" }}/>
+            <Spinner animation="border" variant="primary" className="mx-auto">
+              <span className="sr-only">Loading Volume</span>
+            </Spinner>
           </div>
           <VolumeViewer volume={state} />
         </Col>
