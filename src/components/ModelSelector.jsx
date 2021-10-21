@@ -11,7 +11,7 @@ import { useSelectorContext } from "../context/selector-context";
 import { colorMaps, measurement, season, tide } from "../assets/config.json";
 import { useControlsContext } from "../context/controls-context";
 
-export default function ModelSelector({ toggleSidebar }) {
+export default function ModelSelector({ toggleControls }) {
   const {
     state: { selection },
     dispatch: selectorDispatch,
@@ -39,7 +39,7 @@ export default function ModelSelector({ toggleSidebar }) {
     <Container fluid className="px-4">
       <Row noGutters>
         <Col className="text-center">
-          <Button onClick={toggleSidebar}>Options</Button>
+          <Button onClick={toggleControls}>Options</Button>
         </Col>
         <Col className="text-center">
           <ToggleButtonGroup

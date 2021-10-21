@@ -6,21 +6,26 @@ import VolumeViewer from "./VolumeViewer";
 
 export default function VolumeViewerWrapper(props) {
   const { state } = useSelectorContext();
+
   return (
     <Container fluid className="p-4">
-      <Row noGutters className="justify-content-md-center">
-        {props.sidebarVisible && (
+      <Row noGutters className="justify-content-center">
+        {props.controlsVisible && (
           <Col xs={3}>
             <Controls />
           </Col>
         )}
-        <Col className="text-center">
-          <div id="modelLoaded" style={{ display: "none" }}>
-            <Spinner animation="border" variant="primary" className="mx-auto">
+
+        <Col className="align-self-center text-center">
+          <div id="modelLoaded" style={{display: "block"}}>
+            <Spinner animation="border" variant="primary">
               <span className="sr-only">Loading Volume</span>
             </Spinner>
           </div>
-          <VolumeViewer volume={state} />
+          <VolumeViewer 
+            volume={state} 
+          />
+          
         </Col>
       </Row>
     </Container>
