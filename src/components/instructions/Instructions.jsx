@@ -8,7 +8,7 @@ export default function Instructions(props) {
 
   return (
     <Container fluid id="information" className="bg-secondary text-light p-4">
-      <Row noGutters className="justify-content-md-center py-5">
+      <Row className="justify-content-md-center py-5">
         <Col xs={8}>
           <div className="d-flex flex-column">
             <h1 className="my-4">Narragansett Bay Volume Viewer</h1>

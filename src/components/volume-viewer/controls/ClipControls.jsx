@@ -20,7 +20,7 @@ export default function ClipControls(props) {
   }
 
   return (
-    <div className="fullWidth">
+    <div>
       <h4>Clip</h4>
       <Form>
         {["x", "y", "z"].map((axis) => {

@@ -16,7 +16,7 @@ export default function ColorMapControl(props) {
   }
 
   return (
-    <div className="fullWidth">
+    <div>
       <h4>Color Map</h4>
       <Dropdown>
         <Dropdown.Toggle variant="outline-primary" className="fullWidth">
@@ -26,7 +26,7 @@ export default function ColorMapControl(props) {
             height="15"
             width="65%"
             className="mr-2"
-          />
+          />{" "}
           {colorMap.name}
         </Dropdown.Toggle>
         <Dropdown.Menu>
