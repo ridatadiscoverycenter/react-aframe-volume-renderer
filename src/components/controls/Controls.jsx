@@ -22,14 +22,14 @@ export default function Controls(props) {
   }
 
   return (
-    <Container id="controls">
-      <Row className="my-3">
+    <Container id="controls" className="p-3">
+      <Row noGutters className="mb-3">
         <ColorMapControls />
       </Row>
-      <Row className="my-3">
+      <Row noGutters className="my-3">
         <OpacityControls />
       </Row>
-      <Row className="mt-5">
+      <Row noGutters className="mt-5">
         <h4>Clip</h4>
         <Form className="fullWidth">
           {["x", "y", "z"].map((axis) => {

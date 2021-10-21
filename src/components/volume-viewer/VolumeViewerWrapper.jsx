@@ -10,7 +10,7 @@ export default function VolumeViewerWrapper(props) {
     <Container fluid className="p-4 pt-0">
       <Row noGutters>
         {props.sidebarVisible && (
-          <Col xs={3} className="px-3">
+          <Col xs={3}>
             <Controls />
           </Col>
         )}
