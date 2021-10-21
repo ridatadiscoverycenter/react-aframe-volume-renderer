@@ -36,8 +36,8 @@ export default function ModelSelector({ toggleSidebar }) {
   }
 
   return (
-    <Container fluid className="my-3">
-      <Row>
+    <Container fluid className="px-4">
+      <Row noGutters>
         <Col className="text-center">
           <Button onClick={toggleSidebar}>Options</Button>
         </Col>

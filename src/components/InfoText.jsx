@@ -9,7 +9,7 @@ export default function InfoText(props) {
   } = useSelectorContext();
 
   return (
-    <Container className="my-2">
+    <Container className="py-4">
       <Alert
         variant="primary"
         className="d-flex flex-column justify-content-center"

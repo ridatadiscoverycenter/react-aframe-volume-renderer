@@ -7,7 +7,7 @@ import VolumeViewer from "./VolumeViewer";
 export default function VolumeViewerWrapper(props) {
   const { state } = useSelectorContext();
   return (
-    <Container fluid className="p-4 pt-0">
+    <Container fluid className="p-4">
       <Row noGutters>
         {props.sidebarVisible && (
           <Col xs={3}>

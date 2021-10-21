@@ -25,9 +25,9 @@ export default function HowTo(props) {
         </ModalHeader>
 
         <ModalBody className="px-4">
-          <h2 id="user-guide" className="mb-4">
-            User Guide
-          </h2>
+          <Row className="mb-4">
+            <h2 id="user-guide">User Guide</h2>
+          </Row>
           <Row className="my-4">
             <p>
               Welcome to the Narragansett Bay Volume Viewer. This short guide is
@@ -97,9 +97,12 @@ export default function HowTo(props) {
               width="100%"
             />
           </Row>
+
           <hr className="my-4" />
 
-          <h2 id="enabling-vr">Enable VR Headset on Web Browser</h2>
+          <Row className="my-4">
+            <h2 id="enabling-vr">Enable VR Headset on Web Browser</h2>
+          </Row>
           <Row>
             <p>Prerequisites:</p>
           </Row>
@@ -147,7 +150,7 @@ export default function HowTo(props) {
         </ModalBody>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => props.close()}>
+          <Button variant="dark" onClick={() => props.close()}>
             Close
           </Button>
         </Modal.Footer>

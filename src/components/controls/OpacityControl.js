@@ -71,9 +71,6 @@ export default class OpacityControl extends Component {
     this.opCanvas = this.refs.canvas;
     this.opContext = this.refs.canvas.getContext("2d");
 
-    const controlsContainer = document.getElementById("controls");
-
-    this.opCanvas.width = controlsContainer.clientWidth - 2 * this.padding - 2;
     this.opCanvas.height = this.height + this.padding * 2;
 
     this.opCanvas.width = 250;

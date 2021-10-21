@@ -6,7 +6,7 @@ import ClipControls from "./ClipControls";
 
 export default function Controls(props) {
   return (
-    <Container id="controls" className="p-3">
+    <Container className="p-3">
       <Row noGutters className="mb-3">
         <ColorMapControls />
       </Row>
