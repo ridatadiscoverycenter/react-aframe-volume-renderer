@@ -6,7 +6,7 @@ import { useControlsContext } from "../../context/controls-context";
 import OpacityControls from "./OpacityControl";
 import ColorMapControls from "./ColorMapControls";
 
-export default function Controls({ sidebarVisible, setSidebarVisible }) {
+export default function Controls(props) {
   const {
     state: { sliderRange },
     dispatch,

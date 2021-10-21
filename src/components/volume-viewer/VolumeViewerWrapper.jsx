@@ -1,20 +1,19 @@
-import Controls from "../controls/Controls";
-import VolumeViewer from "./VolumeViewer";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { useSelectorContext } from "../../context/selector-context";
-import { Container, Row, Col } from "react-bootstrap";
+import Controls from "../controls/Controls";
+import VolumeViewer from "./VolumeViewer";
 
 export default function VolumeViewerWrapper(props) {
   const { state } = useSelectorContext();
   return (
-    <Container fluid className="p-4">
-      <Row>
-        <Col xs={3}>
-          <Controls
-            sidebarVisible={props.sidebarVisible}
-            setSidebarVisible={props.setSidebarVisible}
-          />
-        </Col>
+    <Container fluid className="p-4 pt-0">
+      <Row noGutters>
+        {props.sidebarVisible && (
+          <Col xs={3} className="px-3">
+            <Controls />
+          </Col>
+        )}
         <Col>
           <VolumeViewer volume={state} />
         </Col>
