@@ -11,7 +11,7 @@ export default function VolumeViewerWrapper(props) {
     <Container fluid className="p-4">
       <Row noGutters className="justify-content-center">
         {props.controlsVisible && (
-          <Col xs={3}>
+          <Col className="controls">
             <Controls />
           </Col>
         )}
