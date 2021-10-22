@@ -3,14 +3,19 @@ import { Button } from "react-bootstrap";
 
 import {
   ControlsConsumer,
-  ControlsContext,
+  ControlsContext
 } from "../../context/controls-context";
 
+
+
 import "../../styles/main.scss"
+import configMinMax from "../../assets/volume-min-max.json";
 
 export default class OpacityControl extends Component {
   static contextType = ControlsContext; // TEMP - only while component is class based
+  
   constructor(props) {
+  
     super(props);
     this.minLevel = 0;
     this.maxLevel = 1;
@@ -39,6 +44,7 @@ export default class OpacityControl extends Component {
     this.minDataSpaceValue = 0;
     this.maxDataSpaceValue = 33;
     this.midDataSpaceValue = 0;
+    this.currentUnits = "";
 
     this.nodesCanvasSpace = [];
 
@@ -71,6 +77,15 @@ export default class OpacityControl extends Component {
     this.opCanvas.removeEventListener("dblclick", this.addPoint);
     this.opCanvas.removeEventListener("contextmenu", this.removePoint);
     //-- Save state
+  }
+
+  componentWillReceiveProps(nextProps)
+  {
+     let currentVolumeSelection = nextProps.volumeData.selection.season.value+"-"+
+     nextProps.volumeData.selection.tide.value+"-"+nextProps.volumeData.selection.measurement.value;
+     this.minDataSpaceValue=configMinMax[currentVolumeSelection].min;
+     this.maxDataSpaceValue=configMinMax[currentVolumeSelection].max;
+     this.currentUnits = nextProps.volumeData.selection.measurement.value=="temp" ? "ºC" :"psu";
   }
 
   updateCanvas() {
@@ -234,7 +249,7 @@ export default class OpacityControl extends Component {
         
         let fromSpaceX = ((pointTo256.x - oldScaleMin)* newScaleRange/ oldScaleRange) + newScaleMin
         
-        graph.title = ""+Math.floor(fromSpaceX)+","+pointTo256.y;
+        graph.title = ""+fromSpaceX.toFixed(5)+","+pointTo256.y;
 
         this.nodeHovered = i;
         hitPoint = true;
@@ -319,15 +334,16 @@ export default class OpacityControl extends Component {
   }
 
   render() {
+    console.log(this.props.volumeData);
     this.midDataSpaceValue = (this.minDataSpaceValue +  this.maxDataSpaceValue) / 2
     return (
       <div>
         <canvas ref="canvas" id="opacityControls" />
         <table width='250px' >
           <tr>
-            <td width='33%'>{this.minDataSpaceValue}</td>
-            <td width='33%' class="text-align-center">{this.midDataSpaceValue}</td>
-            <td width='33%' class="text-align-right" >{this.maxDataSpaceValue}</td>
+            <td width='33%' className="text-align-left">{this.minDataSpaceValue.toFixed(2)} {this.currentUnits}</td>
+            <td width='33%' className="text-align-center">{this.midDataSpaceValue.toFixed(2)} {this.currentUnits}</td>
+            <td width='33%' className="text-align-right" >{this.maxDataSpaceValue.toFixed(2)} {this.currentUnits}</td>
           </tr>
         </table>
         <ControlsConsumer>

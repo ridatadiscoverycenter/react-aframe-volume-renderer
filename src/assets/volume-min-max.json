@@ -1,50 +1,49 @@
 {
-    "winter-low-temp": [
+    "winter-low-temp": 
         {
-          "min": "-3",
-          "max": "15"
+          "min": -2.03986,
+          "max": 15.13694
         }       
-      ],
-    "winter-low-salt": [
+    ,
+    "winter-low-salt": 
         {
-          "min": "-17",
-          "max": "63"
+          "min": -16.18597,
+          "max": 63.94851
         }       
-      ],
-    "winter-high-temp": [
+    ,
+    "winter-high-temp": 
         {
-          "min": "-3",
-          "max": "15"
+          "min": -2.03986,
+          "max": 15.13694
         }       
-      ],
-    "winter-high-salt": [
+    ,
+    "winter-high-salt": 
         {
-          "min": "-17",
-          "max": "63"
+          "min": -16.18597,
+          "max": 63.94851
         }       
-      ],
-    "summer-low-temp": [
+    ,
+    "summer-low-temp": 
         {
-          "min": "6",
-          "max": "31"
+          "min": 6.95187,
+          "max": 31.48794
         }       
-      ],
-    "summer-low-salt": [
+    ,
+    "summer-low-salt": 
         {
-          "min": "0",
-          "max": "33"
+          "min": 0.05614,
+          "max": 33.71814
         }       
-      ],
-    "summer-high-temp": [
+      ,
+    "summer-high-temp": 
         {
-          "min": "6",
-          "max": "31"
+          "min": 6.95187,
+          "max": 31.48794
         }       
-      ],
-    "summer-high-salt": [
+    ,
+    "summer-high-salt": 
         {
-          "min": "0",
-          "max": "33"
-        }       
-    ]
+          "min": 0.05614,
+          "max": 33.71814
+        }          
 }

@@ -10,6 +10,7 @@ export default function VolumeViewerWrapper(props) {
       <Controls
         sidebarVisible={props.sidebarVisible}
         setSidebarVisible={props.setSidebarVisible}
+        volume={state}
       />
       <VolumeViewer volume={state} />
     </div>
