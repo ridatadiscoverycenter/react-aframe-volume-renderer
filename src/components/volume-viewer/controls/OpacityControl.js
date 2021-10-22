@@ -294,7 +294,8 @@ export default class OpacityControl extends Component {
 
   render() {
     return (
-      <div className="fullWidth">
+      // <div className="fullWidth">
+      <div>
         <canvas ref="canvas" id="opacityControls" />
 
         <ControlsConsumer>
