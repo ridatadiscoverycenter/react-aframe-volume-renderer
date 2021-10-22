@@ -85,7 +85,7 @@ export default class OpacityControl extends Component {
      nextProps.volumeData.selection.tide.value+"-"+nextProps.volumeData.selection.measurement.value;
      this.minDataSpaceValue=configMinMax[currentVolumeSelection].min;
      this.maxDataSpaceValue=configMinMax[currentVolumeSelection].max;
-     this.currentUnits = nextProps.volumeData.selection.measurement.value=="temp" ? "ºC" :"psu";
+     this.currentUnits = nextProps.volumeData.selection.measurement.value==="temp" ? "ºC" :"psu";
   }
 
   updateCanvas() {
