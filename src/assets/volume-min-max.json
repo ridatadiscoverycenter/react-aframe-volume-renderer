@@ -1,49 +1,34 @@
 {
-    "winter-low-temp": 
-        {
-          "min": -2.03986,
-          "max": 15.13694
-        }       
-    ,
-    "winter-low-salt": 
-        {
-          "min": -16.18597,
-          "max": 63.94851
-        }       
-    ,
-    "winter-high-temp": 
-        {
-          "min": -2.03986,
-          "max": 15.13694
-        }       
-    ,
-    "winter-high-salt": 
-        {
-          "min": -16.18597,
-          "max": 63.94851
-        }       
-    ,
-    "summer-low-temp": 
-        {
-          "min": 6.95187,
-          "max": 31.48794
-        }       
-    ,
-    "summer-low-salt": 
-        {
-          "min": 0.05614,
-          "max": 33.71814
-        }       
-      ,
-    "summer-high-temp": 
-        {
-          "min": 6.95187,
-          "max": 31.48794
-        }       
-    ,
-    "summer-high-salt": 
-        {
-          "min": 0.05614,
-          "max": 33.71814
-        }          
+  "winter-low-temp": {
+    "min": -2.03986,
+    "max": 15.13694
+  },
+  "winter-low-salt": {
+    "min": -16.18597,
+    "max": 63.94851
+  },
+  "winter-high-temp": {
+    "min": -2.03986,
+    "max": 15.13694
+  },
+  "winter-high-salt": {
+    "min": -16.18597,
+    "max": 63.94851
+  },
+  "summer-low-temp": {
+    "min": 6.95187,
+    "max": 31.48794
+  },
+  "summer-low-salt": {
+    "min": 0.05614,
+    "max": 33.71814
+  },
+  "summer-high-temp": {
+    "min": 6.95187,
+    "max": 31.48794
+  },
+  "summer-high-salt": {
+    "min": 0.05614,
+    "max": 33.71814
+  }
 }
