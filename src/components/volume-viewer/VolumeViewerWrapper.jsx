@@ -10,11 +10,7 @@ export default function VolumeViewerWrapper(props) {
   return (
     <Container fluid className="p-4">
       <Row noGutters className="justify-content-center">
-        {props.controlsVisible && (
-          <Col className="controls">
-            <Controls />
-          </Col>
-        )}
+        {props.controlsVisible && <Controls />}
 
         <Col className="align-self-center text-center">
           <div id="modelLoaded" style={{ display: "block" }}>
