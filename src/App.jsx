@@ -21,7 +21,7 @@ import VolumeViewerWrapper from "./components/volume-viewer/VolumeViewerWrapper.
 import { ControlsProvider } from "./context/controls-context.js";
 
 export default function App() {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(false);
 
   return (
     <div id="visualizer">
@@ -31,12 +31,9 @@ export default function App() {
         <ControlsProvider>
           <InfoText />
           <ModelSelector
-            toggleSidebar={() => setSidebarVisible(!sidebarVisible)}
+            toggleControls={() => setControlsVisible(!controlsVisible)}
           />
-          <VolumeViewerWrapper
-            sidebarVisible={sidebarVisible}
-            setSidebarVisible={setSidebarVisible}
-          />
+          <VolumeViewerWrapper controlsVisible={controlsVisible} />
         </ControlsProvider>
       </SelectorProvider>
 

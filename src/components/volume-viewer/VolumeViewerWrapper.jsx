@@ -1,17 +1,26 @@
-import Controls from "../controls/Controls";
-import VolumeViewer from "./VolumeViewer";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 import { useSelectorContext } from "../../context/selector-context";
+import Controls from "./controls/Controls";
+import VolumeViewer from "./VolumeViewer";
 
 export default function VolumeViewerWrapper(props) {
   const { state } = useSelectorContext();
+
   return (
-    <div>
-      <Controls
-        sidebarVisible={props.sidebarVisible}
-        setSidebarVisible={props.setSidebarVisible}
-      />
-      <VolumeViewer volume={state} />
-    </div>
+    <Container fluid className="p-4">
+      <Row noGutters className="justify-content-center">
+        {props.controlsVisible && <Controls />}
+
+        <Col className="align-self-center text-center">
+          <div id="modelLoaded" style={{ display: "block" }}>
+            <Spinner animation="border" variant="primary">
+              <span className="sr-only">Loading Volume</span>
+            </Spinner>
+          </div>
+          <VolumeViewer volume={state} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
