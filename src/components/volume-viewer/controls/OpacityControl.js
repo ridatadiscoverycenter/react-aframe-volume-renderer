@@ -72,7 +72,6 @@ export default class OpacityControl extends Component {
     this.opContext = this.refs.canvas.getContext("2d");
 
     this.opCanvas.height = this.height + this.padding * 2;
-
     this.opCanvas.width = 250;
     this.width = this.opCanvas.width - 2 * this.padding;
 
@@ -294,7 +293,7 @@ export default class OpacityControl extends Component {
 
   render() {
     return (
-      <div className="fullWidth">
+      <div>
         <canvas ref="canvas" id="opacityControls" />
 
         <ControlsConsumer>

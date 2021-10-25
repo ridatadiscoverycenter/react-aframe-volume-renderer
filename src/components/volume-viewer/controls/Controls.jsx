@@ -6,7 +6,7 @@ import ClipControls from "./ClipControls";
 
 export default function Controls(props) {
   return (
-    <Stack gap={4} className="mt-3">
+    <Stack gap={4} className="mt-3 controls">
       <ColorMapControls />
       <OpacityControls />
       <ClipControls />
