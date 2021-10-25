@@ -3,7 +3,7 @@ import {
   colorMaps,
   range,
   initialTransferFunction,
-} from "../assets/config.json";
+} from "../../assets/config.json";
 
 const ControlsContext = createContext();
 

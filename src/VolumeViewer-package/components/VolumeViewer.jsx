@@ -1,7 +1,7 @@
 import { Entity, Scene } from "aframe-react";
 import { Container } from "react-bootstrap";
 
-import "../../Aframe/arcball-camera";
+import "../../VolumeViewer-package/Aframe/arcball-camera";
 
 import {
   volumePosition,
@@ -9,7 +9,7 @@ import {
   volumeScale,
 } from "../../assets/config.json";
 
-import { useControlsContext } from "../../context/controls-context";
+import { useControlsContext } from "../context/controls-context";
 
 function getCoordinates(transferFunctionNodes, plane) {
   let coordinates = [];

@@ -1,6 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 
-import { useControlsContext } from "../../../context/controls-context";
+import { useControlsContext } from "../../context/controls-context";
 
 export default function ColorMapControl(props) {
   const {

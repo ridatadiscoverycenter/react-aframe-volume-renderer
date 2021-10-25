@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-import { useControlsContext } from "../../../context/controls-context";
+import { useControlsContext } from "../../context/controls-context";
 
 export default function ClipControls(props) {
   const {

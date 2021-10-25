@@ -9,7 +9,7 @@ import {
 
 import { useSelectorContext } from "../context/selector-context";
 import { colorMaps, measurement, season, tide } from "../assets/config.json";
-import { useControlsContext } from "../context/controls-context";
+import { useControlsContext } from "../VolumeViewer-package/context/controls-context";
 
 export default function ModelSelector({ toggleControls }) {
   const {
