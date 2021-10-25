@@ -6,6 +6,10 @@
 
 @import "_footer";
 
+.fullWidth {
+  width: 100%;
+}
+
 .aframe-container {
   height: 90vh !important;
 }
@@ -34,4 +38,7 @@
 
 .fullWidth {
   width: 100%;
+}
+.controls {
+  width: min-content;
 }

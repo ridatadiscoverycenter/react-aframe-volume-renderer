@@ -4,10 +4,10 @@ import { Button } from "react-bootstrap";
 import {
   ControlsConsumer,
   ControlsContext,
-} from "../../context/controls-context";
+} from "../../../context/controls-context";
 
-import "../../styles/main.scss";
-import configMinMax from "../../assets/volume-min-max.json";
+
+import configMinMax from "../../../assets/volume-min-max.json";
 
 export default class OpacityControl extends Component {
   static contextType = ControlsContext; // TEMP - only while component is class based
@@ -95,11 +95,7 @@ export default class OpacityControl extends Component {
     this.opCanvas = this.refs.canvas;
     this.opContext = this.refs.canvas.getContext("2d");
 
-    const controlsContainer = document.getElementById("controls");
-
-    this.opCanvas.width = controlsContainer.clientWidth - 2 * this.padding - 2;
     this.opCanvas.height = this.height + this.padding * 2;
-
     this.opCanvas.width = 250;
     this.width = this.opCanvas.width - 2 * this.padding;
 
@@ -368,7 +364,7 @@ export default class OpacityControl extends Component {
               src={state.colorMap.src}
               alt="Selected color map"
               height="15"
-              width="250px"
+              width="100%"
               className="border border-dark"
             />
           )}

@@ -9,10 +9,10 @@ export default function InfoText(props) {
   } = useSelectorContext();
 
   return (
-    <Container className="my-2">
+    <Container className="p-4">
       <Alert
         variant="primary"
-        className="d-flex flex-column justify-content-center"
+        className="d-flex flex-column justify-content-center mb-0"
       >
         <p>
           The 3D volume of the Narragansett Bay and Rhode Island Sound below
