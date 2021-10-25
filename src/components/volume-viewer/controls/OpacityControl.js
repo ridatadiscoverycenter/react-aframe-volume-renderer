@@ -316,4 +316,3 @@ export default class OpacityControl extends Component {
     );
   }
 }
-// );
