@@ -41,9 +41,6 @@ function useSelectorContext() {
   return context;
 }
 
-function myFunction(selection) {
-  console.log(selection);
-}
 
 // Custom reducer to update the SelectorContext
 function volumeReducer(state, action) {
