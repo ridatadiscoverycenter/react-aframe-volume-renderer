@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import config from "../assets/config.json";
+import configMinMax from "../assets/volume-min-max.json";
 
 const SelectorContext = createContext();
 
@@ -10,6 +11,12 @@ function SelectorProvider(props) {
       season: config.season[0],
       tide: config.tide[0],
       measurement: config.measurement[0],
+    },
+    volumeData: {
+      value:
+        configMinMax[
+          `${config.season[0].value}-${config.tide[0].value}-${config.measurement[0].value}`
+        ],
     },
     slices: config.slices,
     x_spacing: config.x_spacing,
@@ -34,6 +41,10 @@ function useSelectorContext() {
   return context;
 }
 
+function myFunction(selection) {
+  console.log(selection);
+}
+
 // Custom reducer to update the SelectorContext
 function volumeReducer(state, action) {
   switch (action.type) {
@@ -43,6 +54,12 @@ function volumeReducer(state, action) {
           ...state.selection,
           measurement: action.payload,
         },
+        volumeData: {
+          value:
+            configMinMax[
+              `${state.selection.season.value}-${state.selection.tide.value}-${action.payload.value}`
+            ],
+        },
       };
     }
     case "TOGGLE_SEASON": {
@@ -51,6 +68,12 @@ function volumeReducer(state, action) {
           ...state.selection,
           season: action.payload,
         },
+        volumeData: {
+          value:
+            configMinMax[
+              `${action.payload.value}-${state.selection.tide.value}-${state.selection.measurement.value}`
+            ],
+        },
       };
     }
     case "TOGGLE_TIDE": {
@@ -58,6 +81,12 @@ function volumeReducer(state, action) {
         selection: {
           ...state.selection,
           tide: action.payload,
+        },
+        volumeData: {
+          value:
+            configMinMax[
+              `${state.selection.season.value}-${action.payload.value}-${state.selection.measurement.value}`
+            ],
         },
       };
     }

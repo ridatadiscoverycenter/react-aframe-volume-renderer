@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import {
   ControlsConsumer,
   ControlsContext,
 } from "../../../context/controls-context";
-
-
-import configMinMax from "../../../assets/volume-min-max.json";
 
 export default class OpacityControl extends Component {
   static contextType = ControlsContext; // TEMP - only while component is class based
@@ -41,7 +38,7 @@ export default class OpacityControl extends Component {
     this.minDataSpaceValue = 0;
     this.maxDataSpaceValue = 33;
     this.midDataSpaceValue = 0;
-    this.currentUnits = "";
+    this.dataDomain = "";
 
     this.nodesCanvasSpace = [];
 
@@ -77,18 +74,10 @@ export default class OpacityControl extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let currentVolumeSelection =
-      nextProps.volumeData.selection.season.value +
-      "-" +
-      nextProps.volumeData.selection.tide.value +
-      "-" +
-      nextProps.volumeData.selection.measurement.value;
-    this.minDataSpaceValue = configMinMax[currentVolumeSelection].min;
-    this.maxDataSpaceValue = configMinMax[currentVolumeSelection].max;
-    this.currentUnits =
-      nextProps.volumeData.selection.measurement.value === "temp"
-        ? "ºC"
-        : "psu";
+    this.minDataSpaceValue = nextProps.volume_min_data;
+    this.maxDataSpaceValue = nextProps.volume_max_data;
+    this.dataDomain =
+      nextProps.volume_current_measure === "temp" ? "ºC" : "PSU";
   }
 
   updateCanvas() {
@@ -221,8 +210,7 @@ export default class OpacityControl extends Component {
 
   changePointer(e) {
     let hitPoint = false;
-    let graph = document.getElementById("opacityControls");
-    graph.title = "";
+    this.opCanvas.title = "";
     for (let i = 0; i < this.nodes.length; i++) {
       let normalizedCoordinates = {
         x: this.nodes[i].x + this.padding,
@@ -235,13 +223,13 @@ export default class OpacityControl extends Component {
         ) <= this.hoverRadius
       ) {
         this.opCanvas.className = "pointer";
-        let oldScaleMin = 0.0;
-        let oldScaleMax = 256.0;
-        let oldScaleRange = oldScaleMax - oldScaleMin;
+        const oldScaleMin = 0.0;
+        const oldScaleMax = 256.0;
+        const oldScaleRange = oldScaleMax - oldScaleMin;
 
-        let newScaleMin = this.minDataSpaceValue;
-        let newScaleMax = this.maxDataSpaceValue;
-        let newScaleRange = newScaleMax - newScaleMin;
+        const newScaleMin = this.minDataSpaceValue;
+        const newScaleMax = this.maxDataSpaceValue;
+        const newScaleRange = newScaleMax - newScaleMin;
 
         var pointTo256 = {
           x:
@@ -254,7 +242,7 @@ export default class OpacityControl extends Component {
           ((pointTo256.x - oldScaleMin) * newScaleRange) / oldScaleRange +
           newScaleMin;
 
-        graph.title = "" + fromSpaceX.toFixed(5) + "," + pointTo256.y;
+        this.opCanvas.title = "" + fromSpaceX.toFixed(5) + "," + pointTo256.y;
 
         this.nodeHovered = i;
         hitPoint = true;
@@ -339,25 +327,24 @@ export default class OpacityControl extends Component {
   }
 
   render() {
-    console.log(this.props.volumeData);
     this.midDataSpaceValue =
       (this.minDataSpaceValue + this.maxDataSpaceValue) / 2;
     return (
       <div>
         <canvas ref="canvas" id="opacityControls" />
-        <table width="250px">
-          <tr>
-            <td width="33%" className="text-align-left">
-              {this.minDataSpaceValue.toFixed(2)} {this.currentUnits}
-            </td>
-            <td width="33%" className="text-align-center">
-              {this.midDataSpaceValue.toFixed(2)} {this.currentUnits}
-            </td>
-            <td width="33%" className="text-align-right">
-              {this.maxDataSpaceValue.toFixed(2)} {this.currentUnits}
-            </td>
-          </tr>
-        </table>
+        <Container>
+          <Row>
+            <Col className="opacity-table-text-size">
+              {this.minDataSpaceValue.toFixed(2)} {this.dataDomain}
+            </Col>
+            <Col className="opacity-table-text-size">
+              {this.midDataSpaceValue.toFixed(2)} {this.dataDomain}
+            </Col>
+            <Col className="opacity-table-text-size">
+              {this.maxDataSpaceValue.toFixed(2)} {this.dataDomain}
+            </Col>
+          </Row>
+        </Container>
         <ControlsConsumer>
           {({ state, dispatch }) => (
             <img

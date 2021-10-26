@@ -11,11 +11,7 @@ import { useControlsContext } from "../../context/controls-context";
 import OpacityControls from "./OpacityControl";
 import ColorMapControls from "./ColorMapControls";
 
-export default function Controls({
-  sidebarVisible,
-  setSidebarVisible,
-  volume,
-}) {
+export default function Controls({ sidebarVisible, setSidebarVisible }) {
   const {
     state: { sliderRange },
     dispatch,
@@ -43,7 +39,7 @@ export default function Controls({
           <ColorMapControls />
         </Row>
         <Row className="my-3">
-          <OpacityControls volumeData={volume} />
+          <OpacityControls />
         </Row>
         <Row className="mt-5">
           <h4>Clip</h4>
