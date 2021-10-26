@@ -6,6 +6,11 @@ const SelectorContext = createContext();
 // Custom component to provide the Selector context
 function SelectorProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
+    buttons: {
+      season: config.season,
+      tide: config.tide,
+      measurement: config.measurement,
+    },
     selection: {
       season: config.season[0],
       tide: config.tide[0],
@@ -15,6 +20,10 @@ function SelectorProvider(props) {
     x_spacing: config.x_spacing,
     y_spacing: config.y_spacing,
     z_spacing: config.z_spacing,
+
+    position: config.volumePosition,
+    rotation: config.volumeRotation,
+    scale: config.volumeScale,
   });
 
   const value = { state, dispatch };
@@ -39,6 +48,7 @@ function volumeReducer(state, action) {
   switch (action.type) {
     case "TOGGLE_MEASUREMENT": {
       return {
+        ...state,
         selection: {
           ...state.selection,
           measurement: action.payload,
@@ -47,6 +57,7 @@ function volumeReducer(state, action) {
     }
     case "TOGGLE_SEASON": {
       return {
+        ...state,
         selection: {
           ...state.selection,
           season: action.payload,
@@ -55,6 +66,7 @@ function volumeReducer(state, action) {
     }
     case "TOGGLE_TIDE": {
       return {
+        ...state,
         selection: {
           ...state.selection,
           tide: action.payload,

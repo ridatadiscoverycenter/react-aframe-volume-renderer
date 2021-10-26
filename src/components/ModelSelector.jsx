@@ -8,16 +8,18 @@ import {
 } from "react-bootstrap";
 
 import { useSelectorContext } from "../context/selector-context";
-import { colorMaps, measurement, season, tide } from "../assets/config.json";
 import { useControlsContext } from "../VolumeViewer-package/context/controls-context";
 
 export default function ModelSelector({ toggleControls }) {
   const {
-    state: { selection },
+    state: { buttons, selection },
     dispatch: selectorDispatch,
   } = useSelectorContext();
 
-  const { dispatch: controlsDispatch } = useControlsContext();
+  const {
+    state: { allColorMaps },
+    dispatch: controlsDispatch,
+  } = useControlsContext();
 
   function handleChange(val) {
     // Change model
@@ -30,8 +32,8 @@ export default function ModelSelector({ toggleControls }) {
       type: "CHANGE_COLOR_MAP",
       payload:
         val.value === "salt"
-          ? colorMaps.find((m) => m.name === "Haline")
-          : colorMaps.find((m) => m.name === "Thermal"),
+          ? allColorMaps.find((m) => m.name === "Haline")
+          : allColorMaps.find((m) => m.name === "Thermal"),
     });
   }
 
@@ -48,7 +50,7 @@ export default function ModelSelector({ toggleControls }) {
             value={selection.measurement}
             onChange={(val) => handleChange(val)}
           >
-            {measurement.map((m) => {
+            {buttons.measurement.map((m) => {
               return (
                 <ToggleButton key={m.name} value={m}>
                   {m.name}
@@ -70,7 +72,7 @@ export default function ModelSelector({ toggleControls }) {
               })
             }
           >
-            {season.map((m) => {
+            {buttons.season.map((m) => {
               return (
                 <ToggleButton key={m.name} value={m}>
                   {m.name}
@@ -92,7 +94,7 @@ export default function ModelSelector({ toggleControls }) {
               })
             }
           >
-            {tide.map((m) => {
+            {buttons.tide.map((m) => {
               return (
                 <ToggleButton key={m.name} value={m}>
                   {m.name}

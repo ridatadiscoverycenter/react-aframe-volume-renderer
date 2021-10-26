@@ -3,12 +3,6 @@ import { Container } from "react-bootstrap";
 
 import "../../VolumeViewer-package/Aframe/arcball-camera";
 
-import {
-  volumePosition,
-  volumeRotation,
-  volumeScale,
-} from "../../assets/config.json";
-
 import { useControlsContext } from "../context/controls-context";
 
 function getCoordinates(transferFunctionNodes, plane) {
@@ -79,9 +73,9 @@ export default function VolumeViewer(props) {
             y_spacing: volume.y_spacing,
             z_spacing: volume.z_spacing,
           }}
-          position={volumePosition}
-          rotation={volumeRotation}
-          scale={volumeScale}
+          position={volume.position}
+          rotation={volume.rotation}
+          scale={volume.scale}
         />
 
         <a-entity cursor="rayOrigin:mouse" raycaster="objects: .clickable" />
