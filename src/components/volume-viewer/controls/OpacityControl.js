@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { scaleLinear } from "d3-scale";
 
 import {
   ControlsConsumer,
@@ -28,17 +29,36 @@ export default class OpacityControl extends Component {
     this.hoverRadius = 15;
     this.width = 0;
 
+    // min and max of the canvas space
+    this.canvasWidth = 250;
+
+    this.canvasSpace = {
+      min: 0,
+      max: this.canvasWidth * 0.92,
+    };
+
     this.nodes = [
-      { x: 0, y: 0 },
+      { x: this.canvasSpace.min, y: 0 },
       { x: 250 * 0.11, y: 15 },
       { x: 250 * 0.32, y: 35 },
-      { x: 250 * 0.92, y: 70 },
+      { x: this.canvasSpace.max, y: 70 },
     ];
 
-    this.minDataSpaceValue = 0;
-    this.maxDataSpaceValue = 33;
-    this.midDataSpaceValue = 0;
-    this.dataDomain = "";
+    this.dataSpace = {
+      min: 0,
+      mid: 0,
+      max: 1,
+      units: "",
+    };
+
+    this.ColorSpace = {
+      min: 0,
+      max: 256,
+    };
+
+    this.canvasSpaceToRealCanvasSpace = scaleLinear()
+      .domain([this.canvasSpace.min, this.canvasSpace.max])
+      .range([0, this.canvasWidth]);
 
     this.nodesCanvasSpace = [];
 
@@ -74,10 +94,11 @@ export default class OpacityControl extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.minDataSpaceValue = nextProps.volume_min_data;
-    this.maxDataSpaceValue = nextProps.volume_max_data;
-    this.dataDomain =
-      nextProps.volume_current_measure === "temp" ? "ºC" : "PSU";
+    this.dataSpace.min = nextProps.volumeRange.volumeMin;
+    this.dataSpace.max = nextProps.volumeRange.volumeMax;
+    this.dataSpace.mid =
+      (nextProps.volumeRange.volumeMin + nextProps.volumeRange.volumeMax) / 2;
+    this.dataSpace.units = nextProps.volumeUnits === "temp" ? "ºC" : "PSU";
   }
 
   updateCanvas() {
@@ -85,7 +106,9 @@ export default class OpacityControl extends Component {
     this.opContext = this.refs.canvas.getContext("2d");
 
     this.opCanvas.height = this.height + this.padding * 2;
-    this.opCanvas.width = 250;
+    this.opCanvas.width = this.canvasWidth;
+
+    //the last point is located at 250 - 2 * padding.
     this.width = this.opCanvas.width - 2 * this.padding;
 
     this.opCanvas.style.border = "1px solid";
@@ -94,6 +117,24 @@ export default class OpacityControl extends Component {
     this.opContext.strokeStyle = "rgba(128, 128, 128, 0.8)";
     this.opContext.lineWidth = 2;
 
+    let dataSpaceToCanvasSpace = scaleLinear()
+      .domain([this.dataSpace.min, this.dataSpace.max])
+      .range([this.canvasSpace.min, this.canvasSpace.max]);
+
+    // Draw rule's mid point 
+    this.dataSpace.mid = (this.dataSpace.min + this.dataSpace.max) / 2;
+    let scaleMidPointToCanvasSpace = dataSpaceToCanvasSpace(this.dataSpace.mid);
+    scaleMidPointToCanvasSpace = this.canvasSpaceToRealCanvasSpace(
+      scaleMidPointToCanvasSpace
+    );
+    this.opContext.moveTo(scaleMidPointToCanvasSpace, this.opCanvas.height);
+    this.opContext.lineTo(
+      scaleMidPointToCanvasSpace,
+      this.opCanvas.height - 10
+    );
+    this.opContext.stroke();
+
+    // Draw nodes and lines
     this.nodesCanvasSpace = [];
 
     for (let i = 0; i < this.nodes.length; i++) {
@@ -125,7 +166,7 @@ export default class OpacityControl extends Component {
         this.opContext.stroke();
       }
 
-      this.opContext.lineTo(this.width + this.padding, this.maxLevelY);
+      this.opContext.lineTo(this.opCanvas.width, this.maxLevelY);
       this.opContext.stroke();
     }
 
@@ -155,7 +196,7 @@ export default class OpacityControl extends Component {
     this.transferFunctionNodes = [];
     this.nodesCanvasSpace.forEach((node) => {
       this.transferFunctionNodes.push({
-        x: (node.x - this.padding) / this.width,
+        x: (node.x - this.padding) / this.opCanvas.width,
         y: 1 - (node.y - this.padding) / this.height,
       });
     });
@@ -223,26 +264,24 @@ export default class OpacityControl extends Component {
         ) <= this.hoverRadius
       ) {
         this.opCanvas.className = "pointer";
-        const oldScaleMin = 0.0;
-        const oldScaleMax = 256.0;
-        const oldScaleRange = oldScaleMax - oldScaleMin;
 
-        const newScaleMin = this.minDataSpaceValue;
-        const newScaleMax = this.maxDataSpaceValue;
-        const newScaleRange = newScaleMax - newScaleMin;
+        let canvasSpaceToColorSpace = scaleLinear()
+          .domain([this.canvasSpace.min, this.canvasSpace.max])
+          .range([this.ColorSpace.min, this.ColorSpace.max]);
+        let nodeToCanvasRangeSpace = canvasSpaceToColorSpace(this.nodes[i].x);
 
-        var pointTo256 = {
-          x:
-            this.nodes[i].x +
-            (256 - this.width) * (this.nodes[i].x / this.width),
+        let pointToColorSpace = {
           y: (this.nodes[i].y / 70).toFixed(2),
+          x: nodeToCanvasRangeSpace,
         };
 
-        let fromSpaceX =
-          ((pointTo256.x - oldScaleMin) * newScaleRange) / oldScaleRange +
-          newScaleMin;
+        let colorSpaceToDataDomain = scaleLinear()
+          .domain([this.ColorSpace.min, this.ColorSpace.max])
+          .range([this.dataSpace.min, this.dataSpace.max]);
 
-        this.opCanvas.title = "" + fromSpaceX.toFixed(5) + "," + pointTo256.y;
+        let fromSpaceX = colorSpaceToDataDomain(pointToColorSpace.x);
+        this.opCanvas.title =
+          "" + fromSpaceX.toFixed(5) + "," + pointToColorSpace.y;
 
         this.nodeHovered = i;
         hitPoint = true;
@@ -327,21 +366,19 @@ export default class OpacityControl extends Component {
   }
 
   render() {
-    this.midDataSpaceValue =
-      (this.minDataSpaceValue + this.maxDataSpaceValue) / 2;
     return (
       <div>
         <canvas ref="canvas" id="opacityControls" />
         <Container>
-          <Row>
-            <Col className="opacity-table-text-size">
-              {this.minDataSpaceValue.toFixed(2)} {this.dataDomain}
+          <Row className="opacity-controls-text-size">
+            <Col>
+              {this.dataSpace.min.toFixed(5)} {this.dataSpace.units}
             </Col>
-            <Col className="opacity-table-text-size">
-              {this.midDataSpaceValue.toFixed(2)} {this.dataDomain}
+            <Col>
+              {this.dataSpace.mid.toFixed(5)} {this.dataSpace.units}
             </Col>
-            <Col className="opacity-table-text-size">
-              {this.maxDataSpaceValue.toFixed(2)} {this.dataDomain}
+            <Col>
+              {this.dataSpace.max.toFixed(5)} {this.dataSpace.units}
             </Col>
           </Row>
         </Container>

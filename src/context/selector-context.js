@@ -13,7 +13,7 @@ function SelectorProvider(props) {
       measurement: config.measurement[0],
     },
     volumeData: {
-      value:
+      range:
         configMinMax[
           `${config.season[0].value}-${config.tide[0].value}-${config.measurement[0].value}`
         ],
@@ -41,7 +41,6 @@ function useSelectorContext() {
   return context;
 }
 
-
 // Custom reducer to update the SelectorContext
 function volumeReducer(state, action) {
   switch (action.type) {
@@ -52,7 +51,7 @@ function volumeReducer(state, action) {
           measurement: action.payload,
         },
         volumeData: {
-          value:
+          range:
             configMinMax[
               `${state.selection.season.value}-${state.selection.tide.value}-${action.payload.value}`
             ],
@@ -66,7 +65,7 @@ function volumeReducer(state, action) {
           season: action.payload,
         },
         volumeData: {
-          value:
+          range:
             configMinMax[
               `${action.payload.value}-${state.selection.tide.value}-${state.selection.measurement.value}`
             ],
@@ -80,7 +79,7 @@ function volumeReducer(state, action) {
           tide: action.payload,
         },
         volumeData: {
-          value:
+          range:
             configMinMax[
               `${state.selection.season.value}-${action.payload.value}-${state.selection.measurement.value}`
             ],
