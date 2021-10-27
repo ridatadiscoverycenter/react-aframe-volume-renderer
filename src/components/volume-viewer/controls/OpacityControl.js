@@ -61,7 +61,7 @@ export default class OpacityControl extends Component {
       max: 256,
     };
 
-   
+    this.displayedDecimals = 2;
     this.nodesCanvasSpace = [];
 
     this.changePointer = this.changePointer.bind(this);
@@ -273,7 +273,7 @@ export default class OpacityControl extends Component {
         let nodeInCanvasSpace = canvasSpaceToColorSpace(this.nodes[i].x);
 
         const pointToColorSpace = {
-          y: (this.nodes[i].y / 70).toFixed(2),
+          y: (this.nodes[i].y / 70).toFixed(this.displayedDecimals),
           x: nodeInCanvasSpace,
         };
 
@@ -283,7 +283,7 @@ export default class OpacityControl extends Component {
 
         let xDataValue  = colorSpaceToDataDomain(pointToColorSpace.x);
         this.opCanvas.title =
-          "" + xDataValue .toFixed(5) + "," + pointToColorSpace.y;
+          "" + xDataValue.toFixed(this.displayedDecimals) + "," + pointToColorSpace.y;
 
         this.nodeHovered = i;
         hitPoint = true;
@@ -374,13 +374,13 @@ export default class OpacityControl extends Component {
         <Container>
           <Row className="opacity-controls-text-size">
             <Col>
-              {this.dataSpace.min.toFixed(5)} {this.dataSpace.units}
+              {this.dataSpace.min.toFixed(this.displayedDecimals)} {this.dataSpace.units}
             </Col>
             <Col>
-              {this.dataSpace.mid.toFixed(5)} {this.dataSpace.units}
+              {this.dataSpace.mid.toFixed(this.displayedDecimals)} {this.dataSpace.units}
             </Col>
             <Col>
-              {this.dataSpace.max.toFixed(5)} {this.dataSpace.units}
+              {this.dataSpace.max.toFixed(this.displayedDecimals)} {this.dataSpace.units}
             </Col>
           </Row>
         </Container>
