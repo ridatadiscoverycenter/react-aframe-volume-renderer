@@ -32,16 +32,21 @@ export default class OpacityControl extends Component {
     // min and max of the canvas space
     this.canvasWidth = 250;
 
-    this.canvasSpace = {
+    
+    this.padedCanvasSpace = {
       min: 0,
       max: this.canvasWidth * 0.92,
     };
 
+    this.padedCanvasSpaceToCanvasSpace = scaleLinear()
+    .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
+    .range([0, this.canvasWidth]);
+
     this.nodes = [
-      { x: this.canvasSpace.min, y: 0 },
-      { x: 250 * 0.11, y: 15 },
-      { x: 250 * 0.32, y: 35 },
-      { x: this.canvasSpace.max, y: 70 },
+      { x: this.padedCanvasSpace.min, y: 0 },
+      { x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.11), y: 15 },
+      { x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.32), y: 35 },
+      { x: this.padedCanvasSpace.max, y: 70 },
     ];
 
     this.dataSpace = {
@@ -51,15 +56,12 @@ export default class OpacityControl extends Component {
       units: "",
     };
 
-    this.ColorSpace = {
+    this.colorSpace = {
       min: 0,
       max: 256,
     };
 
-    this.canvasSpaceToRealCanvasSpace = scaleLinear()
-      .domain([this.canvasSpace.min, this.canvasSpace.max])
-      .range([0, this.canvasWidth]);
-
+   
     this.nodesCanvasSpace = [];
 
     this.changePointer = this.changePointer.bind(this);
@@ -98,8 +100,7 @@ export default class OpacityControl extends Component {
     this.dataSpace.max = nextProps.volumeRange.max;
     this.dataSpace.mid =
       (nextProps.volumeRange.min + nextProps.volumeRange.max) / 2;
-    this.dataSpace.units =
-      nextProps.volumeRange.units === "temp" ? "ºC" : "PSU";
+    this.dataSpace.units = nextProps.volumeRange.units ;
   }
 
   updateCanvas() {
@@ -118,14 +119,14 @@ export default class OpacityControl extends Component {
     this.opContext.strokeStyle = "rgba(128, 128, 128, 0.8)";
     this.opContext.lineWidth = 2;
 
-    let dataSpaceToCanvasSpace = scaleLinear()
+    const dataSpaceToCanvasSpace = scaleLinear()
       .domain([this.dataSpace.min, this.dataSpace.max])
-      .range([this.canvasSpace.min, this.canvasSpace.max]);
+      .range([this.padedCanvasSpace.min, this.padedCanvasSpace.max]);
 
     // Draw rule's mid point
     this.dataSpace.mid = (this.dataSpace.min + this.dataSpace.max) / 2;
     let scaleMidPointToCanvasSpace = dataSpaceToCanvasSpace(this.dataSpace.mid);
-    scaleMidPointToCanvasSpace = this.canvasSpaceToRealCanvasSpace(
+    scaleMidPointToCanvasSpace = this.padedCanvasSpaceToCanvasSpace(
       scaleMidPointToCanvasSpace
     );
     this.opContext.moveTo(scaleMidPointToCanvasSpace, this.opCanvas.height);
@@ -266,23 +267,23 @@ export default class OpacityControl extends Component {
       ) {
         this.opCanvas.className = "pointer";
 
-        let canvasSpaceToColorSpace = scaleLinear()
-          .domain([this.canvasSpace.min, this.canvasSpace.max])
-          .range([this.ColorSpace.min, this.ColorSpace.max]);
-        let nodeToCanvasRangeSpace = canvasSpaceToColorSpace(this.nodes[i].x);
+        const canvasSpaceToColorSpace = scaleLinear()
+          .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
+          .range([this.colorSpace.min, this.colorSpace.max]);
+        let nodeInCanvasSpace = canvasSpaceToColorSpace(this.nodes[i].x);
 
-        let pointToColorSpace = {
+        const pointToColorSpace = {
           y: (this.nodes[i].y / 70).toFixed(2),
-          x: nodeToCanvasRangeSpace,
+          x: nodeInCanvasSpace,
         };
 
-        let colorSpaceToDataDomain = scaleLinear()
-          .domain([this.ColorSpace.min, this.ColorSpace.max])
+        const colorSpaceToDataDomain = scaleLinear()
+          .domain([this.colorSpace.min, this.colorSpace.max])
           .range([this.dataSpace.min, this.dataSpace.max]);
 
-        let fromSpaceX = colorSpaceToDataDomain(pointToColorSpace.x);
+        let xDataValue  = colorSpaceToDataDomain(pointToColorSpace.x);
         this.opCanvas.title =
-          "" + fromSpaceX.toFixed(5) + "," + pointToColorSpace.y;
+          "" + xDataValue .toFixed(5) + "," + pointToColorSpace.y;
 
         this.nodeHovered = i;
         hitPoint = true;

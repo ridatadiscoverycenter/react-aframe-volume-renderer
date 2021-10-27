@@ -14,7 +14,7 @@ export default function VolumeViewerWrapper(props) {
           <Controls
             min={state.volumeData.range.min}
             max={state.volumeData.range.max}
-            units={state.selection.measurement.value}
+            units={(state.selection.measurement.value === "temp" ? "°C" : "PSU")}
           />
         )}
 
