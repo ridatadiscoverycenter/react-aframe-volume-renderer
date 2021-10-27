@@ -12,9 +12,9 @@ export default function VolumeViewerWrapper(props) {
       <Row noGutters className="justify-content-center">
         {props.controlsVisible && (
           <Controls
-            volumeMin={state.volumeData.range.min}
-            volumeMax={state.volumeData.range.max}
-            volumeUnits={state.selection.measurement.value}
+            min={state.volumeData.range.min}
+            max={state.volumeData.range.max}
+            units={state.selection.measurement.value}
           />
         )}
 

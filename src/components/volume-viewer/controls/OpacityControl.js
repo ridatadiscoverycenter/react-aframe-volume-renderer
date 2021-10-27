@@ -94,11 +94,12 @@ export default class OpacityControl extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.dataSpace.min = nextProps.volumeRange.volumeMin;
-    this.dataSpace.max = nextProps.volumeRange.volumeMax;
+    this.dataSpace.min = nextProps.volumeRange.min;
+    this.dataSpace.max = nextProps.volumeRange.max;
     this.dataSpace.mid =
-      (nextProps.volumeRange.volumeMin + nextProps.volumeRange.volumeMax) / 2;
-    this.dataSpace.units = nextProps.volumeUnits === "temp" ? "ºC" : "PSU";
+      (nextProps.volumeRange.min + nextProps.volumeRange.max) / 2;
+    this.dataSpace.units =
+      nextProps.volumeRange.units === "temp" ? "ºC" : "PSU";
   }
 
   updateCanvas() {
@@ -121,7 +122,7 @@ export default class OpacityControl extends Component {
       .domain([this.dataSpace.min, this.dataSpace.max])
       .range([this.canvasSpace.min, this.canvasSpace.max]);
 
-    // Draw rule's mid point 
+    // Draw rule's mid point
     this.dataSpace.mid = (this.dataSpace.min + this.dataSpace.max) / 2;
     let scaleMidPointToCanvasSpace = dataSpaceToCanvasSpace(this.dataSpace.mid);
     scaleMidPointToCanvasSpace = this.canvasSpaceToRealCanvasSpace(
