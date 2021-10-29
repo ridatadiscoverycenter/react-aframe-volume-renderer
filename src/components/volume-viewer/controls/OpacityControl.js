@@ -32,17 +32,17 @@ export default class OpacityControl extends Component {
     // min and max of the canvas space
     this.canvasWidth = 250;
 
-    this.padedCanvasSpace = {
+    this.paddedCanvasSpace = {
       min: 0,
       max: this.canvasWidth * 0.92,
     };
 
     this.padedCanvasSpaceToCanvasSpace = scaleLinear()
-      .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
+      .domain([this.paddedCanvasSpace.min, this.paddedCanvasSpace.max])
       .range([0, this.canvasWidth]);
 
     this.nodes = [
-      { x: this.padedCanvasSpace.min, y: 0 },
+      { x: this.paddedCanvasSpace.min, y: 0 },
       {
         x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.11),
         y: 15,
@@ -51,7 +51,7 @@ export default class OpacityControl extends Component {
         x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.32),
         y: 35,
       },
-      { x: this.padedCanvasSpace.max, y: 70 },
+      { x: this.paddedCanvasSpace.max, y: 70 },
     ];
 
     this.dataSpace = {
@@ -65,6 +65,10 @@ export default class OpacityControl extends Component {
       min: 0,
       max: 256,
     };
+
+    this.canvasSpaceToColorSpace = scaleLinear()
+    .domain([this.paddedCanvasSpace.min, this.paddedCanvasSpace.max])
+    .range([this.colorSpace.min, this.colorSpace.max]);
 
     this.displayedDecimals = 2;
     this.nodesCanvasSpace = [];
@@ -108,6 +112,9 @@ export default class OpacityControl extends Component {
         nextProps.opacityControlsProps.max) /
       2;
     this.dataSpace.units = nextProps.opacityControlsProps.units;
+    this.colorSpaceToDataDomain = scaleLinear()
+          .domain([this.colorSpace.min, this.colorSpace.max])
+          .range([this.dataSpace.min, this.dataSpace.max]);
   }
 
   updateCanvas() {
@@ -128,7 +135,7 @@ export default class OpacityControl extends Component {
 
     const dataSpaceToCanvasSpace = scaleLinear()
       .domain([this.dataSpace.min, this.dataSpace.max])
-      .range([this.padedCanvasSpace.min, this.padedCanvasSpace.max]);
+      .range([this.paddedCanvasSpace.min, this.paddedCanvasSpace.max]);
 
     // Draw rule's mid point
     this.dataSpace.mid = (this.dataSpace.min + this.dataSpace.max) / 2;
@@ -274,21 +281,15 @@ export default class OpacityControl extends Component {
       ) {
         this.opCanvas.className = "pointer";
 
-        const canvasSpaceToColorSpace = scaleLinear()
-          .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
-          .range([this.colorSpace.min, this.colorSpace.max]);
-        const nodeInCanvasSpace = canvasSpaceToColorSpace(this.nodes[i].x);
+        const nodeInCanvasSpace = this.canvasSpaceToColorSpace(this.nodes[i].x);
 
         const pointToColorSpace = {
           y: (this.nodes[i].y / 70).toFixed(this.displayedDecimals),
           x: nodeInCanvasSpace,
         };
 
-        const colorSpaceToDataDomain = scaleLinear()
-          .domain([this.colorSpace.min, this.colorSpace.max])
-          .range([this.dataSpace.min, this.dataSpace.max]);
 
-        let xDataValue = colorSpaceToDataDomain(pointToColorSpace.x);
+        let xDataValue = this.colorSpaceToDataDomain(pointToColorSpace.x);
         this.opCanvas.title =
           "" +
           xDataValue.toFixed(this.displayedDecimals) +
