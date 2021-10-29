@@ -12,9 +12,12 @@ export default function VolumeViewerWrapper(props) {
       <Row noGutters className="justify-content-center">
         {props.controlsVisible && (
           <Controls
-            min={state.volumeData.range.min}
-            max={state.volumeData.range.max}
-            units={(state.selection.measurement.value === "temp" ? "°C" : "PSU")}
+            opacityControlsProps={{
+              min: state.volumeData.range.min,
+              max: state.volumeData.range.max,
+              units:
+                state.selection.measurement.value === "temp" ? "°C" : "PSU",
+            }}
           />
         )}
 

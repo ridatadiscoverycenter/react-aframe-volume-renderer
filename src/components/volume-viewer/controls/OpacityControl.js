@@ -32,20 +32,25 @@ export default class OpacityControl extends Component {
     // min and max of the canvas space
     this.canvasWidth = 250;
 
-    
     this.padedCanvasSpace = {
       min: 0,
       max: this.canvasWidth * 0.92,
     };
 
     this.padedCanvasSpaceToCanvasSpace = scaleLinear()
-    .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
-    .range([0, this.canvasWidth]);
+      .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
+      .range([0, this.canvasWidth]);
 
     this.nodes = [
       { x: this.padedCanvasSpace.min, y: 0 },
-      { x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.11), y: 15 },
-      { x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.32), y: 35 },
+      {
+        x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.11),
+        y: 15,
+      },
+      {
+        x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.32),
+        y: 35,
+      },
       { x: this.padedCanvasSpace.max, y: 70 },
     ];
 
@@ -96,11 +101,13 @@ export default class OpacityControl extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.dataSpace.min = nextProps.volumeRange.min;
-    this.dataSpace.max = nextProps.volumeRange.max;
+    this.dataSpace.min = nextProps.opacityControlsProps.min;
+    this.dataSpace.max = nextProps.opacityControlsProps.max;
     this.dataSpace.mid =
-      (nextProps.volumeRange.min + nextProps.volumeRange.max) / 2;
-    this.dataSpace.units = nextProps.volumeRange.units ;
+      (nextProps.opacityControlsProps.min +
+        nextProps.opacityControlsProps.max) /
+      2;
+    this.dataSpace.units = nextProps.opacityControlsProps.units;
   }
 
   updateCanvas() {
@@ -255,7 +262,7 @@ export default class OpacityControl extends Component {
     let hitPoint = false;
     this.opCanvas.title = "";
     for (let i = 0; i < this.nodes.length; i++) {
-      let normalizedCoordinates = {
+      const normalizedCoordinates = {
         x: this.nodes[i].x + this.padding,
         y: this.height - this.nodes[i].y + this.padding,
       };
@@ -270,7 +277,7 @@ export default class OpacityControl extends Component {
         const canvasSpaceToColorSpace = scaleLinear()
           .domain([this.padedCanvasSpace.min, this.padedCanvasSpace.max])
           .range([this.colorSpace.min, this.colorSpace.max]);
-        let nodeInCanvasSpace = canvasSpaceToColorSpace(this.nodes[i].x);
+        const nodeInCanvasSpace = canvasSpaceToColorSpace(this.nodes[i].x);
 
         const pointToColorSpace = {
           y: (this.nodes[i].y / 70).toFixed(this.displayedDecimals),
@@ -281,9 +288,12 @@ export default class OpacityControl extends Component {
           .domain([this.colorSpace.min, this.colorSpace.max])
           .range([this.dataSpace.min, this.dataSpace.max]);
 
-        let xDataValue  = colorSpaceToDataDomain(pointToColorSpace.x);
+        let xDataValue = colorSpaceToDataDomain(pointToColorSpace.x);
         this.opCanvas.title =
-          "" + xDataValue.toFixed(this.displayedDecimals) + "," + pointToColorSpace.y;
+          "" +
+          xDataValue.toFixed(this.displayedDecimals) +
+          "," +
+          pointToColorSpace.y;
 
         this.nodeHovered = i;
         hitPoint = true;
@@ -374,13 +384,16 @@ export default class OpacityControl extends Component {
         <Container>
           <Row className="opacity-controls-text-size">
             <Col>
-              {this.dataSpace.min.toFixed(this.displayedDecimals)} {this.dataSpace.units}
+              {this.dataSpace.min.toFixed(this.displayedDecimals)}{" "}
+              {this.dataSpace.units}
             </Col>
             <Col>
-              {this.dataSpace.mid.toFixed(this.displayedDecimals)} {this.dataSpace.units}
+              {this.dataSpace.mid.toFixed(this.displayedDecimals)}{" "}
+              {this.dataSpace.units}
             </Col>
             <Col>
-              {this.dataSpace.max.toFixed(this.displayedDecimals)} {this.dataSpace.units}
+              {this.dataSpace.max.toFixed(this.displayedDecimals)}{" "}
+              {this.dataSpace.units}
             </Col>
           </Row>
         </Container>
