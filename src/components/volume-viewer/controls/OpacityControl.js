@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { scaleLinear } from "d3-scale";
 
 import {
   ControlsConsumer,
@@ -8,6 +9,7 @@ import {
 
 export default class OpacityControl extends Component {
   static contextType = ControlsContext; // TEMP - only while component is class based
+
   constructor(props) {
     super(props);
     this.minLevel = 0;
@@ -27,13 +29,48 @@ export default class OpacityControl extends Component {
     this.hoverRadius = 15;
     this.width = 0;
 
+    // min and max of the canvas space
+    this.canvasWidth = 250;
+
+    this.paddedCanvasSpace = {
+      min: 0,
+      max: this.canvasWidth * 0.92,
+    };
+
+    this.padedCanvasSpaceToCanvasSpace = scaleLinear()
+      .domain([this.paddedCanvasSpace.min, this.paddedCanvasSpace.max])
+      .range([0, this.canvasWidth]);
+
     this.nodes = [
-      { x: 0, y: 0 },
-      { x: 250 * 0.11, y: 15 },
-      { x: 250 * 0.32, y: 35 },
-      { x: 250 * 0.92, y: 70 },
+      { x: this.paddedCanvasSpace.min, y: 0 },
+      {
+        x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.11),
+        y: 15,
+      },
+      {
+        x: this.padedCanvasSpaceToCanvasSpace.invert(this.canvasWidth * 0.32),
+        y: 35,
+      },
+      { x: this.paddedCanvasSpace.max, y: 70 },
     ];
 
+    this.dataSpace = {
+      min: 0,
+      mid: 0,
+      max: 1,
+      units: "",
+    };
+
+    this.colorSpace = {
+      min: 0,
+      max: 256,
+    };
+
+    this.canvasSpaceToColorSpace = scaleLinear()
+    .domain([this.paddedCanvasSpace.min, this.paddedCanvasSpace.max])
+    .range([this.colorSpace.min, this.colorSpace.max]);
+
+    this.displayedDecimals = 2;
     this.nodesCanvasSpace = [];
 
     this.changePointer = this.changePointer.bind(this);
@@ -67,12 +104,27 @@ export default class OpacityControl extends Component {
     //-- Save state
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.dataSpace.min = nextProps.opacityControlsProps.min;
+    this.dataSpace.max = nextProps.opacityControlsProps.max;
+    this.dataSpace.mid =
+      (nextProps.opacityControlsProps.min +
+        nextProps.opacityControlsProps.max) /
+      2;
+    this.dataSpace.units = nextProps.opacityControlsProps.units;
+    this.colorSpaceToDataDomain = scaleLinear()
+          .domain([this.colorSpace.min, this.colorSpace.max])
+          .range([this.dataSpace.min, this.dataSpace.max]);
+  }
+
   updateCanvas() {
     this.opCanvas = this.refs.canvas;
     this.opContext = this.refs.canvas.getContext("2d");
 
     this.opCanvas.height = this.height + this.padding * 2;
-    this.opCanvas.width = 250;
+    this.opCanvas.width = this.canvasWidth;
+
+    //the last point is located at 250 - 2 * padding.
     this.width = this.opCanvas.width - 2 * this.padding;
 
     this.opCanvas.style.border = "1px solid";
@@ -81,6 +133,24 @@ export default class OpacityControl extends Component {
     this.opContext.strokeStyle = "rgba(128, 128, 128, 0.8)";
     this.opContext.lineWidth = 2;
 
+    const dataSpaceToCanvasSpace = scaleLinear()
+      .domain([this.dataSpace.min, this.dataSpace.max])
+      .range([this.paddedCanvasSpace.min, this.paddedCanvasSpace.max]);
+
+    // Draw rule's mid point
+    this.dataSpace.mid = (this.dataSpace.min + this.dataSpace.max) / 2;
+    let scaleMidPointToCanvasSpace = dataSpaceToCanvasSpace(this.dataSpace.mid);
+    scaleMidPointToCanvasSpace = this.padedCanvasSpaceToCanvasSpace(
+      scaleMidPointToCanvasSpace
+    );
+    this.opContext.moveTo(scaleMidPointToCanvasSpace, this.opCanvas.height);
+    this.opContext.lineTo(
+      scaleMidPointToCanvasSpace,
+      this.opCanvas.height - 10
+    );
+    this.opContext.stroke();
+
+    // Draw nodes and lines
     this.nodesCanvasSpace = [];
 
     for (let i = 0; i < this.nodes.length; i++) {
@@ -112,7 +182,7 @@ export default class OpacityControl extends Component {
         this.opContext.stroke();
       }
 
-      this.opContext.lineTo(this.width + this.padding, this.maxLevelY);
+      this.opContext.lineTo(this.opCanvas.width, this.maxLevelY);
       this.opContext.stroke();
     }
 
@@ -142,7 +212,7 @@ export default class OpacityControl extends Component {
     this.transferFunctionNodes = [];
     this.nodesCanvasSpace.forEach((node) => {
       this.transferFunctionNodes.push({
-        x: (node.x - this.padding) / this.width,
+        x: (node.x - this.padding) / this.opCanvas.width,
         y: 1 - (node.y - this.padding) / this.height,
       });
     });
@@ -197,8 +267,9 @@ export default class OpacityControl extends Component {
 
   changePointer(e) {
     let hitPoint = false;
+    this.opCanvas.title = "";
     for (let i = 0; i < this.nodes.length; i++) {
-      let normalizedCoordinates = {
+      const normalizedCoordinates = {
         x: this.nodes[i].x + this.padding,
         y: this.height - this.nodes[i].y + this.padding,
       };
@@ -209,6 +280,22 @@ export default class OpacityControl extends Component {
         ) <= this.hoverRadius
       ) {
         this.opCanvas.className = "pointer";
+
+        const nodeInCanvasSpace = this.canvasSpaceToColorSpace(this.nodes[i].x);
+
+        const pointToColorSpace = {
+          y: (this.nodes[i].y / 70).toFixed(this.displayedDecimals),
+          x: nodeInCanvasSpace,
+        };
+
+
+        let xDataValue = this.colorSpaceToDataDomain(pointToColorSpace.x);
+        this.opCanvas.title =
+          "" +
+          xDataValue.toFixed(this.displayedDecimals) +
+          "," +
+          pointToColorSpace.y;
+
         this.nodeHovered = i;
         hitPoint = true;
         this.hovering = true;
@@ -295,7 +382,22 @@ export default class OpacityControl extends Component {
     return (
       <div>
         <canvas ref="canvas" id="opacityControls" />
-
+        <Container>
+          <Row className="opacity-controls-text-size">
+            <Col>
+              {this.dataSpace.min.toFixed(this.displayedDecimals)}{" "}
+              {this.dataSpace.units}
+            </Col>
+            <Col>
+              {this.dataSpace.mid.toFixed(this.displayedDecimals)}{" "}
+              {this.dataSpace.units}
+            </Col>
+            <Col>
+              {this.dataSpace.max.toFixed(this.displayedDecimals)}{" "}
+              {this.dataSpace.units}
+            </Col>
+          </Row>
+        </Container>
         <ControlsConsumer>
           {({ state, dispatch }) => (
             <img
