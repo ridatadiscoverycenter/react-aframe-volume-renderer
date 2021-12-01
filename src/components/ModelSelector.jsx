@@ -19,7 +19,8 @@ export default function ModelSelector({ toggleControls }) {
     dispatch({
       type: "TOGGLE_MEASUREMENT",
       payload: val,
-      colorMap: val.value === "salt" ? allColorMaps.Haline : allColorMaps.Thermal,
+      colorMap:
+        val.value === "salt" ? allColorMaps.Haline : allColorMaps.Thermal,
     });
   }
 

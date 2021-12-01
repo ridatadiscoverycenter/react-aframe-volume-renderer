@@ -41,11 +41,7 @@ function Provider(props) {
   });
 
   const value = { state, dispatch };
-  return (
-    <Context.Provider value={value}>
-      {props.children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={value}>{props.children}</Context.Provider>;
 }
 
 // Custom hook to get the current Context
@@ -106,9 +102,7 @@ function Consumer(props) {
     <Context.Consumer>
       {(context) => {
         if (context === undefined) {
-          throw new Error(
-            "Consumer must be used within a Provider"
-          );
+          throw new Error("Consumer must be used within a Provider");
         }
         return props.children(context);
       }}
