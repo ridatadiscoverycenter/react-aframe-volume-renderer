@@ -18,7 +18,7 @@ function SelectorProvider(props) {
     },
     allColorMaps: config.colorMaps,
     colorMap: config.colorMaps[0],
-    
+
     position: config.volumePosition,
     rotation: config.volumeRotation,
     scale: config.volumeScale,
@@ -79,7 +79,7 @@ function volumeReducer(state, action) {
       return {
         ...state,
         colorMap: action.payload,
-      }
+      };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

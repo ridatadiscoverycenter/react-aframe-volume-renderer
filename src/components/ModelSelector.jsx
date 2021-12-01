@@ -12,7 +12,7 @@ import { useSelectorContext } from "../context/selector-context";
 export default function ModelSelector({ toggleControls }) {
   const {
     state: { buttons, selection, allColorMaps },
-    dispatch
+    dispatch,
   } = useSelectorContext();
 
   function handleChange(val) {

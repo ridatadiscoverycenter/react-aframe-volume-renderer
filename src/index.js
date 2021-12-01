@@ -7,8 +7,8 @@ import App from "./App";
 import { SelectorProvider } from "./context/selector-context.js";
 
 ReactDOM.render(
-    <SelectorProvider>
-        <App />
-    </SelectorProvider>
-    , document.getElementById("root")
+  <SelectorProvider>
+    <App />
+  </SelectorProvider>,
+  document.getElementById("root")
 );
