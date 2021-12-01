@@ -16,14 +16,14 @@ function SelectorProvider(props) {
       tide: config.tide[0],
       measurement: config.measurement[0],
     },
+    
+    position: config.volumePosition,
+    rotation: config.volumeRotation,
+    scale: config.volumeScale,
     slices: config.slices,
     x_spacing: config.x_spacing,
     y_spacing: config.y_spacing,
     z_spacing: config.z_spacing,
-
-    position: config.volumePosition,
-    rotation: config.volumeRotation,
-    scale: config.volumeScale,
   });
 
   const value = { state, dispatch };

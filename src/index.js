@@ -1,8 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App";
-
 import "./firebase.js";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import App from "./App";
+import { SelectorProvider } from "./context/selector-context.js";
+import { ControlsProvider } from "./VolumeViewer-package/context/controls-context.js";
+
+ReactDOM.render(
+    <SelectorProvider>
+        <ControlsProvider>
+            <App />
+        </ControlsProvider>
+    </SelectorProvider>
+    , document.getElementById("root")
+);
