@@ -1,35 +1,35 @@
 {
-    "comment:": "Outliers: Temp values = 3 times standard deviation, salt = clamped to range [0,50] ",
-    "winter-low-temp": {
-      "min": -1.79,
-      "max": 14.6
-    },
-    "winter-low-salt": {
-      "min": 0.0,
-      "max": 50.0
-    },
-    "winter-high-temp": {
-      "min": -2.01,
-      "max": 14.97
-    },
-    "winter-high-salt": {
-      "min": 0.0,
-      "max": 50.0
-    },
-    "summer-low-temp": {
-      "min": 7.31,
-      "max": 28.02
-    },
-    "summer-low-salt": {
-      "min": 0.05,
-      "max": 33.71
-    },
-    "summer-high-temp": {
-      "min": 7.13,
-      "max": 28.24
-    },
-    "summer-high-salt": {
-      "min": 0.05,
-      "max": 33.71
-    }
+  "comment:": "Outliers: Temp values = 3 times standard deviation, salt = clamped to range [0,50] ",
+  "winter-low-temp": {
+    "min": -1.79,
+    "max": 14.6
+  },
+  "winter-low-salt": {
+    "min": 0.0,
+    "max": 50.0
+  },
+  "winter-high-temp": {
+    "min": -2.01,
+    "max": 14.97
+  },
+  "winter-high-salt": {
+    "min": 0.0,
+    "max": 50.0
+  },
+  "summer-low-temp": {
+    "min": 7.31,
+    "max": 28.02
+  },
+  "summer-low-salt": {
+    "min": 0.05,
+    "max": 33.71
+  },
+  "summer-high-temp": {
+    "min": 7.13,
+    "max": 28.24
+  },
+  "summer-high-salt": {
+    "min": 0.05,
+    "max": 33.71
   }
+}

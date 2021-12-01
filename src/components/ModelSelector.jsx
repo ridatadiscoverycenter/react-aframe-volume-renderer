@@ -20,16 +20,7 @@ export default function ModelSelector({ toggleControls }) {
     dispatch({
       type: "TOGGLE_MEASUREMENT",
       payload: val,
-    });
-    // Change color map
-    dispatch({
-      type: "CHANGE_COLOR_MAP",
-      payload:
-        val.value === "salt"
-          // ? allColorMaps.find((m) => m.name === "Haline")
-          // : allColorMaps.find((m) => m.name === "Thermal"),
-          ? allColorMaps.Haline
-          : allColorMaps.Thermal
+      colorMap: val.value === "salt" ? allColorMaps.Haline : allColorMaps.Thermal,
     });
   }
 

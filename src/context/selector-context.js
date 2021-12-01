@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import config from "../assets/config.json";
-import configMinMax from "../assets/volume-min-max.json"
+import configMinMax from "../assets/volume-min-max.json";
 
 import haline from "../assets/colormaps/haline.png";
 import thermal from "../assets/colormaps/thermal.png";
@@ -27,13 +27,17 @@ function SelectorProvider(props) {
     },
     colorMap: haline,
 
-    position: config.volumePosition,
-    rotation: config.volumeRotation,
-    scale: config.volumeScale,
-    slices: config.slices,
-    x_spacing: config.x_spacing,
-    y_spacing: config.y_spacing,
-    z_spacing: config.z_spacing,
+    model: {
+      position: config.volumePosition,
+      rotation: config.volumeRotation,
+      scale: config.volumeScale,
+      slices: config.slices,
+      spacing: {
+        x: config.x_spacing,
+        y: config.y_spacing,
+        z: config.z_spacing,
+      },
+    },
   });
 
   const value = { state, dispatch };
@@ -63,6 +67,7 @@ function volumeReducer(state, action) {
           ...state.selection,
           measurement: action.payload,
         },
+        colorMap: action.colorMap,
       };
     }
     case "TOGGLE_SEASON": {
