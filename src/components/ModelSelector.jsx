@@ -7,16 +7,15 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-import { useSelectorContext } from "../context/selector-context";
+import { UseContext } from "../context/context";
 
 export default function ModelSelector({ toggleControls }) {
   const {
     state: { buttons, selection, allColorMaps },
     dispatch,
-  } = useSelectorContext();
+  } = UseContext();
 
   function handleChange(val) {
-    // Change model
     dispatch({
       type: "TOGGLE_MEASUREMENT",
       payload: val,

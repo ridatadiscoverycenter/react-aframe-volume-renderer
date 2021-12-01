@@ -5,11 +5,11 @@ import configMinMax from "../assets/volume-min-max.json";
 import haline from "../assets/colormaps/haline.png";
 import thermal from "../assets/colormaps/thermal.png";
 
-const SelectorContext = createContext();
+const Context = createContext();
 
 // Custom component to provide the Selector context
-function SelectorProvider(props) {
-  const [state, dispatch] = useReducer(volumeReducer, {
+function Provider(props) {
+  const [state, dispatch] = useReducer(reducer, {
     configMinMax: configMinMax,
     allColorMaps: {
       Haline: haline,
@@ -42,23 +42,23 @@ function SelectorProvider(props) {
 
   const value = { state, dispatch };
   return (
-    <SelectorContext.Provider value={value}>
+    <Context.Provider value={value}>
       {props.children}
-    </SelectorContext.Provider>
+    </Context.Provider>
   );
 }
 
-// Custom hook to get the current SelectorContext
-function useSelectorContext() {
-  const context = useContext(SelectorContext);
+// Custom hook to get the current Context
+function UseContext() {
+  const context = useContext(Context);
   if (context === undefined) {
-    throw new Error("useSelector must be used within a SelectorProvider");
+    throw new Error("useContext must be used within a ContextProvider");
   }
   return context;
 }
 
 // Custom reducer to update the SelectorContext
-function volumeReducer(state, action) {
+function reducer(state, action) {
   switch (action.type) {
     case "TOGGLE_MEASUREMENT": {
       return {
@@ -101,19 +101,19 @@ function volumeReducer(state, action) {
 }
 
 // Custom component to get the current SelectorContext (class based components)
-function SelectorConsumer(props) {
+function Consumer(props) {
   return (
-    <SelectorContext.Consumer>
+    <Context.Consumer>
       {(context) => {
         if (context === undefined) {
           throw new Error(
-            "SelectorConsumer must be used within a SelectorProvider"
+            "Consumer must be used within a Provider"
           );
         }
         return props.children(context);
       }}
-    </SelectorContext.Consumer>
+    </Context.Consumer>
   );
 }
 
-export { useSelectorContext, SelectorProvider, SelectorConsumer };
+export { UseContext, Provider, Consumer };

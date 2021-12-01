@@ -1,10 +1,10 @@
 import { Container } from "react-bootstrap";
 import { VolumeViewer } from "react-volume-viewer";
 
-import { useSelectorContext } from "../context/selector-context";
+import { UseContext } from "../context/context";
 
 export default function VolumeViewerWrapper({ controlsVisible }) {
-  const { state } = useSelectorContext();
+  const { state } = UseContext();
   const { season, tide, measurement } = state.selection;
   return (
     <Container fluid className="p-4">

@@ -4,11 +4,11 @@ import ReactDOM from "react-dom";
 import "./firebase.js";
 
 import App from "./App";
-import { SelectorProvider } from "./context/selector-context.js";
+import { Provider } from "./context/context.js";
 
 ReactDOM.render(
-  <SelectorProvider>
+  <Provider>
     <App />
-  </SelectorProvider>,
+  </Provider>,
   document.getElementById("root")
 );
