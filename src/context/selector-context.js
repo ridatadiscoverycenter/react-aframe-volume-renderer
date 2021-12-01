@@ -1,11 +1,20 @@
 import { createContext, useContext, useReducer } from "react";
 import config from "../assets/config.json";
+import configMinMax from "../assets/volume-min-max.json"
+
+import haline from "../assets/colormaps/haline.png";
+import thermal from "../assets/colormaps/thermal.png";
 
 const SelectorContext = createContext();
 
 // Custom component to provide the Selector context
 function SelectorProvider(props) {
   const [state, dispatch] = useReducer(volumeReducer, {
+    configMinMax: configMinMax,
+    allColorMaps: {
+      Haline: haline,
+      Thermal: thermal,
+    },
     buttons: {
       season: config.season,
       tide: config.tide,
@@ -16,8 +25,7 @@ function SelectorProvider(props) {
       tide: config.tide[0],
       measurement: config.measurement[0],
     },
-    allColorMaps: config.colorMaps,
-    colorMap: config.colorMaps[0],
+    colorMap: haline,
 
     position: config.volumePosition,
     rotation: config.volumeRotation,

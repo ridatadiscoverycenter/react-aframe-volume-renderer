@@ -16,10 +16,9 @@ import { useSelectorContext } from "./context/selector-context.js";
 // TODo: Add Add colorMap, path to state (controls-context to selector-context)
 // TODO: Rename context file and delete controls
 export default function App() {
-  const state = useSelectorContext();
+  const {state} = useSelectorContext();
+  const {season, tide, measurement} = state.selection;
   const [controlsVisible, setControlsVisible] = useState(false);
-
-  console.log("STATE")
 
   return (
     <div id="visualizer">
@@ -34,8 +33,10 @@ export default function App() {
         controlsVisible={controlsVisible}
         colorMap={state.colorMap}
         model={{
-          range: { min: 0.05, max: 33.71, unit: "°C" },
-          path: state.path,
+          path: `./assets/models/${season.value}-${tide.value}-${measurement.value}.png`,
+          range: state.configMinMax[
+            `${season.value}-${tide.value}-${measurement.value}`
+          ],
           position: state.position,
           rotation: state.rotation,
           scale: state.scale,

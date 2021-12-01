@@ -26,8 +26,10 @@ export default function ModelSelector({ toggleControls }) {
       type: "CHANGE_COLOR_MAP",
       payload:
         val.value === "salt"
-          ? allColorMaps.find((m) => m.name === "Haline")
-          : allColorMaps.find((m) => m.name === "Thermal"),
+          // ? allColorMaps.find((m) => m.name === "Haline")
+          // : allColorMaps.find((m) => m.name === "Thermal"),
+          ? allColorMaps.Haline
+          : allColorMaps.Thermal
     });
   }
 

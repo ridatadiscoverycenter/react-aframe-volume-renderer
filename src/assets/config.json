@@ -39,28 +39,6 @@
   "volumePosition": "0 0 0",
   "volumeRotation": "-55 0 0",
   "volumeScale": "1 -1 1",
-  "colorMaps": [
-    {
-      "name": "Haline",
-      "src": "assets/images/colormaps/haline.png"
-    },
-    {
-      "name": "Thermal",
-      "src": "assets/images/colormaps/thermal.png"
-    },
-    {
-      "name": "Grayscale",
-      "src": "assets/images/colormaps/grayscale.png"
-    },
-    {
-      "name": "Natural",
-      "src": "assets/images/colormaps/natural.png"
-    },
-    {
-      "name": "RGB",
-      "src": "assets/images/colormaps/rgb.png"
-    }
-  ],
   "range": {
     "min": 0,
     "max": 1
