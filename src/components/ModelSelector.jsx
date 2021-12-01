@@ -8,27 +8,21 @@ import {
 } from "react-bootstrap";
 
 import { useSelectorContext } from "../context/selector-context";
-import { useControlsContext } from "../VolumeViewer-package/context/controls-context";
 
 export default function ModelSelector({ toggleControls }) {
   const {
-    state: { buttons, selection },
-    dispatch: selectorDispatch,
+    state: { buttons, selection, allColorMaps },
+    dispatch
   } = useSelectorContext();
-
-  const {
-    state: { allColorMaps },
-    dispatch: controlsDispatch,
-  } = useControlsContext();
 
   function handleChange(val) {
     // Change model
-    selectorDispatch({
+    dispatch({
       type: "TOGGLE_MEASUREMENT",
       payload: val,
     });
     // Change color map
-    controlsDispatch({
+    dispatch({
       type: "CHANGE_COLOR_MAP",
       payload:
         val.value === "salt"
@@ -66,7 +60,7 @@ export default function ModelSelector({ toggleControls }) {
             name="season"
             value={selection.season}
             onChange={(val) =>
-              selectorDispatch({
+              dispatch({
                 type: "TOGGLE_SEASON",
                 payload: val,
               })
@@ -88,7 +82,7 @@ export default function ModelSelector({ toggleControls }) {
             name="tide"
             value={selection.tide}
             onChange={(val) =>
-              selectorDispatch({
+              dispatch({
                 type: "TOGGLE_TIDE",
                 payload: val,
               })

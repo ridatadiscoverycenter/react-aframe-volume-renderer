@@ -16,6 +16,8 @@ function SelectorProvider(props) {
       tide: config.tide[0],
       measurement: config.measurement[0],
     },
+    allColorMaps: config.colorMaps,
+    colorMap: config.colorMaps[0],
     
     position: config.volumePosition,
     rotation: config.volumeRotation,
@@ -72,6 +74,12 @@ function volumeReducer(state, action) {
           tide: action.payload,
         },
       };
+    }
+    case "CHANGE_COLOR_MAP": {
+      return {
+        ...state,
+        colorMap: action.payload,
+      }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
