@@ -6,6 +6,7 @@ import { UseContext } from "../context/context";
 export default function VolumeViewerWrapper({ controlsVisible }) {
   const { state } = UseContext();
   const { season, tide, measurement } = state.selection;
+
   return (
     <Container fluid className="p-4">
       <VolumeViewer

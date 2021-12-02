@@ -84,12 +84,6 @@ function reducer(state, action) {
         },
       };
     }
-    case "CHANGE_COLOR_MAP": {
-      return {
-        ...state,
-        colorMap: action.payload,
-      };
-    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
