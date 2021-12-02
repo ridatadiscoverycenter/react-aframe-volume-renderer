@@ -1,9 +1,7 @@
 import React from "react";
 import { Container, Alert, Button } from "react-bootstrap";
 
-export default function InfoText(props) {
-  const { selection } = props;
-
+export default function InfoText({ selection }) {
   return (
     <Container className="p-4">
       <Alert
