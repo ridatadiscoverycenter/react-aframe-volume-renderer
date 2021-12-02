@@ -9,7 +9,7 @@ export default function VolumeViewerWrapper({ controlsVisible }) {
   return (
     <Container fluid className="p-4">
       <VolumeViewer
-        className="aframe-container"
+        className="volumeViewer"
         colorMaps={state.allColorMaps}
         controlsVisible={controlsVisible}
         colorMap={state.colorMap}
