@@ -39,7 +39,6 @@ export default function App() {
   const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.Haline);
 
   const [model, setModel] = useState({
-    // path: `./assets/models/${selection.season.value}-${selection.tide.value}-${selection.measurement.value}.png`,
     path: `./assets/models/${getModel(selection)}.png`,
     range: CONFIG_MIN_MAX[getModel(selection)],
     position: config.volumePosition,
@@ -60,17 +59,18 @@ export default function App() {
       <Header />
       <InfoText selection={selection} />
       <ModelSelector
-        buttons={BUTTONS}
-        selection={selection}
-        setSelection={setSelection}
-        allColorMaps={ALL_COLOR_MAPS}
+        BUTTONS={BUTTONS}
+        ALL_COLOR_MAPS={ALL_COLOR_MAPS}
+        CONFIG_MIN_MAX={CONFIG_MIN_MAX}
+        selection={selection} setSelection={setSelection}
         setColorMap={setColorMap}
         setModel={setModel}
         toggleControls={() => setControlsVisible(!controlsVisible)}
       />
       <VolumeViewerWrapper
+        ALL_COLOR_MAPS={ALL_COLOR_MAPS}
         colorMap={colorMap}
-        allColorMaps={ALL_COLOR_MAPS}
+
         model={model}
         controlsVisible={controlsVisible}
       />

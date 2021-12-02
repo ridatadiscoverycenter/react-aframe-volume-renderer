@@ -7,27 +7,38 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
+function getModel(selection) {
+  return `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`;
+}
+
 export default function ModelSelector(props) {
   const {
-    toggleControls,
-    buttons,
-    selection,
-    setSelection,
-    allColorMaps,
+    BUTTONS,
+    ALL_COLOR_MAPS,
+    CONFIG_MIN_MAX,
+    selection, setSelection,
     setColorMap,
     setModel,
+    toggleControls,
   } = props;
 
   // TODO: Need to setModel
-  // TODO: All buttons through the handleChange?
+  // TODO: Change all buttons through the handleChange?
   function handleChange(val) {
     setSelection({
       ...selection,
       measurement: val,
     });
-    val.value === "salt"
-      ? setColorMap(allColorMaps.Haline)
-      : setColorMap(allColorMaps.Thermal);
+    // val.value === "salt"
+    //   ? setColorMap(ALL_COLOR_MAPS.Haline)
+    //   : setColorMap(ALL_COLOR_MAPS.Thermal);
+    setModel(model => (
+      {
+        ...model,
+        path: `./assets/models/${getModel(selection)}.png`,
+        range: CONFIG_MIN_MAX[getModel(selection)],
+      }
+    ))
   }
 
   return (
@@ -43,7 +54,7 @@ export default function ModelSelector(props) {
             value={selection.measurement}
             onChange={(val) => handleChange(val)}
           >
-            {buttons.measurement.map((m) => {
+            {BUTTONS.measurement.map((m) => {
               return (
                 <ToggleButton key={m.name} value={m}>
                   {m.name}
@@ -65,7 +76,7 @@ export default function ModelSelector(props) {
               })
             }
           >
-            {buttons.season.map((m) => {
+            {BUTTONS.season.map((m) => {
               return (
                 <ToggleButton key={m.name} value={m}>
                   {m.name}
@@ -87,7 +98,7 @@ export default function ModelSelector(props) {
               })
             }
           >
-            {buttons.tide.map((m) => {
+            {BUTTONS.tide.map((m) => {
               return (
                 <ToggleButton key={m.name} value={m}>
                   {m.name}
