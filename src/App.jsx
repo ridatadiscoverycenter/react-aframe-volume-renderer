@@ -62,7 +62,8 @@ export default function App() {
         BUTTONS={BUTTONS}
         ALL_COLOR_MAPS={ALL_COLOR_MAPS}
         CONFIG_MIN_MAX={CONFIG_MIN_MAX}
-        selection={selection} setSelection={setSelection}
+        selection={selection}
+        setSelection={setSelection}
         setColorMap={setColorMap}
         setModel={setModel}
         toggleControls={() => setControlsVisible(!controlsVisible)}
@@ -70,7 +71,6 @@ export default function App() {
       <VolumeViewerWrapper
         ALL_COLOR_MAPS={ALL_COLOR_MAPS}
         colorMap={colorMap}
-
         model={model}
         controlsVisible={controlsVisible}
       />

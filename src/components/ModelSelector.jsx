@@ -16,7 +16,8 @@ export default function ModelSelector(props) {
     BUTTONS,
     ALL_COLOR_MAPS,
     CONFIG_MIN_MAX,
-    selection, setSelection,
+    selection,
+    setSelection,
     setColorMap,
     setModel,
     toggleControls,
@@ -32,13 +33,11 @@ export default function ModelSelector(props) {
     // val.value === "salt"
     //   ? setColorMap(ALL_COLOR_MAPS.Haline)
     //   : setColorMap(ALL_COLOR_MAPS.Thermal);
-    setModel(model => (
-      {
-        ...model,
-        path: `./assets/models/${getModel(selection)}.png`,
-        range: CONFIG_MIN_MAX[getModel(selection)],
-      }
-    ))
+    setModel((model) => ({
+      ...model,
+      path: `./assets/models/${getModel(selection)}.png`,
+      range: CONFIG_MIN_MAX[getModel(selection)],
+    }));
   }
 
   return (
