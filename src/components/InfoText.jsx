@@ -1,12 +1,8 @@
 import React from "react";
 import { Container, Alert, Button } from "react-bootstrap";
 
-import { UseContext } from "../context/context";
-
 export default function InfoText(props) {
-  const {
-    state: { selection },
-  } = UseContext();
+  const { selection } = props;
 
   return (
     <Container className="p-4">

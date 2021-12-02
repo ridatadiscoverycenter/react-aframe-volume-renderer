@@ -7,20 +7,27 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-import { UseContext } from "../context/context";
-
-export default function ModelSelector({ toggleControls }) {
+export default function ModelSelector(props) {
   const {
-    state: { buttons, selection, allColorMaps },
-    dispatch,
-  } = UseContext();
+    toggleControls,
+    buttons,
+    selection,
+    setSelection,
+    allColorMaps,
+    setColorMap,
+    setModel,
+  } = props;
 
+  // TODO: Need to setModel
+  // TODO: All buttons through the handleChange?
   function handleChange(val) {
-    dispatch({
-      type: "TOGGLE_MEASUREMENT",
-      payload: val,
-      colorMap: val.value === "salt" ? allColorMaps.Haline : allColorMaps.Thermal,
+    setSelection({
+      ...selection,
+      measurement: val,
     });
+    val.value === "salt"
+      ? setColorMap(allColorMaps.Haline)
+      : setColorMap(allColorMaps.Thermal);
   }
 
   return (
@@ -52,9 +59,9 @@ export default function ModelSelector({ toggleControls }) {
             name="season"
             value={selection.season}
             onChange={(val) =>
-              dispatch({
-                type: "TOGGLE_SEASON",
-                payload: val,
+              setSelection({
+                ...selection,
+                season: val,
               })
             }
           >
@@ -74,9 +81,9 @@ export default function ModelSelector({ toggleControls }) {
             name="tide"
             value={selection.tide}
             onChange={(val) =>
-              dispatch({
-                type: "TOGGLE_TIDE",
-                payload: val,
+              setSelection({
+                ...selection,
+                tide: val,
               })
             }
           >
