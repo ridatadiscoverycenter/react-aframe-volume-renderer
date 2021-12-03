@@ -34,8 +34,6 @@ export default function App() {
   });
   const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.Haline);
 
-  console.log("APP", selection);
-
   return (
     <div id="visualizer">
       <Header />
