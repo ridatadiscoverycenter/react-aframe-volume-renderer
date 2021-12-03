@@ -41,7 +41,6 @@ export default function App() {
       <ModelSelector
         BUTTONS={BUTTONS}
         ALL_COLOR_MAPS={ALL_COLOR_MAPS}
-        CONFIG_MIN_MAX={CONFIG_MIN_MAX}
         selection={selection}
         setSelection={setSelection}
         setColorMap={setColorMap}

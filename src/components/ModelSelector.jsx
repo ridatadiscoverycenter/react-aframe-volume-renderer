@@ -17,7 +17,7 @@ export default function ModelSelector(props) {
     toggleControls,
   } = props;
 
-  function handleChange(val) {
+  function handleMeasurementChange(val) {
     setSelection({
       ...selection,
       measurement: val,
@@ -25,6 +25,20 @@ export default function ModelSelector(props) {
     setColorMap(
       val.value === "salt" ? ALL_COLOR_MAPS.Haline : ALL_COLOR_MAPS.Thermal
     );
+  }
+
+  function handleSeasonChange(val) {
+    setSelection({
+      ...selection,
+      season: val,
+    })
+  }
+
+  function handleTideChange(val) {
+    setSelection({
+      ...selection,
+      tide: val,
+    })
   }
 
   return (
@@ -38,7 +52,7 @@ export default function ModelSelector(props) {
             type="radio"
             name="measurement"
             value={selection.measurement}
-            onChange={(val) => handleChange(val)}
+            onChange={(val) => handleMeasurementChange(val)}
           >
             {BUTTONS.measurement.map((m) => {
               return (
@@ -55,12 +69,7 @@ export default function ModelSelector(props) {
             type="radio"
             name="season"
             value={selection.season}
-            onChange={(val) =>
-              setSelection({
-                ...selection,
-                season: val,
-              })
-            }
+            onChange={(val) => handleSeasonChange(val)}
           >
             {BUTTONS.season.map((m) => {
               return (
@@ -77,12 +86,7 @@ export default function ModelSelector(props) {
             type="radio"
             name="tide"
             value={selection.tide}
-            onChange={(val) =>
-              setSelection({
-                ...selection,
-                tide: val,
-              })
-            }
+            onChange={(val) => handleTideChange(val)}
           >
             {BUTTONS.tide.map((m) => {
               return (
