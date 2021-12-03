@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import config from "./assets/config.json";
-import configMinMax from "./assets/volume-min-max.json";
 import haline from "./assets/colormaps/haline.png";
 import thermal from "./assets/colormaps/thermal.png";
 
@@ -22,7 +21,6 @@ const BUTTONS = {
   tide: config.tide,
   measurement: config.measurement,
 };
-const CONFIG_MIN_MAX = configMinMax;
 
 export default function App() {
   const [controlsVisible, setControlsVisible] = useState(false);
@@ -48,7 +46,6 @@ export default function App() {
       />
       <VolumeViewerWrapper
         ALL_COLOR_MAPS={ALL_COLOR_MAPS}
-        CONFIG_MIN_MAX={CONFIG_MIN_MAX}
         colorMap={colorMap}
         selection={selection}
         controlsVisible={controlsVisible}

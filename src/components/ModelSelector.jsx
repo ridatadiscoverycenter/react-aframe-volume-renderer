@@ -31,14 +31,14 @@ export default function ModelSelector(props) {
     setSelection({
       ...selection,
       season: val,
-    })
+    });
   }
 
   function handleTideChange(val) {
     setSelection({
       ...selection,
       tide: val,
-    })
+    });
   }
 
   return (

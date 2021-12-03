@@ -1,20 +1,15 @@
 import { Container } from "react-bootstrap";
 import { VolumeViewer } from "react-volume-viewer";
 import config from "../assets/config.json";
+import configMinMax from "../assets/volume-min-max.json";
 
 export default function VolumeViewerWrapper(props) {
-  const {
-    ALL_COLOR_MAPS,
-    CONFIG_MIN_MAX,
-    colorMap,
-    selection,
-    controlsVisible,
-  } = props;
+  const { ALL_COLOR_MAPS, colorMap, selection, controlsVisible } = props;
 
   const model = {
     path: `./assets/models/${selection.season.value}-${selection.tide.value}-${selection.measurement.value}.png`,
     range:
-      CONFIG_MIN_MAX[
+      configMinMax[
         `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`
       ],
     position: config.volumePosition,
