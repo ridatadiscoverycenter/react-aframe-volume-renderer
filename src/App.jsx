@@ -24,10 +24,6 @@ const BUTTONS = {
 };
 const CONFIG_MIN_MAX = configMinMax;
 
-function getModel(selection) {
-  return `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`;
-}
-
 export default function App() {
   const [controlsVisible, setControlsVisible] = useState(false);
 
@@ -38,21 +34,7 @@ export default function App() {
   });
   const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.Haline);
 
-  const [model, setModel] = useState({
-    path: `./assets/models/${getModel(selection)}.png`,
-    range: CONFIG_MIN_MAX[getModel(selection)],
-    position: config.volumePosition,
-    rotation: config.volumeRotation,
-    scale: config.volumeScale,
-    slices: config.slices,
-    spacing: {
-      x: config.x_spacing,
-      y: config.y_spacing,
-      z: config.z_spacing,
-    },
-  });
-
-  console.log(selection, colorMap, model);
+  console.log("APP", selection);
 
   return (
     <div id="visualizer">
@@ -65,13 +47,13 @@ export default function App() {
         selection={selection}
         setSelection={setSelection}
         setColorMap={setColorMap}
-        setModel={setModel}
         toggleControls={() => setControlsVisible(!controlsVisible)}
       />
       <VolumeViewerWrapper
         ALL_COLOR_MAPS={ALL_COLOR_MAPS}
+        CONFIG_MIN_MAX={CONFIG_MIN_MAX}
         colorMap={colorMap}
-        model={model}
+        selection={selection}
         controlsVisible={controlsVisible}
       />
       <Instructions />

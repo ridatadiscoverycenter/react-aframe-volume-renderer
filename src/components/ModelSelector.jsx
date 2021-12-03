@@ -7,37 +7,24 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-function getModel(selection) {
-  return `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`;
-}
-
 export default function ModelSelector(props) {
   const {
     BUTTONS,
     ALL_COLOR_MAPS,
-    CONFIG_MIN_MAX,
     selection,
     setSelection,
     setColorMap,
-    setModel,
     toggleControls,
   } = props;
 
-  // TODO: Need to setModel
-  // TODO: Change all buttons through the handleChange?
   function handleChange(val) {
     setSelection({
       ...selection,
       measurement: val,
     });
-    // val.value === "salt"
-    //   ? setColorMap(ALL_COLOR_MAPS.Haline)
-    //   : setColorMap(ALL_COLOR_MAPS.Thermal);
-    setModel((model) => ({
-      ...model,
-      path: `./assets/models/${getModel(selection)}.png`,
-      range: CONFIG_MIN_MAX[getModel(selection)],
-    }));
+    setColorMap(
+      val.value === "salt" ? ALL_COLOR_MAPS.Haline : ALL_COLOR_MAPS.Thermal
+    );
   }
 
   return (
