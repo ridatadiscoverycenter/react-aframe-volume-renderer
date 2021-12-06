@@ -23,8 +23,6 @@ export default function VolumeViewerWrapper(props) {
     },
   };
 
-  console.log("PATH", model.path);
-
   return (
     <Container fluid className="p-4">
       <VolumeViewer
