@@ -36,6 +36,8 @@ export default function ModelSelector(props) {
     });
   }
 
+  console.log("BUTTONS", BUTTONS)
+
   return (
     <Container fluid className="px-4">
       <Row noGutters>
