@@ -6,8 +6,7 @@ import {
   MODEL_DATA,
 } from "../constants/constants";
 
-export default function VolumeViewerWrapper(props) {
-  const { colorMap, selection, controlsVisible } = props;
+export default function VolumeViewerWrapper({ colorMap, selection, controlsVisible }) {
 
   const model = {
     ...MODEL_CONSTANTS,
