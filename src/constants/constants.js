@@ -8,8 +8,8 @@ const colorMaps = require.context(
   /\.(png|jpe?g|svg)$/
 );
 const ALL_COLOR_MAPS = colorMaps.keys().reduce(
-  (prev, image) => ({
-    ...prev,
+  (obj, image) => ({
+    ...obj,
     [image.replace("./", "").split(".")[0]]: colorMaps(image).default,
   }),
   {}
