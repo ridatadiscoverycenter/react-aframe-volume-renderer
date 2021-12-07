@@ -12,20 +12,21 @@ export default function VolumeViewerWrapper({
   controlsVisible,
 }) {
   const fileName = `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`;
-  const model = {
-    ...MODEL_CONSTANTS,
-    path: `./assets/models/${fileName}.png`,
-    range: MODEL_DATA[`${fileName}`],
-  };
+  const modelData = MODEL_DATA[`${fileName}`]
 
   return (
     <Container fluid className="p-4">
       <VolumeViewer
         className="volumeViewer"
+        colorMap={colorMap}
         colorMaps={ALL_COLOR_MAPS}
         controlsVisible={controlsVisible}
-        model={model}
-        colorMap={colorMap}
+        model={{
+          ...MODEL_CONSTANTS,
+          path: `./assets/models/${fileName}.png`,
+          range: {...modelData, mid: (modelData.min + modelData.max) / 2,}
+        }}
+        
       />
     </Container>
   );
