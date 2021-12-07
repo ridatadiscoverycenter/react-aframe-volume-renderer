@@ -1,6 +1,10 @@
 import { Container } from "react-bootstrap";
 import { VolumeViewer } from "react-volume-viewer";
-import { ALL_COLOR_MAPS, MODEL_CONSTANTS, MODEL_DATA } from "../constants/constants";
+import {
+  ALL_COLOR_MAPS,
+  MODEL_CONSTANTS,
+  MODEL_DATA,
+} from "../constants/constants";
 
 export default function VolumeViewerWrapper(props) {
   const { colorMap, selection, controlsVisible } = props;
