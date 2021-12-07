@@ -13,7 +13,7 @@ import { ALL_COLOR_MAPS, BUTTONS } from "./constants/constants";
 export default function App() {
   const [controlsVisible, setControlsVisible] = useState(false);
 
-  const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.Haline);
+  const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.haline);
   const [selection, setSelection] = useState(
     Object.keys(BUTTONS).reduce(
       (obj, key) => ({

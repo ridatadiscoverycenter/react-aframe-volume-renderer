@@ -18,7 +18,7 @@ export default function ModelSelector(props) {
       measurement: val,
     });
     setColorMap(
-      val.value === "salt" ? ALL_COLOR_MAPS.Haline : ALL_COLOR_MAPS.Thermal
+      val.value === "salt" ? ALL_COLOR_MAPS.haline : ALL_COLOR_MAPS.thermal
     );
   }
 

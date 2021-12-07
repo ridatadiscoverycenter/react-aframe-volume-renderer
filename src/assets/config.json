@@ -32,11 +32,15 @@
     }
   ],
 
-  "volumePosition": "0 0 0",
-  "volumeRotation": "-55 0 0",
-  "volumeScale": "1 -1 1",
-  "slices": 55,
-  "x_spacing": 2,
-  "y_spacing": 2,
-  "z_spacing": 2
+  "model": {
+    "position": "0 0 0",
+    "rotation": "-55 0 0",
+    "scale": "1 -1 1",
+    "slides": 55,
+    "spacing": {
+      "x": 2,
+      "y": 2,
+      "z": 1
+    }
+  }
 }
