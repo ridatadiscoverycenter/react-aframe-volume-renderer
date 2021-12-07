@@ -12,7 +12,7 @@ export default function VolumeViewerWrapper({
   controlsVisible,
 }) {
   const fileName = `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`;
-  const modelData = MODEL_DATA[`${fileName}`]
+  const modelData = MODEL_DATA[`${fileName}`];
 
   return (
     <Container fluid className="p-4">
@@ -24,9 +24,8 @@ export default function VolumeViewerWrapper({
         model={{
           ...MODEL_CONSTANTS,
           path: `./assets/models/${fileName}.png`,
-          range: {...modelData, mid: (modelData.min + modelData.max) / 2,}
+          range: { ...modelData, mid: (modelData.min + modelData.max) / 2 },
         }}
-        
       />
     </Container>
   );
