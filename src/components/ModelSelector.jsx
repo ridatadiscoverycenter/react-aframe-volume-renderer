@@ -13,10 +13,10 @@ export default function ModelSelector(props) {
   const { selection, setSelection, setColorMap, toggleControls } = props;
 
   function handleChange(button, value) {
-    setSelection({
+    setSelection((selection) => ({
       ...selection,
       [button]: value,
-    });
+    }));
 
     // Change colorMap to corresponding measurement
     button === "measurement" &&
