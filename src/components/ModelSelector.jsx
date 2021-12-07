@@ -32,15 +32,15 @@ export default function ModelSelector(props) {
           <Button onClick={toggleControls}>Options</Button>
         </Col>
 
-        {Object.keys(BUTTONS).map((button) => (
-          <Col className="text-center" key={button}>
+        {Object.keys(BUTTONS).map((buttonGroup) => (
+          <Col className="text-center" key={buttonGroup}>
             <ToggleButtonGroup
               type="radio"
-              name={button}
-              value={selection[button]}
-              onChange={(val) => handleChange(button, val)}
+              name={buttonGroup}
+              value={selection[buttonGroup]}
+              onChange={(val) => handleChange(buttonGroup, val)}
             >
-              {BUTTONS[button].map((b) => {
+              {BUTTONS[buttonGroup].map((b) => {
                 return (
                   <ToggleButton key={b.name} value={b}>
                     {b.name}
