@@ -9,9 +9,12 @@ import {
 
 import { ALL_COLOR_MAPS, BUTTONS } from "../constants/constants";
 
-export default function ModelSelector(props) {
-  const { selection, setSelection, setColorMap, toggleControls } = props;
-
+export default function ModelSelector({
+  selection,
+  setSelection,
+  setColorMap,
+  toggleControls,
+}) {
   function handleChange(button, value) {
     setSelection((selection) => ({
       ...selection,

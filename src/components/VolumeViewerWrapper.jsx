@@ -6,8 +6,11 @@ import {
   MODEL_DATA,
 } from "../constants/constants";
 
-export default function VolumeViewerWrapper({ colorMap, selection, controlsVisible }) {
-
+export default function VolumeViewerWrapper({
+  colorMap,
+  selection,
+  controlsVisible,
+}) {
   const model = {
     ...MODEL_CONSTANTS,
     path: `./assets/models/${selection.season.value}-${selection.tide.value}-${selection.measurement.value}.png`,
