@@ -1,9 +1,9 @@
 import { season, tide, measurement, model } from "../assets/config.json";
 
 const BUTTONS = {
+  measurement: measurement,
   season: season,
   tide: tide,
-  measurement: measurement,
 };
 
 // Import all colorMaps from '../assets/colormaps/' as {fileName: path}

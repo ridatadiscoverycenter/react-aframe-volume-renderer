@@ -12,31 +12,18 @@ import { ALL_COLOR_MAPS, BUTTONS } from "../constants/constants";
 export default function ModelSelector(props) {
   const { selection, setSelection, setColorMap, toggleControls } = props;
 
-  function handleMeasurementChange(val) {
+  function handleChange(button, value) {
     setSelection({
       ...selection,
-      measurement: val,
+      [button]: value,
     });
-    setColorMap(
-      val.value === "salt" ? ALL_COLOR_MAPS.haline : ALL_COLOR_MAPS.thermal
-    );
-  }
 
-  function handleSeasonChange(val) {
-    setSelection({
-      ...selection,
-      season: val,
-    });
+    // Change colorMap to corresponding measurement
+    button === "measurement" &&
+      setColorMap(
+        value.value === "salt" ? ALL_COLOR_MAPS.haline : ALL_COLOR_MAPS.thermal
+      );
   }
-
-  function handleTideChange(val) {
-    setSelection({
-      ...selection,
-      tide: val,
-    });
-  }
-
-  console.log("BUTTONS", BUTTONS)
 
   return (
     <Container fluid className="px-4">
@@ -44,56 +31,25 @@ export default function ModelSelector(props) {
         <Col className="text-center">
           <Button onClick={toggleControls}>Options</Button>
         </Col>
-        <Col className="text-center">
-          <ToggleButtonGroup
-            type="radio"
-            name="measurement"
-            value={selection.measurement}
-            onChange={(val) => handleMeasurementChange(val)}
-          >
-            {BUTTONS.measurement.map((m) => {
-              return (
-                <ToggleButton key={m.name} value={m}>
-                  {m.name}
-                </ToggleButton>
-              );
-            })}
-          </ToggleButtonGroup>
-        </Col>
 
-        <Col className="text-center">
-          <ToggleButtonGroup
-            type="radio"
-            name="season"
-            value={selection.season}
-            onChange={(val) => handleSeasonChange(val)}
-          >
-            {BUTTONS.season.map((m) => {
-              return (
-                <ToggleButton key={m.name} value={m}>
-                  {m.name}
-                </ToggleButton>
-              );
-            })}
-          </ToggleButtonGroup>
-        </Col>
-
-        <Col className="text-center">
-          <ToggleButtonGroup
-            type="radio"
-            name="tide"
-            value={selection.tide}
-            onChange={(val) => handleTideChange(val)}
-          >
-            {BUTTONS.tide.map((m) => {
-              return (
-                <ToggleButton key={m.name} value={m}>
-                  {m.name}
-                </ToggleButton>
-              );
-            })}
-          </ToggleButtonGroup>
-        </Col>
+        {Object.keys(BUTTONS).map((button) => (
+          <Col className="text-center" key={button}>
+            <ToggleButtonGroup
+              type="radio"
+              name={button}
+              value={selection[button]}
+              onChange={(val) => handleChange(button, val)}
+            >
+              {BUTTONS[button].map((b) => {
+                return (
+                  <ToggleButton key={b.name} value={b}>
+                    {b.name}
+                  </ToggleButton>
+                );
+              })}
+            </ToggleButtonGroup>
+          </Col>
+        ))}
       </Row>
     </Container>
   );
