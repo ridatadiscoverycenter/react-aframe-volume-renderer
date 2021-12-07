@@ -11,13 +11,13 @@ export default function VolumeViewerWrapper({
   selection,
   controlsVisible,
 }) {
+
+  const fileName = `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`
   const model = {
     ...MODEL_CONSTANTS,
-    path: `./assets/models/${selection.season.value}-${selection.tide.value}-${selection.measurement.value}.png`,
+    path: `./assets/models/${fileName}.png`,
     range:
-      MODEL_DATA[
-        `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`
-      ],
+      MODEL_DATA[`${fileName}`],
   };
 
   return (
