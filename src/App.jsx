@@ -25,12 +25,16 @@ const BUTTONS = {
 export default function App() {
   const [controlsVisible, setControlsVisible] = useState(false);
 
-  const [selection, setSelection] = useState({
-    season: BUTTONS.season[0],
-    tide: BUTTONS.tide[0],
-    measurement: BUTTONS.measurement[0],
-  });
   const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.Haline);
+  const [selection, setSelection] = useState(
+    Object.keys(BUTTONS).reduce((obj, key) => (
+      {
+        ...obj, 
+        [key]: BUTTONS[key][0]
+      }
+    ), {})
+  );
+  
 
   return (
     <div id="visualizer">
