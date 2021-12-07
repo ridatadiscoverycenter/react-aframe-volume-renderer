@@ -7,15 +7,10 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
+import { ALL_COLOR_MAPS, BUTTONS } from "../constants/constants";
+
 export default function ModelSelector(props) {
-  const {
-    BUTTONS,
-    ALL_COLOR_MAPS,
-    selection,
-    setSelection,
-    setColorMap,
-    toggleControls,
-  } = props;
+  const { selection, setSelection, setColorMap, toggleControls } = props;
 
   function handleMeasurementChange(val) {
     setSelection({

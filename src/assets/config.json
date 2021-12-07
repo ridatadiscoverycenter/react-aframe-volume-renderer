@@ -31,22 +31,12 @@
       "name": "Temperature"
     }
   ],
-  "slices": 55,
-  "x_spacing": 2,
-  "y_spacing": 2,
-  "z_spacing": 2,
 
   "volumePosition": "0 0 0",
   "volumeRotation": "-55 0 0",
   "volumeScale": "1 -1 1",
-  "range": {
-    "min": 0,
-    "max": 1
-  },
-  "initialTransferFunction": [
-    { "x": 0, "y": 0 },
-    { "x": 0.11739130434782609, "y": 0.11739130434782609 },
-    { "x": 0.34782608695652173, "y": 0.34782608695652173 },
-    { "x": 1, "y": 1 }
-  ]
+  "slices": 55,
+  "x_spacing": 2,
+  "y_spacing": 2,
+  "z_spacing": 2
 }

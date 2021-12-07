@@ -1,33 +1,24 @@
 import { Container } from "react-bootstrap";
 import { VolumeViewer } from "react-volume-viewer";
-import config from "../assets/config.json";
-import configMinMax from "../assets/volume-min-max.json";
+import { MODEL_CONSTANTS, MODEL_DATA } from "../constants/constants";
 
 export default function VolumeViewerWrapper(props) {
-  const { ALL_COLOR_MAPS, colorMap, selection, controlsVisible } = props;
+  const { allColorMaps, colorMap, selection, controlsVisible } = props;
 
   const model = {
+    ...MODEL_CONSTANTS,
     path: `./assets/models/${selection.season.value}-${selection.tide.value}-${selection.measurement.value}.png`,
     range:
-      configMinMax[
+      MODEL_DATA[
         `${selection.season.value}-${selection.tide.value}-${selection.measurement.value}`
       ],
-    position: config.volumePosition,
-    rotation: config.volumeRotation,
-    scale: config.volumeScale,
-    slices: config.slices,
-    spacing: {
-      x: config.x_spacing,
-      y: config.y_spacing,
-      z: config.z_spacing,
-    },
   };
 
   return (
     <Container fluid className="p-4">
       <VolumeViewer
         className="volumeViewer"
-        colorMaps={ALL_COLOR_MAPS}
+        colorMaps={allColorMaps}
         controlsVisible={controlsVisible}
         model={model}
         colorMap={colorMap}
