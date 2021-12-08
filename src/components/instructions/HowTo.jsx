@@ -2,10 +2,10 @@ import React from "react";
 import { Modal, ModalBody, Navbar, Nav, Button, Row } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
-export default function HowTo(props) {
+export default function HowTo({ show, close }) {
   return (
     <div>
-      <Modal size="xl" backdrop="static" scrollable={true} show={props.show}>
+      <Modal size="xl" backdrop="static" scrollable={true} show={show}>
         <ModalHeader>
           <Modal.Title>
             Web VR Volume Visualizer
@@ -150,7 +150,7 @@ export default function HowTo(props) {
         </ModalBody>
 
         <Modal.Footer>
-          <Button variant="dark" onClick={() => props.close()}>
+          <Button variant="dark" onClick={() => close()}>
             Close
           </Button>
         </Modal.Footer>
