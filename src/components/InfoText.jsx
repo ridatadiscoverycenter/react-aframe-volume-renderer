@@ -1,13 +1,7 @@
 import React from "react";
 import { Container, Alert, Button } from "react-bootstrap";
 
-import { useSelectorContext } from "../context/selector-context";
-
-export default function InfoText(props) {
-  const {
-    state: { selection },
-  } = useSelectorContext();
-
+export default function InfoText({ selection }) {
   return (
     <Container className="p-4">
       <Alert

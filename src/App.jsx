@@ -1,42 +1,44 @@
 import React, { useState } from "react";
-import "aframe";
-import "aframe-event-set-component";
-import "aframe-orbit-controls";
-
-import "./Aframe/loader.js";
-import "./Aframe/buttons-check.js";
-import "./Aframe/render-2d-clipplane";
-import "./Aframe/cursor-listener";
 
 import "./styles/main.scss";
-
-import { SelectorProvider } from "./context/selector-context.js";
+import { ALL_COLOR_MAPS, BUTTONS } from "./constants/constants";
 
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
 import ModelSelector from "./components/ModelSelector";
+import VolumeViewerWrapper from "./components/VolumeViewerWrapper";
 import Instructions from "./components/instructions/Instructions";
 import Footer from "./components/Footer";
-import VolumeViewerWrapper from "./components/volume-viewer/VolumeViewerWrapper.jsx";
-import { ControlsProvider } from "./context/controls-context.js";
 
 export default function App() {
   const [controlsVisible, setControlsVisible] = useState(false);
 
+  const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.haline);
+  const [selection, setSelection] = useState(
+    Object.keys(BUTTONS).reduce(
+      (obj, key) => ({
+        ...obj,
+        [key]: BUTTONS[key][0],
+      }),
+      {}
+    )
+  );
+
   return (
     <div id="visualizer">
       <Header />
-
-      <SelectorProvider>
-        <ControlsProvider>
-          <InfoText />
-          <ModelSelector
-            toggleControls={() => setControlsVisible(!controlsVisible)}
-          />
-          <VolumeViewerWrapper controlsVisible={controlsVisible} />
-        </ControlsProvider>
-      </SelectorProvider>
-
+      <InfoText selection={selection} />
+      <ModelSelector
+        selection={selection}
+        setSelection={setSelection}
+        setColorMap={setColorMap}
+        toggleControls={() => setControlsVisible(!controlsVisible)}
+      />
+      <VolumeViewerWrapper
+        colorMap={colorMap}
+        selection={selection}
+        controlsVisible={controlsVisible}
+      />
       <Instructions />
       <Footer />
     </div>
