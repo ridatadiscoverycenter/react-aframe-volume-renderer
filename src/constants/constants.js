@@ -1,5 +1,6 @@
-// import { season, tide, measurement, model } from "../assets/config.json";
 import CONFIG from "../assets/config.json";
+
+const MODEL_CONSTANTS = CONFIG.model;
 
 const BUTTONS = {
   measurement: CONFIG.measurement,
@@ -8,7 +9,6 @@ const BUTTONS = {
 };
 
 // Import all colorMaps from '../assets/colormaps/' as {fileName: path}
-// TODO: Should be {name: [name], path: [path]}
 const colorMaps = require.context(
   "../assets/colormaps/",
   false,
@@ -18,10 +18,6 @@ const ALL_COLOR_MAPS = colorMaps.keys().map((image) => ({
   name: image.replace("./", "").split(".")[0],
   path: colorMaps(image),
 }));
-console.log(ALL_COLOR_MAPS);
-const MODEL_CONSTANTS = CONFIG.model;
 
 export { ALL_COLOR_MAPS, BUTTONS, MODEL_CONSTANTS };
-// export { ALL_COLOR_MAPS, BUTTONS };
-// export { model as MODEL_CONSTANTS };
 export * as MODEL_DATA from "../assets/volume-min-max.json";
