@@ -13,12 +13,10 @@ const colorMaps = require.context(
   false,
   /\.(png|jpe?g|svg)$/
 );
-const ALL_COLOR_MAPS = colorMaps.keys().map((image) => {
-  return {
-    name: image.replace("./", "").split(".")[0],
-    path: colorMaps(image).default,
-  };
-});
+const ALL_COLOR_MAPS = colorMaps.keys().map((image) => ({
+  name: image.replace("./", "").split(".")[0],
+  path: colorMaps(image).default,
+}));
 
 export { ALL_COLOR_MAPS, BUTTONS };
 export { model as MODEL_CONSTANTS };
