@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 export default function Header(props) {
   return (
     <Navbar sticky="top" bg="light" expand="lg">
-      <Navbar.Brand href="https://ridatadiscovery.org">
+      <Navbar.Brand href="https://riddc.brown.edu">
         <img
           src="/assets/images/ricaim-logo.svg"
           width="30"
