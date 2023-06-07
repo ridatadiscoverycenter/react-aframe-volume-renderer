@@ -36,11 +36,7 @@
     "position": "0 0 0",
     "rotation": "-55 0 0",
     "scale": "1 -1 1",
-    "slides": 55,
-    "spacing": {
-      "x": 2,
-      "y": 2,
-      "z": 1
-    }
+    "slices": 55,
+    "spacing": "2 2 1"
   }
 }

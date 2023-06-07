@@ -7,7 +7,7 @@ import {
   ToggleButton,
 } from "react-bootstrap";
 
-import { ALL_COLOR_MAPS, BUTTONS } from "../constants/constants";
+import { BUTTONS } from "../constants/constants";
 
 export default function ModelSelector({
   selection,
@@ -22,10 +22,7 @@ export default function ModelSelector({
     }));
 
     // Change colorMap to corresponding measurement
-    button === "measurement" &&
-      setColorMap(
-        value.value === "salt" ? ALL_COLOR_MAPS.haline : ALL_COLOR_MAPS.thermal
-      );
+    button === "measurement" && setColorMap(value.value);
   }
 
   return (
