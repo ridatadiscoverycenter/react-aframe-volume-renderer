@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./styles/main.scss";
-import { ALL_COLOR_MAPS, BUTTONS } from "./constants/constants";
+import { BUTTONS } from "./constants/constants";
 
 import Header from "./components/Header";
 import InfoText from "./components/InfoText";
@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 export default function App() {
   const [controlsVisible, setControlsVisible] = useState(false);
 
-  const [colorMap, setColorMap] = useState(ALL_COLOR_MAPS.haline);
+  const [colorMap, setColorMap] = useState("salt");
   const [selection, setSelection] = useState(
     Object.keys(BUTTONS).reduce(
       (obj, key) => ({
